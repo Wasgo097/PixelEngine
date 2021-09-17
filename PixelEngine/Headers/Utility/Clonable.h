@@ -3,7 +3,6 @@
 namespace Core{
 	class Object;
 }
-
 namespace Utility{
 	class IClonable{
 		virtual Core::Object* Clone() = 0;

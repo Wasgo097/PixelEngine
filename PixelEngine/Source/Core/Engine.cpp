@@ -1,5 +1,4 @@
 #include "Core/Engine.h"
-#include <SFML/Graphics.hpp>
 namespace Core {
 	std::string Engine::HelloWorld () {
 		return "Hello World";

@@ -6,13 +6,14 @@ namespace Time {
 		_thr = std::make_unique<std::thread>(&TimeManager::Run, this);
 	}
 	TimeManager::~TimeManager(){
+		Terminate();
 		Wait();
 	}
 	TimeManager::TimeManager(TimeManager && src) :
 		_thr(std::move(src._thr)),
 		_seconds(std::move(src._seconds)),
 		_minutes(std::move(src._minutes)),
-		_terminated = src._terminated;
+		_terminated (src._terminated)
 	{}
 	TimeManager & TimeManager::operator=(TimeManager && src){
 		_thr = std::move(src._thr);
@@ -64,16 +65,17 @@ namespace Time {
 	void TimeManager::DetachFromMinutes(ITimeObserver * item){
 		if(item){
 			std::lock_guard lock(_minutes._mtx);
+			_minutes._rsc.erase(item);
 		}
 	}
-	void TimeManager::NotifyForSecondPassed() const{
+	void TimeManager::NotifyForSecondPassed() {
 		std::lock_guard lock(_seconds._mtx);
 		for(auto & observator : _seconds._rsc){
 			observator->SecondPassed();
 		}
 	}
-	void TimeManager::NotifyForMinutePassed() const{
-		std::lock_guard lock(_minutes._mtx);
+	void TimeManager::NotifyForMinutePassed() {
+		std::lock_guard lock(this->_minutes._mtx);
 		for(auto & observator : _minutes._rsc){
 			observator->MinutePassed();
 		}

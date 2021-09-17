@@ -1,6 +1,8 @@
 #pragma once
 #include "CommonHeaders.h"
 namespace Core{
-	class World{
+	class Object{
+	public:
+		virtual std::string ToString();
 	};
 }

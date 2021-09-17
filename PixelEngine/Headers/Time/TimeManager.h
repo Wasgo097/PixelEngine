@@ -11,8 +11,8 @@ namespace Time {
 		virtual void AttachToMinutes(ITimeObserver * item) override;
 		virtual void DetachFromSeconds(ITimeObserver * item) override;
 		virtual void DetachFromMinutes(ITimeObserver * item) override;
-		virtual void NotifyForSecondPassed() const override;
-		virtual void NotifyForMinutePassed() const override;
+		virtual void NotifyForSecondPassed()  override;
+		virtual void NotifyForMinutePassed()  override;
 	public:
 		TimeManager();
 		~TimeManager();

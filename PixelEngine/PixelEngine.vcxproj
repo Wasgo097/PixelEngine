@@ -19,17 +19,23 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="Source\Objects\Object.cpp" />
     <ClCompile Include="Source\Time\TimeManager.cpp" />
     <ClCompile Include="Source\Core\Engine.cpp" />
     <ClCompile Include="Source\Utility\CommonStructures.cpp" />
+    <ClCompile Include="Source\Core\World.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Headers\CommonHeaders.h" />
+    <ClInclude Include="Headers\Utility\Clonable.h" />
     <ClInclude Include="Headers\Utility\CommonStructures.h" />
     <ClInclude Include="Headers\Core\Engine.h" />
     <ClInclude Include="Headers\Time\ITimeObservable.h" />
     <ClInclude Include="Headers\Time\ITimeObserver.h" />
     <ClInclude Include="Headers\Time\TimeManager.h" />
+    <ClInclude Include="Headers\Core\World.h" />
+    <ClInclude Include="Headers\Utility\ISerializable.h" />
+    <ClInclude Include="Headers\Objects\Object.h" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>15.0</VCProjectVersion>
@@ -87,14 +93,14 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <IncludePath>$(SFML)\include;$(SolutionDir)$(ProjectName)\Headers;$(IncludePath)</IncludePath>
     <LibraryPath>$(SFML)\lib;$(LibraryPath)</LibraryPath>
-    <OutDir>$(SolutionDir)$(ProjectName)bin\$(Platform)\$(Configuration)\</OutDir>
-    <IntDir>$(SolutionDir)$(ProjectName)bin\Intermediate\$(Platform)\$(Configuration)\</IntDir>
+    <OutDir>$(SolutionDir)$(ProjectName)\bin\$(Platform)\$(Configuration)\</OutDir>
+    <IntDir>$(SolutionDir)$(ProjectName)\bin\Intermediate\$(Platform)\$(Configuration)\</IntDir>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <IncludePath>$(SFML)\include;$(SolutionDir)$(ProjectName)\Headers;$(IncludePath)</IncludePath>
     <LibraryPath>$(SFML)\lib;$(LibraryPath)</LibraryPath>
-    <OutDir>$(SolutionDir)$(ProjectName)bin\$(Platform)\$(Configuration)\</OutDir>
-    <IntDir>$(SolutionDir)$(ProjectName)bin\Intermediate\$(Platform)\$(Configuration)\</IntDir>
+    <OutDir>$(SolutionDir)$(ProjectName)\bin\$(Platform)\$(Configuration)\</OutDir>
+    <IntDir>$(SolutionDir)$(ProjectName)\bin\Intermediate\$(Platform)\$(Configuration)\</IntDir>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>

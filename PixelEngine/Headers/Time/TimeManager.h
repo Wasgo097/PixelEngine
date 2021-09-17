@@ -28,7 +28,5 @@ namespace Time {
 		Utility::ThreadingResourceLight<std::set<ITimeObserver *>> _seconds;
 		Utility::ThreadingResourceLight<std::set<ITimeObserver *>> _minutes;
 		bool _terminated = false;
-		std::chrono::high_resolution_clock::time_point _secondpoint;
-		std::chrono::high_resolution_clock::time_point _minutepoint;
 	};
 }

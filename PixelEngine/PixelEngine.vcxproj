@@ -19,10 +19,11 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="Source\Engine.cpp" />
+    <ClCompile Include="Source\Core\Engine.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Headers\Engine.h" />
+    <ClInclude Include="Headers\Core\Engine.h" />
+    <ClInclude Include="Headers\Time\ITimeObservable.h" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>15.0</VCProjectVersion>
@@ -78,13 +79,13 @@
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
-    <IncludePath>$(SFML)\include;$(IncludePath)</IncludePath>
+    <IncludePath>$(SFML)\include;$(SolutionDir)$(ProjectName)\Headers;$(IncludePath)</IncludePath>
     <LibraryPath>$(SFML)\lib;$(LibraryPath)</LibraryPath>
     <OutDir>$(SolutionDir)$(ProjectName)bin\$(Platform)\$(Configuration)\</OutDir>
     <IntDir>$(SolutionDir)$(ProjectName)bin\Intermediate\$(Platform)\$(Configuration)\</IntDir>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
-    <IncludePath>$(SFML)\include;$(IncludePath)</IncludePath>
+    <IncludePath>$(SFML)\include;$(SolutionDir)$(ProjectName)\Headers;$(IncludePath)</IncludePath>
     <LibraryPath>$(SFML)\lib;$(LibraryPath)</LibraryPath>
     <OutDir>$(SolutionDir)$(ProjectName)bin\$(Platform)\$(Configuration)\</OutDir>
     <IntDir>$(SolutionDir)$(ProjectName)bin\Intermediate\$(Platform)\$(Configuration)\</IntDir>

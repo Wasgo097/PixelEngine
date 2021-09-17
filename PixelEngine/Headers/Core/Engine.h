@@ -3,7 +3,7 @@
 namespace Core {
 	class Engine{
 	public:
-		std::string GetStr();
-		void mainn();
+		std::string HelloWorld();
+		void main();
 	};
 }

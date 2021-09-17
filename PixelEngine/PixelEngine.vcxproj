@@ -19,11 +19,17 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="Source\Time\TimeManager.cpp" />
     <ClCompile Include="Source\Core\Engine.cpp" />
+    <ClCompile Include="Source\Utility\CommonStructures.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Headers\CommonHeaders.h" />
+    <ClInclude Include="Headers\Utility\CommonStructures.h" />
     <ClInclude Include="Headers\Core\Engine.h" />
     <ClInclude Include="Headers\Time\ITimeObservable.h" />
+    <ClInclude Include="Headers\Time\ITimeObserver.h" />
+    <ClInclude Include="Headers\Time\TimeManager.h" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>15.0</VCProjectVersion>

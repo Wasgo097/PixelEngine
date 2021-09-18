@@ -4,8 +4,8 @@
 namespace Core{
 	class Actor :public Object{
 	public:
-		Actor(const std::string& texture_path){}
-		Actor(std::string&& texture_path){}
+		/*Actor(const std::string& texture_path){}
+		Actor(std::string&& texture_path){}*/
 		bool & TickFlag(){
 			return _tickon;
 		}

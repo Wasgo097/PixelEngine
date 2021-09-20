@@ -19,6 +19,7 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="Headers\Settings\EngineSettings.cpp" />
     <ClCompile Include="Source\Core\ActorManager.cpp" />
     <ClCompile Include="Source\Objects\Actor.cpp" />
     <ClCompile Include="Source\Objects\Object.cpp" />
@@ -34,6 +35,7 @@
     <ClInclude Include="Headers\CommonHeaders.h" />
     <ClInclude Include="Headers\Settings\EngineSettings.h" />
     <ClInclude Include="Headers\Settings\MusicSettings.h" />
+    <ClInclude Include="Headers\Settings\SettingsBase.h" />
     <ClInclude Include="Headers\Utility\IClonable.h" />
     <ClInclude Include="Headers\Utility\CommonStructures.h" />
     <ClInclude Include="Headers\Core\Engine.h" />

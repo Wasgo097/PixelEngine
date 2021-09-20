@@ -1,22 +1,28 @@
 #pragma once
+#include "SettingsBase.h"
 namespace Settings{
-	class EngineSettings{
+	class EngineSettings:public SettingsBase{
 	public:
 		EngineSettings(std::string winsettings, std::string mussettings, std::string worldsettings) :
 			_windowsettings(winsettings), _musicsettings(mussettings), _worldsettings(worldsettings){}
 		EngineSettings() = default;
-		const std::string & WindowSettings()const{
+		// Inherited via SettingsBase
+		inline virtual std::string ToStdString() override{
+			return "Window settings: "+_windowsettings + " World Settings: " + _worldsettings + " Music Settings: " + _musicsettings;
+		}
+		inline const std::string & WindowSettings()const{
 			return _windowsettings;
 		}
-		const std::string & MusicSettings()const{
+		inline const std::string & MusicSettings()const{
 			return _musicsettings;
 		}
-		const std::string & WorldSettings()const{
+		inline const std::string & WorldSettings()const{
 			return _worldsettings;
 		}
 	protected:
 		std::string _windowsettings;
 		std::string _musicsettings;
 		std::string _worldsettings;
+
 	};
 }

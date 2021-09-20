@@ -10,7 +10,8 @@ namespace Core{
 		void Draw(sf::RenderWindow & window);
 		void Tick(double time);
 	private:
-		bool _tickon;
+		bool _tickon=false;
+		bool _animationon = false;
 	protected:
 		std::unique_ptr<sf::Texture> _texture;
 		std::unique_ptr<sf::Sprite> _sprite;

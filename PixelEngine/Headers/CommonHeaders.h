@@ -28,3 +28,7 @@
 #include<random>
 #include<algorithm>
 #include<chrono>
+//json
+#include "json.hpp"
+
+using json = nlohmann::json;

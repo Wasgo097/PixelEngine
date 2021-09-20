@@ -3,8 +3,9 @@
 namespace Settings{
 	class WorldSettings{
 	public:
-		WorldSettings(size_t buffer_size, int gcfrequentlevel,int cycletomove) :_buffer_size(buffer_size),
-			_gcfrequentlevel(gcfrequentlevel),_cycletomove(cycletomove){};
+		WorldSettings(size_t buffer_size, int gcfrequentlevel,int cycletomove) :
+			_buffer_size(buffer_size),_gcfrequentlevel(gcfrequentlevel),_cycletomove(cycletomove){};
+		WorldSettings() = default;
 		const size_t& BufferSize()const{
 			return _buffer_size;
 		}

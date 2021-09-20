@@ -11,7 +11,7 @@ namespace Core{
 		Settings::WorldSettings _worldsettings;
 		Settings::WindowSettings _windowsettings;
 	public:
-		World(Settings::WorldSettings && worlsettings, Settings::WindowSettings&& windowsettings);
+		World(const Settings::WorldSettings & worlsettings, const Settings::WindowSettings& windowsettings);
 		World(const World&) = delete;
 		World(World&&) = delete;
 		void operator=(const World&) = delete;

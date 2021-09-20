@@ -4,6 +4,7 @@ namespace Settings{
 	public:
 		MusicSettings(double mastervolume,double musicvolume,double effectvolume):
 			_mastervolume(mastervolume),_musicvolume(musicvolume),_effectvolume(effectvolume){}
+		MusicSettings() = default;
 		const double & MasterVolume()const{
 			return _mastervolume;
 		}

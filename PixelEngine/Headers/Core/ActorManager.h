@@ -3,7 +3,7 @@
 #include "Utility/CommonStructures.h"
 #include <Objects/Actor.h>
 namespace Core{
-	class ActorManager{
+	class ActorManager final{
 	private:
 		void Loop();
 		void MoveToSecondStage();

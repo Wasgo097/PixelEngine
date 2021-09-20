@@ -3,9 +3,10 @@
 namespace Settings{
 	class WindowSettings{
 	public:
-		WindowSettings(sf::VideoMode&& mode, int fps, unsigned int style, std::string && winname,bool vsync)
-			:_videomode(std::move(mode)), _fps(fps), _style(style), _winname(std::move(_winname)),_vsync(vsync)
+		WindowSettings(const sf::VideoMode& mode, int fps, unsigned int style, const std::string & winname,bool vsync):
+			_videomode(mode), _fps(fps), _style(style), _winname(_winname),_vsync(vsync)
 		{}
+		WindowSettings() = default;
 		const sf::VideoMode& GetVideoMode()const{
 			return _videomode;
 		}

@@ -29,11 +29,12 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Headers\Core\ActorManager.h" />
+    <ClInclude Include="Headers\json.hpp" />
     <ClInclude Include="Headers\Objects\Actor.h" />
     <ClInclude Include="Headers\CommonHeaders.h" />
     <ClInclude Include="Headers\Settings\EngineSettings.h" />
     <ClInclude Include="Headers\Settings\MusicSettings.h" />
-    <ClInclude Include="Headers\Utility\Clonable.h" />
+    <ClInclude Include="Headers\Utility\IClonable.h" />
     <ClInclude Include="Headers\Utility\CommonStructures.h" />
     <ClInclude Include="Headers\Core\Engine.h" />
     <ClInclude Include="Headers\Time\ITimeObservable.h" />

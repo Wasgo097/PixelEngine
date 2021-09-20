@@ -34,9 +34,6 @@
     <ClInclude Include="Headers\Core\World.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Headers\Utility\Clonable.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="Headers\Objects\Object.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -59,6 +56,12 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Headers\Settings\MusicSettings.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Headers\Utility\IClonable.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Headers\json.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

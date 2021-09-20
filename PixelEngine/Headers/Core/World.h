@@ -11,18 +11,12 @@ namespace Core{
 		Settings::WorldSettings _worldsettings;
 		Settings::WindowSettings _windowsettings;
 	public:
-		World(Settings::WorldSettings && worlsettings,Settings::WindowSettings&& windowsettings):
-			_worldsettings(std::move(worlsettings)),_windowsettings(std::move(windowsettings)),
-			_actormanager(std::make_unique<ActorManager>(_worldsettings.BufferSize(), _worldsettings.GcFrequentLevel())){
-		}
+		World(Settings::WorldSettings && worlsettings, Settings::WindowSettings&& windowsettings);
 		World(const World&) = delete;
 		World(World&&) = delete;
 		void operator=(const World&) = delete;
 		void operator=(World&&) = delete;
-		~World(){
-			_actormanager->Terminate();
-			_actormanager->Wait();
-		}
+		~World();
 	public:
 		template<typename type_to_create, typename ...Argv>
 		std::shared_ptr<type_to_create> SpawnActor(Argv && ...argv){

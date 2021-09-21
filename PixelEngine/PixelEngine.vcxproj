@@ -19,7 +19,6 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="Headers\Settings\EngineSettings.cpp" />
     <ClCompile Include="Source\Core\ActorManager.cpp" />
     <ClCompile Include="Source\Objects\Actor.cpp" />
     <ClCompile Include="Source\Objects\Object.cpp" />

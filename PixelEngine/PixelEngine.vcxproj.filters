@@ -88,8 +88,5 @@
     <ClCompile Include="Source\Core\ActorManager.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Headers\Settings\EngineSettings.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
   </ItemGroup>
 </Project>

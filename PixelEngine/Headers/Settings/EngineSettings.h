@@ -23,6 +23,5 @@ namespace Settings{
 		std::string _windowsettings;
 		std::string _musicsettings;
 		std::string _worldsettings;
-
 	};
 }

@@ -27,7 +27,7 @@ namespace Core{
 		std::vector<std::shared_ptr<Actor>> actorstomove;
 		{
 			std::lock_guard lock(_secondstage._mtx);
-			actorstomove.reserve(_buffersize - _secondstage._rsc.size() > 0 ? _buffersize - _secondstage._rsc.size() : 0);
+			actorstomove.reserve((_buffersize - _secondstage._rsc.size()) > 0 ? _buffersize - _secondstage._rsc.size() : 5);
 		}
 		{
 			std::lock_guard lock(_firststage._mtx);
@@ -42,6 +42,7 @@ namespace Core{
 			}
 		}
 		std::lock_guard lock(_secondstage._mtx);
+		int to_reserve = (_secondstage._rsc.capacity() - _secondstage._rsc.size()) > actorstomove.size() ? 0 : actorstomove.size();
 		for(const auto & actor : actorstomove){
 			_secondstage._rsc.push_back(actor);
 		}
@@ -98,4 +99,6 @@ namespace Core{
 		if(_actormanagerthr->joinable())
 			_actormanagerthr->join();
 	}
+	void ActorManager::Update(float deltatime){}
+	void ActorManager::Draw(sf::RenderWindow & window){}
 }

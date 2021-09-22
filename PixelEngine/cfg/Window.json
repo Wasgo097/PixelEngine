@@ -1,0 +1,11 @@
+{
+    "Videomode":{
+        "X":1920,
+        "Y":1280,
+        "Bits":32
+    },
+    "Fps": 30,
+    "Style": 1,
+    "Winname":"Game Window",
+    "Vsync":true
+  }

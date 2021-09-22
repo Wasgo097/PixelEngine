@@ -15,7 +15,10 @@ namespace Core{
 		void Run();
 		void Terminate ();
 		void Wait ();
+		void Update(float deltatime);
+		void Draw(sf::RenderWindow & window);
 	private:
+		//pair: k -number of cycles 
 		Utility::ThreadingResourceLight<std::vector<std::pair<int,std::shared_ptr<Actor>>>> _firststage;
 		Utility::ThreadingResourceLight<std::vector<std::shared_ptr<Actor>>> _secondstage;
 		Utility::ThreadingResourceLight<std::vector<std::shared_ptr<Actor>>> _constactor;

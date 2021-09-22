@@ -3,7 +3,9 @@
 namespace Core{
 	World::World(const Settings::WorldSettings & worlsettings, const Settings::WindowSettings & windowsettings) :
 		_worldsettings(worlsettings), _windowsettings(windowsettings),
-		_actormanager(std::make_unique<ActorManager>(_worldsettings.BufferSize(), _worldsettings.GcFrequentLevel(),_worldsettings.CycleToMove())){}
+		_actormanager(std::make_unique<ActorManager>(_worldsettings.BufferSize(), _worldsettings.GcFrequentLevel(), _worldsettings.CycleToMove())){
+		std::cout << "World created" << std::endl;
+	}
 	World::~World(){
 		_actormanager->Terminate();
 		_actormanager->Wait();

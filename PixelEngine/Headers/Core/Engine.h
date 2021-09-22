@@ -2,12 +2,6 @@
 #include "CommonHeaders.h"
 #include "Utility/ISerializable.h"
 #include "Settings/EngineSettings.h"
-//namespace Settings{
-//	class EngineSettings;
-//	class WindowSettings;
-//	class WorldSettings;
-//	class MusicSettings;
-//}
 namespace Core {
 	class World;
 	class Engine final {

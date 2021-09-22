@@ -17,7 +17,7 @@ namespace Core{
 		std::string windowsettings = jsondata["WindowSettingsPath"];
 		std::string musicsettings = jsondata["MusicSettingsPath"];
 		_enginesettings = Settings::EngineSettings(windowsettings, musicsettings, worldsettings);
-		std::cout << _enginesettings.ToStdString() << std::endl;
+		//std::cout << _enginesettings.ToStdString() << std::endl;
 	}
 	std::string Engine::HelloWorld(){
 		return "Hello World";

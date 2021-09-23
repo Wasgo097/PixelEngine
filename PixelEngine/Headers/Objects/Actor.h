@@ -3,9 +3,10 @@
 #include "CommonHeaders.h"
 #include "Settings/ActorSettings.h"
 namespace Core{
+	class World;
 	class Actor :public Object{
 	public:
-		Actor(const std::string& texture_path,const Settings::ActorSettings & settings,sf::Vector2f velocity=sf::Vector2f(.0f,.0f)):_texturepath(texture_path),_settings(settings),_velocity(velocity){}
+		Actor(World& world, const std::string& texture_path, const Settings::ActorSettings & settings, sf::Vector2f velocity = sf::Vector2f(.0f, .0f));
 		bool & TickFlag();
 		void Draw(sf::RenderWindow & window);
 		void Tick(float deltatime);
@@ -18,5 +19,6 @@ namespace Core{
 		std::string _texturepath;
 		Settings::ActorSettings _settings;
 		sf::Vector2f _velocity;
+		World & _world;
 	};
 }

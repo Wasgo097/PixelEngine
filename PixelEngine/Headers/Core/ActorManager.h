@@ -1,22 +1,26 @@
 #pragma once
 #include "CommonHeaders.h"
 #include "Utility/CommonStructures.h"
-#include <Objects/Actor.h>
+#include "Types/ILoopingThread.h"
 namespace Core{
-	class ActorManager final{
+	class Actor;
+	class ActorManager final:public Types::ILoopingThread{
 	private:
 		void Loop();
 		void MoveToSecondStage();
 	public:
 		ActorManager(size_t buffer_size,int gcfrequentlevel,int cycletomove);
+		virtual ~ActorManager() = default;
 		void RegistrNewActor(std::shared_ptr<Actor> actor);
 		void RegisterConstActor(std::shared_ptr<Actor> actor);
 		void UnregisterActor(Actor * actor);
-		void Run();
-		void Terminate ();
-		void Wait ();
 		void Update(float deltatime);
 		void Draw(sf::RenderWindow & window);
+	public:
+		// Inherited via IThread
+		virtual void Run() override;
+		virtual void Terminate()override;
+		virtual void Wait()override;
 	private:
 		//pair: k -number of cycles 
 		Utility::ThreadingResourceLight<std::vector<std::pair<int,std::shared_ptr<Actor>>>> _firststage;
@@ -25,7 +29,7 @@ namespace Core{
 		const size_t _buffersize;
 		const int _frequencylevel;
 		const int _cycletomove;
-		bool _termianted = false;
-		std::unique_ptr<std::thread> _actormanagerthr;
+		std::unique_ptr<std::thread> _thread;
+		bool _terminated = false;
 	};
 }

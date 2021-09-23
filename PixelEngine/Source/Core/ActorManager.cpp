@@ -1,4 +1,5 @@
 #include "Core/ActorManager.h"
+#include <Objects/Actor.h>
 namespace Core{
 	void ActorManager::Loop(){
 		for(int i = 0; i < _frequencylevel; i++){
@@ -11,7 +12,7 @@ namespace Core{
 					}
 				}
 			}
-			std::this_thread::sleep_for(std::chrono::milliseconds(_frequencylevel * 10));
+			std::this_thread::sleep_for(std::chrono::milliseconds(_frequencylevel * 30));
 		}
 		{
 			std::lock_guard lock(_secondstage._mtx);
@@ -22,6 +23,7 @@ namespace Core{
 				}
 			}
 		}
+		std::this_thread::sleep_for(std::chrono::milliseconds(_frequencylevel * 30));
 	}
 	void ActorManager::MoveToSecondStage(){
 		std::vector<std::shared_ptr<Actor>> actorstomove;
@@ -48,8 +50,8 @@ namespace Core{
 		}
 	}
 	ActorManager::ActorManager(size_t buffer_size, int gcfrequentlevel, int cycletomove) :
-		_buffersize(buffer_size), _frequencylevel(gcfrequentlevel), _cycletomove(cycletomove),
-		_actormanagerthr(std::make_unique<std::thread>(&ActorManager::Run, this)){
+		_thread(std::make_unique<std::thread>(&ActorManager::Run, this)),
+		_buffersize(buffer_size), _frequencylevel(gcfrequentlevel), _cycletomove(cycletomove){
 		_firststage._rsc.reserve(buffer_size);
 		_secondstage._rsc.reserve(buffer_size);
 		_constactor._rsc.reserve(buffer_size);
@@ -87,18 +89,59 @@ namespace Core{
 		}
 	}
 	void ActorManager::Run(){
-		while(!_termianted){
+		while(!_terminated){
 			Loop();
 			MoveToSecondStage();
 		}
 	}
 	void ActorManager::Terminate(){
-		_termianted = true;
+		_terminated = true;
 	}
 	void ActorManager::Wait(){
-		if(_actormanagerthr->joinable())
-			_actormanagerthr->join();
+		if(_thread->joinable())
+			_thread->join();
 	}
-	void ActorManager::Update(float deltatime){}
-	void ActorManager::Draw(sf::RenderWindow & window){}
+	void ActorManager::Update(float deltatime){
+		{
+			std::lock_guard lock(_firststage._mtx);
+			for(auto&[Key, Value] : _firststage._rsc){
+				if(Value->TickFlag() == true)
+					Value->Tick(deltatime);
+			}
+		}
+		{
+			std::lock_guard lock(_secondstage._mtx);
+			for(auto& Actor : _secondstage._rsc){
+				if(Actor->TickFlag() == true)
+					Actor->Tick(deltatime);
+			}
+		}
+		{
+			std::lock_guard lock(_constactor._mtx);
+			for(auto& Actor : _constactor._rsc){
+				if(Actor->TickFlag() == true)
+					Actor->Tick(deltatime);
+			}
+		}
+	}
+	void ActorManager::Draw(sf::RenderWindow & window){
+		{
+			std::lock_guard lock(_firststage._mtx);
+			for(auto&[Key, Value] : _firststage._rsc){
+				Value->Draw(window);
+			}
+		}
+		{
+			std::lock_guard lock(_secondstage._mtx);
+			for(auto& Actor : _secondstage._rsc){
+				Actor->Draw(window);
+			}
+		}
+		{
+			std::lock_guard lock(_constactor._mtx);
+			for(auto& Actor : _constactor._rsc){
+				Actor->Draw(window);
+			}
+		}
+	}
 }

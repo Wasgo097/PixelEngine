@@ -70,6 +70,9 @@
     <ClInclude Include="Headers\Settings\ActorSettings.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="Headers\Types\ILoopingThread.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Source\Core\Engine.cpp" />

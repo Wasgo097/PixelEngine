@@ -3,20 +3,20 @@
 namespace Time {
 
 	TimeManager::TimeManager(){
-		_thr = std::make_unique<std::thread>(&TimeManager::Run, this);
+		_thread = std::make_unique<std::thread>(&TimeManager::Run, this);
 	}
 	TimeManager::~TimeManager(){
 		Terminate();
 		Wait();
 	}
 	TimeManager::TimeManager(TimeManager && src) :
-		_thr(std::move(src._thr)),
+		_thread(std::move(src._thread)),
 		_seconds(std::move(src._seconds)),
 		_minutes(std::move(src._minutes)),
 		_terminated (src._terminated)
 	{}
 	TimeManager & TimeManager::operator=(TimeManager && src){
-		_thr = std::move(src._thr);
+		_thread = std::move(src._thread);
 		_seconds = std::move(src._seconds);
 		_minutes = std::move(src._minutes);
 		_terminated = src._terminated;
@@ -41,8 +41,8 @@ namespace Time {
 		_terminated = true;
 	}
 	void TimeManager::Wait () {
-		if(_thr->joinable())
-			_thr->join();
+		if(_thread->joinable())
+			_thread->join();
 	}
 	void TimeManager::AttachToSeconds(ITimeObserver * item){
 		if(item!=nullptr){

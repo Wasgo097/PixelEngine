@@ -50,7 +50,7 @@ namespace Core{
 		}
 	}
 	ActorManager::ActorManager(size_t buffer_size, int gcfrequentlevel, int cycletomove) :
-		_thread(std::make_unique<std::thread>(&ActorManager::Run, this)),
+		_thread_management(std::make_unique<std::thread>(&ActorManager::Run, this)),
 		_buffersize(buffer_size), _frequencylevel(gcfrequentlevel), _cycletomove(cycletomove){
 		_firststage._rsc.reserve(buffer_size);
 		_secondstage._rsc.reserve(buffer_size);
@@ -98,8 +98,8 @@ namespace Core{
 		_terminated = true;
 	}
 	void ActorManager::Wait(){
-		if(_thread->joinable())
-			_thread->join();
+		if(_thread_management->joinable())
+			_thread_management->join();
 	}
 	void ActorManager::Update(float deltatime){
 		{

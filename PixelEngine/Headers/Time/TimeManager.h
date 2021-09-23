@@ -15,12 +15,14 @@ namespace Time {
 		virtual void NotifyForSecondPassed()  override;
 		virtual void NotifyForMinutePassed()  override;
 	public:
-		TimeManager();
+		TimeManager(float multiplier = 1.0);
 		virtual ~TimeManager();
 		TimeManager(const TimeManager&) = delete;
 		TimeManager& operator=(const TimeManager&) = delete;
 		TimeManager(TimeManager&& src);
 		TimeManager& operator=(TimeManager&&src);
+		void Multiplier(float value);
+		float Multiplier()const;
 	public:
 		// Inherited via IThread
 		virtual void Run()override;
@@ -30,6 +32,7 @@ namespace Time {
 		std::unique_ptr<std::thread> _thread;
 		Utility::ThreadingResourceLight<std::set<ITimeObserver *>> _seconds;
 		Utility::ThreadingResourceLight<std::set<ITimeObserver *>> _minutes;
+		Utility::ThreadingResourceLight<float> _multipler;
 		bool _terminated = false;
 	};
 }

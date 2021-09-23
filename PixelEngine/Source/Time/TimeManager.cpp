@@ -2,8 +2,8 @@
 #include "Time/ITimeObserver.h"
 namespace Time {
 
-	TimeManager::TimeManager(){
-		_thread = std::make_unique<std::thread>(&TimeManager::Run, this);
+	TimeManager::TimeManager(float multiplier):_thread(std::make_unique<std::thread>(&TimeManager::Run, this)){
+		_multipler._rsc = multiplier;
 	}
 	TimeManager::~TimeManager(){
 		Terminate();
@@ -22,16 +22,31 @@ namespace Time {
 		_terminated = src._terminated;
 		return *this;
 	}
+	void TimeManager::Multiplier(float value){
+		std::lock_guard lock(_multipler._mtx);
+		_multipler._rsc = value;
+	}
+	float TimeManager::Multiplier() const{
+		std::lock_guard lock(_multipler._mtx);
+		return _multipler._rsc;
+	}
 	void TimeManager::Run(){
 		auto _seconds_point = std::chrono::high_resolution_clock::now();
 		auto _minutes_point = _seconds_point;
 		while(!_terminated){
 			auto now = std::chrono::high_resolution_clock::now();
-			if(std::chrono::duration_cast<std::chrono::milliseconds>(now - _seconds_point).count() > 1000){
+			bool second_pass = false;
+			bool minute_pass = false;
+			{
+				std::lock_guard lock(_multipler._mtx);
+				second_pass = std::chrono::duration_cast<std::chrono::milliseconds>(now - _seconds_point).count() > (1000 / _multipler._rsc);
+				minute_pass = std::chrono::duration_cast<std::chrono::milliseconds>(now - _seconds_point).count() > (60000 / _multipler._rsc);
+			}
+			if(second_pass){
 				NotifyForSecondPassed();
 				_seconds_point = now;
 			}
-			if(std::chrono::duration_cast<std::chrono::milliseconds>(now - _minutes_point).count() > 60000){
+			if(minute_pass){
 				NotifyForMinutePassed();
 				_minutes_point = now;
 			}

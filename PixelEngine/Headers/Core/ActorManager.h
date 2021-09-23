@@ -29,7 +29,7 @@ namespace Core{
 		const size_t _buffersize;
 		const int _frequencylevel;
 		const int _cycletomove;
-		std::unique_ptr<std::thread> _thread;
+		std::unique_ptr<std::thread> _thread_management;
 		bool _terminated = false;
 	};
 }

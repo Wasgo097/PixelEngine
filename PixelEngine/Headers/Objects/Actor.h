@@ -16,6 +16,7 @@ namespace Core{
 	protected:
 		std::unique_ptr<sf::Texture> _texture;
 		std::unique_ptr<sf::Sprite> _sprite;
+		std::optional<sf::RectangleShape> _collider;
 		std::string _texturepath;
 		Settings::ActorSettings _settings;
 		sf::Vector2f _velocity;

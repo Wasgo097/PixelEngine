@@ -19,9 +19,9 @@ namespace Core{
 		~World();
 	public:
 		template<typename type_to_create, typename ...Argv>
-		std::shared_ptr<type_to_create> SpawnActor(Argv && ...argv){
+		std::shared_ptr<type_to_create> SpawnActor(std::optional<std::string> texture_path, const Settings::ActorSettings & settings, sf::Vector2f velocity,Argv && ...argv){
 			std::shared_ptr<type_to_create> result;
-			type_to_create * ptr = new type_to_create(std::forward<Argv>(argv)...);
+			type_to_create * ptr = new type_to_create(this, texture_path, settings, velocity,std::forward<Argv>(argv)...);
 			result.reset(ptr);
 			ptr = nullptr;
 			_actormanager->RegistrNewActor(result);

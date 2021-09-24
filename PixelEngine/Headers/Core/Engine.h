@@ -14,7 +14,5 @@ namespace Core {
 		Engine(Engine&&) = delete;
 		Engine& operator=(const Engine&) = delete;
 		Engine& operator=(Engine&&) = delete;
-		//std::string HelloWorld();
-		//void main();
 	};
 }

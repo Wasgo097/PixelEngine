@@ -1,9 +1,11 @@
 #include "Time/TimeManager.h"
 #include "Time/ITimeObserver.h"
-namespace Time {
+#include "Core/World.h"
+namespace Time{
 
-	TimeManager::TimeManager(float multiplier):_thread(std::make_unique<std::thread>(&TimeManager::Run, this)){
-		_multipler._rsc = multiplier;
+	TimeManager::TimeManager(Core::World * world, float multiplier) :_thread(std::make_unique<std::thread>(&TimeManager::Run, this)), Core::Actor(world, std::optional<std::string>(), 
+		Settings::ActorSettings(Settings::CollisionType::None, Settings::ActorType::Static),sf::Vector2f(.0f,.0f)){
+		_multipler = multiplier;
 	}
 	TimeManager::~TimeManager(){
 		Terminate();
@@ -13,22 +15,21 @@ namespace Time {
 		_thread(std::move(src._thread)),
 		_seconds(std::move(src._seconds)),
 		_minutes(std::move(src._minutes)),
-		_terminated (src._terminated)
-	{}
+		_terminated(src._terminated), Core::Actor(src._world, std::optional<std::string>(),
+		Settings::ActorSettings(Settings::CollisionType::None, Settings::ActorType::Static), sf::Vector2f(.0f, .0f)){}
 	TimeManager & TimeManager::operator=(TimeManager && src){
 		_thread = std::move(src._thread);
 		_seconds = std::move(src._seconds);
 		_minutes = std::move(src._minutes);
 		_terminated = src._terminated;
+		_world = src._world;
 		return *this;
 	}
 	void TimeManager::Multiplier(float value){
-		std::lock_guard lock(_multipler._mtx);
-		_multipler._rsc = value;
+		_multipler = value;
 	}
 	float TimeManager::Multiplier() const{
-		std::lock_guard lock(_multipler._mtx);
-		return _multipler._rsc;
+		return _multipler;
 	}
 	void TimeManager::Run(){
 		auto _seconds_point = std::chrono::high_resolution_clock::now();
@@ -37,11 +38,8 @@ namespace Time {
 			auto now = std::chrono::high_resolution_clock::now();
 			bool second_pass = false;
 			bool minute_pass = false;
-			{
-				std::lock_guard lock(_multipler._mtx);
-				second_pass = std::chrono::duration_cast<std::chrono::milliseconds>(now - _seconds_point).count() > (1000 / _multipler._rsc);
-				minute_pass = std::chrono::duration_cast<std::chrono::milliseconds>(now - _seconds_point).count() > (60000 / _multipler._rsc);
-			}
+			second_pass = std::chrono::duration_cast<std::chrono::milliseconds>(now - _seconds_point).count() > (1000 / _multipler);
+			minute_pass = std::chrono::duration_cast<std::chrono::milliseconds>(now - _seconds_point).count() > (60000 / _multipler);
 			if(second_pass){
 				NotifyForSecondPassed();
 				_seconds_point = now;
@@ -52,15 +50,15 @@ namespace Time {
 			}
 		}
 	}
-	void TimeManager::Terminate () {
+	void TimeManager::Terminate(){
 		_terminated = true;
 	}
-	void TimeManager::Wait () {
+	void TimeManager::Wait(){
 		if(_thread->joinable())
 			_thread->join();
 	}
 	void TimeManager::AttachToSeconds(ITimeObserver * item){
-		if(item!=nullptr){
+		if(item != nullptr){
 			std::lock_guard lock(_seconds._mtx);
 			_seconds._rsc.insert(item);
 		}
@@ -83,13 +81,13 @@ namespace Time {
 			_minutes._rsc.erase(item);
 		}
 	}
-	void TimeManager::NotifyForSecondPassed() {
+	void TimeManager::NotifyForSecondPassed(){
 		std::lock_guard lock(_seconds._mtx);
 		for(auto & observator : _seconds._rsc){
 			observator->SecondPassed();
 		}
 	}
-	void TimeManager::NotifyForMinutePassed() {
+	void TimeManager::NotifyForMinutePassed(){
 		std::lock_guard lock(this->_minutes._mtx);
 		for(auto & observator : _minutes._rsc){
 			observator->MinutePassed();

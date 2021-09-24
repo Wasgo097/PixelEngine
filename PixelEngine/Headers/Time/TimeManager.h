@@ -1,11 +1,16 @@
 #pragma once
-#include "ITimeObservable.h"
 #include "CommonHeaders.h"
-#include "Utility/CommonStructures.h"
-#include "Time/ITimeObserver.h"
+#include "ITimeObservable.h"
 #include "Types/ILoopingThread.h"
+#include "Objects/Actor.h"
+#include "Utility/CommonStructures.h"
+
+namespace Core{
+	class World;
+}
 namespace Time {
-	class TimeManager : public ITimeObservable,Types::ILoopingThread {
+	class ITimeObserver;
+	class TimeManager : public ITimeObservable,Types::ILoopingThread,Core::Actor {
 	public:
 		// Inherited via ITimeObservable
 		virtual void AttachToSeconds(ITimeObserver * item) override;
@@ -15,7 +20,7 @@ namespace Time {
 		virtual void NotifyForSecondPassed()  override;
 		virtual void NotifyForMinutePassed()  override;
 	public:
-		TimeManager(float multiplier = 1.0);
+		TimeManager(Core::World * world,float multiplier = 1.0);
 		virtual ~TimeManager();
 		TimeManager(const TimeManager&) = delete;
 		TimeManager& operator=(const TimeManager&) = delete;
@@ -32,7 +37,7 @@ namespace Time {
 		std::unique_ptr<std::thread> _thread;
 		Utility::ThreadingResourceLight<std::set<ITimeObserver *>> _seconds;
 		Utility::ThreadingResourceLight<std::set<ITimeObserver *>> _minutes;
-		Utility::ThreadingResourceLight<float> _multipler;
+		std::atomic<float> _multipler;
 		bool _terminated = false;
 	};
 }

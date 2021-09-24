@@ -29,10 +29,10 @@ namespace Settings{
 			return _vsync;
 		}
 	protected:
-		sf::VideoMode _videomode;
-		int _fps;
-		unsigned int _style;
-		std::string _winname;
-		bool _vsync;
+		sf::VideoMode _videomode = sf::VideoMode(1920, 1080);
+		int _fps = 30;
+		unsigned int _style = sf::Style::Fullscreen;
+		std::string _winname="Window";
+		bool _vsync = false;
 	};
 }

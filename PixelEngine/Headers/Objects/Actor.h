@@ -6,21 +6,25 @@ namespace Core{
 	class World;
 	class Actor :public Object{
 	public:
-		Actor(World* world, std::optional<std::string> texture_path, const Settings::ActorSettings & settings, sf::Vector2f velocity ) :
-			_world(world), _texturepath(texture_path), _settings(settings), _velocity(velocity){}
+		Actor(World* world, const Settings::ActorSettings & settings, sf::Vector2f velocity);
+		Actor(const Actor &) = delete;
+		Actor & operator=(const Actor &) = delete;
+		Actor(Actor &&) = default;
+		Actor& operator=(Actor&&) = default;
 		bool & TickFlag();
 		void Draw(sf::RenderWindow & window);
 		void Tick(float deltatime);
+		bool CanCollide()const;
+		const sf::RectangleShape &GetCollider()const;
+		void Move(const sf::Vector2f& velocity);
 	private:
 		bool _tickon=false;
-		//bool _animationon = false;
 	protected:
+		World * _world;
 		std::unique_ptr<sf::Texture> _texture;
 		std::unique_ptr<sf::Sprite> _sprite;
 		std::optional<sf::RectangleShape> _collider;
-		std::optional<std::string> _texturepath;
 		Settings::ActorSettings _settings;
 		sf::Vector2f _velocity;
-		World * _world;
 	};
 }

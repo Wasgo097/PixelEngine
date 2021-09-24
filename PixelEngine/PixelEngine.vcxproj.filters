@@ -73,6 +73,9 @@
     <ClInclude Include="Headers\Types\ILoopingThread.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="Headers\Settings\TextureSettings.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Source\Core\Engine.cpp" />

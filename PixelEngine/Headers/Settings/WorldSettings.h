@@ -20,8 +20,8 @@ namespace Settings{
 			return _cycletomove;
 		}
 	protected:
-		size_t _buffer_size;
-		int _gcfrequentlevel;
-		int _cycletomove;
+		size_t _buffer_size=200;
+		int _gcfrequentlevel=5;
+		int _cycletomove=10;
 	};
 }

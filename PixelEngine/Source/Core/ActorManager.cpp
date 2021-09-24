@@ -7,6 +7,7 @@ namespace Core{
 				std::lock_guard lock(_firststage._mtx);
 				for(auto it = _firststage._rsc.begin(); it != _firststage._rsc.end(); it++){
 					if(/*it->second.use_count() == 1 ||*/ it->second->ToDestroy()){
+						it->second->OnDelete();
 						_firststage._rsc.erase(it);
 						it--;
 					}
@@ -18,6 +19,7 @@ namespace Core{
 			std::lock_guard lock(_secondstage._mtx);
 			for(auto it = _secondstage._rsc.begin(); it != _secondstage._rsc.end(); it++){
 				if(/*it->use_count() == 1 ||*/ (*it)->ToDestroy()){
+					(*it)->OnDelete();
 					_secondstage._rsc.erase(it);
 					it--;
 				}

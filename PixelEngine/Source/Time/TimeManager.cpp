@@ -3,28 +3,32 @@
 #include "Core/World.h"
 namespace Time{
 
-	TimeManager::TimeManager(Core::World * world, float multiplier) :_thread(std::make_unique<std::thread>(&TimeManager::Run, this)), Core::Actor(world, std::optional<std::string>(), 
-		Settings::ActorSettings(Settings::CollisionType::None, Settings::ActorType::Static),sf::Vector2f(.0f,.0f)){
+	TimeManager::TimeManager(Core::World * world, float multiplier) :
+		_thread(std::make_unique<std::thread>(&TimeManager::Run, this)),
+		Core::Actor(world,Settings::ActorSettings(), sf::Vector2f(.0f, .0f)){
 		_multipler = multiplier;
 	}
 	TimeManager::~TimeManager(){
 		Terminate();
 		Wait();
 	}
-	TimeManager::TimeManager(TimeManager && src) :
-		_thread(std::move(src._thread)),
-		_seconds(std::move(src._seconds)),
-		_minutes(std::move(src._minutes)),
-		_terminated(src._terminated), Core::Actor(src._world, std::optional<std::string>(),
-		Settings::ActorSettings(Settings::CollisionType::None, Settings::ActorType::Static), sf::Vector2f(.0f, .0f)){}
-	TimeManager & TimeManager::operator=(TimeManager && src){
-		_thread = std::move(src._thread);
-		_seconds = std::move(src._seconds);
-		_minutes = std::move(src._minutes);
-		_terminated = src._terminated;
-		_world = src._world;
-		return *this;
-	}
+	//TimeManager::TimeManager(TimeManager && src) :
+	//	_thread(std::move(src._thread)),
+	//	_seconds(std::move(src._seconds)),
+	//	_minutes(std::move(src._minutes)),
+	//	_terminated(src._terminated), 
+	//	Core::Actor(src._world,Settings::ActorSettings(),	sf::Vector2f(.0f, .0f)){
+	//}
+	//TimeManager & TimeManager::operator=(TimeManager && src){
+	//	_thread = std::move(src._thread);
+	//	_seconds = std::move(src._seconds);
+	//	_minutes = std::move(src._minutes);
+	//	_terminated = src._terminated;
+	//	_settings = std::move(src._settings);
+	//	_world = src._world;
+	//	src._world = nullptr;
+	//	return *this;
+	//}
 	void TimeManager::Multiplier(float value){
 		_multipler = value;
 	}

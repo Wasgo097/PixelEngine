@@ -20,8 +20,8 @@ namespace Settings{
 			return _worldsettings;
 		}
 	protected:
-		std::string _windowsettings;
-		std::string _musicsettings;
-		std::string _worldsettings;
+		std::string _windowsettings="";
+		std::string _musicsettings = "";
+		std::string _worldsettings = "";
 	};
 }

@@ -19,6 +19,7 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="Source\Objects\Extensions\Animation.cpp" />
     <ClCompile Include="Source\Objects\AnimatedActor.cpp" />
     <ClCompile Include="Source\Core\ActorManager.cpp" />
     <ClCompile Include="Source\Objects\Actor.cpp" />
@@ -34,6 +35,7 @@
     <ClInclude Include="Headers\Objects\Actor.h" />
     <ClInclude Include="Headers\CommonHeaders.h" />
     <ClInclude Include="Headers\Objects\AnimatedActor.h" />
+    <ClInclude Include="Headers\Objects\Extensions\Animation.h" />
     <ClInclude Include="Headers\Settings\ActorSettings.h" />
     <ClInclude Include="Headers\Settings\EngineSettings.h" />
     <ClInclude Include="Headers\Settings\MusicSettings.h" />

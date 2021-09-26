@@ -29,12 +29,29 @@ namespace Settings{
 		bool _repeatable = false;
 	};
 	class AnimationTextureSettings :public SettingsBase{
+	public:
 		//columns x,rows y; how many columns and will be used in animation, switchtime - switch between aniamtion 
 		//rectsize - size of one frame on texture image
 		AnimationTextureSettings(sf::Vector2u rectsize, int columns,int rows,float switchtime):_rectsize(rectsize), _columns(columns),_rows(rows),_switchtime(switchtime){}
 		AnimationTextureSettings() = default;
 		// Inherited via SettingsBase
-		virtual std::string ToStdString() override{}
+		virtual std::string ToStdString() override{
+			std::stringstream stream;
+			stream << "RectSize: " << _rectsize.x << " " << _rectsize.y << " Columns: " << _columns << " Rows: " << _rows << " Switch Time: " << _switchtime;
+			return stream.str();
+		}
+		const sf::Vector2u & GetRectSize()const{
+			return _rectsize;
+		}
+		const int& GetColumns()const{
+			return _columns;
+		}
+		const int & GetRows()const{
+			return _rows;
+		}
+		const float& GetSwitchTime()const{
+			return _switchtime;
+		}
 	protected:
 		sf::Vector2u _rectsize = sf::Vector2u(0, 0);
 		int _columns = 4;

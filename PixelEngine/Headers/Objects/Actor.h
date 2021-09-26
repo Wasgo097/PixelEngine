@@ -9,15 +9,17 @@ namespace Core{
 		Actor(World* world, const Settings::ActorSettings & settings);
 		Actor(const Actor &) = delete;
 		Actor & operator=(const Actor &) = delete;
-		Actor(Actor &&) = default;
-		Actor& operator=(Actor&&) = default;
+		Actor(Actor &&) = delete;;
+		Actor& operator=(Actor&&) = delete;;
 		virtual ~Actor();
+	public:
 		bool & TickFlag();
-		virtual void Draw(sf::RenderWindow & window);
 		void Tick(float deltatime);
 		bool CanCollide()const;
 		const sf::RectangleShape &GetCollider()const;
+	public:
 		virtual void Move(const sf::Vector2f& velocity);
+		virtual void Draw(sf::RenderWindow & window);
 	private:
 		bool _tickon=false;
 	protected:

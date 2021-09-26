@@ -37,10 +37,6 @@ namespace Core{
 	bool & Actor::TickFlag(){
 		return _tickon;
 	}
-	void Actor::Draw(sf::RenderWindow & window){
-		if(_sprite)
-			window.draw(*_sprite);
-	}
 	void Actor::Tick(float deltatime){
 		if(_settings.GetActorType() == Settings::ActorType::Dynamic){
 			auto movevec = _velocity * deltatime;
@@ -49,11 +45,15 @@ namespace Core{
 			_velocity = sf::Vector2f(0, 0);
 		}
 	}
-	inline bool Actor::CanCollide() const{
+	bool Actor::CanCollide() const{
 		return static_cast<int>(_settings.GetCollision()) > 0;
 	}
-	inline const sf::RectangleShape & Actor::GetCollider() const{
+	const sf::RectangleShape & Actor::GetCollider() const{
 		return *_collider;
+	}
+	void Actor::Draw(sf::RenderWindow & window){
+		if(_sprite)
+			window.draw(*_sprite);
 	}
 	inline void Actor::Move(const sf::Vector2f & velocity){
 		_velocity = velocity;

@@ -51,22 +51,22 @@ namespace Core{
 		bool vsync= jsonwindow["Vsync"];
 		Settings::WindowSettings winsett(sf::VideoMode(x, y, bits), fps, style, winname, vsync);
 		std::cout << winsett.ToStdString() << std::endl;
-		_world = std::make_unique<World>(worldsett, winsett);
-		{
-			//music settings 
-			reader.open(settingspath + '/' + musicsettings);
-			if(!reader.good()){
-				std::cerr << "Cant open music window file!" << std::endl;
-				throw std::invalid_argument("Wrong path, cant open music cfg file");
-			}
-			json jsonmusic;
-			reader >> jsonmusic;
-			reader.close();
-			double master = jsonmusic["MasterVolume"];
-			double music = jsonmusic["MusicVolume"];
-			double effect = jsonmusic["EffectVolume"];
-			Settings::MusicSettings musset(master, music, effect);
-		}
+		_world = std::make_unique<World>(worldsett);
+		//{
+		//	//music settings 
+		//	reader.open(settingspath + '/' + musicsettings);
+		//	if(!reader.good()){
+		//		std::cerr << "Cant open music window file!" << std::endl;
+		//		throw std::invalid_argument("Wrong path, cant open music cfg file");
+		//	}
+		//	json jsonmusic;
+		//	reader >> jsonmusic;
+		//	reader.close();
+		//	double master = jsonmusic["MasterVolume"];
+		//	double music = jsonmusic["MusicVolume"];
+		//	double effect = jsonmusic["EffectVolume"];
+		//	Settings::MusicSettings musset(master, music, effect);
+		//}
 	}
 	//std::string Engine::HelloWorld(){
 	//	return "Hello World";

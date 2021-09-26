@@ -1,10 +1,10 @@
 #pragma once
 #include"SettingsBase.h"
 namespace Settings{
-	class TextureSettings:public SettingsBase{
+	class BaseTextureSettings:public SettingsBase{
 	public:
-		TextureSettings(std::optional<std::string> texture,bool Smooth,bool repeatable):_texturepath(texture),_smooth(Smooth), _repeatable(repeatable){}
-		TextureSettings() = default;
+		BaseTextureSettings(std::optional<std::string> texture,bool Smooth,bool repeatable):_texturepath(texture),_smooth(Smooth), _repeatable(repeatable){}
+		BaseTextureSettings() = default;
 		// Inherited via SettingsBase
 		virtual std::string ToStdString() override{
 			std::stringstream stream;
@@ -27,5 +27,17 @@ namespace Settings{
 		std::optional<std::string> _texturepath;
 		bool _smooth = false;
 		bool _repeatable = false;
+	};
+	class AnimatedTextureSettings :public SettingsBase{
+		//columns x,rows y
+		AnimatedTextureSettings(sf::Vector2u rectsize, int columns,int rows):_rectsize(rectsize), _columns(columns),_rows(rows){}
+		// Inherited via SettingsBase
+		virtual std::string ToStdString() override{
+
+		}
+	protected:
+		sf::Vector2u _rectsize = sf::Vector2u(0, 0);
+		int _columns = 0;
+		int _rows = 0;
 	};
 }

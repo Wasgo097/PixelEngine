@@ -13,7 +13,7 @@ namespace Core{
 			_collider->setPosition(_settings.GetPosition());
 		}
 		//texture and sprite
-		const Settings::TextureSettings& texturesettings = _settings.GetTextureSettings();
+		const Settings::BaseTextureSettings& texturesettings = _settings.GetTextureSettings();
 		if(texturesettings.TexturePath()){
 			const std::string&  texturepath = *texturesettings.TexturePath();
 			if(!texturepath.empty()){

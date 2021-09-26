@@ -13,7 +13,7 @@ namespace Settings{
 	};
 	class ActorSettings :public SettingsBase{
 	public:
-		ActorSettings(CollisionType collision,ActorType type, sf::Vector2f position,sf::Vector2f collidersize, sf::Vector2f velocity,bool tickflag,TextureSettings texturesettings):
+		ActorSettings(CollisionType collision,ActorType type, sf::Vector2f position,sf::Vector2f collidersize, sf::Vector2f velocity,bool tickflag, BaseTextureSettings texturesettings):
 			_collision(collision),_type(type),_position(position),_collidersize(collidersize),_velocity(velocity),_tickflag(tickflag),_texture(texturesettings){}
 		ActorSettings() = default;
 		// Inherited via SettingsBase
@@ -41,7 +41,7 @@ namespace Settings{
 		bool GetTickFlag()const{
 			return _tickflag;
 		}
-		const TextureSettings & GetTextureSettings()const{
+		const BaseTextureSettings & GetTextureSettings()const{
 			return _texture;
 		}
 	protected:
@@ -51,6 +51,6 @@ namespace Settings{
 		sf::Vector2f _collidersize = sf::Vector2f(.0f, .0f);
 		sf::Vector2f _velocity = sf::Vector2f(.0f, .0f);
 		bool _tickflag=false;
-		TextureSettings _texture;
+		BaseTextureSettings _texture;
 	};
 }

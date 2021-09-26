@@ -13,11 +13,11 @@ namespace Core{
 		Actor& operator=(Actor&&) = default;
 		virtual ~Actor();
 		bool & TickFlag();
-		void Draw(sf::RenderWindow & window);
+		virtual void Draw(sf::RenderWindow & window);
 		void Tick(float deltatime);
 		bool CanCollide()const;
 		const sf::RectangleShape &GetCollider()const;
-		void Move(const sf::Vector2f& velocity);
+		virtual void Move(const sf::Vector2f& velocity);
 	private:
 		bool _tickon=false;
 	protected:

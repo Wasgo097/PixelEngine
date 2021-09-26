@@ -8,7 +8,9 @@ namespace Settings{
 		WorldSettings() = default;
 		// Inherited via SettingsBase
 		virtual std::string ToStdString() override{
-			return "Buffer Size: " + std::to_string(_buffer_size) + " GCFrequentLevel: " + std::to_string(_gcfrequentlevel) + " Cycle To Move: " + std::to_string(_cycletomove);
+			std::stringstream stream;
+			stream<< "Buffer Size: " <<_buffer_size<< " GCFrequentLevel: " <<_gcfrequentlevel<< " Cycle To Move: " <<_cycletomove;
+			return stream.str();
 		}
 		const size_t& BufferSize()const{
 			return _buffer_size;

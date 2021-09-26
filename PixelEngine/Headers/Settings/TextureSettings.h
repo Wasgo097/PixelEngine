@@ -7,7 +7,12 @@ namespace Settings{
 		TextureSettings() = default;
 		// Inherited via SettingsBase
 		virtual std::string ToStdString() override{
-			return std::string();
+			std::stringstream stream;
+			std::string path = "";
+			if(_texturepath)
+				path = *_texturepath;
+			stream << "Texture Path: " << path << " Smooth: " << _smooth << " Repeatable: " << _repeatable;
+			return stream.str();
 		}
 		const std::optional<std::string>& TexturePath()const{
 			return _texturepath;

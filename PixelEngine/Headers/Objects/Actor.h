@@ -6,11 +6,12 @@ namespace Core{
 	class World;
 	class Actor :public Object{
 	public:
-		Actor(World* world, const Settings::ActorSettings & settings, sf::Vector2f velocity);
+		Actor(World* world, const Settings::ActorSettings & settings);
 		Actor(const Actor &) = delete;
 		Actor & operator=(const Actor &) = delete;
 		Actor(Actor &&) = default;
 		Actor& operator=(Actor&&) = default;
+		virtual ~Actor();
 		bool & TickFlag();
 		void Draw(sf::RenderWindow & window);
 		void Tick(float deltatime);

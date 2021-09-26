@@ -8,7 +8,9 @@ namespace Settings{
 		EngineSettings() = default;
 		// Inherited via SettingsBase
 		virtual std::string ToStdString() override{
-			return "Window settings: "+_windowsettings + " World Settings: " + _worldsettings + " Music Settings: " + _musicsettings;
+			std::stringstream stream;
+			stream<< "Window settings: "<<_windowsettings << " World Settings: " << _worldsettings << " Music Settings: " << _musicsettings;
+			return stream.str();
 		}
 		const std::string & WindowSettings()const{
 			return _windowsettings;

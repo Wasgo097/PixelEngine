@@ -1,8 +1,8 @@
 #include "Objects/Actor.h"
 #include "Core/World.h"
 namespace Core{
-	Actor::Actor(World * world, const Settings::ActorSettings & settings, sf::Vector2f velocity) :
-		_world(world), _settings(settings), _velocity(velocity){
+	Actor::Actor(World * world, const Settings::ActorSettings & settings) :
+		_world(world), _settings(settings), _velocity(_settings.GetVelocity()){
 		//collision
 		if(static_cast<int>(_settings.GetCollision()) > 1){
 			_collider = sf::RectangleShape(_settings.GetColliderSize());
@@ -10,6 +10,7 @@ namespace Core{
 			temporigin.x /= 2.0f;
 			//bottom center
 			_collider->setOrigin(temporigin);
+			_collider->setPosition(_settings.GetPosition());
 		}
 		//texture and sprite
 		const Settings::TextureSettings& texturesettings = _settings.GetTextureSettings();
@@ -25,12 +26,14 @@ namespace Core{
 					sf::Vector2f temporigin(_texture->getSize().x, _texture->getSize().y);
 					temporigin.x /= 2.0f;
 					_sprite->setOrigin(temporigin);
+					_sprite->setPosition(_settings.GetPosition());
 				}
 				else
 					throw std::invalid_argument("Wrong path in actor constructor: " + texturepath);
 			}
 		}
 	}
+	Actor::~Actor() = default;
 	bool & Actor::TickFlag(){
 		return _tickon;
 	}

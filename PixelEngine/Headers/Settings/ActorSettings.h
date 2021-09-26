@@ -13,13 +13,15 @@ namespace Settings{
 	};
 	class ActorSettings :public SettingsBase{
 	public:
-		ActorSettings(CollisionType collision,ActorType type, sf::Vector2f location,sf::Vector2f collidersize,bool tickflag,TextureSettings texture):
-			_collision(collision),_type(type),_location(location),_collidersize(collidersize),_tickflag(tickflag),_texture(texture){}
+		ActorSettings(CollisionType collision,ActorType type, sf::Vector2f position,sf::Vector2f collidersize, sf::Vector2f velocity,bool tickflag,TextureSettings texturesettings):
+			_collision(collision),_type(type),_position(position),_collidersize(collidersize),_velocity(velocity),_tickflag(tickflag),_texture(texturesettings){}
 		ActorSettings() = default;
 		// Inherited via SettingsBase
 		virtual std::string ToStdString() override{
-			return "Collision Type: " + std::to_string(static_cast<int>(_collision)) + " Actor Type: " + std::to_string(static_cast<int>(_type)) + "LOcation "+std::to_string(_location.x)+" "+std::to_string(_location.y)+
-				" Collider Size: " + std::to_string(_collidersize.x) + " " + std::to_string(_collidersize.y) + " Tick Flag: " + std::to_string(_tickflag);
+			std::stringstream stream;
+			stream<< "Collision Type: " << static_cast<int>(_collision) << " Actor Type: " << static_cast<int>(_type) << "Location "<<_position.x<<" "<<_position.y<<
+				" Collider Size: " << _collidersize.x << " " <<_collidersize.y <<" Velocity: "<<_velocity.x<<" "<<_velocity.y<< " Tick Flag: " <<_tickflag;
+			return stream.str();
 		}
 		const CollisionType& GetCollision()const{
 			return _collision;
@@ -27,8 +29,14 @@ namespace Settings{
 		const ActorType& GetActorType()const{
 			return _type;
 		}
+		const sf::Vector2f & GetPosition()const{
+			return _position;
+		}
 		const sf::Vector2f & GetColliderSize()const{
 			return _collidersize;
+		}
+		const sf::Vector2f& GetVelocity()const{
+			return _velocity;
 		}
 		bool GetTickFlag()const{
 			return _tickflag;
@@ -39,8 +47,9 @@ namespace Settings{
 	protected:
 		CollisionType _collision=CollisionType::None;
 		ActorType _type = ActorType::Static;;
-		sf::Vector2f _location = sf::Vector2f(.0f, .0f);
+		sf::Vector2f _position = sf::Vector2f(.0f, .0f);
 		sf::Vector2f _collidersize = sf::Vector2f(.0f, .0f);
+		sf::Vector2f _velocity = sf::Vector2f(.0f, .0f);
 		bool _tickflag=false;
 		TextureSettings _texture;
 	};

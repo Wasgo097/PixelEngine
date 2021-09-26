@@ -10,8 +10,9 @@ namespace Settings{
 		WindowSettings() = default;
 		// Inherited via SettingsBase
 		virtual std::string ToStdString() override{
-			return "VideoMode (wxhxb): "+std::to_string(_videomode.width)+"x"+ std::to_string(_videomode.height) + "x" + std::to_string(_videomode.bitsPerPixel) + " Fps: "+std::to_string(_fps)+" Style: "+std::to_string(_style)
-				+" Window Name: "+_winname+" VSync: "+std::to_string(_vsync);
+			std::stringstream stream;
+			stream<< "VideoMode (whb): "<<_videomode.width<< " " <<_videomode.height <<" "<<_videomode.bitsPerPixel<< " Fps: " << _fps<< " Style: "<< _style<< " Window Name: " << _winname << " VSync: " <<_vsync;
+			return stream.str();
 		}
 		const sf::VideoMode& GetVideoMode()const{
 			return _videomode;

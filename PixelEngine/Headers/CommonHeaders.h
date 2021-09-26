@@ -5,6 +5,9 @@
 #include<SFML/Graphics.hpp>
 #include<SFML/Network.hpp>
 #include<SFML/Audio.hpp>
+//sfml tgui
+#include<TGUI/TGUI.hpp>
+#include<TGUI/Backend.hpp>
 //io
 #include<iostream>
 #include<fstream>

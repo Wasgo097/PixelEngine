@@ -7,16 +7,16 @@ namespace Settings{
 			_windowsettings(winsettings), _musicsettings(mussettings), _worldsettings(worldsettings){}
 		EngineSettings() = default;
 		// Inherited via SettingsBase
-		inline virtual std::string ToStdString() override{
+		virtual std::string ToStdString() override{
 			return "Window settings: "+_windowsettings + " World Settings: " + _worldsettings + " Music Settings: " + _musicsettings;
 		}
-		inline const std::string & WindowSettings()const{
+		const std::string & WindowSettings()const{
 			return _windowsettings;
 		}
-		inline const std::string & MusicSettings()const{
+		const std::string & MusicSettings()const{
 			return _musicsettings;
 		}
-		inline const std::string & WorldSettings()const{
+		const std::string & WorldSettings()const{
 			return _worldsettings;
 		}
 	protected:

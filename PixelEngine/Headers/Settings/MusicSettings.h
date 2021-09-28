@@ -7,7 +7,7 @@ namespace Settings{
 			_mastervolume(mastervolume),_musicvolume(musicvolume),_effectvolume(effectvolume){}
 		MusicSettings() = default;
 		// Inherited via SettingsBase
-		inline virtual std::string ToStdString() override{
+		inline virtual std::string ToStdString()const override{
 			std::stringstream stream;
 			stream<< "Master volume "<<_mastervolume<<" Music Volume: "<<_musicvolume<<" Effect Volume "<<_effectvolume;
 			return stream.str();

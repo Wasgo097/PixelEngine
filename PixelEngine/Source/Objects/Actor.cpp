@@ -28,8 +28,9 @@ namespace Core{
 					_sprite->setOrigin(temporigin);
 					_sprite->setPosition(_settings.GetPosition());
 				}
-				else
-					throw std::invalid_argument("Wrong path in actor constructor: " + texturepath);
+				else{
+					throw std::invalid_argument("Wrong path in actor constructor: " + texturepath + " in " + ToString()+" "+settings.ToStdString());
+				}
 			}
 		}
 	}
@@ -42,7 +43,8 @@ namespace Core{
 			auto movevec = _velocity * deltatime;
 			_sprite->move(movevec);
 			_collider->move(movevec);
-			_velocity = sf::Vector2f(0, 0);
+			if(!_pushed)
+				_velocity = sf::Vector2f(0, 0);
 		}
 	}
 	bool Actor::CanCollide() const{
@@ -57,5 +59,10 @@ namespace Core{
 	}
 	inline void Actor::Move(const sf::Vector2f & velocity){
 		_velocity = velocity;
+		_pushed = false;
+	}
+	void Actor::Push(const sf::Vector2f & constvelocity){
+		_velocity = constvelocity;
+		_pushed = true;
 	}
 }

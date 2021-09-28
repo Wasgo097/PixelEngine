@@ -3,6 +3,6 @@
 namespace Settings{
 	class SettingsBase{
 	public:
-		virtual std::string ToStdString() = 0;
+		virtual std::string ToStdString()const = 0;
 	};
 }

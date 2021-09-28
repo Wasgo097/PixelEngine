@@ -9,7 +9,7 @@ namespace Settings{
 		{}
 		WindowSettings() = default;
 		// Inherited via SettingsBase
-		virtual std::string ToStdString() override{
+		virtual std::string ToStdString()const override{
 			std::stringstream stream;
 			stream<< "VideoMode (whb): "<<_videomode.width<< " " <<_videomode.height <<" "<<_videomode.bitsPerPixel<< " Fps: " << _fps<< " Style: "<< _style<< " Window Name: " << _winname << " VSync: " <<_vsync;
 			return stream.str();

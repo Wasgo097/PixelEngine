@@ -14,12 +14,15 @@ namespace Core{
 		virtual ~Actor();
 	public:
 		bool & TickFlag();
-		void Tick(float deltatime);
 		bool CanCollide()const;
 		const sf::RectangleShape &GetCollider()const;
 	public:
+		virtual void Tick(float deltatime);
 		virtual void Move(const sf::Vector2f& velocity);
+		virtual void Push(const sf::Vector2f& constvelocity);
 		virtual void Draw(sf::RenderWindow & window);
+	public:
+		virtual std::string ToString()const override{ return "Default Actor ToString"; }
 	private:
 		bool _tickon=false;
 	protected:
@@ -29,5 +32,6 @@ namespace Core{
 		std::optional<sf::RectangleShape> _collider;
 		Settings::ActorSettings _settings;
 		sf::Vector2f _velocity;
+		bool _pushed = false;
 	};
 }

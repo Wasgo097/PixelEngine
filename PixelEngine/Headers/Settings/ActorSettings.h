@@ -17,7 +17,7 @@ namespace Settings{
 			_collision(collision),_type(type),_position(position),_collidersize(collidersize),_velocity(velocity),_tickflag(tickflag),_texture(texturesettings){}
 		ActorSettings() = default;
 		// Inherited via SettingsBase
-		virtual std::string ToStdString() override{
+		virtual std::string ToStdString()const override{
 			std::stringstream stream;
 			stream<< "Collision Type: " << static_cast<int>(_collision) << " Actor Type: " << static_cast<int>(_type) << "Location "<<_position.x<<" "<<_position.y<<
 				" Collider Size: " << _collidersize.x << " " <<_collidersize.y <<" Velocity: "<<_velocity.x<<" "<<_velocity.y<< " Tick Flag: " <<_tickflag;

@@ -6,7 +6,7 @@ namespace Core{
 		bool _todestroy = false;
 	public:
 		virtual ~Object();
-		virtual std::string ToString(){ return "Default Object ToString"; }
+		virtual std::string ToString()const { return "Default Object ToString"; }
 		virtual void Init(){}
 		virtual void OnLoad(){}
 		virtual void OnSpawn(){}

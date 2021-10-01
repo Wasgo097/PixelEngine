@@ -2,7 +2,7 @@
 namespace Time {
 	class ITimeObserver {
 	public:
-		virtual void SecondPassed ()const = 0;
-		virtual void MinutePassed ()const = 0;
+		virtual void SecondPassed () = 0;
+		virtual void MinutePassed () = 0;
 	};
 }

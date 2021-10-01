@@ -1,3 +1,4 @@
+#include "CommonHeaders.h"
 #include "Core/ActorManager.h"
 #include <Objects/Actor.h>
 namespace Core{

@@ -1,6 +1,5 @@
 #pragma once
 #include "SettingsBase.h"
-#include "CommonHeaders.h"
 namespace Settings{
 	class WindowSettings :public SettingsBase{
 	public:

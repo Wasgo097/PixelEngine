@@ -1,5 +1,4 @@
 #pragma once
-#include "CommonHeaders.h"
 namespace Types{
 	class ILoopingThread{
 	public:

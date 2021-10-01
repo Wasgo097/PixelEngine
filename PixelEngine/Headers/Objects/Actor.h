@@ -1,6 +1,5 @@
 #pragma once
 #include "Object.h"
-#include "CommonHeaders.h"
 #include "Settings/ActorSettings.h"
 namespace Core{
 	class World;

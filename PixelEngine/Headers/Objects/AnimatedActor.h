@@ -21,6 +21,5 @@ namespace Core{
 		std::unique_ptr<Animation::Animation> _animation;
 		std::map<Animation::AnimationRow, int> _animationrows;
 		int _animatedrow = 0;
-		//int _lastanimatedrow = 0;
 	};
 }

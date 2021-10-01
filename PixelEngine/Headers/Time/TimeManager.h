@@ -1,10 +1,8 @@
 #pragma once
-#include "CommonHeaders.h"
 #include "ITimeObservable.h"
 #include "Types/ILoopingThread.h"
 #include "Objects/Actor.h"
 #include "Utility/CommonStructures.h"
-
 namespace Core{
 	class World;
 }

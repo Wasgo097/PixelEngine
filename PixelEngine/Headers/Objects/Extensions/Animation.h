@@ -1,6 +1,6 @@
 #pragma once
-#include "CommonHeaders.h"
 #include "Settings/TextureSettings.h"
+#include "Settings/AnimationSettings.h"
 namespace Core{
 	namespace Animation{
 		enum class AnimationRow{

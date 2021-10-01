@@ -1,5 +1,4 @@
 #pragma once
-#include"CommonHeaders.h"
 namespace Time {
 	class ITimeObserver;
 	class ITimeObservable {

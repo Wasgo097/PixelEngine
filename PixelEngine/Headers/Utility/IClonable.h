@@ -1,5 +1,5 @@
 #pragma once
-#include "CommonHeaders.h"
+#include <memory>
 namespace Core{
 	class Object;
 }

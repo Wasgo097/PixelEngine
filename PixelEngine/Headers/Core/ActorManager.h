@@ -1,5 +1,4 @@
 #pragma once
-#include "CommonHeaders.h"
 #include "Utility/CommonStructures.h"
 #include "Types/ILoopingThread.h"
 namespace Core{

@@ -1,18 +1,25 @@
 #pragma once
-#include "CommonHeaders.h"
+#include <vector>
+#include <string>
+#include "json.hpp"
 namespace Utility{
-	class ISerializableFromDisk{
+	using nlohmann::json;
+	class IDiskSerializable{
 	public:
-		virtual void SerializeFromDisk(const std::string & path) = 0;
-		virtual void DeserializeFromDisk(const std::string& path) = 0;
+		virtual void DiskSerialize(const std::string & path)const = 0;
+		virtual void DiskDeserialize(const std::string& path) = 0;
 	};
 	class IStringSerializable{
 	public:
-		virtual std::string Serialize() = 0;
-		virtual void Deserialize(std::string) = 0;
+		virtual std::string StrSerialize()const = 0;
+		virtual void StrDeserialize(std::string) = 0;
 	};
 	class IStringsArraySerializable{
-		virtual std::vector<std::string> ArrSerialize() = 0;
+		virtual std::vector<std::string> ArrSerialize()const = 0;
 		virtual void ArrDeserialize(std::vector<std::string>) = 0;
+	};
+	class IJsonSerializable{
+		virtual nlohmann::json JSerialize()const = 0;
+		virtual void JDeserialize(nlohmann::json json) = 0;
 	};
 }

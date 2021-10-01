@@ -1,5 +1,4 @@
 #pragma once
-#include "CommonHeaders.h"
 #include "Utility/ISerializable.h"
 #include "Settings/EngineSettings.h"
 namespace Core {

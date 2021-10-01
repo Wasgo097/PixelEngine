@@ -1,3 +1,4 @@
+#include "CommonHeaders.h"
 #include "Objects/AnimatedActor.h"
 namespace Core{
 	AnimatedActor::AnimatedActor(World* world, const Settings::ActorSettings & settings, const Settings::AnimationSettings& animatedtexture, std::map<Animation::AnimationRow, int> animationrows) :

@@ -1,9 +1,10 @@
 #pragma once
 #include "Settings/TextureSettings.h"
 #include "Settings/AnimationSettings.h"
+
 namespace Core{
 	namespace Animation{
-		enum class AnimationRow{
+		enum class Direction{
 			None,
 			Left,
 			Up,

@@ -5,7 +5,7 @@
 namespace Core{
 	class AnimatedActor :public Actor{
 	public:
-		AnimatedActor(World* world, const Settings::ActorSettings & settings, const Settings::AnimationSettings& animatedtexture, std::map<Animation::AnimationRow, int> directiontorow);
+		AnimatedActor(World* world, const Settings::ActorSettings & settings, const Settings::AnimationSettings& animatedtexture, std::map<Animation::Direction, int> directiontorow);
 		AnimatedActor(const AnimatedActor&) = delete;
 		AnimatedActor&operator=(const AnimatedActor&) = delete;
 		AnimatedActor(AnimatedActor&&) = delete;
@@ -19,7 +19,7 @@ namespace Core{
 	protected:
 		Settings::AnimationSettings _animationsettings;
 		std::unique_ptr<Animation::Animation> _animation;
-		std::map<Animation::AnimationRow, int> _animationrows;
+		std::map<Animation::Direction, int> _animationrows;
 		int _animatedrow = 0;
 	};
 }

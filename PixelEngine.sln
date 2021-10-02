@@ -5,6 +5,8 @@ VisualStudioVersion = 15.0.28307.1622
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "PixelEngine", "PixelEngine\PixelEngine.vcxproj", "{7D35154A-9B4E-4C71-8FE8-37A7D467A355}"
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "TestingFramework", "TestingFramework\TestingFramework.vcxproj", "{E31031D8-7993-4D8C-9C3C-5C889AF54E73}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|x64 = Debug|x64
@@ -21,6 +23,14 @@ Global
 		{7D35154A-9B4E-4C71-8FE8-37A7D467A355}.Release|x64.Build.0 = Release|x64
 		{7D35154A-9B4E-4C71-8FE8-37A7D467A355}.Release|x86.ActiveCfg = Release|Win32
 		{7D35154A-9B4E-4C71-8FE8-37A7D467A355}.Release|x86.Build.0 = Release|Win32
+		{E31031D8-7993-4D8C-9C3C-5C889AF54E73}.Debug|x64.ActiveCfg = Debug|x64
+		{E31031D8-7993-4D8C-9C3C-5C889AF54E73}.Debug|x64.Build.0 = Debug|x64
+		{E31031D8-7993-4D8C-9C3C-5C889AF54E73}.Debug|x86.ActiveCfg = Debug|Win32
+		{E31031D8-7993-4D8C-9C3C-5C889AF54E73}.Debug|x86.Build.0 = Debug|Win32
+		{E31031D8-7993-4D8C-9C3C-5C889AF54E73}.Release|x64.ActiveCfg = Release|x64
+		{E31031D8-7993-4D8C-9C3C-5C889AF54E73}.Release|x64.Build.0 = Release|x64
+		{E31031D8-7993-4D8C-9C3C-5C889AF54E73}.Release|x86.ActiveCfg = Release|Win32
+		{E31031D8-7993-4D8C-9C3C-5C889AF54E73}.Release|x86.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

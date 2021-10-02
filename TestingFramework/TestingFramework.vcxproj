@@ -18,53 +18,10 @@
       <Platform>x64</Platform>
     </ProjectConfiguration>
   </ItemGroup>
-  <ItemGroup>
-    <ClCompile Include="Source\Controller\ActorController.cpp" />
-    <ClCompile Include="Source\Objects\ControlledActor.cpp" />
-    <ClCompile Include="Source\Objects\Extensions\Animation.cpp" />
-    <ClCompile Include="Source\Objects\AnimatedActor.cpp" />
-    <ClCompile Include="Source\Core\ActorManager.cpp" />
-    <ClCompile Include="Source\Objects\Actor.cpp" />
-    <ClCompile Include="Source\Objects\Object.cpp" />
-    <ClCompile Include="Source\Time\TimeManager.cpp" />
-    <ClCompile Include="Source\Core\Engine.cpp" />
-    <ClCompile Include="Source\Utility\CommonStructures.cpp" />
-    <ClCompile Include="Source\Core\World.cpp" />
-  </ItemGroup>
-  <ItemGroup>
-    <ClInclude Include="Headers\Controller\ActorController.h" />
-    <ClInclude Include="Headers\Controller\ControllerStructs.h" />
-    <ClInclude Include="Headers\Objects\ControlledActor.h" />
-    <ClInclude Include="Headers\Core\ActorManager.h" />
-    <ClInclude Include="Headers\json.hpp" />
-    <ClInclude Include="Headers\Objects\Actor.h" />
-    <ClInclude Include="Headers\CommonHeaders.h" />
-    <ClInclude Include="Headers\Objects\AnimatedActor.h" />
-    <ClInclude Include="Headers\Objects\Extensions\Animation.h" />
-    <ClInclude Include="Headers\Settings\ActorSettings.h" />
-    <ClInclude Include="Headers\Settings\AnimationSettings.h" />
-    <ClInclude Include="Headers\Settings\ControlSettings.h" />
-    <ClInclude Include="Headers\Settings\EngineSettings.h" />
-    <ClInclude Include="Headers\Settings\MusicSettings.h" />
-    <ClInclude Include="Headers\Settings\SettingsBase.h" />
-    <ClInclude Include="Headers\Settings\TextureSettings.h" />
-    <ClInclude Include="Headers\Types\ILoopingThread.h" />
-    <ClInclude Include="Headers\Utility\IClonable.h" />
-    <ClInclude Include="Headers\Utility\CommonStructures.h" />
-    <ClInclude Include="Headers\Core\Engine.h" />
-    <ClInclude Include="Headers\Time\ITimeObservable.h" />
-    <ClInclude Include="Headers\Time\ITimeObserver.h" />
-    <ClInclude Include="Headers\Time\TimeManager.h" />
-    <ClInclude Include="Headers\Core\World.h" />
-    <ClInclude Include="Headers\Utility\ISerializable.h" />
-    <ClInclude Include="Headers\Objects\Object.h" />
-    <ClInclude Include="Headers\Settings\WindowSettings.h" />
-    <ClInclude Include="Headers\Settings\WorldSettings.h" />
-  </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>15.0</VCProjectVersion>
-    <ProjectGuid>{7D35154A-9B4E-4C71-8FE8-37A7D467A355}</ProjectGuid>
-    <RootNamespace>PixelEngine</RootNamespace>
+    <ProjectGuid>{E31031D8-7993-4D8C-9C3C-5C889AF54E73}</ProjectGuid>
+    <RootNamespace>TestingFramework</RootNamespace>
     <WindowsTargetPlatformVersion>10.0.17763.0</WindowsTargetPlatformVersion>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
@@ -82,19 +39,17 @@
     <CharacterSet>MultiByte</CharacterSet>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
-    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <ConfigurationType>Application</ConfigurationType>
     <UseDebugLibraries>true</UseDebugLibraries>
     <PlatformToolset>v141</PlatformToolset>
     <CharacterSet>MultiByte</CharacterSet>
-    <UseOfMfc>false</UseOfMfc>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
-    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <ConfigurationType>Application</ConfigurationType>
     <UseDebugLibraries>false</UseDebugLibraries>
     <PlatformToolset>v141</PlatformToolset>
     <WholeProgramOptimization>true</WholeProgramOptimization>
     <CharacterSet>MultiByte</CharacterSet>
-    <UseOfMfc>false</UseOfMfc>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
   <ImportGroup Label="ExtensionSettings">
@@ -109,26 +64,20 @@
   </ImportGroup>
   <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
-    <Import Project="SfmlTGuiD.props" />
   </ImportGroup>
   <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
-    <Import Project="SfmlTGuiR.props" />
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
-    <IncludePath>$(IncludePath)</IncludePath>
-    <LibraryPath>$(LibraryPath)</LibraryPath>
     <OutDir>$(SolutionDir)$(ProjectName)\bin\Build\$(Platform)\$(Configuration)\</OutDir>
     <IntDir>$(SolutionDir)$(ProjectName)\bin\Intermediate\$(Platform)\$(Configuration)\</IntDir>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
-    <IncludePath>$(IncludePath)</IncludePath>
-    <LibraryPath>$(LibraryPath)</LibraryPath>
     <OutDir>$(SolutionDir)$(ProjectName)\bin\Build\$(Platform)\$(Configuration)\</OutDir>
     <IntDir>$(SolutionDir)$(ProjectName)\bin\Intermediate\$(Platform)\$(Configuration)\</IntDir>
   </PropertyGroup>
-  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <ClCompile>
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
@@ -139,23 +88,16 @@
       <SubSystem>Console</SubSystem>
     </Link>
   </ItemDefinitionGroup>
-  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
       <SDLCheck>true</SDLCheck>
       <ConformanceMode>true</ConformanceMode>
-      <LanguageStandard>stdcpp17</LanguageStandard>
-      <AdditionalIncludeDirectories>$(SolutionDir)$(ProjectName)\Headers;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
-      <AdditionalDependencies>
-      </AdditionalDependencies>
     </Link>
-    <Lib>
-      <AdditionalLibraryDirectories />
-    </Lib>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <ClCompile>
@@ -180,20 +122,21 @@
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <SDLCheck>true</SDLCheck>
       <ConformanceMode>true</ConformanceMode>
-      <LanguageStandard>stdcpp17</LanguageStandard>
-      <AdditionalIncludeDirectories>$(SolutionDir)$(ProjectName)\Headers;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
-      <AdditionalDependencies>
-      </AdditionalDependencies>
     </Link>
-    <Lib>
-      <AdditionalLibraryDirectories />
-    </Lib>
   </ItemDefinitionGroup>
+  <ItemGroup>
+    <ClCompile Include="Sources\Main.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\PixelEngine\PixelEngine.vcxproj">
+      <Project>{7d35154a-9b4e-4c71-8fe8-37a7d467a355}</Project>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>

@@ -20,8 +20,7 @@ namespace Core{
 		virtual void Move(const sf::Vector2f& velocity);
 		virtual void Push(const sf::Vector2f& constvelocity);
 		virtual void Draw(sf::RenderWindow & window);
-	public:
-		virtual std::string ToString()const override{ return "Default Actor ToString"; }
+		virtual std::string ToString()const override;
 	private:
 		bool _tickon=false;
 	protected:

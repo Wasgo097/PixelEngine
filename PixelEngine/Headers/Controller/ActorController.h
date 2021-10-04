@@ -1,16 +1,20 @@
 #pragma once
-#include"ControllerStructs.h"
+#include "ControllerStructs.h"
+#include "Objects/ControlledActor.h"
+#include "Settings/ControllerSettings.h"
 #include <map>
 #include <functional>
+#include <memory>
 namespace Controller{
 	class ActorController{
 	public:
-		ActorController(std::map<Key, std::function<void()>> actions);
+		//ActorController(Settings::ControllerSettings settings):_settings(settings){}
 	public:
 		static bool TestEvent(const Key& k, sf::Event e);
 		void DoAction(const Key& key);
 		bool ServiceInput(sf::Event e);
 	protected:
-		std::map<Key, std::function<void()>> _actions;
+		//Settings::ControllerSettings _settings;
+		//std::unique_ptr<Core::ControlledActor> _actor;
 	};
 }

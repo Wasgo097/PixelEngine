@@ -16,6 +16,7 @@ namespace Core{
 		virtual void Move(const sf::Vector2f& velocity);
 		virtual void Push(const sf::Vector2f& constvelocity);
 		virtual void Draw(sf::RenderWindow & window);
+		virtual std::string ToString()const override;
 	protected:
 		Settings::AnimationSettings _animationsettings;
 		std::unique_ptr<Animation::Animation> _animation;

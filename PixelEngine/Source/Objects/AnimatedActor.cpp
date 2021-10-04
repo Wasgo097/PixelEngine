@@ -70,4 +70,5 @@ namespace Core{
 	void AnimatedActor::Draw(sf::RenderWindow & window){
 		Actor::Draw(window);
 	}
+	std::string AnimatedActor::ToString() const{ return "Default AnimatedActor ToString"; }
 }

@@ -58,7 +58,8 @@ namespace Core{
 		if(_sprite)
 			window.draw(*_sprite);
 	}
-	inline void Actor::Move(const sf::Vector2f & velocity){
+	std::string Actor::ToString() const{ return "Default Actor ToString"; }
+	void Actor::Move(const sf::Vector2f & velocity){
 		_velocity = velocity;
 		_pushed = false;
 	}

@@ -94,7 +94,7 @@
     <ClInclude Include="Headers\Controller\ActorController.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Headers\Settings\ControlSettings.h">
+    <ClInclude Include="Headers\Settings\ControllerSettings.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

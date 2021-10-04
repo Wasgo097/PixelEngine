@@ -43,7 +43,7 @@
     <ClInclude Include="Headers\Objects\Extensions\Animation.h" />
     <ClInclude Include="Headers\Settings\ActorSettings.h" />
     <ClInclude Include="Headers\Settings\AnimationSettings.h" />
-    <ClInclude Include="Headers\Settings\ControlSettings.h" />
+    <ClInclude Include="Headers\Settings\ControllerSettings.h" />
     <ClInclude Include="Headers\Settings\EngineSettings.h" />
     <ClInclude Include="Headers\Settings\MusicSettings.h" />
     <ClInclude Include="Headers\Settings\SettingsBase.h" />

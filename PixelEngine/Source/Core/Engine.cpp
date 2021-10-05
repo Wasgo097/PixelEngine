@@ -1,8 +1,7 @@
 #include "CommonHeaders.h"
 #include "Core/Engine.h"
 #include "Core/World.h"
-#include "Settings/WorldSettings.h"
-#include "Settings/MusicSettings.h"
+#include "Objects/ControlledActor.h"
 namespace Core{
 	Engine::Engine(std::string settingspath){
 		std::ifstream reader(settingspath+"/Engine.json");
@@ -49,41 +48,58 @@ namespace Core{
 		std::string winname= jsonwindow["Winname"];
 		bool vsync= jsonwindow["Vsync"];
 		Settings::WindowSettings winsett(sf::VideoMode(x, y, bits), fps, style, winname, vsync);
-		//std::cout << winsett.ToStdString() << std::endl;
-		_world = std::make_unique<World>(worldsett);
 		_windowsettings = winsett;
-		//{
-		//	//music settings 
-		//	reader.open(settingspath + '/' + musicsettings);
-		//	if(!reader.good()){
-		//		std::cerr << "Cant open music window file!" << std::endl;
-		//		throw std::invalid_argument("Wrong path, cant open music cfg file");
-		//	}
-		//	json jsonmusic;
-		//	reader >> jsonmusic;
-		//	reader.close();
-		//	double master = jsonmusic["MasterVolume"];
-		//	double music = jsonmusic["MusicVolume"];
-		//	double effect = jsonmusic["EffectVolume"];
-		//	Settings::MusicSettings musset(master, music, effect);
+		_world = std::make_unique<World>(worldsett);
+		_mainwindow = std::make_unique<sf::RenderWindow>(_windowsettings.GetVideoMode(), _windowsettings.GetWinName(), _windowsettings.GetStyle());
+		_mainwindow->setFramerateLimit(_windowsettings.GetFps());
+		_mainwindow->setVerticalSyncEnabled(_windowsettings.GetVSync());
+		_drawingthread = std::make_unique<std::thread>(&Engine::Run, this);
+		////music settings 
+		//reader.open(settingspath + '/' + musicsettings);
+		//if(!reader.good()){
+		//	std::cerr << "Cant open music window file!" << std::endl;
+		//	throw std::invalid_argument("Wrong path, cant open music cfg file");
 		//}
+		//json jsonmusic;
+		//reader >> jsonmusic;
+		//reader.close();
+		//double master = jsonmusic["MasterVolume"];
+		//double music = jsonmusic["MusicVolume"];
+		//double effect = jsonmusic["EffectVolume"];
+		//Settings::MusicSettings mussett(master, music, effect);
+		//_musicsettings = mussett;
 	}
-	//std::string Engine::HelloWorld(){
-	//	return "Hello World";
-	//}
-	//void Engine::main(){
-	//	sf::RenderWindow window(sf::VideoMode(200, 200), "SFML works!");
-	//	sf::CircleShape shape(100.f);
-	//	shape.setFillColor(sf::Color::Green);
-	//	while(window.isOpen()){
-	//		sf::Event event;
-	//		while(window.pollEvent(event)){
-	//			if(event.type == sf::Event::Closed)
-	//				window.close();
-	//		}
-	//		window.clear();
-	//		window.draw(shape);
-	//		window.display();
-	//	}
-	//}
+	Engine::~Engine(){
+		std::cout << "Engine destructor\n";
+	}
+	void Engine::Main(){
+		while(_mainwindow->isOpen()){			
+			{
+				sf::Event event;
+				while(_mainwindow->pollEvent(event)){
+					if(event.type == sf::Event::Closed || sf::Keyboard::isKeyPressed(sf::Keyboard::Escape)){
+						Terminate();
+						Wait();
+						_mainwindow->close();
+					}
+					if(_maincharacter->ServiceInput(event));
+				}
+			}
+			//after event handling
+		}
+	}
+	void Engine::Run(){
+		while(_terminated || !_mainwindow->isOpen()){
+			_mainwindow->clear();
+			_world->Draw(*_mainwindow);
+			_mainwindow->display();
+		}
+	}
+	void Engine::Wait(){
+		if(_drawingthread->joinable())
+			_drawingthread->join();
+	}
+	void Engine::Terminate(){
+		_terminated = true;
+	}
 }

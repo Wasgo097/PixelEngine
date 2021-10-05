@@ -8,4 +8,8 @@ namespace Core{
 		_actormanager->Terminate();
 		_actormanager->Wait();
 	}
+	void World::Draw(sf::RenderWindow & window){
+		//todo: draw whole world
+		_actormanager->Draw(window);
+	}
 }

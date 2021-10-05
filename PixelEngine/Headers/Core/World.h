@@ -39,5 +39,6 @@ namespace Core{
 			result->OnInit();
 			return result;
 		}
+		void Draw(sf::RenderWindow & window);
 	};
 }

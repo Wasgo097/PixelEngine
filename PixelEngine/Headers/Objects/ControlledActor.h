@@ -1,6 +1,7 @@
 #pragma once
 #include "AnimatedActor.h"
 #include "Controller/ControllerStructs.h"
+#include <functional>
 namespace Core{
 	class ControlledActor:public AnimatedActor{
 		ControlledActor(World* world, const Settings::ActorSettings & settings, const Settings::AnimationSettings& animationsettings);
@@ -15,8 +16,13 @@ namespace Core{
 		virtual void Push(const sf::Vector2f& constvelocity);
 		virtual void Draw(sf::RenderWindow & window);
 		virtual std::string ToString()const override;
+	public:
+		bool ServiceInput(sf::Event e);
+		void LoadTestActions();
 	protected:
-		//Settings::ControllerSettings _controlsettings;
-		//std::map<Controller::Key, std::function<void()>> _actions;
+		bool TestEvent(const Controller::Key& k, sf::Event e);
+		void DoAction(const Controller::Key& key);
+	protected:
+		std::map<Controller::Key, std::function<void()>> _actions;
 	};
 }

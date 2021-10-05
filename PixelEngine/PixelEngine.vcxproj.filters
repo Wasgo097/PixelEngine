@@ -91,12 +91,6 @@
     <ClInclude Include="Headers\Controller\ControllerStructs.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Headers\Controller\ActorController.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Headers\Settings\ControllerSettings.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Source\Core\Engine.cpp" />
@@ -125,9 +119,6 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Source\Objects\ControlledActor.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\Controller\ActorController.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

@@ -3,7 +3,6 @@
 #include "Core/World.h"
 #include "Settings/WorldSettings.h"
 #include "Settings/MusicSettings.h"
-#include "Settings/WindowSettings.h"
 namespace Core{
 	Engine::Engine(std::string settingspath){
 		std::ifstream reader(settingspath+"/Engine.json");
@@ -50,8 +49,9 @@ namespace Core{
 		std::string winname= jsonwindow["Winname"];
 		bool vsync= jsonwindow["Vsync"];
 		Settings::WindowSettings winsett(sf::VideoMode(x, y, bits), fps, style, winname, vsync);
-		std::cout << winsett.ToStdString() << std::endl;
+		//std::cout << winsett.ToStdString() << std::endl;
 		_world = std::make_unique<World>(worldsett);
+		_windowsettings = winsett;
 		//{
 		//	//music settings 
 		//	reader.open(settingspath + '/' + musicsettings);

@@ -28,5 +28,16 @@ namespace Core{
 			result->OnInit();
 			return result;
 		}
+		template<typename type_to_create, typename ...Argv>
+		std::shared_ptr<type_to_create> SpawnConstActor(const Settings::ActorSettings & settings,Argv && ...argv){
+			std::shared_ptr<type_to_create> result;
+			type_to_create * ptr = new type_to_create(this, settings,std::forward<Argv>(argv)...);
+			result.reset(ptr);
+			ptr = nullptr;
+			_actormanager->RegisterConstActor(result);
+			result->OnSpawn();
+			result->OnInit();
+			return result;
+		}
 	};
 }

@@ -1,5 +1,5 @@
 #pragma once
-#include "CommonHeaders.h"
+//#include "CommonHeaders.h"
 namespace Core{
 	class Object{
 	private:

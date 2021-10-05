@@ -2,6 +2,7 @@
 #include "Core/Engine.h"
 #include "Core/World.h"
 #include "Objects/ControlledActor.h"
+//#define CREATE_CHARACTER(_actorclass,settings,animationsettings,...)_world->SpawnControlledActor<_actorclass>(_world.get(),settings,animationsettings,...);
 namespace Core{
 	Engine::Engine(std::string settingspath){
 		std::ifstream reader(settingspath+"/Engine.json");
@@ -54,6 +55,7 @@ namespace Core{
 		_mainwindow->setFramerateLimit(_windowsettings.GetFps());
 		_mainwindow->setVerticalSyncEnabled(_windowsettings.GetVSync());
 		_drawingthread = std::make_unique<std::thread>(&Engine::Run, this);
+		//CREATE_CHARACTER(ControlledActor,Settings::ActorSettings(),Settings::AnimationSettings())
 		////music settings 
 		//reader.open(settingspath + '/' + musicsettings);
 		//if(!reader.good()){
@@ -82,7 +84,12 @@ namespace Core{
 						Wait();
 						_mainwindow->close();
 					}
-					if(_maincharacter->ServiceInput(event));
+					if(_maincharacter->ServiceInput(event)){
+
+					}
+					else{
+
+					}
 				}
 			}
 			//after event handling

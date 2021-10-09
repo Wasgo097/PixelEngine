@@ -4,6 +4,7 @@
 #include "Settings/WorldSettings.h"
 #include "Settings/MusicSettings.h"
 #include "Types/ILoopingThread.h"
+#define CREATE_CONTROLLED_ACTOR(_actorclass,settings,animationsettings,...)_world->SpawnControlledActor<_actorclass>(_world.get(),settings,animationsettings,##__VA_ARGS__);
 namespace Core {
 	class World;
 	class ControlledActor;

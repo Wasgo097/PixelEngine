@@ -26,7 +26,7 @@ namespace Core{
 			ptr = nullptr;
 			_actormanager->RegistrNewActor(result);
 			result->OnSpawn();
-			result->OnInit();
+			result->Init();
 			return result;
 		}
 		template<typename type_to_create, typename ...Argv>
@@ -37,7 +37,7 @@ namespace Core{
 			ptr = nullptr;
 			_actormanager->RegisterConstActor(result);
 			result->OnSpawn();
-			result->OnInit();
+			result->Init();
 			return result;
 		}
 		template<typename type_to_create, typename ...Argv>
@@ -48,7 +48,7 @@ namespace Core{
 				result.reset(_controlledactor);
 				_actormanager->RegistrNewActor(result);
 				result->OnSpawn();
-				result->OnInit();
+				result->Init();
 				return result;
 			}
 			else

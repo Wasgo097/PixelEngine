@@ -20,6 +20,11 @@ namespace Core{
 		virtual void Move(const sf::Vector2f& velocity);
 		virtual void Push(const sf::Vector2f& constvelocity);
 		virtual void Draw(sf::RenderWindow & window);
+	public:
+		virtual void Init()override{}
+		virtual void OnLoad()override{}
+		virtual void OnSpawn()override{}
+		virtual void OnDelete()override{}
 		virtual std::string ToString()const override;
 	private:
 		bool _tickon=false;

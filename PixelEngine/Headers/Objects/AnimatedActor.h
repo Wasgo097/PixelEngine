@@ -12,10 +12,15 @@ namespace Core{
 		AnimatedActor&operator=(AnimatedActor&&) = delete;
 		virtual ~AnimatedActor() = default;
 	public:
-		virtual void Tick(float deltatime);
-		virtual void Move(const sf::Vector2f& velocity);
-		virtual void Push(const sf::Vector2f& constvelocity);
-		virtual void Draw(sf::RenderWindow & window);
+		virtual void Tick(float deltatime)override;
+		virtual void Move(const sf::Vector2f& velocity)override;
+		virtual void Push(const sf::Vector2f& constvelocity)override;
+		virtual void Draw(sf::RenderWindow & window)override;
+	public:
+		virtual void Init()override{}
+		virtual void OnLoad()override{}
+		virtual void OnSpawn()override{}
+		virtual void OnDelete()override{}
 		virtual std::string ToString()const override;
 	protected:
 		Settings::AnimationSettings _animationsettings;

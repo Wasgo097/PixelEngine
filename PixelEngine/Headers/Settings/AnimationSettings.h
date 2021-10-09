@@ -10,7 +10,7 @@ namespace Core{
 namespace Settings{
 	class AnimationSettings :public SettingsBase{
 	public:
-		//framescount k-rows y, v- columns x,	all columns and rows which will be used in animation; switchtime - switch between aniamtion 
+		//framescount key is a rows(y), value is a  columns (x), all columns and rows which will be used in animation; switchtime - switch between aniamtion 
 		//rectsize - size of one frame on texture image
 		AnimationSettings(sf::Vector2u rectsize, float switchtime, std::map<int, int> framescount, std::map<Core::Animation::Direction, int> directiontorow) :
 			_rectsize(rectsize), _switchtime(switchtime), _framescount(framescount),_directiontorow(directiontorow){}
@@ -29,7 +29,7 @@ namespace Settings{
 		const float& GetSwitchTime()const{
 			return _switchtime;
 		}
-		const std::map<int, int> & GetFramesCount()const{
+		std::map<int, int> & GetFramesCount(){
 			return _framescount;
 		}
 		std::map<Core::Animation::Direction, int> & GetDirectionRow(){

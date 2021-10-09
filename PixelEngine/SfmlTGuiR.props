@@ -10,11 +10,11 @@
       <AdditionalIncludeDirectories>$(SFMLCore)\include;$(SFMLUi)\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
-      <AdditionalLibraryDirectories>$(SFMLCore)\lib;$(SFMLCore)\lib</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>$(SFMLCore)\lib;$(SFMLUi)\lib</AdditionalLibraryDirectories>
       <AdditionalDependencies>sfml-graphics.lib;sfml-window.lib;sfml-audio.lib;sfml-network.lib;sfml-system.lib;tgui.lib</AdditionalDependencies>
     </Link>
     <Lib>
-      <AdditionalLibraryDirectories>$(SFMLCore)\lib;$(SFMLCore)\lib</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>$(SFMLCore)\lib;$(SFMLUi)\lib</AdditionalLibraryDirectories>
     </Lib>
   </ItemDefinitionGroup>
   <ItemGroup />

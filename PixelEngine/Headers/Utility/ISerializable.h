@@ -19,7 +19,7 @@ namespace Utility{
 		virtual void ArrDeserialize(std::vector<std::string>) = 0;
 	};
 	class IJsonSerializable{
-		virtual nlohmann::json JSerialize()const = 0;
-		virtual void JDeserialize(nlohmann::json json) = 0;
+		virtual json JSerialize()const = 0;
+		virtual void JDeserialize(json json) = 0;
 	};
 }

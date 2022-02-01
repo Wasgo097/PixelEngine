@@ -12,11 +12,32 @@ namespace Settings{
 		return stream.str();
 	}
 	json TextureSettings::JSerialize() const{
-		return json();
+		try{
+			json output;
+			if(_texturepath)
+				output["_texturepath"] = *_texturepath;
+			else
+				output["_texturepath"] = nullptr;
+			output["_smooth"] = _smooth;
+			output["_repeatable"] = _repeatable;
+			return output;
+		}
+		catch(...){
+			return json();
+		}
 	}
 
 	bool TextureSettings::JDeserialize(json json){
-		return false;
+		try{
+			if(json["_mastervolume"]!=nullptr)
+				_texturepath = json["_texturepath"];
+			_smooth = json["_smooth"];
+			_repeatable = json["_repeatable"];
+			return true;
+		}
+		catch(...){
+			return false;
+		}
 	}
 
 	const std::optional<std::string>& TextureSettings::TexturePath() const{

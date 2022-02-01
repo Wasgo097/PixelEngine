@@ -18,27 +18,26 @@ namespace Settings{
 			output["_rectsizex"] = _rectsize.x;
 			output["_rectsizey"] = _rectsize.y;
 			output["_switchtime"] = _switchtime;
-			output.push_back(_framescount);
-			output.push_back(_directiontorow);
+			output["_framescount"] = _framescount;
+			output["_directiontorow"] = _directiontorow;
 			return output;
 		}
 		catch(...){
 			return json();
 		}
-		return json();
 	}
 	bool AnimationSettings::JDeserialize(json json){
 		try{
 			_rectsize.x = json["_rectsizex"];
 			_rectsize.y = json["_rectsizey"];
 			_switchtime = json["_switchtime"];
-
+			_framescount = json.at("_framescount").get< std::map<int, int>>();
+			_directiontorow = json.at("_directiontorow").get<std::map<Core::Animation::Direction, int>>();
 			return true;
 		}
 		catch(...){
 			return false;
 		}
-		return false;
 	}
 	const sf::Vector2u & AnimationSettings::GetRectSize() const{
 		return _rectsize;

@@ -10,10 +10,27 @@ namespace Settings{
 		return stream.str();
 	}
 	json MusicSettings::JSerialize() const{
-		return json();
+		try{
+			json output;
+			output["_mastervolume"] = _mastervolume;
+			output["_musicvolume"] = _musicvolume;
+			output["_effectvolume"] = _effectvolume;
+			return output;
+		}
+		catch(...){
+			return json();
+		}
 	}
 	bool MusicSettings::JDeserialize(json json){
-		return false;
+		try{
+			_mastervolume = json["_mastervolume"];
+			_musicvolume = json["_musicvolume"];
+			_effectvolume = json["_effectvolume"];
+			return true;
+		}
+		catch(...){
+			return false;
+		}
 	}
 	float MusicSettings::MasterVolume() const{
 		return _mastervolume;

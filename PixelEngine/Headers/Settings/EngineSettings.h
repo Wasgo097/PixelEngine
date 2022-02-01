@@ -5,7 +5,7 @@ using nlohmann::json;
 namespace Settings{
 	class EngineSettings:public SettingsBase, Utility::IJsonSerializable{
 	public:
-		EngineSettings(std::string rootpath, std::string winsettings, std::string mussettings, std::string worldsettings);
+		EngineSettings(/*std::string rootpath, */std::string winsettings, std::string mussettings, std::string worldsettings);
 		EngineSettings() = default;
 	public:
 		// Inherited via SettingsBase
@@ -18,7 +18,7 @@ namespace Settings{
 		const std::string & MusicSettings()const;
 		const std::string & WorldSettings()const;
 	protected:
-		std::string _rootpath="";
+		/*std::string _rootpath="";*/
 		std::string _windowsettings="";
 		std::string _musicsettings = "";
 		std::string _worldsettings = "";

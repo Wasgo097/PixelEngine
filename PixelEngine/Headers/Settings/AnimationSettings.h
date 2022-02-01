@@ -25,7 +25,7 @@ namespace Settings{
 		virtual bool JDeserialize(json json)override;
 	public:
 		const sf::Vector2u & GetRectSize()const;
-		const float& GetSwitchTime()const;
+		float GetSwitchTime()const;
 		std::map<int, int> & GetFramesCount();
 		std::map<Core::Animation::Direction, int> & GetDirectionRow();
 	protected:

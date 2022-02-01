@@ -1,8 +1,8 @@
 #include "Settings/AnimationSettings.h"
 #include <sstream>
-//framescount key is a rows(y), value is a  columns (x), all columns and rows which will be used in animation; switchtime - switch between aniamtion 
-//rectsize - size of one frame on texture image
 namespace Settings{
+	//framescount key is a rows(y), value is a  columns (x), all columns and rows which will be used in animation; switchtime - switch between aniamtion 
+	//rectsize - size of one frame on texture image
 	Settings::AnimationSettings::AnimationSettings(sf::Vector2u rectsize, float switchtime, std::map<int, int> framescount, std::map<Core::Animation::Direction, int> directiontorow) :
 		_rectsize(rectsize), _switchtime(switchtime), _framescount(framescount), _directiontorow(directiontorow){}
 	std::string AnimationSettings::ToStdString() const{
@@ -43,7 +43,7 @@ namespace Settings{
 	const sf::Vector2u & AnimationSettings::GetRectSize() const{
 		return _rectsize;
 	}
-	const float & AnimationSettings::GetSwitchTime() const{
+	float AnimationSettings::GetSwitchTime() const{
 		return _switchtime;
 	}
 	std::map<int, int>& AnimationSettings::GetFramesCount(){

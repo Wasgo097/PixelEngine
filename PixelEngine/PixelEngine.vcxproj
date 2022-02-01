@@ -19,6 +19,12 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="Source\Settings\WorldSettings.cpp" />
+    <ClCompile Include="Source\Settings\WindowSettings.cpp" />
+    <ClCompile Include="Source\Settings\TextureSettings.cpp" />
+    <ClCompile Include="Source\Settings\MusicSettings.cpp" />
+    <ClCompile Include="Source\Settings\EngineSettings.cpp" />
+    <ClCompile Include="Source\Settings\ActorSettings.cpp" />
     <ClCompile Include="Source\Settings\AnimationSettings.cpp" />
     <ClCompile Include="Source\Objects\ControlledActor.cpp" />
     <ClCompile Include="Source\Objects\Extensions\Animation.cpp" />

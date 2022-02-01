@@ -1,28 +1,23 @@
 #pragma once
 #include"SettingsBase.h"
+#include "Utility/ISerializable.h"
+#include <optional>
+using nlohmann::json;
 namespace Settings{
-	class TextureSettings:public SettingsBase{
+	class TextureSettings:public SettingsBase, Utility::IJsonSerializable{
 	public:
-		TextureSettings(std::optional<std::string> texture,bool Smooth,bool repeatable):_texturepath(texture),_smooth(Smooth), _repeatable(repeatable){}
+		TextureSettings(std::optional<std::string> texture, bool smooth, bool repeatable);
 		TextureSettings() = default;
+	public:
 		// Inherited via SettingsBase
-		virtual std::string ToStdString()const override{
-			std::stringstream stream;
-			std::string path = "";
-			if(_texturepath)
-				path = *_texturepath;
-			stream << "Texture Path: " << path << " Smooth: " << _smooth << " Repeatable: " << _repeatable;
-			return stream.str();
-		}
-		const std::optional<std::string>& TexturePath()const{
-			return _texturepath;
-		}
-		const bool & Smooth()const{
-			return _smooth;
-		}
-		const bool & Repeatable()const{
-			return _repeatable;
-		}
+		virtual std::string ToStdString()const override;
+		// Inherited via IJsonSerializable
+		virtual json JSerialize() const override;
+		virtual bool JDeserialize(json json) override;
+	public:
+		const std::optional<std::string>& TexturePath()const;
+		bool  Smooth()const;
+		bool  Repeatable()const;
 	protected:
 		std::optional<std::string> _texturepath;
 		bool _smooth = false;

@@ -24,7 +24,7 @@ namespace Core {
 		std::shared_ptr<ControlledActor> _maincharacter;
 		Settings::EngineSettings _enginesettings;
 		Settings::WindowSettings _windowsettings;
-		//Settings::MusicSettings _musicsettings;
+		Settings::MusicSettings _musicsettings;
 	protected:
 		// Inherited via ILoopingThread
 		virtual void Run() override;

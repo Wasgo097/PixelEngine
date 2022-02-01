@@ -121,5 +121,8 @@
     <ClCompile Include="Source\Objects\ControlledActor.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="Source\Settings\AnimationSettings.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>

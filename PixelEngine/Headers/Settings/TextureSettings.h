@@ -1,10 +1,10 @@
 #pragma once
 #include"SettingsBase.h"
 namespace Settings{
-	class BaseTextureSettings:public SettingsBase{
+	class TextureSettings:public SettingsBase{
 	public:
-		BaseTextureSettings(std::optional<std::string> texture,bool Smooth,bool repeatable):_texturepath(texture),_smooth(Smooth), _repeatable(repeatable){}
-		BaseTextureSettings() = default;
+		TextureSettings(std::optional<std::string> texture,bool Smooth,bool repeatable):_texturepath(texture),_smooth(Smooth), _repeatable(repeatable){}
+		TextureSettings() = default;
 		// Inherited via SettingsBase
 		virtual std::string ToStdString()const override{
 			std::stringstream stream;

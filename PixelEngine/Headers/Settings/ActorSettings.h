@@ -14,7 +14,7 @@ namespace Settings{
 	};
 	class ActorSettings :public SettingsBase,Utility::IJsonSerializable{
 	public:
-		ActorSettings(CollisionType collision,ActorType type, sf::Vector2f position,sf::Vector2f collidersize, sf::Vector2f velocity,bool tickflag, BaseTextureSettings texturesettings):
+		ActorSettings(CollisionType collision,ActorType type, sf::Vector2f position,sf::Vector2f collidersize, sf::Vector2f velocity,bool tickflag, TextureSettings texturesettings):
 			_collision(collision),_type(type),_position(position),_collidersize(collidersize),_velocity(velocity),_tickflag(tickflag),_texture(texturesettings){}
 		ActorSettings() = default;
 		virtual std::string ToStdString()const override{
@@ -78,7 +78,7 @@ namespace Settings{
 		bool GetTickFlag()const{
 			return _tickflag;
 		}
-		const BaseTextureSettings & GetTextureSettings()const{
+		const TextureSettings & GetTextureSettings()const{
 			return _texture;
 		}
 	protected:
@@ -88,6 +88,6 @@ namespace Settings{
 		sf::Vector2f _collidersize = sf::Vector2f(.0f, .0f);
 		sf::Vector2f _velocity = sf::Vector2f(.0f, .0f);
 		bool _tickflag=false;
-		BaseTextureSettings _texture;
+		TextureSettings _texture;
 	};
 }

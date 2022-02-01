@@ -3,10 +3,8 @@
 namespace Utility{
 	template<typename T>
 	struct ThreadingResource{
-	public:
 		std::unique_ptr<T> _rsc;
 		std::mutex _mtx;
-	public:
 		ThreadingResource() = default;
 		ThreadingResource(const ThreadingResource<T>&src) = delete;
 		ThreadingResource & operator=(const ThreadingResource<T>&src) = delete;
@@ -20,10 +18,8 @@ namespace Utility{
 	};
 	template<typename T>
 	struct ThreadingResourceLight{
-	public:
 		T _rsc;
 		std::mutex _mtx;
-	public:
 		ThreadingResourceLight() = default;
 		ThreadingResourceLight(const ThreadingResourceLight<T>&src) = delete;
 		ThreadingResourceLight & operator=(const ThreadingResourceLight<T>&src) = delete;

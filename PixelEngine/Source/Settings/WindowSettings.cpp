@@ -2,9 +2,9 @@
 #include <sstream>
 namespace Settings{
 	WindowSettings::WindowSettings(const sf::VideoMode & mode, int fps, unsigned int style, const std::string & winname, bool vsync) :
-		_videomode(mode), _fps(fps), _style(style), _winname(_winname), _vsync(vsync){}
-
-	// Inherited via SettingsBase
+		/*_videomode(mode), */_fps(fps), _style(style), _winname(winname), _vsync(vsync){
+		_videomode = mode;
+	}
 
 	std::string WindowSettings::ToStdString() const{
 		std::stringstream stream;

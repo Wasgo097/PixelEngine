@@ -2,6 +2,7 @@
 #include "SettingsBase.h"
 #include "Utility/ISerializable.h"
 #include <SFML/Window.hpp>
+#include <SFML/Window/VideoMode.hpp>
 using nlohmann::json;
 namespace Settings{
 	class WindowSettings :public SettingsBase, Utility::IJsonSerializable{
@@ -22,7 +23,7 @@ namespace Settings{
 		const std::string& GetWinName()const;
 		bool  GetVSync()const;
 	protected:
-		sf::VideoMode _videomode = sf::VideoMode(1920, 1080);
+		sf::VideoMode _videomode;
 		int _fps = 30;
 		unsigned int _style = sf::Style::Fullscreen;
 		std::string _winname="Window";

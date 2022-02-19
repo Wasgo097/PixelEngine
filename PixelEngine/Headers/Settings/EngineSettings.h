@@ -19,9 +19,9 @@ namespace Settings{
 		const std::string & WorldSettings()const;
 	protected:
 		/*std::string _rootpath="";*/
-		std::string _windowsettings="";
-		std::string _musicsettings = "";
-		std::string _worldsettings = "";
+		std::string _windowsettings="window.json";
+		std::string _musicsettings = "music.json";
+		std::string _worldsettings = "world.json";
 
 	};
 }

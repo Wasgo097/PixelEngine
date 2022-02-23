@@ -1,4 +1,4 @@
-#include "SettingsFactory.h"
+#include "Factory/SettingsFactory.h"
 #include <iostream>
 using namespace Settings;
 Settings::ActorSettings SettingsFactory::CreateActorSettings(std::string path){

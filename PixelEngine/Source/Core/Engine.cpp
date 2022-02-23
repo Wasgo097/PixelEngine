@@ -2,6 +2,7 @@
 #include "Core/Engine.h"
 #include "Core/World.h"
 #include "Objects/ControlledActor.h"
+#include "Factory/SettingsFactory.h"
 namespace Core{
 	Engine::Engine(){
 		//std::ifstream reader(settingspath+"/Engine.json");

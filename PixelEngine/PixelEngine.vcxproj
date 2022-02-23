@@ -24,8 +24,8 @@
     <ClCompile Include="Source\Settings\TextureSettings.cpp" />
     <ClCompile Include="Source\Settings\MusicSettings.cpp" />
     <ClCompile Include="Source\Settings\EngineSettings.cpp" />
-    <ClCompile Include="Source\Settings\ActorSettings.cpp" />
     <ClCompile Include="Source\Settings\AnimationSettings.cpp" />
+    <ClCompile Include="Source\Settings\ActorSettings.cpp" />
     <ClCompile Include="Source\Objects\ControlledActor.cpp" />
     <ClCompile Include="Source\Objects\Extensions\Animation.cpp" />
     <ClCompile Include="Source\Objects\AnimatedActor.cpp" />
@@ -34,11 +34,12 @@
     <ClCompile Include="Source\Objects\Object.cpp" />
     <ClCompile Include="Source\Time\TimeManager.cpp" />
     <ClCompile Include="Source\Core\Engine.cpp" />
-    <ClCompile Include="Source\Utility\CommonStructures.cpp" />
     <ClCompile Include="Source\Core\World.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Headers\Controller\ControllerStructs.h" />
+    <ClInclude Include="Headers\Enums\ActorEnums.h" />
+    <ClInclude Include="Headers\Enums\AnimationEnums.h" />
     <ClInclude Include="Headers\Objects\ControlledActor.h" />
     <ClInclude Include="Headers\Core\ActorManager.h" />
     <ClInclude Include="Headers\json.hpp" />
@@ -53,12 +54,10 @@
     <ClInclude Include="Headers\Settings\SettingsBase.h" />
     <ClInclude Include="Headers\Settings\TextureSettings.h" />
     <ClInclude Include="Headers\Types\ILoopingThread.h" />
+    <ClInclude Include="Headers\Utility\BasicSFMLTypesToJson.h" />
     <ClInclude Include="Headers\Utility\IClonable.h" />
-    <ClInclude Include="Headers\Utility\CommonStructures.h" />
+    <ClInclude Include="Headers\Utility\ThreadingResource.h" />
     <ClInclude Include="Headers\Core\Engine.h" />
-    <ClInclude Include="Headers\Time\ITimeObservable.h" />
-    <ClInclude Include="Headers\Time\ITimeObserver.h" />
-    <ClInclude Include="Headers\Time\TimeManager.h" />
     <ClInclude Include="Headers\Core\World.h" />
     <ClInclude Include="Headers\Utility\ISerializable.h" />
     <ClInclude Include="Headers\Objects\Object.h" />
@@ -152,7 +151,7 @@
       <SDLCheck>true</SDLCheck>
       <ConformanceMode>true</ConformanceMode>
       <LanguageStandard>stdcpp17</LanguageStandard>
-      <AdditionalIncludeDirectories>$(SolutionDir)$(ProjectName)\Headers;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(ProjectDir)Headers;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -185,7 +184,7 @@
       <SDLCheck>true</SDLCheck>
       <ConformanceMode>true</ConformanceMode>
       <LanguageStandard>stdcpp17</LanguageStandard>
-      <AdditionalIncludeDirectories>$(SolutionDir)$(ProjectName)\Headers;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(ProjectDir)Headers;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>

@@ -10,7 +10,7 @@ namespace Core {
 	class ControlledActor;
 	class Engine:public Types::ILoopingThread {
 	public:
-		Engine(std::string settingspath);
+		Engine();
 		Engine(const Engine&) = delete;
 		Engine(Engine&&) = delete;
 		Engine& operator=(const Engine&) = delete;

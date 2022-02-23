@@ -19,9 +19,4 @@ namespace Utility{
 		virtual std::vector<std::string> ArrSerialize()const = 0;
 		virtual bool ArrDeserialize(std::vector<std::string>) = 0;
 	};
-	class IJsonSerializable{
-	public:
-		virtual json JSerialize()const = 0;
-		virtual bool JDeserialize(json json) = 0;
-	};
 }

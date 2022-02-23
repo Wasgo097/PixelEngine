@@ -2,7 +2,7 @@
 #include "ITimeObservable.h"
 #include "Types/ILoopingThread.h"
 #include "Objects/Actor.h"
-#include "Utility/CommonStructures.h"
+#include "Utility/ThreadingResource.h"
 namespace Core{
 	class World;
 }

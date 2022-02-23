@@ -2,10 +2,11 @@
 #include "Actor.h"
 #include "Extensions/Animation.h"
 #include "Settings/AnimationSettings.h"
+#include "Enums/AnimationEnums.h"
 namespace Core{
 	class AnimatedActor :public Actor{
 	public:
-		AnimatedActor(World* world, const Settings::ActorSettings & settings, const Settings::AnimationSettings& animationsettings);
+		AnimatedActor(World* world, const Settings::ActorSettings& actorsettings, const Settings::TextureSettings& texturesettings, const Settings::AnimationSettings& animationsettings);
 		AnimatedActor(const AnimatedActor&) = delete;
 		AnimatedActor&operator=(const AnimatedActor&) = delete;
 		AnimatedActor(AnimatedActor&&) = delete;
@@ -25,7 +26,7 @@ namespace Core{
 	protected:
 		Settings::AnimationSettings _animationsettings;
 		std::unique_ptr<Animation::Animation> _animation;
-		std::map<Animation::Direction, int>& _directiontorowref;
+		std::map<AnimationEnums::Direction, int>& _directiontorowref;
 		int _animatedrow = 0;
 	};
 }

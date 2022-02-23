@@ -1,9 +1,12 @@
 #include "CommonHeaders.h"
 #include "Objects/ControlledActor.h"
+#define DefaultInput
 namespace Core{
-	ControlledActor::ControlledActor(World * world, const Settings::ActorSettings & settings, const Settings::AnimationSettings & animationsettings)
-	:AnimatedActor(world,settings,animationsettings){
+	ControlledActor::ControlledActor(World* world, const Settings::ActorSettings& actorsettings, const Settings::TextureSettings& texturesettings, const Settings::AnimationSettings& animationsettings)
+	:AnimatedActor(world, actorsettings, texturesettings,animationsettings){
+#ifdef DefaultInput
 		LoadTestActions();
+#endif // DefaultInput
 	}
 	void ControlledActor::Tick(float deltatime){
 		AnimatedActor::Tick(deltatime);

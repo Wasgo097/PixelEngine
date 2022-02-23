@@ -6,7 +6,7 @@ namespace Time{
 
 	TimeManager::TimeManager(Core::World * world, float multiplier) :
 		_thread(std::make_unique<std::thread>(&TimeManager::Run, this)),
-		Core::Actor(world,Settings::ActorSettings()){
+		Core::Actor(world,Settings::ActorSettings(),Settings::TextureSettings()){
 		_multipler = multiplier;
 	}
 	TimeManager::~TimeManager(){

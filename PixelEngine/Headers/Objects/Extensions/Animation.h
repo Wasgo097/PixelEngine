@@ -1,20 +1,9 @@
 #pragma once
+#include "Enums/AnimationEnums.h"
 #include "Settings/TextureSettings.h"
 #include "Settings/AnimationSettings.h"
-
 namespace Core{
 	namespace Animation{
-		enum class Direction{
-			None,
-			Left,
-			Up,
-			Right,
-			Down,
-			LeftIdle,
-			UpIdle,
-			RightIdle,
-			DownIdle
-		};
 		class Animation{
 		public:
 			Animation(sf::Sprite & animatedsprite, const Settings::AnimationSettings & animationsettings);

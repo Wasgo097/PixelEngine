@@ -1,5 +1,5 @@
 #pragma once
-#include "Utility/CommonStructures.h"
+#include "Utility/ThreadingResource.h"
 #include "Types/ILoopingThread.h"
 namespace Core{
 	class Actor;

@@ -5,7 +5,7 @@
 namespace Core{
 	class ControlledActor:public AnimatedActor{
 	public:
-		ControlledActor(World* world, const Settings::ActorSettings & settings, const Settings::AnimationSettings& animationsettings);
+		ControlledActor(World* world, const Settings::ActorSettings& actorsettings, const Settings::TextureSettings& texturesettings, const Settings::AnimationSettings& animationsettings);
 		ControlledActor(const ControlledActor&) = delete;
 		ControlledActor(ControlledActor&&) = delete;
 		ControlledActor& operator=(const ControlledActor&) = delete;

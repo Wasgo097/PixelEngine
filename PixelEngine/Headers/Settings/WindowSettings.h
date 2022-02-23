@@ -1,32 +1,21 @@
 #pragma once
 #include "SettingsBase.h"
-#include "Utility/ISerializable.h"
+#include "Utility/BasicSFMLTypesToJson.h"
 #include <SFML/Window.hpp>
-#include <SFML/Window/VideoMode.hpp>
-using nlohmann::json;
 namespace Settings{
-	class WindowSettings :public SettingsBase, Utility::IJsonSerializable{
+	struct WindowSettings :public SettingsBase{
 	public:
-		WindowSettings(const sf::VideoMode& mode, int fps, unsigned int style, const std::string & winname, bool vsync);
+		WindowSettings(sf::VideoMode mode, int fps, unsigned int style, std::string winname, bool vsync) :_videomode(mode), _fps(fps), _style(style), _winname(winname), _vsync(vsync) {}
 		WindowSettings() = default;
 	public:
 		// Inherited via SettingsBase
 		virtual std::string ToStdString()const override;
-
-		// Inherited via IJsonSerializable
-		virtual json JSerialize() const override;
-		virtual bool JDeserialize(json json) override;
 	public:
-		const sf::VideoMode& GetVideoMode()const;
-		const int& GetFps()const;
-		unsigned int GetStyle()const;
-		const std::string& GetWinName()const;
-		bool  GetVSync()const;
-	protected:
 		sf::VideoMode _videomode;
 		int _fps = 30;
 		unsigned int _style = sf::Style::Fullscreen;
 		std::string _winname="Window";
 		bool _vsync = false;
 	};
+	NLOHMANN_DEFINE_TYPE_NON_INTRUSIVE(WindowSettings, _videomode, _fps, _style, _winname, _vsync)
 }

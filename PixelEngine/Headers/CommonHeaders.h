@@ -6,7 +6,7 @@
 #include<SFML/Network.hpp>
 #include<SFML/Audio.hpp>
 //sfml tgui single header
-#include<TGUI/TGUI.hpp>
+//#include<TGUI/TGUI.hpp>
 //io
 #include<iostream>
 #include<fstream>

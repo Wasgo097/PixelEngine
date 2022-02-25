@@ -22,6 +22,7 @@ namespace Core {
 		std::unique_ptr<std::thread> _drawingthread;
 		std::unique_ptr<sf::RenderWindow> _mainwindow;
 		std::shared_ptr<ControlledActor> _maincharacter;
+	protected:
 		Settings::EngineSettings _enginesettings;
 		Settings::WindowSettings _windowsettings;
 		Settings::MusicSettings _musicsettings;

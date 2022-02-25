@@ -5,6 +5,8 @@
 #include "Factory/SettingsFactory.h"
 namespace Core{
 	Engine::Engine(){
+		_enginesettings = CREATE_SETTINGS(Settings::EngineSettings,"cfg\\Engine.json")
+		//_enginesettings = Factory::SettingsFactory<Settings::EngineSettings>;
 		//std::ifstream reader(settingspath+"/Engine.json");
 		//if(!reader.good()){
 		//	std::cerr << "Cant open engine config file!" << std::endl;

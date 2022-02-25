@@ -63,6 +63,7 @@
     <ClInclude Include="Headers\Objects\Object.h" />
     <ClInclude Include="Headers\Settings\WindowSettings.h" />
     <ClInclude Include="Headers\Settings\WorldSettings.h" />
+    <ClInclude Include="Headers\Factory\SettingsFactory.h" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>15.0</VCProjectVersion>

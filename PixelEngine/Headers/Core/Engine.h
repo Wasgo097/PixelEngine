@@ -26,6 +26,7 @@ namespace Core {
 		Settings::EngineSettings _enginesettings;
 		Settings::WindowSettings _windowsettings;
 		Settings::MusicSettings _musicsettings;
+		Settings::WorldSettings _worldsettings;
 	protected:
 		// Inherited via ILoopingThread
 		virtual void Run() override;

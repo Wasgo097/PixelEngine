@@ -15,7 +15,7 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="SerialziationTest.cpp">
+    <ClCompile Include="Source\SerialziationTest.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Main.cpp">
@@ -23,10 +23,10 @@
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="SerialziationTest.h">
+    <ClInclude Include="Headers\SerialziationTest.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="BaseTest.h">
+    <ClInclude Include="Headers\BaseTest.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

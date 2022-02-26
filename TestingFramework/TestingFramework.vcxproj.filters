@@ -21,12 +21,18 @@
     <ClCompile Include="Main.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="Source\EngineSettup.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Headers\SerialziationTest.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Headers\BaseTest.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Headers\EngineSettup.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

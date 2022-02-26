@@ -19,9 +19,9 @@ namespace Core{
 		virtual ~World();
 	public:
 		template<typename type_to_create, typename ...Argv>
-		std::shared_ptr<type_to_create> SpawnActor(const Settings::ActorSettings & settings,Argv && ...argv){
+		std::shared_ptr<type_to_create> SpawnActor(const Settings::ActorSettings& actorsettings, const Settings::TextureSettings& texturesettings,Argv && ...argv){
 			std::shared_ptr<type_to_create> result;
-			type_to_create * ptr = new type_to_create(this, settings,std::forward<Argv>(argv)...);
+			type_to_create * ptr = new type_to_create(this, actorsettings, texturesettings,std::forward<Argv>(argv)...);
 			result.reset(ptr);
 			ptr = nullptr;
 			_actormanager->RegistrNewActor(result);
@@ -30,9 +30,9 @@ namespace Core{
 			return result;
 		}
 		template<typename type_to_create, typename ...Argv>
-		std::shared_ptr<type_to_create> SpawnConstActor(const Settings::ActorSettings & settings,Argv && ...argv){
+		std::shared_ptr<type_to_create> SpawnConstActor(const Settings::ActorSettings& actorsettings, const Settings::TextureSettings& texturesettings, Argv && ...argv){
 			std::shared_ptr<type_to_create> result;
-			type_to_create * ptr = new type_to_create(this, settings,std::forward<Argv>(argv)...);
+			type_to_create * ptr = new type_to_create(this, actorsettings, texturesettings,std::forward<Argv>(argv)...);
 			result.reset(ptr);
 			ptr = nullptr;
 			_actormanager->RegisterConstActor(result);
@@ -41,10 +41,21 @@ namespace Core{
 			return result;
 		}
 		template<typename type_to_create, typename ...Argv>
-		std::shared_ptr<type_to_create> SpawnControlledActor(World* world, const Settings::ActorSettings & settings, const Settings::AnimationSettings& animationsettings,Argv && ...argv){
+		std::shared_ptr<type_to_create> SpawnAnimatedActor(const Settings::ActorSettings& actorsettings, const Settings::TextureSettings& texturesettings,const Settings::AnimationSettings& animationsettings, Argv && ...argv) {
+			std::shared_ptr<type_to_create> result;
+			type_to_create* ptr = new type_to_create(this, actorsettings, texturesettings,animationsettings, std::forward<Argv>(argv)...);
+			result.reset(ptr);
+			ptr = nullptr;
+			_actormanager->RegistrNewActor(result);
+			result->OnSpawn();
+			result->Init();
+			return result;
+		}
+		template<typename type_to_create, typename ...Argv>
+		std::shared_ptr<type_to_create> SpawnControlledActor(World* world, const Settings::ActorSettings & actorsettings, const Settings::TextureSettings& texturesettings, const Settings::AnimationSettings& animationsettings,Argv && ...argv){
 			if(_controlledactor == nullptr){
 				std::shared_ptr<type_to_create> result;
-				_controlledactor = new type_to_create(this, settings, animationsettings, std::forward<Argv>(argv)...);
+				_controlledactor = new type_to_create(this, actorsettings, texturesettings, animationsettings, std::forward<Argv>(argv)...);
 				result.reset(_controlledactor);
 				_actormanager->RegistrNewActor(result);
 				result->OnSpawn();

@@ -3,7 +3,8 @@
 #include "json.hpp"
 using nlohmann::json;
 namespace Settings{
-	struct SettingsBase{
+	class SettingsBase{
+	public:
 		virtual std::string ToStdString()const = 0;
 	};
 }

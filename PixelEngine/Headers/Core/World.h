@@ -68,5 +68,9 @@ namespace Core{
 		void Draw(sf::RenderWindow & window);
 	protected:
 		ControlledActor * _controlledactor = nullptr;
+		friend class Engine;
+	protected:
+		void TermianateActorManager();
+		void WaitOnActorManager();
 	};
 }

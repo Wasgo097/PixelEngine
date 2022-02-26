@@ -38,5 +38,7 @@ namespace Core {
 		virtual void Wait() override;
 		virtual void Terminate() override;
 		bool _terminated = false;
+	private:
+		void Close();
 	};
 }

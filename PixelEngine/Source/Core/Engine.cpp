@@ -13,23 +13,23 @@ namespace Core {
 		settingspath = "cfg\\" + _enginesettings._worldsettings;
 		_worldsettings = CREATE_SETTINGS(Settings::WorldSettings, settingspath);
 		_mainwindow = std::make_unique<sf::RenderWindow>(_windowsettings._videomode, _windowsettings._winname, _windowsettings._style);
+		_mainwindow->setActive(false);
 		if (_windowsettings._fps > 1)
 			_mainwindow->setFramerateLimit(_windowsettings._fps);
-		_mainwindow->setActive(false);
 		_drawingthread = std::make_unique<std::thread>(std::bind(&Engine::Run, this));
+		//_world = std::make_unique<World>(_worldsettings);
 	}
 	Engine::~Engine() {
+		if (_world)
+			_world->WaitOnActorManager();
 		std::cout << "Engine destructor\n";
 	}
 	void Engine::Main() {
 		while (_mainwindow->isOpen()) {
 			sf::Event event;
 			while (_mainwindow->pollEvent(event)) {
-				if (event.type == sf::Event::Closed || sf::Keyboard::isKeyPressed(sf::Keyboard::Escape)) {
-					Terminate();
-					Wait();
-					_mainwindow->close();
-				}
+				if (event.type == sf::Event::Closed || sf::Keyboard::isKeyPressed(sf::Keyboard::Escape))
+					Close();
 				if (_maincharacter && _maincharacter->ServiceInput(event)) {
 
 				}
@@ -48,6 +48,7 @@ namespace Core {
 				_world->Draw(*_mainwindow);
 			_mainwindow->display();
 		}
+		_mainwindow->setActive(false);
 	}
 	void Engine::Wait() {
 		if (_drawingthread->joinable())
@@ -55,5 +56,13 @@ namespace Core {
 	}
 	void Engine::Terminate() {
 		_terminated = true;
+	}
+	void Engine::Close(){
+		Terminate();
+		Wait();
+		_mainwindow->setActive(true);
+		_mainwindow->close();
+		if (_world)
+			_world->TermianateActorManager();
 	}
 }

@@ -5,7 +5,7 @@ namespace Core{
 	class Actor;
 	class ActorManager final:public Types::ILoopingThread{
 	private:
-		void Loop();
+		void DeleteActors();
 		void MoveToSecondStage();
 	public:
 		ActorManager(size_t buffer_size,int gcfrequentlevel,int cycletomove);

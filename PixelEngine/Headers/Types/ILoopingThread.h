@@ -1,4 +1,5 @@
 #pragma once
+#include <thread>
 namespace Types{
 	class ILoopingThread{
 	public:

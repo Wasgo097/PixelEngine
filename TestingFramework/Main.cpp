@@ -1,9 +1,11 @@
 #include "SerialziationTest.h"
-#include <SFML/Graphics.hpp>
+#include "EngineSettup.h"
 #include <iostream>
 using namespace Test;
 int main(){
-	SerialziationTest test1("D:\\PixelEngine\\TestingFramework\\output\\");
-	std::cout << "Serialization test result: " << test1.RunTest() << std::endl;
+	/*SerialziationTest test1("D:\\PixelEngine\\TestingFramework\\output\\");
+	std::cout << "Serialization test result: " << test1.RunTest() << std::endl;*/
+	EngineSettup test2;
+	std::cout << "Engine settup test result: " << test2.RunTest() << std::endl;
 	return 0;
 }

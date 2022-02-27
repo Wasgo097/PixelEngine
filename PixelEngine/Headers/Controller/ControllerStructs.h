@@ -1,11 +1,7 @@
 #pragma once
 #include <SFML/Window/Event.hpp>
+#include "Enums/InputEnums.h"
 namespace Controller{
-	enum InputType{
-		KeyboardInput,
-		MouseInput,
-		JoystickInput
-	};
 	struct Key{
 		InputType _inputtype;
 		sf::Event::EventType _eventtype;

@@ -17,7 +17,7 @@ namespace Core {
 		if (_windowsettings._fps > 1)
 			_mainwindow->setFramerateLimit(_windowsettings._fps);
 		_drawingthread = std::make_unique<std::thread>(std::bind(&Engine::Run, this));
-		_world = std::make_unique<World>(_worldsettings);
+		_world = std::make_shared<World>(_worldsettings);
 	}
 	Engine::~Engine() {
 		if (_world)

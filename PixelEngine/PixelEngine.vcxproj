@@ -54,13 +54,14 @@
     <ClInclude Include="Headers\Settings\MusicSettings.h" />
     <ClInclude Include="Headers\Settings\SettingsBase.h" />
     <ClInclude Include="Headers\Settings\TextureSettings.h" />
+    <ClInclude Include="Headers\Time\ITimeObservable.h" />
+    <ClInclude Include="Headers\Time\ITimeObserver.h" />
+    <ClInclude Include="Headers\Time\TimeManager.h" />
     <ClInclude Include="Headers\Types\ILoopingThread.h" />
     <ClInclude Include="Headers\Utility\BasicSFMLTypesToJson.h" />
-    <ClInclude Include="Headers\Utility\IClonable.h" />
     <ClInclude Include="Headers\Utility\ThreadingResource.h" />
     <ClInclude Include="Headers\Core\Engine.h" />
     <ClInclude Include="Headers\Core\World.h" />
-    <ClInclude Include="Headers\Utility\ISerializable.h" />
     <ClInclude Include="Headers\Objects\Object.h" />
     <ClInclude Include="Headers\Settings\WindowSettings.h" />
     <ClInclude Include="Headers\Settings\WorldSettings.h" />

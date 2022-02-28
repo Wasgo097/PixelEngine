@@ -15,7 +15,7 @@ namespace Core{
 	public:
 		virtual void Tick(float deltatime)override;
 		virtual void Move(const sf::Vector2f& velocity)override;
-		virtual void Push(const sf::Vector2f& constvelocity)override;
+		virtual void ConstPush(const sf::Vector2f& constvelocity)override;
 		virtual void Draw(sf::RenderWindow & window)override;
 	public:
 		virtual void Init()override{}

@@ -66,8 +66,8 @@ namespace Core{
 				throw std::runtime_error("Create more than one controlledactor");
 		}
 		void Draw(sf::RenderWindow & window);
+		void Update(float delta);
 	protected:
-		ControlledActor * _controlledactor = nullptr;
 		friend class Engine;
 	protected:
 		void TermianateActorManager();

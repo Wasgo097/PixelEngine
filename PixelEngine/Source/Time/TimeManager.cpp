@@ -9,27 +9,6 @@ namespace Time{
 		Core::Actor(world,Settings::ActorSettings(),Settings::TextureSettings()){
 		_multipler = multiplier;
 	}
-	TimeManager::~TimeManager(){
-		Terminate();
-		Wait();
-	}
-	//TimeManager::TimeManager(TimeManager && src) :
-	//	_thread(std::move(src._thread)),
-	//	_seconds(std::move(src._seconds)),
-	//	_minutes(std::move(src._minutes)),
-	//	_terminated(src._terminated), 
-	//	Core::Actor(src._world,Settings::ActorSettings(),	sf::Vector2f(.0f, .0f)){
-	//}
-	//TimeManager & TimeManager::operator=(TimeManager && src){
-	//	_thread = std::move(src._thread);
-	//	_seconds = std::move(src._seconds);
-	//	_minutes = std::move(src._minutes);
-	//	_terminated = src._terminated;
-	//	_settings = std::move(src._settings);
-	//	_world = src._world;
-	//	src._world = nullptr;
-	//	return *this;
-	//}
 	void TimeManager::Multiplier(float value){
 		_multipler = value;
 	}

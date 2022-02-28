@@ -19,13 +19,10 @@ namespace Time {
 		virtual void NotifyForMinutePassed()  override;
 	public:
 		TimeManager(Core::World * world,float multiplier = 1.0);
-		virtual ~TimeManager();
 		TimeManager(const TimeManager&) = delete;
 		TimeManager& operator=(const TimeManager&) = delete;
 		TimeManager(TimeManager&& src) = delete;
 		TimeManager& operator=(TimeManager&&src)=delete;
-		//TimeManager(TimeManager&& src);
-		//TimeManager& operator=(TimeManager&&src);
 		void Multiplier(float value);
 		float Multiplier()const;
 	public:

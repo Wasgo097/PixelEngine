@@ -1,12 +1,8 @@
 #include "CommonHeaders.h"
 #include "Objects/ControlledActor.h"
-#define DefaultInput
 namespace Core{
 	ControlledActor::ControlledActor(World* world, const Settings::ActorSettings& actorsettings, const Settings::TextureSettings& texturesettings, const Settings::AnimationSettings& animationsettings)
 	:AnimatedActor(world, actorsettings, texturesettings,animationsettings){
-#ifdef DefaultInput
-		LoadTestActions();
-#endif // DefaultInput
 	}
 	void ControlledActor::Tick(float deltatime){
 		AnimatedActor::Tick(deltatime);
@@ -14,11 +10,14 @@ namespace Core{
 	void ControlledActor::Move(const sf::Vector2f & velocity){
 		AnimatedActor::Move(velocity);
 	}
-	void ControlledActor::Push(const sf::Vector2f & constvelocity){
-		AnimatedActor::Push(constvelocity);
+	void ControlledActor::ConstPush(const sf::Vector2f & constvelocity){
+		AnimatedActor::ConstPush(constvelocity);
 	}
 	void ControlledActor::Draw(sf::RenderWindow & window){
 		AnimatedActor::Draw(window);
+	}
+	void ControlledActor::Init() {
+		LoadActions();
 	}
 	std::string ControlledActor::ToString() const{ 
 		return "Default ControlledActor ToString"; 
@@ -32,7 +31,7 @@ namespace Core{
 		}
 		return false;
 	}
-	void ControlledActor::LoadTestActions(){
+	void ControlledActor::LoadActions(){
 		Controller::Key key;
 		key._inputtype = Controller::InputType::MouseInput;
 		key._eventtype = sf::Event::MouseButtonPressed;

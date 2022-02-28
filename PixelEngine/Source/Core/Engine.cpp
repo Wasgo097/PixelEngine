@@ -3,6 +3,7 @@
 #include "Core/World.h"
 #include "Objects/ControlledActor.h"
 #include "Factory/SettingsFactory.h"
+#include <SFML/System.hpp>
 namespace Core {
 	Engine::Engine() {
 		_enginesettings = CREATE_SETTINGS(Settings::EngineSettings, "cfg\\enginesettings.json");
@@ -22,15 +23,16 @@ namespace Core {
 	Engine::~Engine() {
 		if (_world)
 			_world->WaitOnActorManager();
-		std::cout << "Engine destructor\n";
+		//std::cout << "Engine destructor\n";
 	}
 	void Engine::Main() {
+		sf::Clock clock;
 		while (_mainwindow->isOpen()) {
 			sf::Event event;
 			while (_mainwindow->pollEvent(event)) {
 				if (event.type == sf::Event::Closed || sf::Keyboard::isKeyPressed(sf::Keyboard::Escape))
 					Close();
-				if (_maincharacter && _maincharacter->ServiceInput(event)) {
+				else if (_maincharacter && _maincharacter->ServiceInput(event)) {
 
 				}
 				else {
@@ -38,6 +40,8 @@ namespace Core {
 				}
 			}
 			//after event handling
+			sf::Time time = clock.restart();
+			_world->Update(time.asSeconds());
 		}
 	}
 	void Engine::Run() {

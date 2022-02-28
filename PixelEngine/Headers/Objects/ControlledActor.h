@@ -14,18 +14,17 @@ namespace Core{
 	public:
 		virtual void Tick(float deltatime)override;
 		virtual void Move(const sf::Vector2f& velocity)override;
-		virtual void Push(const sf::Vector2f& constvelocity)override;
+		virtual void ConstPush(const sf::Vector2f& constvelocity)override;
 		virtual void Draw(sf::RenderWindow & window)override;
 	public:
-		virtual void Init()override{}
+		virtual void Init()override;
 		virtual void OnLoad()override{}
 		virtual void OnSpawn()override{}
 		virtual void OnDelete()override{}
 		virtual std::string ToString()const override;
 	public:
 		bool ServiceInput(sf::Event e);
-		//only for test
-		void LoadTestActions();
+		virtual void LoadActions();
 	protected:
 		bool TestEvent(const Controller::Key& k, sf::Event e);
 		void DoAction(const Controller::Key& key);

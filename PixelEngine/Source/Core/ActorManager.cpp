@@ -60,17 +60,17 @@ namespace Core {
 	ActorManager::ActorManager(size_t buffer_size, int gcfrequentlevel, int cycletomove) :
 		_thread_management(std::make_unique<std::thread>(std::bind(&ActorManager::Run, this))),
 		_buffersize(buffer_size), _frequencylevel(gcfrequentlevel), _cycletomove(cycletomove) {
-		_firststage._rsc.reserve(buffer_size);
-		_secondstage._rsc.reserve(buffer_size);
-		_constactor._rsc.reserve(buffer_size);
+		_firststage._rsc.reserve(_buffersize);
+		_secondstage._rsc.reserve(_buffersize);
+		_constactors._rsc.reserve(_buffersize);
 	}
 	void ActorManager::RegistrNewActor(std::shared_ptr<Actor> actor) {
 		std::lock_guard lock(_firststage._mtx);
 		_firststage._rsc.push_back(std::make_pair(0, actor));
 	}
 	void ActorManager::RegisterConstActor(std::shared_ptr<Actor> actor) {
-		std::lock_guard lock(_constactor._mtx);
-		_constactor._rsc.push_back(actor);
+		std::lock_guard lock(_constactors._mtx);
+		_constactors._rsc.push_back(actor);
 	}
 	void ActorManager::UnregisterActor(Actor* actor) {
 		if (actor == nullptr)
@@ -125,8 +125,8 @@ namespace Core {
 			}
 		}
 		{
-			std::lock_guard lock(_constactor._mtx);
-			for (auto& Actor : _constactor._rsc) {
+			std::lock_guard lock(_constactors._mtx);
+			for (auto& Actor : _constactors._rsc) {
 				if (Actor->TickFlag() == true)
 					Actor->Tick(deltatime);
 			}
@@ -146,8 +146,8 @@ namespace Core {
 			}
 		}
 		{
-			std::lock_guard lock(_constactor._mtx);
-			for (auto& Actor : _constactor._rsc) {
+			std::lock_guard lock(_constactors._mtx);
+			for (auto& Actor : _constactors._rsc) {
 				Actor->Draw(window);
 			}
 		}

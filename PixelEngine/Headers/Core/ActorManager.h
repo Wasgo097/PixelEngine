@@ -24,7 +24,7 @@ namespace Core{
 		//pair: k -number of cycles 
 		Utility::ThreadingResourceLight<std::vector<std::pair<int,std::shared_ptr<Actor>>>> _firststage;
 		Utility::ThreadingResourceLight<std::vector<std::shared_ptr<Actor>>> _secondstage;
-		Utility::ThreadingResourceLight<std::vector<std::shared_ptr<Actor>>> _constactor;
+		Utility::ThreadingResourceLight<std::vector<std::shared_ptr<Actor>>> _constactors;
 		const size_t _buffersize;
 		const int _frequencylevel;
 		const int _cycletomove;

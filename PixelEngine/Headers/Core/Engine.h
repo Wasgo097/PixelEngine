@@ -4,6 +4,7 @@
 #include "Settings/WorldSettings.h"
 #include "Settings/MusicSettings.h"
 #include "Types/ILoopingThread.h"
+#include <SFML/System/Clock.hpp>
 namespace sf {
 	class RenderWindow;
 }
@@ -28,6 +29,8 @@ namespace Core {
 		std::shared_ptr<sf::RenderWindow> _mainwindow;
 		std::shared_ptr<ControlledActor> _maincharacter;
 	protected:
+		sf::Clock _clock;
+	protected:
 		Settings::EngineSettings _enginesettings;
 		Settings::WindowSettings _windowsettings;
 		Settings::MusicSettings _musicsettings;
@@ -40,5 +43,6 @@ namespace Core {
 		bool _terminated = false;
 	private:
 		void Close();
+		void Update();
 	};
 }

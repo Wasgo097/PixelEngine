@@ -14,9 +14,10 @@ namespace Core {
 		settingspath = "cfg\\" + _enginesettings._worldsettings;
 		_worldsettings = CREATE_SETTINGS(Settings::WorldSettings, settingspath);
 		_mainwindow = std::make_unique<sf::RenderWindow>(_windowsettings._videomode, _windowsettings._winname, _windowsettings._style);
-		_mainwindow->setActive(false);
+		_mainwindow->setVerticalSyncEnabled(_windowsettings._vsync);
 		if (_windowsettings._fps > 1)
 			_mainwindow->setFramerateLimit(_windowsettings._fps);
+		_mainwindow->setActive(false);
 		_drawingthread = std::make_unique<std::thread>(std::bind(&Engine::Run, this));
 		_world = std::make_shared<World>(_worldsettings);
 	}
@@ -26,7 +27,6 @@ namespace Core {
 		//std::cout << "Engine destructor\n";
 	}
 	void Engine::Main() {
-		sf::Clock clock;
 		while (_mainwindow->isOpen()) {
 			sf::Event event;
 			while (_mainwindow->pollEvent(event)) {
@@ -40,8 +40,7 @@ namespace Core {
 				}
 			}
 			//after event handling
-			sf::Time time = clock.restart();
-			_world->Update(time.asSeconds());
+			Update();
 		}
 	}
 	void Engine::Run() {
@@ -68,5 +67,9 @@ namespace Core {
 		_mainwindow->close();
 		if (_world)
 			_world->TermianateActorManager();
+	}
+	void Engine::Update()	{
+		sf::Time time = _clock.restart();
+		_world->Update(time.asSeconds());
 	}
 }

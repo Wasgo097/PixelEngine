@@ -57,6 +57,7 @@ namespace Core{
 				std::shared_ptr<type_to_create> result;
 				_controlledactor = new type_to_create(this, actorsettings, texturesettings, animationsettings, std::forward<Argv>(argv)...);
 				result.reset(_controlledactor);
+				_controlledactor = result;
 				_actormanager->RegistrNewActor(result);
 				result->OnSpawn();
 				result->Init();
@@ -69,6 +70,8 @@ namespace Core{
 		void Update(float delta);
 	protected:
 		friend class Engine;
+	protected:
+		std::shared_ptr<ControlledActor> _controlledactor;
 	protected:
 		void TermianateActorManager();
 		void WaitOnActorManager();

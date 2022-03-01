@@ -19,6 +19,7 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="Source\Controller\ControllerBase.cpp" />
     <ClCompile Include="Source\Settings\WorldSettings.cpp" />
     <ClCompile Include="Source\Settings\WindowSettings.cpp" />
     <ClCompile Include="Source\Settings\TextureSettings.cpp" />
@@ -37,6 +38,7 @@
     <ClCompile Include="Source\Core\World.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Headers\Controller\ControllerBase.h" />
     <ClInclude Include="Headers\Controller\ControllerStructs.h" />
     <ClInclude Include="Headers\Enums\ActorEnums.h" />
     <ClInclude Include="Headers\Enums\AnimationEnums.h" />

@@ -2,10 +2,13 @@
 #include "AnimatedActor.h"
 #include "Controller/ControllerStructs.h"
 #include <functional>
+namespace Controller {
+	class ControllerBase;
+}
 namespace Core{
 	class ControlledActor:public AnimatedActor{
 	public:
-		ControlledActor(World* world, const Settings::ActorSettings& actorsettings, const Settings::TextureSettings& texturesettings, const Settings::AnimationSettings& animationsettings);
+		ControlledActor(World* world, const Settings::ActorSettings& actorsettings, const Settings::TextureSettings& texturesettings, const Settings::AnimationSettings& animationsettings,Controller::ControllerBase * controllerptr);
 		ControlledActor(const ControlledActor&) = delete;
 		ControlledActor(ControlledActor&&) = delete;
 		ControlledActor& operator=(const ControlledActor&) = delete;
@@ -30,5 +33,6 @@ namespace Core{
 		void DoAction(const Controller::Key& key);
 	protected:
 		std::map<Controller::Key, std::function<void()>> _actions;
+		Controller::ControllerBase* _controller = nullptr;
 	};
 }

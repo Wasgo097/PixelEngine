@@ -2,6 +2,7 @@
 #include "Object.h"
 #include "Settings/ActorSettings.h"
 #include "Settings/TextureSettings.h"
+#include <SFML/Graphics.hpp>
 namespace Core{
 	class World;
 	class Actor :public Object{

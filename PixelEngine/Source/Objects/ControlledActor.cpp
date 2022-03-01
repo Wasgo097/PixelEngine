@@ -1,8 +1,9 @@
 #include "CommonHeaders.h"
 #include "Objects/ControlledActor.h"
+#include "Controller/ControllerBase.h"
 namespace Core{
-	ControlledActor::ControlledActor(World* world, const Settings::ActorSettings& actorsettings, const Settings::TextureSettings& texturesettings, const Settings::AnimationSettings& animationsettings)
-	:AnimatedActor(world, actorsettings, texturesettings,animationsettings){
+	ControlledActor::ControlledActor(World* world, const Settings::ActorSettings& actorsettings, const Settings::TextureSettings& texturesettings, const Settings::AnimationSettings& animationsettings, Controller::ControllerBase* controllerptr)
+	:AnimatedActor(world, actorsettings, texturesettings,animationsettings),_controller(controllerptr){
 	}
 	void ControlledActor::Tick(float deltatime){
 		AnimatedActor::Tick(deltatime);

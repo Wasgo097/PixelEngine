@@ -3,9 +3,10 @@
 #include "Core/World.h"
 #include "Objects/ControlledActor.h"
 #include "Factory/SettingsFactory.h"
+#include "Controller/ControllerBase.h"
 #include <SFML/System.hpp>
 namespace Core {
-	Engine::Engine() {
+	Engine::Engine(std::shared_ptr<Controller::ControllerBase> &&controller):_maincontroller(std::move(controller)) {
 		_enginesettings = CREATE_SETTINGS(Settings::EngineSettings, "cfg\\enginesettings.json");
 		std::string settingspath = "cfg\\" + _enginesettings._windowsettings;
 		_windowsettings = CREATE_SETTINGS(Settings::WindowSettings, settingspath);
@@ -32,8 +33,8 @@ namespace Core {
 			while (_mainwindow->pollEvent(event)) {
 				if (event.type == sf::Event::Closed || sf::Keyboard::isKeyPressed(sf::Keyboard::Escape))
 					Close();
-				else if (_maincharacter && _maincharacter->ServiceInput(event)) {
-
+				else if (_maincontroller) {
+					_maincontroller->ServiceInput(event);
 				}
 				else {
 

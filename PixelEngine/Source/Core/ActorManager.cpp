@@ -67,10 +67,20 @@ namespace Core {
 	void ActorManager::RegistrNewActor(std::shared_ptr<Actor> actor) {
 		std::lock_guard lock(_firststage._mtx);
 		_firststage._rsc.push_back(std::make_pair(0, actor));
+		actor->OnSpawn();
+		actor->Init();
 	}
 	void ActorManager::RegisterConstActor(std::shared_ptr<Actor> actor) {
 		std::lock_guard lock(_constactors._mtx);
 		_constactors._rsc.push_back(actor);
+		actor->OnSpawn();
+		actor->Init();
+	}
+	void ActorManager::RegisterMainActor(std::shared_ptr<Actor> mainactor){
+		std::lock_guard lock(_secondstage._mtx);
+		_secondstage._rsc.push_back(mainactor);
+		mainactor->OnSpawn();
+		mainactor->Init();
 	}
 	void ActorManager::UnregisterActor(Actor* actor) {
 		if (actor == nullptr)

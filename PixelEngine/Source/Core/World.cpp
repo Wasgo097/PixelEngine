@@ -32,4 +32,7 @@ namespace Core {
 		if (_actormanager)
 			_actormanager->Wait();
 	}
+	void World::RegisterMainCharacter(std::shared_ptr<ControlledActor> mainactor){
+		_actormanager->RegisterMainActor(mainactor);
+	}
 }

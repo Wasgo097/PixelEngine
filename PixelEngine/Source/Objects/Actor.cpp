@@ -51,6 +51,9 @@ namespace Core {
 	const sf::RectangleShape& Actor::GetCollider() const {
 		return *_collider;
 	}
+	void Actor::SetWorld(World* worldptr){
+		_world = worldptr;
+	}
 	void Actor::Draw(sf::RenderWindow& window) {
 		if (_sprite)
 			window.draw(*_sprite);

@@ -17,6 +17,7 @@ namespace Core{
 		bool & TickFlag();
 		bool CanCollide()const;
 		const sf::RectangleShape &GetCollider()const;
+		void SetWorld(World * worldptr);
 	public:
 		virtual void Tick(float deltatime);
 		virtual void Move(const sf::Vector2f& velocity);

@@ -12,6 +12,7 @@ namespace Core{
 		virtual ~ActorManager() = default;
 		void RegistrNewActor(std::shared_ptr<Actor> actor);
 		void RegisterConstActor(std::shared_ptr<Actor> actor);
+		void RegisterMainActor(std::shared_ptr<Actor> mainactor);
 		void UnregisterActor(Actor * actor);
 		void Update(float deltatime);
 		void Draw(sf::RenderWindow & window);

@@ -12,8 +12,9 @@ namespace Controller {
 		ControllerBase();
 		virtual ~ControllerBase() = default;
 	public:
-		virtual void SetMainCharacterInput() = 0;
+		virtual void SetMainCharacterInputBindings() = 0;
 		virtual void ServiceInput(sf::Event currentevent) = 0;
+		virtual std::shared_ptr<Core::ControlledActor> GetMainCharacter() = 0;
 	protected:
 		std::map<Controller::Key, std::function<void(std::shared_ptr<Core::ControlledActor>)>> _actions;
 		Core::Engine* _engine = nullptr;

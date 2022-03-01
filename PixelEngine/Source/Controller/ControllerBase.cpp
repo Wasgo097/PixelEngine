@@ -3,6 +3,6 @@
 #include "Objects/ControlledActor.h"
 namespace Controller {
 	ControllerBase::ControllerBase(){
-		SetMainCharacterInput();
+		SetMainCharacterInputBindings();
 	}
 }

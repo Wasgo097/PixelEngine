@@ -4,7 +4,7 @@
 namespace Test {
 	class EngineSettup :public BaseTest{
 	public:
-		EngineSettup() = default;
+		EngineSettup();
 	public:
 		// Inherited via BaseTest
 		virtual void PrepareTest() override;

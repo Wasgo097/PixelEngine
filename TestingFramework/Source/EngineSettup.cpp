@@ -1,5 +1,7 @@
 #include "EngineSettup.h"
 namespace Test {
+	EngineSettup::EngineSettup() :_engine({}) {
+	}
 	void EngineSettup::PrepareTest(){
 		_engine.Main();
 	}

@@ -2,9 +2,9 @@
 #include "BaseTest.h"
 #include <Core/Engine.h>
 namespace Test {
-	class EngineSettup :public BaseTest{
+	class EngineSetup :public BaseTest{
 	public:
-		EngineSettup();
+		EngineSetup();
 	public:
 		// Inherited via BaseTest
 		virtual void PrepareTest() override;

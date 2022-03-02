@@ -1,7 +1,7 @@
 #include "Utility/CommonHeaders.h"
 #include "AnimatedActor.h"
 namespace Core {
-	AnimatedActor::AnimatedActor(World* world, const Settings::ActorSettings& actorsettings, const Settings::TextureSettings& texturesettings, const Settings::AnimationSettings& animationsettings) :
+	AnimatedActor::AnimatedActor(WorldBase* world, const Settings::ActorSettings& actorsettings, const Settings::TextureSettings& texturesettings, const Settings::AnimationSettings& animationsettings) :
 		Actor(world, actorsettings, texturesettings),
 		_animationsettings(animationsettings),
 		_directiontorowref(_animationsettings._directiontorow)

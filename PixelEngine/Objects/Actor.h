@@ -4,10 +4,10 @@
 #include "Settings/TextureSettings.h"
 #include <SFML/Graphics.hpp>
 namespace Core{
-	class World;
+	class WorldBase;
 	class Actor :public Object{
 	public:
-		Actor(World* world, const Settings::ActorSettings & actorsettings,const Settings::TextureSettings& texturesettings);
+		Actor(WorldBase* world, const Settings::ActorSettings & actorsettings,const Settings::TextureSettings& texturesettings);
 		Actor(const Actor &) = delete;
 		Actor & operator=(const Actor &) = delete;
 		Actor(Actor &&) = delete;;
@@ -17,7 +17,7 @@ namespace Core{
 		bool & TickFlag();
 		bool CanCollide()const;
 		const sf::RectangleShape &GetCollider()const;
-		void SetWorld(World * worldptr);
+		void SetWorld(WorldBase* worldptr);
 	public:
 		virtual void Tick(float deltatime);
 		virtual void Move(const sf::Vector2f& velocity);
@@ -32,7 +32,7 @@ namespace Core{
 	private:
 		bool _tickon=false;
 	protected:
-		World * _world;
+		WorldBase* _world;
 		std::unique_ptr<sf::Texture> _texture;
 		std::unique_ptr<sf::Sprite> _sprite;
 		std::optional<sf::RectangleShape> _collider;

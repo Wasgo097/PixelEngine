@@ -20,7 +20,6 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Controller\ControllerBase.cpp" />
-    <ClCompile Include="Core\LevelBase.cpp" />
     <ClCompile Include="Settings\WorldSettings.cpp" />
     <ClCompile Include="Settings\WindowSettings.cpp" />
     <ClCompile Include="Settings\TextureSettings.cpp" />
@@ -36,7 +35,7 @@
     <ClCompile Include="Objects\Object.cpp" />
     <ClCompile Include="Time\TimeManager.cpp" />
     <ClCompile Include="Core\Engine.cpp" />
-    <ClCompile Include="Core\World.cpp" />
+    <ClCompile Include="Core\WorldBase.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Controller\ControllerBase.h" />
@@ -44,7 +43,6 @@
     <ClInclude Include="Enums\ActorEnums.h" />
     <ClInclude Include="Enums\AnimationEnums.h" />
     <ClInclude Include="Enums\InputEnums.h" />
-    <ClInclude Include="Core\LevelBase.h" />
     <ClInclude Include="Objects\ControlledActor.h" />
     <ClInclude Include="Core\ActorManager.h" />
     <ClInclude Include="Utility\json.hpp" />
@@ -65,7 +63,7 @@
     <ClInclude Include="Utility\BasicSFMLTypesToJson.h" />
     <ClInclude Include="Utility\ThreadingResource.h" />
     <ClInclude Include="Core\Engine.h" />
-    <ClInclude Include="Core\World.h" />
+    <ClInclude Include="Core\WorldBase.h" />
     <ClInclude Include="Objects\Object.h" />
     <ClInclude Include="Settings\WindowSettings.h" />
     <ClInclude Include="Settings\WorldSettings.h" />

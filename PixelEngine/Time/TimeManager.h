@@ -4,7 +4,7 @@
 #include "Objects/Actor.h"
 #include "Utility/ThreadingResource.h"
 namespace Core{
-	class World;
+	class WorldBase;
 }
 namespace Time {
 	class ITimeObserver;
@@ -18,7 +18,7 @@ namespace Time {
 		virtual void NotifyForSecondPassed()  override;
 		virtual void NotifyForMinutePassed()  override;
 	public:
-		TimeManager(Core::World * world,float multiplier = 1.0);
+		TimeManager(Core::WorldBase* world,float multiplier = 1.0);
 		TimeManager(const TimeManager&) = delete;
 		TimeManager& operator=(const TimeManager&) = delete;
 		TimeManager(TimeManager&& src) = delete;

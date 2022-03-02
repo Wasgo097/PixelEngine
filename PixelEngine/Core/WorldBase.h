@@ -1,22 +1,18 @@
 #pragma once
+#include <stack>
 #include "Objects/Actor.h"
 #include "Objects/ControlledActor.h"
 #include "ActorManager.h"
 #include "Settings/WorldSettings.h"
-#include "Settings/WindowSettings.h"
 namespace Core{
-	class World {
-	private:
-		std::unique_ptr<ActorManager> _actormanager;
-		Settings::WorldSettings _worldsettings;
-		Settings::WindowSettings _windowsettings;
+	class WorldBase {
 	public:
-		World(const Settings::WorldSettings & worlsettings);
-		World(const World&) = delete;
-		World(World&&) = delete;
-		void operator=(const World&) = delete;
-		void operator=(World&&) = delete;
-		virtual ~World();
+		WorldBase(const Settings::WorldSettings & worlsettings=Settings::WorldSettings());
+		WorldBase(const WorldBase&) = delete;
+		WorldBase(WorldBase&&) = delete;
+		void operator=(const WorldBase&) = delete;
+		void operator=(WorldBase&&) = delete;
+		virtual ~WorldBase();
 	public:
 		template<typename type_to_create, typename ...Argv>
 		std::shared_ptr<type_to_create> SpawnActor(const Settings::ActorSettings& actorsettings, const Settings::TextureSettings& texturesettings,Argv && ...argv){
@@ -45,12 +41,20 @@ namespace Core{
 			_actormanager->RegistrNewActor(result);
 			return result;
 		}
-		void Draw(sf::RenderWindow & window);
-		void Update(float delta);
+		virtual void Draw(sf::RenderWindow & window);
+		virtual void Update(float delta);
 	protected:
 		friend class Engine;
 		void TermianateActorManager();
 		void WaitOnActorManager();
-		void RegisterMainCharacter(std::shared_ptr<ControlledActor> mainactor);
+	protected:
+		Settings::WorldSettings _worldsettings;
+		std::unique_ptr<ActorManager> _actormanager;
+		std::shared_ptr<Controller::ControllerBase> _maincontroller;
+		bool _quit = false;
+	protected:
+		virtual void CheckQuit() = 0;
+		virtual void InitWorld() = 0;
+		virtual void EndWorld() = 0;
 	};
 }

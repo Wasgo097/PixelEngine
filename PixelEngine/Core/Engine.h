@@ -15,7 +15,7 @@ namespace Controller {
 	class ControllerBase;
 }
 namespace Core {
-	class World;
+	class WorldBase;
 	class ControlledActor;
 	class Engine:public Types::ILoopingThread {
 	public:
@@ -26,7 +26,7 @@ namespace Core {
 		Engine& operator=(Engine&&) = delete;
 		virtual ~Engine();
 	protected:
-		std::shared_ptr<World> _world;
+		std::stack<std::shared_ptr<WorldBase>> _worlds;
 		std::unique_ptr<std::thread> _drawingthread;
 		std::shared_ptr<sf::RenderWindow> _mainwindow;
 	protected:

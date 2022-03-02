@@ -1,8 +1,8 @@
 #include "Utility/CommonHeaders.h"
 #include "Actor.h"
-#include "Core/World.h"
+#include "Core/WorldBase.h"
 namespace Core {
-	Actor::Actor(World* world, const Settings::ActorSettings& actorsettings, const Settings::TextureSettings& texturesettings) :
+	Actor::Actor(WorldBase* world, const Settings::ActorSettings& actorsettings, const Settings::TextureSettings& texturesettings) :
 		_world(world), _actorsettings(actorsettings), _texturesettings(texturesettings), _velocity(_actorsettings._velocity) {
 		//collision
 		if (static_cast<int>(_actorsettings._collision) > 1) {
@@ -51,7 +51,7 @@ namespace Core {
 	const sf::RectangleShape& Actor::GetCollider() const {
 		return *_collider;
 	}
-	void Actor::SetWorld(World* worldptr){
+	void Actor::SetWorld(WorldBase* worldptr){
 		_world = worldptr;
 	}
 	void Actor::Draw(sf::RenderWindow& window) {

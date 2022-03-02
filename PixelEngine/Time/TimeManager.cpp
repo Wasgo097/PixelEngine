@@ -1,10 +1,9 @@
 #include "Utility/CommonHeaders.h"
 #include "TimeManager.h"
 #include "ITimeObserver.h"
-#include "Core/World.h"
+#include "Core/WorldBase.h"
 namespace Time{
-
-	TimeManager::TimeManager(Core::World * world, float multiplier) :
+	TimeManager::TimeManager(Core::WorldBase* world, float multiplier) :
 		_thread(std::make_unique<std::thread>(&TimeManager::Run, this)),
 		Core::Actor(world,Settings::ActorSettings(),Settings::TextureSettings()){
 		_multipler = multiplier;

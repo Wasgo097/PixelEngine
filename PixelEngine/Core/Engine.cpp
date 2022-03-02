@@ -1,6 +1,6 @@
 #include "Utility/CommonHeaders.h"
 #include "Engine.h"
-#include "World.h"
+#include "WorldBase.h"
 #include "Objects/ControlledActor.h"
 #include "Factory/SettingsFactory.h"
 #include "Controller/ControllerBase.h"
@@ -20,11 +20,11 @@ namespace Core {
 			_mainwindow->setFramerateLimit(_windowsettings._fps);
 		_mainwindow->setActive(false);
 		_drawingthread = std::make_unique<std::thread>(std::bind(&Engine::Run, this));
-		_world = std::make_shared<World>(_worldsettings);
+		//_world = std::make_shared<WorldBase>(_worldsettings);
 	}
 	Engine::~Engine() {
-		if (_world)
-			_world->WaitOnActorManager();
+		/*if (_world)
+			_world->WaitOnActorManager();*/
 	}
 	void Engine::Main() {
 		while (_mainwindow->isOpen()) {
@@ -47,8 +47,8 @@ namespace Core {
 		_mainwindow->setActive(true);
 		while (!_terminated && _mainwindow->isOpen()) {
 			_mainwindow->clear(sf::Color::Blue);
-			if (_world)
-				_world->Draw(*_mainwindow);
+			/*if (_world)
+				_world->Draw(*_mainwindow);*/
 			_mainwindow->display();
 		}
 		_mainwindow->setActive(false);
@@ -65,11 +65,11 @@ namespace Core {
 		Wait();
 		_mainwindow->setActive(true);
 		_mainwindow->close();
-		if (_world)
-			_world->TermianateActorManager();
+		/*if (_world)
+			_world->TermianateActorManager();*/
 	}
 	void Engine::Update()	{
 		sf::Time time = _clock.restart();
-		_world->Update(time.asSeconds());
+		//_world->Update(time.asSeconds());
 	}
 }

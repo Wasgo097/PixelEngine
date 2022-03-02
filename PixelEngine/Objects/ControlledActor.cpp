@@ -2,7 +2,7 @@
 #include "ControlledActor.h"
 #include "Controller/ControllerBase.h"
 namespace Core{
-	ControlledActor::ControlledActor(World* world, const Settings::ActorSettings& actorsettings, const Settings::TextureSettings& texturesettings, const Settings::AnimationSettings& animationsettings, Controller::ControllerBase* controllerptr)
+	ControlledActor::ControlledActor(WorldBase* world, const Settings::ActorSettings& actorsettings, const Settings::TextureSettings& texturesettings, const Settings::AnimationSettings& animationsettings, Controller::ControllerBase* controllerptr)
 	:AnimatedActor(world, actorsettings, texturesettings,animationsettings),_controller(controllerptr){
 	}
 	void ControlledActor::Tick(float deltatime){

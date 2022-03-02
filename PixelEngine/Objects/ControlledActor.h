@@ -8,7 +8,7 @@ namespace Controller {
 namespace Core{
 	class ControlledActor:public AnimatedActor{
 	public:
-		ControlledActor(World* world, const Settings::ActorSettings& actorsettings, const Settings::TextureSettings& texturesettings, const Settings::AnimationSettings& animationsettings,Controller::ControllerBase * controllerptr);
+		ControlledActor(WorldBase* world, const Settings::ActorSettings& actorsettings, const Settings::TextureSettings& texturesettings, const Settings::AnimationSettings& animationsettings,Controller::ControllerBase * controllerptr);
 		ControlledActor(const ControlledActor&) = delete;
 		ControlledActor(ControlledActor&&) = delete;
 		ControlledActor& operator=(const ControlledActor&) = delete;

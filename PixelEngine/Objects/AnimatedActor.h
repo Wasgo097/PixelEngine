@@ -6,7 +6,7 @@
 namespace Core{
 	class AnimatedActor :public Actor{
 	public:
-		AnimatedActor(World* world, const Settings::ActorSettings& actorsettings, const Settings::TextureSettings& texturesettings, const Settings::AnimationSettings& animationsettings);
+		AnimatedActor(WorldBase* world, const Settings::ActorSettings& actorsettings, const Settings::TextureSettings& texturesettings, const Settings::AnimationSettings& animationsettings);
 		AnimatedActor(const AnimatedActor&) = delete;
 		AnimatedActor&operator=(const AnimatedActor&) = delete;
 		AnimatedActor(AnimatedActor&&) = delete;

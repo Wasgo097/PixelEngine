@@ -19,55 +19,55 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="Source\Controller\ControllerBase.cpp" />
-    <ClCompile Include="Source\Settings\WorldSettings.cpp" />
-    <ClCompile Include="Source\Settings\WindowSettings.cpp" />
-    <ClCompile Include="Source\Settings\TextureSettings.cpp" />
-    <ClCompile Include="Source\Settings\MusicSettings.cpp" />
-    <ClCompile Include="Source\Settings\EngineSettings.cpp" />
-    <ClCompile Include="Source\Settings\AnimationSettings.cpp" />
-    <ClCompile Include="Source\Settings\ActorSettings.cpp" />
-    <ClCompile Include="Source\Objects\ControlledActor.cpp" />
-    <ClCompile Include="Source\Objects\Extensions\Animation.cpp" />
-    <ClCompile Include="Source\Objects\AnimatedActor.cpp" />
-    <ClCompile Include="Source\Core\ActorManager.cpp" />
-    <ClCompile Include="Source\Objects\Actor.cpp" />
-    <ClCompile Include="Source\Objects\Object.cpp" />
-    <ClCompile Include="Source\Time\TimeManager.cpp" />
-    <ClCompile Include="Source\Core\Engine.cpp" />
-    <ClCompile Include="Source\Core\World.cpp" />
+    <ClCompile Include="Controller\ControllerBase.cpp" />
+    <ClCompile Include="Settings\WorldSettings.cpp" />
+    <ClCompile Include="Settings\WindowSettings.cpp" />
+    <ClCompile Include="Settings\TextureSettings.cpp" />
+    <ClCompile Include="Settings\MusicSettings.cpp" />
+    <ClCompile Include="Settings\EngineSettings.cpp" />
+    <ClCompile Include="Settings\AnimationSettings.cpp" />
+    <ClCompile Include="Settings\ActorSettings.cpp" />
+    <ClCompile Include="Objects\ControlledActor.cpp" />
+    <ClCompile Include="Objects\Extensions\Animation.cpp" />
+    <ClCompile Include="Objects\AnimatedActor.cpp" />
+    <ClCompile Include="Core\ActorManager.cpp" />
+    <ClCompile Include="Objects\Actor.cpp" />
+    <ClCompile Include="Objects\Object.cpp" />
+    <ClCompile Include="Time\TimeManager.cpp" />
+    <ClCompile Include="Core\Engine.cpp" />
+    <ClCompile Include="Core\World.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Headers\Controller\ControllerBase.h" />
-    <ClInclude Include="Headers\Controller\ControllerStructs.h" />
-    <ClInclude Include="Headers\Enums\ActorEnums.h" />
-    <ClInclude Include="Headers\Enums\AnimationEnums.h" />
-    <ClInclude Include="Headers\Enums\InputEnums.h" />
-    <ClInclude Include="Headers\Objects\ControlledActor.h" />
-    <ClInclude Include="Headers\Core\ActorManager.h" />
-    <ClInclude Include="Headers\json.hpp" />
-    <ClInclude Include="Headers\Objects\Actor.h" />
-    <ClInclude Include="Headers\CommonHeaders.h" />
-    <ClInclude Include="Headers\Objects\AnimatedActor.h" />
-    <ClInclude Include="Headers\Objects\Extensions\Animation.h" />
-    <ClInclude Include="Headers\Settings\ActorSettings.h" />
-    <ClInclude Include="Headers\Settings\AnimationSettings.h" />
-    <ClInclude Include="Headers\Settings\EngineSettings.h" />
-    <ClInclude Include="Headers\Settings\MusicSettings.h" />
-    <ClInclude Include="Headers\Settings\SettingsBase.h" />
-    <ClInclude Include="Headers\Settings\TextureSettings.h" />
-    <ClInclude Include="Headers\Time\ITimeObservable.h" />
-    <ClInclude Include="Headers\Time\ITimeObserver.h" />
-    <ClInclude Include="Headers\Time\TimeManager.h" />
-    <ClInclude Include="Headers\Types\ILoopingThread.h" />
-    <ClInclude Include="Headers\Utility\BasicSFMLTypesToJson.h" />
-    <ClInclude Include="Headers\Utility\ThreadingResource.h" />
-    <ClInclude Include="Headers\Core\Engine.h" />
-    <ClInclude Include="Headers\Core\World.h" />
-    <ClInclude Include="Headers\Objects\Object.h" />
-    <ClInclude Include="Headers\Settings\WindowSettings.h" />
-    <ClInclude Include="Headers\Settings\WorldSettings.h" />
-    <ClInclude Include="Headers\Factory\SettingsFactory.h" />
+    <ClInclude Include="Controller\ControllerBase.h" />
+    <ClInclude Include="Controller\ControllerStructs.h" />
+    <ClInclude Include="Enums\ActorEnums.h" />
+    <ClInclude Include="Enums\AnimationEnums.h" />
+    <ClInclude Include="Enums\InputEnums.h" />
+    <ClInclude Include="Objects\ControlledActor.h" />
+    <ClInclude Include="Core\ActorManager.h" />
+    <ClInclude Include="Utility\json.hpp" />
+    <ClInclude Include="Objects\Actor.h" />
+    <ClInclude Include="Utility\CommonHeaders.h" />
+    <ClInclude Include="Objects\AnimatedActor.h" />
+    <ClInclude Include="Objects\Extensions\Animation.h" />
+    <ClInclude Include="Settings\ActorSettings.h" />
+    <ClInclude Include="Settings\AnimationSettings.h" />
+    <ClInclude Include="Settings\EngineSettings.h" />
+    <ClInclude Include="Settings\MusicSettings.h" />
+    <ClInclude Include="Settings\SettingsBase.h" />
+    <ClInclude Include="Settings\TextureSettings.h" />
+    <ClInclude Include="Time\ITimeObservable.h" />
+    <ClInclude Include="Time\ITimeObserver.h" />
+    <ClInclude Include="Time\TimeManager.h" />
+    <ClInclude Include="Types\ILoopingThread.h" />
+    <ClInclude Include="Utility\BasicSFMLTypesToJson.h" />
+    <ClInclude Include="Utility\ThreadingResource.h" />
+    <ClInclude Include="Core\Engine.h" />
+    <ClInclude Include="Core\World.h" />
+    <ClInclude Include="Objects\Object.h" />
+    <ClInclude Include="Settings\WindowSettings.h" />
+    <ClInclude Include="Settings\WorldSettings.h" />
+    <ClInclude Include="Factory\SettingsFactory.h" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>15.0</VCProjectVersion>
@@ -156,7 +156,7 @@
       <SDLCheck>true</SDLCheck>
       <ConformanceMode>true</ConformanceMode>
       <LanguageStandard>stdcpp20</LanguageStandard>
-      <AdditionalIncludeDirectories>$(ProjectDir)Headers;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(ProjectDir);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -189,7 +189,7 @@
       <SDLCheck>true</SDLCheck>
       <ConformanceMode>true</ConformanceMode>
       <LanguageStandard>stdcpp20</LanguageStandard>
-      <AdditionalIncludeDirectories>$(ProjectDir)Headers;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(ProjectDir);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>

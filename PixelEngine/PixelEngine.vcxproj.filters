@@ -15,143 +15,143 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Headers\Core\Engine.h" />
-    <ClInclude Include="Headers\CommonHeaders.h">
+    <ClInclude Include="Core\Engine.h" />
+    <ClInclude Include="Utility\CommonHeaders.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Headers\Utility\ThreadingResource.h">
+    <ClInclude Include="Utility\ThreadingResource.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Headers\Core\World.h">
+    <ClInclude Include="Core\World.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Headers\Objects\Object.h">
+    <ClInclude Include="Objects\Object.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Headers\Settings\WindowSettings.h">
+    <ClInclude Include="Settings\WindowSettings.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Headers\Objects\Actor.h">
+    <ClInclude Include="Objects\Actor.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Headers\Core\ActorManager.h">
+    <ClInclude Include="Core\ActorManager.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Headers\Settings\WorldSettings.h">
+    <ClInclude Include="Settings\WorldSettings.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Headers\Settings\EngineSettings.h">
+    <ClInclude Include="Settings\EngineSettings.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Headers\Settings\MusicSettings.h">
+    <ClInclude Include="Settings\MusicSettings.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Headers\json.hpp">
+    <ClInclude Include="Utility\json.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Headers\Settings\SettingsBase.h">
+    <ClInclude Include="Settings\SettingsBase.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Headers\Settings\ActorSettings.h">
+    <ClInclude Include="Settings\ActorSettings.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Headers\Types\ILoopingThread.h">
+    <ClInclude Include="Types\ILoopingThread.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Headers\Objects\AnimatedActor.h">
+    <ClInclude Include="Objects\AnimatedActor.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Headers\Settings\TextureSettings.h">
+    <ClInclude Include="Settings\TextureSettings.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Headers\Objects\Extensions\Animation.h">
+    <ClInclude Include="Objects\Extensions\Animation.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Headers\Settings\AnimationSettings.h">
+    <ClInclude Include="Settings\AnimationSettings.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Headers\Objects\ControlledActor.h">
+    <ClInclude Include="Objects\ControlledActor.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Headers\Controller\ControllerStructs.h">
+    <ClInclude Include="Controller\ControllerStructs.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Headers\Enums\ActorEnums.h">
+    <ClInclude Include="Enums\ActorEnums.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Headers\Utility\BasicSFMLTypesToJson.h">
+    <ClInclude Include="Utility\BasicSFMLTypesToJson.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Headers\Enums\AnimationEnums.h">
+    <ClInclude Include="Enums\AnimationEnums.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Headers\Factory\SettingsFactory.h">
+    <ClInclude Include="Factory\SettingsFactory.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Headers\Enums\InputEnums.h">
+    <ClInclude Include="Enums\InputEnums.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Headers\Time\ITimeObservable.h">
+    <ClInclude Include="Time\ITimeObservable.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Headers\Time\ITimeObserver.h">
+    <ClInclude Include="Time\ITimeObserver.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Headers\Time\TimeManager.h">
+    <ClInclude Include="Time\TimeManager.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Headers\Controller\ControllerBase.h">
+    <ClInclude Include="Controller\ControllerBase.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="Source\Core\Engine.cpp" />
-    <ClCompile Include="Source\Time\TimeManager.cpp">
+    <ClCompile Include="Core\Engine.cpp" />
+    <ClCompile Include="Time\TimeManager.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Source\Core\World.cpp">
+    <ClCompile Include="Core\World.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Source\Objects\Actor.cpp">
+    <ClCompile Include="Objects\Actor.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Source\Core\ActorManager.cpp">
+    <ClCompile Include="Core\ActorManager.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Source\Objects\AnimatedActor.cpp">
+    <ClCompile Include="Objects\AnimatedActor.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Source\Objects\Object.cpp">
+    <ClCompile Include="Objects\Object.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Source\Objects\Extensions\Animation.cpp">
+    <ClCompile Include="Objects\Extensions\Animation.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Source\Objects\ControlledActor.cpp">
+    <ClCompile Include="Objects\ControlledActor.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Source\Settings\ActorSettings.cpp">
+    <ClCompile Include="Settings\ActorSettings.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Source\Settings\AnimationSettings.cpp">
+    <ClCompile Include="Settings\AnimationSettings.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Source\Settings\EngineSettings.cpp">
+    <ClCompile Include="Settings\EngineSettings.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Source\Settings\MusicSettings.cpp">
+    <ClCompile Include="Settings\MusicSettings.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Source\Settings\TextureSettings.cpp">
+    <ClCompile Include="Settings\TextureSettings.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Source\Settings\WindowSettings.cpp">
+    <ClCompile Include="Settings\WindowSettings.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Source\Settings\WorldSettings.cpp">
+    <ClCompile Include="Settings\WorldSettings.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Source\Controller\ControllerBase.cpp">
+    <ClCompile Include="Controller\ControllerBase.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

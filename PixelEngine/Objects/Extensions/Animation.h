@@ -8,6 +8,7 @@ namespace Core{
 		public:
 			Animation(sf::Sprite & animatedsprite, const Settings::AnimationSettings & animationsettings);
 			Animation() = default;
+			virtual ~Animation() = default;
 			void Tick(int row, float deltatime);
 		protected:
 			sf::Sprite & _animatedsprite;

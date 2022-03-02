@@ -103,6 +103,9 @@
     <ClInclude Include="Controller\ControllerBase.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="Core\LevelBase.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Core\Engine.cpp" />
@@ -152,6 +155,9 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Controller\ControllerBase.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Core\LevelBase.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

@@ -6,7 +6,7 @@
 #include "Controller/ControllerBase.h"
 #include <SFML/System.hpp>
 namespace Core {
-	Engine::Engine(std::shared_ptr<Controller::ControllerBase> &&controller):_maincontroller(std::move(controller)) {
+	Engine::Engine(){
 		_enginesettings = CREATE_SETTINGS(Settings::EngineSettings, "cfg\\enginesettings.json");
 		std::string settingspath = "cfg\\" + _enginesettings._windowsettings;
 		_windowsettings = CREATE_SETTINGS(Settings::WindowSettings, settingspath);
@@ -32,9 +32,9 @@ namespace Core {
 			while (_mainwindow->pollEvent(event)) {
 				if (event.type == sf::Event::Closed || sf::Keyboard::isKeyPressed(sf::Keyboard::Escape))
 					Close();
-				else if (_maincontroller) {
+				/*else if (_maincontroller) {
 					_maincontroller->ServiceInput(event);
-				}
+				}*/
 				else {
 
 				}

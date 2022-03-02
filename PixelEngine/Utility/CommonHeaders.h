@@ -15,6 +15,7 @@
 #include<vector>
 #include<map>
 #include<set>
+#include <stack>
 //threading
 #include<mutex>
 #include<thread>

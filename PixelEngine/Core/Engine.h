@@ -19,7 +19,7 @@ namespace Core {
 	class ControlledActor;
 	class Engine:public Types::ILoopingThread {
 	public:
-		Engine(std::shared_ptr<Controller::ControllerBase>&& controller);
+		Engine();
 		Engine(const Engine&) = delete;
 		Engine(Engine&&) = delete;
 		Engine& operator=(const Engine&) = delete;
@@ -29,7 +29,6 @@ namespace Core {
 		std::shared_ptr<World> _world;
 		std::unique_ptr<std::thread> _drawingthread;
 		std::shared_ptr<sf::RenderWindow> _mainwindow;
-		std::shared_ptr<Controller::ControllerBase> _maincontroller;
 	protected:
 		sf::Clock _clock;
 	protected:

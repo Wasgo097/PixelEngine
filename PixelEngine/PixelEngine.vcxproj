@@ -20,6 +20,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Controller\ControllerBase.cpp" />
+    <ClCompile Include="Core\LevelBase.cpp" />
     <ClCompile Include="Settings\WorldSettings.cpp" />
     <ClCompile Include="Settings\WindowSettings.cpp" />
     <ClCompile Include="Settings\TextureSettings.cpp" />
@@ -43,6 +44,7 @@
     <ClInclude Include="Enums\ActorEnums.h" />
     <ClInclude Include="Enums\AnimationEnums.h" />
     <ClInclude Include="Enums\InputEnums.h" />
+    <ClInclude Include="Core\LevelBase.h" />
     <ClInclude Include="Objects\ControlledActor.h" />
     <ClInclude Include="Core\ActorManager.h" />
     <ClInclude Include="Utility\json.hpp" />

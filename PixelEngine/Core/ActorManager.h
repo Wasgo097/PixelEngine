@@ -3,7 +3,7 @@
 #include "Types/ILoopingThread.h"
 namespace Core{
 	class Actor;
-	class ActorManager final:public Types::ILoopingThread{
+	class ActorManager:public Types::ILoopingThread{
 	private:
 		void DeleteActors();
 		void MoveToSecondStage();

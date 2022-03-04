@@ -6,7 +6,7 @@
 #include "Controller/ControllerBase.h"
 #include <SFML/System.hpp>
 namespace Core {
-	Engine::Engine(){
+	Engine::Engine() {
 		_enginesettings = CREATE_SETTINGS(Settings::EngineSettings, "cfg\\enginesettings.json");
 		std::string settingspath = "cfg\\" + _enginesettings._windowsettings;
 		_windowsettings = CREATE_SETTINGS(Settings::WindowSettings, settingspath);
@@ -20,24 +20,19 @@ namespace Core {
 			_mainwindow->setFramerateLimit(_windowsettings._fps);
 		_mainwindow->setActive(false);
 		_drawingthread = std::make_unique<std::thread>(std::bind(&Engine::Run, this));
-		//_world = std::make_shared<WorldBase>(_worldsettings);
-	}
-	Engine::~Engine() {
-		/*if (_world)
-			_world->WaitOnActorManager();*/
 	}
 	void Engine::Main() {
 		while (_mainwindow->isOpen()) {
+			if (_worlds.empty()) {
+				Close();
+				break;
+			}
 			sf::Event event;
 			while (_mainwindow->pollEvent(event)) {
-				if (event.type == sf::Event::Closed || sf::Keyboard::isKeyPressed(sf::Keyboard::Escape))
+				if (event.type == sf::Event::Closed)
 					Close();
-				/*else if (_maincontroller) {
-					_maincontroller->ServiceInput(event);
-				}*/
-				else {
-
-				}
+				else
+					_worlds.top()->ServiceInput(event);
 			}
 			//after event handling
 			Update();
@@ -47,8 +42,8 @@ namespace Core {
 		_mainwindow->setActive(true);
 		while (!_terminated && _mainwindow->isOpen()) {
 			_mainwindow->clear(sf::Color::Blue);
-			/*if (_world)
-				_world->Draw(*_mainwindow);*/
+			if (!_worlds.empty())
+				_worlds.top()->Draw(*_mainwindow);
 			_mainwindow->display();
 		}
 		_mainwindow->setActive(false);
@@ -60,16 +55,22 @@ namespace Core {
 	void Engine::Terminate() {
 		_terminated = true;
 	}
-	void Engine::Close(){
+	void Engine::Close() {
 		Terminate();
 		Wait();
 		_mainwindow->setActive(true);
+		while (!_worlds.empty()) {
+			_worlds.pop();
+		}
 		_mainwindow->close();
-		/*if (_world)
-			_world->TermianateActorManager();*/
 	}
-	void Engine::Update()	{
+	void Engine::Update() {
 		sf::Time time = _clock.restart();
-		//_world->Update(time.asSeconds());
+		if (!_worlds.empty()) {
+			if (_worlds.top()->Quit())
+				_worlds.pop();
+			else
+				_worlds.top()->Update(time.asSeconds());
+		}
 	}
 }

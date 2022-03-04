@@ -20,19 +20,12 @@ namespace Core{
 		virtual void ConstPush(const sf::Vector2f& constvelocity)override;
 		virtual void Draw(sf::RenderWindow & window)override;
 	public:
-		virtual void Init()override;
+		virtual void Init()override {}
 		virtual void OnLoad()override{}
 		virtual void OnSpawn()override{}
 		virtual void OnDelete()override{}
 		virtual std::string ToString()const override;
-	public:
-		bool ServiceInput(sf::Event e);
-		virtual void LoadActions();
 	protected:
-		bool TestEvent(const Controller::Key& k, sf::Event e);
-		void DoAction(const Controller::Key& key);
-	protected:
-		std::map<Controller::Key, std::function<void()>> _actions;
 		Controller::ControllerBase* _controller = nullptr;
 	};
 }

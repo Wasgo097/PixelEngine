@@ -8,9 +8,8 @@
 namespace sf {
 	class RenderWindow;
 }
-#define CREATE_ACTOR(_actorclass,actorsettings,texturesettings,...)_world->SpawnActor<_actorclass>(_world.get(),actorsettings,texturesettings,##__VA_ARGS__);
-#define CREATE_ANIMATED_ACTOR(_actorclass,actorsettings,texturesettings,animationsettings,...)_world->SpawnControlledActor<_actorclass>(_world.get(),actorsettings,texturesettings,animationsettings,##__VA_ARGS__);
-//#define CREATE_CONTROLLED_ACTOR(_actorclass,actorsettings,texturesettings,animationsettings,...)_world->SpawnControlledActor<_actorclass>(_world.get(),actorsettings,texturesettings,animationsettings,##__VA_ARGS__);
+//#define CREATE_ACTOR(_actorclass,actorsettings,texturesettings,...)_world->SpawnActor<_actorclass>(_world.get(),actorsettings,texturesettings,##__VA_ARGS__);
+//#define CREATE_ANIMATED_ACTOR(_actorclass,actorsettings,texturesettings,animationsettings,...)_world->SpawnControlledActor<_actorclass>(_world.get(),actorsettings,texturesettings,animationsettings,##__VA_ARGS__);
 namespace Controller {
 	class ControllerBase;
 }
@@ -24,7 +23,7 @@ namespace Core {
 		Engine(Engine&&) = delete;
 		Engine& operator=(const Engine&) = delete;
 		Engine& operator=(Engine&&) = delete;
-		virtual ~Engine();
+		virtual ~Engine()=default;
 	protected:
 		std::stack<std::shared_ptr<WorldBase>> _worlds;
 		std::unique_ptr<std::thread> _drawingthread;
@@ -46,6 +45,8 @@ namespace Core {
 		void Close();
 		void Update();
 	public:
-		virtual void Main();
+		virtual void InitWorlds() = 0;
+	public:
+		void Main();
 	};
 }

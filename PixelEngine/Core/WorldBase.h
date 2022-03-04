@@ -5,6 +5,7 @@
 #include "ActorManager.h"
 #include "Settings/WorldSettings.h"
 namespace Core{
+	class Engine;
 	class WorldBase {
 	public:
 		WorldBase(const Settings::WorldSettings & worlsettings=Settings::WorldSettings());
@@ -43,8 +44,12 @@ namespace Core{
 		}
 		virtual void Draw(sf::RenderWindow & window);
 		virtual void Update(float delta);
+		void SetParrnet(Engine* parrent);
+		bool Quit()const;
 	protected:
 		friend class Engine;
+		Engine* _parrent = nullptr;
+		virtual void ServiceInput(sf::Event event);
 		void TermianateActorManager();
 		void WaitOnActorManager();
 	protected:

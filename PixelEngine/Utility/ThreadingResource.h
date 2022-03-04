@@ -5,7 +5,9 @@ namespace Utility{
 	struct ThreadingResource{
 		std::unique_ptr<T> _rsc;
 		std::mutex _mtx;
-		ThreadingResource() = default;
+		ThreadingResource() {
+			_rsc = std::make_unique<T>();
+		}
 		ThreadingResource(const ThreadingResource<T>&src) = delete;
 		ThreadingResource & operator=(const ThreadingResource<T>&src) = delete;
 		ThreadingResource(ThreadingResource<T>&&src){

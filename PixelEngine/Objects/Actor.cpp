@@ -32,7 +32,6 @@ namespace Core {
 
 		}
 	}
-	Actor::~Actor() = default;
 	bool& Actor::TickFlag() {
 		return _tickon;
 	}

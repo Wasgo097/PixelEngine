@@ -103,6 +103,15 @@
     <ClInclude Include="Controller\ControllerBase.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="Core\BaseImplementations\EmptyWorld.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Controller\BaseImplementations\EmptyController.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Objects\BaseImplementations\EmptyControlledActor.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Core\Engine.cpp" />
@@ -152,6 +161,15 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Controller\ControllerBase.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Core\BaseImplementations\EmptyWorld.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Controller\BaseImplementations\EmptyController.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Objects\BaseImplementations\EmptyControlledActor.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

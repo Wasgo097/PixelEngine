@@ -11,6 +11,9 @@ namespace Controller {
 			}
 		}
 	}
+	std::shared_ptr<Core::ControlledActor> ControllerBase::GetMainCharacter(){
+		return _maincharacter;
+	}
 	bool ControllerBase::TestEvent(const Controller::Key& k, sf::Event e)const {
 		// Mouse event
 		if (k._inputtype == Controller::InputType::MouseInput &&
@@ -31,36 +34,6 @@ namespace Controller {
 		_actions.at(key)(_maincharacter);
 	}
 	void ControllerBase::LoadTestActions() {
-		Controller::Key key;
-		key._inputtype = Controller::InputType::MouseInput;
-		key._eventtype = sf::Event::MouseButtonPressed;
-		key._mousebutton = sf::Mouse::Left;
-		_actions[key] = [](std::shared_ptr<Core::ControlledActor> _actor){
-			std::cout << "Left Button Pressed";
-		};
-		key._inputtype = Controller::InputType::KeyboardInput;
-		key._eventtype = sf::Event::KeyPressed;
-		key._keyboardbutton = sf::Keyboard::W;
-		_actions[key] = [](std::shared_ptr<Core::ControlledActor> _actor) {
-			std::cout << "W Pressed";
-		};
-		key._inputtype = Controller::InputType::KeyboardInput;
-		key._eventtype = sf::Event::KeyPressed;
-		key._keyboardbutton = sf::Keyboard::S;
-		_actions[key] = [](std::shared_ptr<Core::ControlledActor> _actor) {
-			std::cout << "S Pressed";
-		};
-		key._inputtype = Controller::InputType::KeyboardInput;
-		key._eventtype = sf::Event::KeyPressed;
-		key._keyboardbutton = sf::Keyboard::A;
-		_actions[key] = [](std::shared_ptr<Core::ControlledActor> _actor) {
-			std::cout << "A Pressed";
-		};
-		key._inputtype = Controller::InputType::KeyboardInput;
-		key._eventtype = sf::Event::KeyPressed;
-		key._keyboardbutton = sf::Keyboard::D;
-		_actions[key] = [](std::shared_ptr<Core::ControlledActor> _actor) {
-			std::cout << "D Pressed";
-		};
+		
 	}
 }

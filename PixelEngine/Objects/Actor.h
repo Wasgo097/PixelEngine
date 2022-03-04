@@ -3,6 +3,7 @@
 #include "Settings/ActorSettings.h"
 #include "Settings/TextureSettings.h"
 #include <SFML/Graphics.hpp>
+#include <optional>
 namespace Core{
 	class WorldBase;
 	class Actor :public Object{
@@ -12,7 +13,7 @@ namespace Core{
 		Actor & operator=(const Actor &) = delete;
 		Actor(Actor &&) = delete;;
 		Actor& operator=(Actor&&) = delete;;
-		virtual ~Actor();
+		virtual ~Actor()=default;
 	public:
 		bool & TickFlag();
 		bool CanCollide()const;

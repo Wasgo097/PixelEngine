@@ -39,12 +39,4 @@ namespace Core {
 	void WorldBase::ServiceInput(sf::Event event){
 		_maincontroller->ServiceInput(event);
 	}
-	void WorldBase::TermianateActorManager(){
-		if (_actormanager)
-			_actormanager->Terminate();
-	}
-	void WorldBase::WaitOnActorManager(){
-		if (_actormanager)
-			_actormanager->Wait();
-	}
 }

@@ -20,6 +20,9 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Controller\ControllerBase.cpp" />
+    <ClCompile Include="Core\BaseImplementations\EmptyWorld.cpp" />
+    <ClCompile Include="Controller\BaseImplementations\EmptyController.cpp" />
+    <ClCompile Include="Objects\BaseImplementations\EmptyControlledActor.cpp" />
     <ClCompile Include="Settings\WorldSettings.cpp" />
     <ClCompile Include="Settings\WindowSettings.cpp" />
     <ClCompile Include="Settings\TextureSettings.cpp" />
@@ -40,6 +43,9 @@
   <ItemGroup>
     <ClInclude Include="Controller\ControllerBase.h" />
     <ClInclude Include="Controller\ControllerStructs.h" />
+    <ClInclude Include="Core\BaseImplementations\EmptyWorld.h" />
+    <ClInclude Include="Controller\BaseImplementations\EmptyController.h" />
+    <ClInclude Include="Objects\BaseImplementations\EmptyControlledActor.h" />
     <ClInclude Include="Enums\ActorEnums.h" />
     <ClInclude Include="Enums\AnimationEnums.h" />
     <ClInclude Include="Enums\InputEnums.h" />

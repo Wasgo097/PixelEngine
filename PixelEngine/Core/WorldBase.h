@@ -46,12 +46,9 @@ namespace Core{
 		virtual void Update(float delta);
 		void SetParrnet(Engine* parrent);
 		bool Quit()const;
-	protected:
-		friend class Engine;
-		Engine* _parrent = nullptr;
 		virtual void ServiceInput(sf::Event event);
-		void TermianateActorManager();
-		void WaitOnActorManager();
+	protected:
+		Engine* _parrent = nullptr;
 	protected:
 		Settings::WorldSettings _worldsettings;
 		std::unique_ptr<ActorManager> _actormanager;

@@ -4,6 +4,7 @@
 #include "Objects/ControlledActor.h"
 #include "Factory/SettingsFactory.h"
 #include "Controller/ControllerBase.h"
+#include "BaseImplementations/EmptyWorld.h"
 #include <SFML/System.hpp>
 namespace Core {
 	Engine::Engine() {
@@ -77,5 +78,6 @@ namespace Core {
 		}
 	}
 	void Engine::InitWorlds(){
+		_worlds.push(std::make_unique<EmptyWorld>(Settings::WorldSettings(),this));
 	}
 }

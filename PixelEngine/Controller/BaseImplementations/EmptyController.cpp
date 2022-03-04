@@ -1,5 +1,6 @@
 #include "EmptyController.h"
 #include "Utility/CommonHeaders.h"
+#include "Objects/BaseImplementations/EmptyControlledActor.h"
 void Controller::EmptyController::SetMainCharacterInputBindings(){
 	Controller::Key key;
 	key._inputtype = Controller::InputType::MouseInput;
@@ -35,6 +36,9 @@ void Controller::EmptyController::SetMainCharacterInputBindings(){
 }
 
 void Controller::EmptyController::SetMainCharacter(){
-	throw std::exception("Not implemented yet EmptyController::SetMainCharacter");
+	Settings::ActorSettings actorsettings;
+	Settings::TextureSettings texturesettings;
+	Settings::AnimationSettings animationsettings;
+	_maincharacter = std::make_shared<Core::EmptyControlledActor>(_world,actorsettings,texturesettings,animationsettings,this);
 }
 

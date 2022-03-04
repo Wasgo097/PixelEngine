@@ -4,7 +4,7 @@
 #include "Controller/ControllerBase.h"
 #include "Engine.h"
 namespace Core {
-	WorldBase::WorldBase(const Settings::WorldSettings& worlsettings) :
+	WorldBase::WorldBase(const Settings::WorldSettings& worlsettings, Engine* parrent) :_parrent(parrent),
 		_worldsettings(worlsettings),_actormanager(std::make_unique<ActorManager>(worlsettings._buffersize, worlsettings._gcfrequentlevel, worlsettings._cycletomove)){
 		InitWorld();
 		if (_actormanager&&_maincontroller){
@@ -28,6 +28,8 @@ namespace Core {
 			_actormanager->Update(delta);
 	}
 	void WorldBase::SetParrnet(Engine* parrent){
+		if (_parrent != nullptr)
+			printf("WARNIGN!! WorldBase::SetParrnet change parrent when parrent is setted");
 		_parrent = parrent;
 	}
 	bool WorldBase::Quit() const

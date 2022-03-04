@@ -38,6 +38,9 @@ namespace Core {
 			Update();
 		}
 	}
+	void Engine::PushWorld(std::unique_ptr<WorldBase>&& newworld){
+		_worlds.push(std::move(newworld));
+	}
 	void Engine::Run() {
 		_mainwindow->setActive(true);
 		while (!_terminated && _mainwindow->isOpen()) {
@@ -72,5 +75,7 @@ namespace Core {
 			else
 				_worlds.top()->Update(time.asSeconds());
 		}
+	}
+	void Engine::InitWorlds(){
 	}
 }

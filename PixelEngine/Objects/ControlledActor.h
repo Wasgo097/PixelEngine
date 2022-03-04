@@ -8,7 +8,7 @@ namespace Controller {
 namespace Core{
 	class ControlledActor:public AnimatedActor{
 	public:
-		ControlledActor(WorldBase* world, const Settings::ActorSettings& actorsettings, const Settings::TextureSettings& texturesettings, const Settings::AnimationSettings& animationsettings,Controller::ControllerBase * controllerptr);
+		ControlledActor(WorldBase* world, const Settings::ActorSettings& actorsettings, const Settings::TextureSettings& texturesettings, const Settings::AnimationSettings& animationsettings,Controller::ControllerBase * controller);
 		ControlledActor(const ControlledActor&) = delete;
 		ControlledActor(ControlledActor&&) = delete;
 		ControlledActor& operator=(const ControlledActor&) = delete;
@@ -26,6 +26,6 @@ namespace Core{
 		virtual void OnDelete()override{}
 		virtual std::string ToString()const override;
 	protected:
-		Controller::ControllerBase* _controller = nullptr;
+		Controller::ControllerBase* _mycontroller = nullptr;
 	};
 }

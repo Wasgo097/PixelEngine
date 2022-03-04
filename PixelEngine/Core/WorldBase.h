@@ -8,7 +8,7 @@ namespace Core{
 	class Engine;
 	class WorldBase {
 	public:
-		WorldBase(const Settings::WorldSettings & worlsettings=Settings::WorldSettings());
+		WorldBase(const Settings::WorldSettings & worlsettings=Settings::WorldSettings(),Engine* parrent=nullptr);
 		WorldBase(const WorldBase&) = delete;
 		WorldBase(WorldBase&&) = delete;
 		void operator=(const WorldBase&) = delete;
@@ -55,7 +55,7 @@ namespace Core{
 	protected:
 		Settings::WorldSettings _worldsettings;
 		std::unique_ptr<ActorManager> _actormanager;
-		std::shared_ptr<Controller::ControllerBase> _maincontroller;
+		std::unique_ptr<Controller::ControllerBase> _maincontroller;
 		bool _quit = false;
 	protected:
 		virtual void CheckQuit() = 0;

@@ -25,12 +25,11 @@ namespace Core {
 		Engine& operator=(Engine&&) = delete;
 		virtual ~Engine()=default;
 	protected:
-		std::stack<std::shared_ptr<WorldBase>> _worlds;
+		std::stack<std::unique_ptr<WorldBase>> _worlds;
 		std::unique_ptr<std::thread> _drawingthread;
-		std::shared_ptr<sf::RenderWindow> _mainwindow;
+		std::unique_ptr<sf::RenderWindow> _mainwindow;
 	protected:
 		sf::Clock _clock;
-	protected:
 		Settings::EngineSettings _enginesettings;
 		Settings::WindowSettings _windowsettings;
 		Settings::MusicSettings _musicsettings;
@@ -45,8 +44,9 @@ namespace Core {
 		void Close();
 		void Update();
 	public:
-		virtual void InitWorlds() = 0;
+		virtual void InitWorlds();
 	public:
 		void Main();
+		void PushWorld(std::unique_ptr<WorldBase>&& newworld);
 	};
 }

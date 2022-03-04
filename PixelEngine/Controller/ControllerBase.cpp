@@ -1,7 +1,7 @@
 #include "ControllerBase.h"
 #include "Utility/CommonHeaders.h"
 namespace Controller {
-	ControllerBase::ControllerBase(){
+	ControllerBase::ControllerBase(Core::WorldBase* world):_world(world){
 		SetMainCharacterInputBindings();
 	}
 	void ControllerBase::ServiceInput(sf::Event currentevent){

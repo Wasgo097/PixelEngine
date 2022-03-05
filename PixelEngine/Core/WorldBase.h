@@ -55,8 +55,8 @@ namespace Core{
 		std::unique_ptr<Controller::ControllerBase> _maincontroller;
 		bool _quit = false;
 	protected:
-		virtual void CheckQuit() = 0;
-		virtual void InitWorld() = 0;
-		virtual void EndWorld() = 0;
+		virtual void CheckQuit() =0;
+		virtual void InitWorld()=0 {};
+		virtual void EndWorld()=0 {};
 	};
 }

@@ -1,6 +1,6 @@
 #include "EngineSetup.h"
 namespace Test {
-	EngineSetup::EngineSetup() :_engine({}) {
+	EngineSetup::EngineSetup(){
 	}
 	void EngineSetup::PrepareTest(){
 		_engine.Main();

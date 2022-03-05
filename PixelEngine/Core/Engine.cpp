@@ -21,6 +21,7 @@ namespace Core {
 			_mainwindow->setFramerateLimit(_windowsettings._fps);
 		_mainwindow->setActive(false);
 		_drawingthread = std::make_unique<std::thread>(std::bind(&Engine::Run, this));
+		InitWorlds();
 	}
 	void Engine::Main() {
 		while (_mainwindow->isOpen()) {

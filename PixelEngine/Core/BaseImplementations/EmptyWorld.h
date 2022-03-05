@@ -3,7 +3,7 @@
 namespace Core {
 	class EmptyWorld:public WorldBase{
 	public:
-		EmptyWorld(const Settings::WorldSettings& worlsettings = Settings::WorldSettings(), Engine* parrent = nullptr):WorldBase(worlsettings,parrent){}
+		EmptyWorld(const Settings::WorldSettings& worlsettings = Settings::WorldSettings(), Engine* parrent = nullptr);
 	protected:
 		// Inherited via WorldBase
 		virtual void CheckQuit() override;

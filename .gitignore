@@ -1,2 +1,6 @@
 .vs/
 PixelEngine/bin
+TestingFramework/bin
+TestingFramework/output
+TestingFramework/cfg
+TestingFramework/rsc

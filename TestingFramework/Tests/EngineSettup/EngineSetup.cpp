@@ -10,6 +10,9 @@ namespace Test {
 			PrepareTest();
 			return true;
 		}
+		catch (std::exception& ex) {
+			std::cout << "std exc " << ex.what() << "\n";
+		}
 		catch (...) {
 			return false;
 		}

@@ -41,7 +41,7 @@ namespace Core {
 	public:
 		virtual void InitWorlds();
 	public:
-		void Main();
+		int Main();
 		void PushWorld(std::unique_ptr<WorldBase>&& newworld);
 	};
 }

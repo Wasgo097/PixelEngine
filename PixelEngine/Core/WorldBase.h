@@ -44,19 +44,21 @@ namespace Core{
 		}
 		virtual void Draw(sf::RenderWindow & window);
 		virtual void Update(float delta);
-		void SetParrnet(Engine* parrent);
+		void SetParnet(Engine* parrent);
 		bool Quit()const;
+		bool Initialized()const;
 		virtual void ServiceInput(sf::Event event);
 	protected:
-		Engine* _parrent = nullptr;
+		Engine* _Parent = nullptr;
 	protected:
 		Settings::WorldSettings _worldsettings;
 		std::unique_ptr<ActorManager> _actormanager;
 		std::unique_ptr<Controller::ControllerBase> _maincontroller;
 		bool _quit = false;
-	protected:
-		virtual void CheckQuit() =0;
-		virtual void InitWorld()=0 {};
-		virtual void EndWorld()=0 {};
+		bool _Initialized = false;
+	public:
+		virtual void CheckQuit() = 0;
+		virtual void InitWorld();
+		virtual void EndWorld();
 	};
 }

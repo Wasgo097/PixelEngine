@@ -14,8 +14,8 @@ namespace Controller {
 		ControllerBase(Core::WorldBase* world);
 		virtual ~ControllerBase() = default;
 	public:
-		virtual void SetMainCharacterInputBindings() {};
-		virtual void SetMainCharacter() {};
+		virtual void InitMainCharacterInputBindings()=0;
+		virtual void InitMainCharacter()=0;
 		virtual void ServiceInput(sf::Event currentevent);
 	public:
 		std::shared_ptr<Core::ControlledActor> GetMainCharacter();
@@ -26,6 +26,5 @@ namespace Controller {
 	protected:
 		bool TestEvent(const Controller::Key& k, sf::Event e)const;
 		void DoAction(const Controller::Key& key)const;
-		void LoadTestActions();
 	};
 }

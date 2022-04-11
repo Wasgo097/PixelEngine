@@ -5,7 +5,7 @@
 namespace Controller {
 	EmptyController::EmptyController(Core::WorldBase* world) :ControllerBase(world){
 	}
-	void EmptyController::SetMainCharacterInputBindings() {
+	void EmptyController::InitMainCharacterInputBindings() {
 		Controller::Key key;
 		key._inputtype = Controller::InputType::MouseInput;
 		key._eventtype = sf::Event::MouseButtonPressed;
@@ -39,7 +39,7 @@ namespace Controller {
 		};
 	}
 
-	void EmptyController::SetMainCharacter() {
+	void EmptyController::InitMainCharacter() {
 		Settings::ActorSettings actorsettings;
 		actorsettings._collidersize = sf::Vector2f(20, 20);
 		actorsettings._collision = ActorsEnums::CollisionType::Collision;

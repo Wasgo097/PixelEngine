@@ -1,5 +1,5 @@
-#include "SerialziationTest.h"
-#include "EngineSetup.h"
+//#include "Tests/SerializationTest/SerialziationTest.h"
+#include "Tests/EngineSettup/EngineSetup.h"
 #include <iostream>
 using namespace Test;
 int main(){

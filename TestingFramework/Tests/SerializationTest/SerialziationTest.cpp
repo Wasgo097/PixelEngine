@@ -1,5 +1,5 @@
 #include "SerialziationTest.h"
-#include "CommonHeaders.h"
+#include "Utility/CommonHeaders.h"
 #include <Factory/SettingsFactory.h>
 namespace Test {
 	SerialziationTest::SerialziationTest(std::string rootpath) :_rootpath(rootpath) {}

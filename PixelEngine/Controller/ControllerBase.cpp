@@ -33,7 +33,4 @@ namespace Controller {
 	void ControllerBase::DoAction(const Controller::Key& key)const {
 		_actions.at(key)(_maincharacter);
 	}
-	void ControllerBase::LoadTestActions() {
-		
-	}
 }

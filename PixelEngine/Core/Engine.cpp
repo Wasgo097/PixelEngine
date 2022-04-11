@@ -21,8 +21,9 @@ namespace Core {
 			_mainwindow->setFramerateLimit(_windowsettings._fps);
 		_mainwindow->setActive(false);
 		_drawingthread = std::make_unique<std::thread>(std::bind(&Engine::Run, this));
+		InitWorlds();
 	}
-	void Engine::Main() {
+	int Engine::Main() {
 		while (_mainwindow->isOpen()) {
 			if (_worlds.empty()) {
 				Close();
@@ -38,13 +39,14 @@ namespace Core {
 			//after event handling
 			Update();
 		}
+		return 1;
 	}
 	void Engine::PushWorld(std::unique_ptr<WorldBase>&& newworld){
 		_worlds.push(std::move(newworld));
 	}
 	void Engine::Run() {
 		_mainwindow->setActive(true);
-		while (!_terminated && _mainwindow->isOpen()) {
+		while (!_terminated || !_mainwindow->isOpen()) {
 			_mainwindow->clear(sf::Color::Blue);
 			if (!_worlds.empty())
 				_worlds.top()->Draw(*_mainwindow);
@@ -71,13 +73,17 @@ namespace Core {
 	void Engine::Update() {
 		sf::Time time = _clock.restart();
 		if (!_worlds.empty()) {
-			if (_worlds.top()->Quit())
+			_worlds.top()->CheckQuit();
+			if (_worlds.top()->Quit()) {
+				_worlds.top()->EndWorld();
 				_worlds.pop();
+			}
 			else
 				_worlds.top()->Update(time.asSeconds());
 		}
 	}
 	void Engine::InitWorlds(){
-		_worlds.push(std::make_unique<EmptyWorld>(Settings::WorldSettings(),this));
+		PushWorld(std::make_unique<EmptyWorld>(Settings::WorldSettings(), this));
+		_worlds.top()->InitWorld();
 	}
 }

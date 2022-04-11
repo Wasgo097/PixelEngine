@@ -15,24 +15,24 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="Source\SerialziationTest.cpp">
+    <ClCompile Include="Tests\SerializationTest\SerialziationTest.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Main.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Source\EngineSettup.cpp">
+    <ClCompile Include="Tests\EngineSettup\EngineSetup.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Headers\SerialziationTest.h">
+    <ClInclude Include="Tests\SerializationTest\SerialziationTest.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Headers\BaseTest.h">
+    <ClInclude Include="BaseTest.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Headers\EngineSettup.h">
+    <ClInclude Include="Tests\EngineSettup\EngineSetup.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

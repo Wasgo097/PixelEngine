@@ -85,9 +85,6 @@ namespace Core {
 				_worlds.top()->Update(time.asSeconds());
 			//std::cout << "Tick time " << time.asSeconds() << "\n";
 		}
-		/*else{
-			Close();
-		}*/
 	}
 	void Engine::InitEngine() {
 		PushWorld(std::make_unique<EmptyWorld>(_worldsettings, this));

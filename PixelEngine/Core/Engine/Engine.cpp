@@ -66,6 +66,7 @@ namespace Core {
 		Wait();
 		_mainwindow->setActive(true);
 		while (!_worlds.empty()) {
+			_worlds.top()->EndWorld();
 			_worlds.pop();
 		}
 		_mainwindow->close();

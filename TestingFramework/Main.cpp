@@ -4,8 +4,8 @@
 using namespace Test;
 int main(){
 	SerialziationTest test1("cfg\\");
-	//std::cout << "Serialization test result: " << test1.RunTest() << std::endl;
+	//std::cout << "Serialization test result: \n" << test1.RunTest() << std::endl;
 	EngineSetup test2;
-	std::cout << "Engine settup test result: " << test2.RunTest() << std::endl;
+	std::cout << "Engine settup test result: \n" << test2.RunTest() << std::endl;
 	return 0;
 }

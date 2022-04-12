@@ -6,12 +6,14 @@ namespace Core {
 		_animationsettings(animationsettings),
 		_directiontorowref(_animationsettings._directiontorow)
 	{
-		sf::Vector2f temporigin(_animationsettings._rectsize.x, _animationsettings._rectsize.y);
-		temporigin.x /= 2.0f;
-		_sprite->setOrigin(temporigin);
-		_sprite->setPosition(_actorsettings._position);
-		if (_directiontorowref.size() < 1) {
-			throw std::invalid_argument("animationrows has too less size");
+		if (_sprite) {
+			sf::Vector2f temporigin(_animationsettings._rectsize.x, _animationsettings._rectsize.y);
+			temporigin.x /= 2.0f;
+			_sprite->setOrigin(temporigin);
+			_sprite->setPosition(_actorsettings._position);
+			if (_directiontorowref.size() < 1) {
+				throw std::invalid_argument("animationrows has too less size");
+			}
 		}
 	}
 	void AnimatedActor::Tick(float deltatime) {

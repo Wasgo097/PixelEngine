@@ -8,10 +8,6 @@ namespace Core {
 		_worldsettings(worlsettings),_actormanager(std::make_unique<ActorManager>(worlsettings._buffersize, worlsettings._gcfrequentlevel, worlsettings._cycletomove)){
 	}
 	WorldBase::~WorldBase(){
-		if (_actormanager) {
-			_actormanager->Wait();
-			_actormanager->Terminate();
-		}
 	}
 	void WorldBase::Draw(sf::RenderWindow& window) {
 		if (_actormanager)
@@ -48,5 +44,9 @@ namespace Core {
 	void WorldBase::EndWorld(){
 		if (!_Initialized)
 			throw std::runtime_error("End uninitialized world\n");
+		if (_actormanager) {
+			_actormanager->Terminate();
+			_actormanager->Wait();
+		}
 	}
 }

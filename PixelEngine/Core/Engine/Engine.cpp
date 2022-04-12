@@ -41,7 +41,7 @@ namespace Core {
 		}
 		return 1;
 	}
-	void Engine::PushWorld(std::unique_ptr<WorldBase>&& newworld){
+	void Engine::PushWorld(std::unique_ptr<WorldBase>&& newworld) {
 		_worlds.push(std::move(newworld));
 	}
 	void Engine::Run() {
@@ -83,9 +83,12 @@ namespace Core {
 			else
 				_worlds.top()->Update(time.asSeconds());
 		}
+		/*else{
+			Close();
+		}*/
 	}
-	void Engine::InitEngine(){
-		PushWorld(std::make_unique<EmptyWorld>(Settings::WorldSettings(), this));
+	void Engine::InitEngine() {
+		PushWorld(std::make_unique<EmptyWorld>(_worldsettings, this));
 		_worlds.top()->InitWorld();
 	}
 }

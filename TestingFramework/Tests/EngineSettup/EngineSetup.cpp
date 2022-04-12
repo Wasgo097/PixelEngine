@@ -16,5 +16,6 @@ namespace Test {
 		catch (...) {
 			return false;
 		}
+		return false;
 	}
 }

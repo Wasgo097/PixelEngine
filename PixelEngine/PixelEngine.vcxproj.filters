@@ -15,14 +15,14 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Core\Engine.h" />
+    <ClInclude Include="Core\Engine\Engine.h" />
     <ClInclude Include="Utility\CommonHeaders.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Utility\ThreadingResource.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Core\WorldBase.h">
+    <ClInclude Include="Core\World\WorldBase.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Objects\Object.h">
@@ -34,7 +34,7 @@
     <ClInclude Include="Objects\Actor.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Core\ActorManager.h">
+    <ClInclude Include="Core\ActorManager\ActorManager.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Settings\WorldSettings.h">
@@ -55,7 +55,7 @@
     <ClInclude Include="Settings\ActorSettings.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Types\ILoopingThread.h">
+    <ClInclude Include="Interfaces\ILoopingThread.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Objects\AnimatedActor.h">
@@ -91,10 +91,10 @@
     <ClInclude Include="Enums\InputEnums.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Time\ITimeObservable.h">
+    <ClInclude Include="Interfaces\ITimeObservable.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Time\ITimeObserver.h">
+    <ClInclude Include="Interfaces\ITimeObserver.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Time\TimeManager.h">
@@ -103,7 +103,7 @@
     <ClInclude Include="Controller\ControllerBase.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Core\BaseImplementations\EmptyWorld.h">
+    <ClInclude Include="Core\World\BaseImplementations\EmptyWorld.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Controller\BaseImplementations\EmptyController.h">
@@ -114,17 +114,17 @@
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="Core\Engine.cpp" />
+    <ClCompile Include="Core\Engine\Engine.cpp" />
     <ClCompile Include="Time\TimeManager.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Core\WorldBase.cpp">
+    <ClCompile Include="Core\World\WorldBase.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Objects\Actor.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Core\ActorManager.cpp">
+    <ClCompile Include="Core\ActorManager\ActorManager.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Objects\AnimatedActor.cpp">
@@ -163,7 +163,7 @@
     <ClCompile Include="Controller\ControllerBase.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Core\BaseImplementations\EmptyWorld.cpp">
+    <ClCompile Include="Core\World\BaseImplementations\EmptyWorld.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Controller\BaseImplementations\EmptyController.cpp">

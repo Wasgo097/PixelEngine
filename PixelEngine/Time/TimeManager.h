@@ -1,6 +1,6 @@
 #pragma once
-#include "ITimeObservable.h"
-#include "Types/ILoopingThread.h"
+#include "Interfaces/ITimeObservable.h"
+#include "Interfaces/ILoopingThread.h"
 #include "Objects/Actor.h"
 #include "Utility/ThreadingResource.h"
 namespace Core{

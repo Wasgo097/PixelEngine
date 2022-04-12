@@ -1,7 +1,7 @@
 #include "Utility/CommonHeaders.h"
 #include "TimeManager.h"
-#include "ITimeObserver.h"
-#include "Core/WorldBase.h"
+#include "Interfaces/ITimeObserver.h"
+#include "Core/World/WorldBase.h"
 namespace Time{
 	TimeManager::TimeManager(Core::WorldBase* world, float multiplier) :
 		_thread(std::make_unique<std::thread>(&TimeManager::Run, this)),

@@ -1,10 +1,10 @@
 #include "Utility/CommonHeaders.h"
 #include "Engine.h"
-#include "WorldBase.h"
+#include "Core/World/WorldBase.h"
 #include "Objects/ControlledActor.h"
 #include "Factory/SettingsFactory.h"
 #include "Controller/ControllerBase.h"
-#include "BaseImplementations/EmptyWorld.h"
+#include "Core/World/BaseImplementations/EmptyWorld.h"
 #include <SFML/System.hpp>
 namespace Core {
 	Engine::Engine() {

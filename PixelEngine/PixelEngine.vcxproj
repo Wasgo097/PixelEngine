@@ -20,7 +20,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Controller\ControllerBase.cpp" />
-    <ClCompile Include="Core\BaseImplementations\EmptyWorld.cpp" />
+    <ClCompile Include="Core\World\BaseImplementations\EmptyWorld.cpp" />
     <ClCompile Include="Controller\BaseImplementations\EmptyController.cpp" />
     <ClCompile Include="Objects\BaseImplementations\EmptyControlledActor.cpp" />
     <ClCompile Include="Settings\WorldSettings.cpp" />
@@ -33,24 +33,24 @@
     <ClCompile Include="Objects\ControlledActor.cpp" />
     <ClCompile Include="Objects\Extensions\Animation.cpp" />
     <ClCompile Include="Objects\AnimatedActor.cpp" />
-    <ClCompile Include="Core\ActorManager.cpp" />
+    <ClCompile Include="Core\ActorManager\ActorManager.cpp" />
     <ClCompile Include="Objects\Actor.cpp" />
     <ClCompile Include="Objects\Object.cpp" />
     <ClCompile Include="Time\TimeManager.cpp" />
-    <ClCompile Include="Core\Engine.cpp" />
-    <ClCompile Include="Core\WorldBase.cpp" />
+    <ClCompile Include="Core\Engine\Engine.cpp" />
+    <ClCompile Include="Core\World\WorldBase.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Controller\ControllerBase.h" />
     <ClInclude Include="Controller\ControllerStructs.h" />
-    <ClInclude Include="Core\BaseImplementations\EmptyWorld.h" />
+    <ClInclude Include="Core\World\BaseImplementations\EmptyWorld.h" />
     <ClInclude Include="Controller\BaseImplementations\EmptyController.h" />
     <ClInclude Include="Objects\BaseImplementations\EmptyControlledActor.h" />
     <ClInclude Include="Enums\ActorEnums.h" />
     <ClInclude Include="Enums\AnimationEnums.h" />
     <ClInclude Include="Enums\InputEnums.h" />
     <ClInclude Include="Objects\ControlledActor.h" />
-    <ClInclude Include="Core\ActorManager.h" />
+    <ClInclude Include="Core\ActorManager\ActorManager.h" />
     <ClInclude Include="Utility\json.hpp" />
     <ClInclude Include="Objects\Actor.h" />
     <ClInclude Include="Utility\CommonHeaders.h" />
@@ -62,14 +62,14 @@
     <ClInclude Include="Settings\MusicSettings.h" />
     <ClInclude Include="Settings\SettingsBase.h" />
     <ClInclude Include="Settings\TextureSettings.h" />
-    <ClInclude Include="Time\ITimeObservable.h" />
-    <ClInclude Include="Time\ITimeObserver.h" />
+    <ClInclude Include="Interfaces\ITimeObservable.h" />
+    <ClInclude Include="Interfaces\ITimeObserver.h" />
     <ClInclude Include="Time\TimeManager.h" />
-    <ClInclude Include="Types\ILoopingThread.h" />
+    <ClInclude Include="Interfaces\ILoopingThread.h" />
     <ClInclude Include="Utility\BasicSFMLTypesToJson.h" />
     <ClInclude Include="Utility\ThreadingResource.h" />
-    <ClInclude Include="Core\Engine.h" />
-    <ClInclude Include="Core\WorldBase.h" />
+    <ClInclude Include="Core\Engine\Engine.h" />
+    <ClInclude Include="Core\World\WorldBase.h" />
     <ClInclude Include="Objects\Object.h" />
     <ClInclude Include="Settings\WindowSettings.h" />
     <ClInclude Include="Settings\WorldSettings.h" />

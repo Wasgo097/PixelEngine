@@ -1,6 +1,6 @@
 #pragma once
 #include "Utility/ThreadingResource.h"
-#include "Types/ILoopingThread.h"
+#include "Interfaces/ILoopingThread.h"
 namespace Core{
 	class Actor;
 	class ActorManager:public Types::ILoopingThread{

@@ -1,7 +1,7 @@
 #include "EmptyController.h"
 #include "Utility/CommonHeaders.h"
 #include "Objects/BaseImplementations/EmptyControlledActor.h"
-#include "Core/WorldBase.h"
+#include "Core/World/WorldBase.h"
 namespace Controller {
 	EmptyController::EmptyController(Core::WorldBase* world) :ControllerBase(world){
 	}

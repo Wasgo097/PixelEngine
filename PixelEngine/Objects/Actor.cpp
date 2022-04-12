@@ -1,6 +1,6 @@
 #include "Utility/CommonHeaders.h"
 #include "Actor.h"
-#include "Core/WorldBase.h"
+#include "Core/World/WorldBase.h"
 namespace Core {
 	Actor::Actor(WorldBase* world, const Settings::ActorSettings& actorsettings, const Settings::TextureSettings& texturesettings) :
 		_world(world), _actorsettings(actorsettings), _texturesettings(texturesettings), _velocity(_actorsettings._velocity) {

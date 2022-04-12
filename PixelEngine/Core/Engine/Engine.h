@@ -3,8 +3,8 @@
 #include "Settings/WindowSettings.h"
 #include "Settings/WorldSettings.h"
 #include "Settings/MusicSettings.h"
-#include "Types/ILoopingThread.h"
-#include "Core/WorldBase.h"
+#include "Interfaces/ILoopingThread.h"
+#include "Core/World/WorldBase.h"
 #include <SFML/System/Clock.hpp>
 #include <SFML/Graphics/RenderWindow.hpp>
 #include <stack>

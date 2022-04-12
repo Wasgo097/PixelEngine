@@ -6,9 +6,6 @@
 namespace Core {
 	WorldBase::WorldBase(const Settings::WorldSettings& worlsettings, Engine* parent) :_Parent(parent),
 		_worldsettings(worlsettings),_actormanager(std::make_unique<ActorManager>(worlsettings._buffersize, worlsettings._gcfrequentlevel, worlsettings._cycletomove)){
-		if (_actormanager&&_maincontroller){
-			_actormanager->RegisterMainActor(_maincontroller->GetMainCharacter());
-		}
 	}
 	WorldBase::~WorldBase(){
 		if (_actormanager) {
@@ -42,11 +39,14 @@ namespace Core {
 	}
 	void WorldBase::InitWorld()	{
 		if (_Initialized)
-			std::runtime_error("Double initialization of world\n");
+			throw std::runtime_error("Double initialization of world\n");
+		if (_actormanager && _maincontroller) {
+			_actormanager->RegisterMainActor(_maincontroller->GetMainCharacter());
+		}
 		_Initialized = true;
 	}
 	void WorldBase::EndWorld(){
 		if (!_Initialized)
-			std::runtime_error("End uninitialized world\n");
+			throw std::runtime_error("End uninitialized world\n");
 	}
 }

@@ -21,9 +21,9 @@ namespace Core {
 			_mainwindow->setFramerateLimit(_windowsettings._fps);
 		_mainwindow->setActive(false);
 		_drawingthread = std::make_unique<std::thread>(std::bind(&Engine::Run, this));
-		InitWorlds();
 	}
 	int Engine::Main() {
+		InitEngine();
 		while (_mainwindow->isOpen()) {
 			if (_worlds.empty()) {
 				Close();
@@ -77,12 +77,14 @@ namespace Core {
 			if (_worlds.top()->Quit()) {
 				_worlds.top()->EndWorld();
 				_worlds.pop();
+				if (!_worlds.empty())
+					_worlds.top()->InitWorld();
 			}
 			else
 				_worlds.top()->Update(time.asSeconds());
 		}
 	}
-	void Engine::InitWorlds(){
+	void Engine::InitEngine(){
 		PushWorld(std::make_unique<EmptyWorld>(Settings::WorldSettings(), this));
 		_worlds.top()->InitWorld();
 	}

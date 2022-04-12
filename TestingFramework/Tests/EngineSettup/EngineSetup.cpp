@@ -3,7 +3,7 @@ namespace Test {
 	EngineSetup::EngineSetup(){
 	}
 	void EngineSetup::PrepareTest(){
-		_engine.Main();
+		int result=_engine.Main();
 	}
 	bool EngineSetup::RunTest(){
 		try {

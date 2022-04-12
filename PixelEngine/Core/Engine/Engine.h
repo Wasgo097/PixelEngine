@@ -38,10 +38,11 @@ namespace Core {
 	private:
 		void Close();
 		void Update();
+	protected:
+		virtual void InitEngine();
 	public:
-		virtual void InitWorlds();
+		void PushWorld(std::unique_ptr<WorldBase>&& newworld);
 	public:
 		int Main();
-		void PushWorld(std::unique_ptr<WorldBase>&& newworld);
 	};
 }

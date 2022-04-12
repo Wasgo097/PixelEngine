@@ -1,11 +1,11 @@
 #include "Utility/CommonHeaders.h"
 #include "WorldBase.h"
-#include "Core/ActorManager/ActorManager.h"
+#include "Core/ActorsManager/ActorsManager.h"
 #include "Controller/ControllerBase.h"
 #include "Core/Engine/Engine.h"
 namespace Core {
 	WorldBase::WorldBase(const Settings::WorldSettings& worlsettings, Engine* parent) :_Parent(parent),
-		_worldsettings(worlsettings),_actormanager(std::make_unique<ActorManager>(worlsettings._buffersize, worlsettings._gcfrequentlevel, worlsettings._cycletomove)){
+		_worldsettings(worlsettings),_actormanager(std::make_unique<ActorsManager>(worlsettings._buffersize, worlsettings._gcfrequentlevel, worlsettings._cycletomove)){
 	}
 	WorldBase::~WorldBase(){
 	}

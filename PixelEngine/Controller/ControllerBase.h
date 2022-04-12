@@ -25,6 +25,6 @@ namespace Controller {
 		Core::WorldBase* _world = nullptr;
 	protected:
 		bool TestEvent(const Controller::Key& k, sf::Event e)const;
-		void DoAction(const Controller::Key& key)const;
+		void DoAction(const Controller::Key& key);
 	};
 }

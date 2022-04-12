@@ -33,7 +33,7 @@
     <ClCompile Include="Objects\ControlledActor.cpp" />
     <ClCompile Include="Objects\Extensions\Animation.cpp" />
     <ClCompile Include="Objects\AnimatedActor.cpp" />
-    <ClCompile Include="Core\ActorManager\ActorManager.cpp" />
+    <ClCompile Include="Core\ActorsManager\ActorsManager.cpp" />
     <ClCompile Include="Objects\Actor.cpp" />
     <ClCompile Include="Objects\Object.cpp" />
     <ClCompile Include="Time\TimeManager.cpp" />
@@ -50,7 +50,7 @@
     <ClInclude Include="Enums\AnimationEnums.h" />
     <ClInclude Include="Enums\InputEnums.h" />
     <ClInclude Include="Objects\ControlledActor.h" />
-    <ClInclude Include="Core\ActorManager\ActorManager.h" />
+    <ClInclude Include="Core\ActorsManager\ActorsManager.h" />
     <ClInclude Include="Utility\json.hpp" />
     <ClInclude Include="Objects\Actor.h" />
     <ClInclude Include="Utility\CommonHeaders.h" />

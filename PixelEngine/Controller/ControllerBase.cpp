@@ -28,7 +28,7 @@ namespace Controller {
 		//todo service joystick input here
 		return false;
 	}
-	void ControllerBase::DoAction(const Controller::Key& key)const {
-		_actions.at(key)(_maincharacter);
+	void ControllerBase::DoAction(const Controller::Key& key) {
+		_actions[key](_maincharacter);
 	}
 }

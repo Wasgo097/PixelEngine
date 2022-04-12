@@ -2,7 +2,7 @@
 #include <stack>
 #include "Objects/Actor.h"
 #include "Objects/ControlledActor.h"
-#include "Core/ActorManager/ActorManager.h"
+#include "Core/ActorsManager/ActorsManager.h"
 #include "Settings/WorldSettings.h"
 namespace Core{
 	class Engine;
@@ -52,7 +52,7 @@ namespace Core{
 		Engine* _Parent = nullptr;
 	protected:
 		Settings::WorldSettings _worldsettings;
-		std::unique_ptr<ActorManager> _actormanager;
+		std::unique_ptr<ActorsManager> _actormanager;
 		std::unique_ptr<Controller::ControllerBase> _maincontroller;
 		bool _quit = false;
 		bool _Initialized = false;

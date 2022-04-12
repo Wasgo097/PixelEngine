@@ -1,8 +1,8 @@
 #include "Utility/CommonHeaders.h"
-#include "ActorManager.h"
+#include "ActorsManager.h"
 #include <Objects/Actor.h>
 namespace Core {
-	void ActorManager::DeleteActors() {
+	void ActorsManager::DeleteActors() {
 		for (int i = 0; i < _frequencylevel; i++) {
 			{
 				std::lock_guard lock(_firststage._mtx);
@@ -28,7 +28,7 @@ namespace Core {
 			std::this_thread::sleep_for(std::chrono::milliseconds(_frequencylevel * 30));
 		}
 	}
-	void ActorManager::MoveToSecondStage() {
+	void ActorsManager::MoveToSecondStage() {
 		std::vector<std::shared_ptr<Actor>> actorstomove;
 		{
 			std::lock_guard lock(_secondstage._mtx);
@@ -57,32 +57,32 @@ namespace Core {
 			}
 		}
 	}
-	ActorManager::ActorManager(size_t buffer_size, int gcfrequentlevel, int cycletomove) :
-		_thread_management(std::make_unique<std::thread>(std::bind(&ActorManager::Run, this))),
+	ActorsManager::ActorsManager(size_t buffer_size, int gcfrequentlevel, int cycletomove) :
+		_thread_management(std::make_unique<std::thread>(std::bind(&ActorsManager::Run, this))),
 		_buffersize(buffer_size), _frequencylevel(gcfrequentlevel), _cycletomove(cycletomove) {
 		_firststage._rsc.reserve(_buffersize);
 		_secondstage._rsc.reserve(_buffersize);
 		_constactors._rsc.reserve(_buffersize);
 	}
-	void ActorManager::RegistrNewActor(std::shared_ptr<Actor> actor) {
+	void ActorsManager::RegistrNewActor(std::shared_ptr<Actor> actor) {
 		std::lock_guard lock(_firststage._mtx);
 		_firststage._rsc.push_back(std::make_pair(0, actor));
 		actor->OnSpawn();
 		actor->Init();
 	}
-	void ActorManager::RegisterConstActor(std::shared_ptr<Actor> actor) {
+	void ActorsManager::RegisterConstActor(std::shared_ptr<Actor> actor) {
 		std::lock_guard lock(_constactors._mtx);
 		_constactors._rsc.push_back(actor);
 		actor->OnSpawn();
 		actor->Init();
 	}
-	void ActorManager::RegisterMainActor(std::shared_ptr<Actor> mainactor){
+	void ActorsManager::RegisterMainActor(std::shared_ptr<Actor> mainactor){
 		std::lock_guard lock(_secondstage._mtx);
 		_secondstage._rsc.push_back(mainactor);
 		mainactor->OnSpawn();
 		mainactor->Init();
 	}
-	void ActorManager::UnregisterActor(Actor* actor) {
+	void ActorsManager::UnregisterActor(Actor* actor) {
 		if (actor == nullptr)
 			return;
 		{
@@ -106,20 +106,20 @@ namespace Core {
 			}
 		}
 	}
-	void ActorManager::Run() {
+	void ActorsManager::Run() {
 		while (!_terminated) {
 			DeleteActors();
 			MoveToSecondStage();
 		}
 	}
-	void ActorManager::Terminate() {
+	void ActorsManager::Terminate() {
 		_terminated = true;
 	}
-	void ActorManager::Wait() {
+	void ActorsManager::Wait() {
 		if (_thread_management->joinable())
 			_thread_management->join();
 	}
-	void ActorManager::Update(float deltatime) {
+	void ActorsManager::Update(float deltatime) {
 		{
 			std::lock_guard lock(_firststage._mtx);
 			for (auto& [Key, Value] : _firststage._rsc) {
@@ -142,7 +142,7 @@ namespace Core {
 			}
 		}
 	}
-	void ActorManager::Draw(sf::RenderWindow& window) {
+	void ActorsManager::Draw(sf::RenderWindow& window) {
 		{
 			std::lock_guard lock(_firststage._mtx);
 			for (auto& [Key, Value] : _firststage._rsc) {

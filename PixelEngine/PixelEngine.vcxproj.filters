@@ -34,7 +34,7 @@
     <ClInclude Include="Objects\Actor.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Core\ActorManager\ActorManager.h">
+    <ClInclude Include="Core\ActorsManager\ActorsManager.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Settings\WorldSettings.h">
@@ -124,7 +124,7 @@
     <ClCompile Include="Objects\Actor.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Core\ActorManager\ActorManager.cpp">
+    <ClCompile Include="Core\ActorsManager\ActorsManager.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Objects\AnimatedActor.cpp">

@@ -3,13 +3,13 @@
 #include "Interfaces/ILoopingThread.h"
 namespace Core{
 	class Actor;
-	class ActorManager:public Types::ILoopingThread{
+	class ActorsManager:public Types::ILoopingThread{
 	private:
 		void DeleteActors();
 		void MoveToSecondStage();
 	public:
-		ActorManager(size_t buffer_size,int gcfrequentlevel,int cycletomove);
-		virtual ~ActorManager() = default;
+		ActorsManager(size_t buffer_size,int gcfrequentlevel,int cycletomove);
+		virtual ~ActorsManager() = default;
 		void RegistrNewActor(std::shared_ptr<Actor> actor);
 		void RegisterConstActor(std::shared_ptr<Actor> actor);
 		void RegisterMainActor(std::shared_ptr<Actor> mainactor);

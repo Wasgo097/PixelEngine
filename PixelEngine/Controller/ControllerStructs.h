@@ -1,6 +1,7 @@
 #pragma once
 #include <SFML/Window/Event.hpp>
 #include "Enums/InputEnums.h"
+#include <compare>
 namespace Controller{
 	struct Key{
 		InputType _inputtype;
@@ -8,8 +9,9 @@ namespace Controller{
 		sf::Keyboard::Key _keyboardbutton;
 		sf::Mouse::Button _mousebutton;
 		//for std::map as key
-		bool operator<(const Key& key)const{
+		/*bool operator<(const Key& key)const{
 			return static_cast<int>(_inputtype) < static_cast<int>(key._inputtype);
-		}
+		}*/
+		auto operator<=>(const Key& rhs)const = default;
 	};
 }

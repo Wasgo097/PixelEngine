@@ -123,21 +123,21 @@ namespace Core {
 		{
 			std::lock_guard lock(_firststage._mtx);
 			for (auto& [Key, Value] : _firststage._rsc) {
-				if (Value->TickFlag() == true)
+				if (Value->TickFlag())
 					Value->Tick(deltatime);
 			}
 		}
 		{
 			std::lock_guard lock(_secondstage._mtx);
 			for (auto& Actor : _secondstage._rsc) {
-				if (Actor->TickFlag() == true)
+				if (Actor->TickFlag())
 					Actor->Tick(deltatime);
 			}
 		}
 		{
 			std::lock_guard lock(_constactors._mtx);
 			for (auto& Actor : _constactors._rsc) {
-				if (Actor->TickFlag() == true)
+				if (Actor->TickFlag())
 					Actor->Tick(deltatime);
 			}
 		}

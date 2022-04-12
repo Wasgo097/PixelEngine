@@ -3,7 +3,7 @@
 #include "Core/World/WorldBase.h"
 namespace Core {
 	Actor::Actor(WorldBase* world, const Settings::ActorSettings& actorsettings, const Settings::TextureSettings& texturesettings) :
-		_world(world), _actorsettings(actorsettings), _texturesettings(texturesettings), _velocity(_actorsettings._velocity) {
+		_world(world), _actorsettings(actorsettings), _texturesettings(texturesettings), _velocity(_actorsettings._velocity), _tickon(_actorsettings._tickflag) {
 		//collision
 		if (static_cast<int>(_actorsettings._collision) > 1) {
 			_collider = sf::RectangleShape(_actorsettings._collidersize);
@@ -37,9 +37,11 @@ namespace Core {
 	}
 	void Actor::Tick(float deltatime) {
 		if (_actorsettings._type == ActorsEnums::ActorType::Dynamic) {
-			auto movevec = _velocity * deltatime;
-			_sprite->move(movevec);
-			_collider->move(movevec);
+			auto movevec = _velocity ;
+			if (_sprite)
+				_sprite->move(movevec);
+			if (_collider)
+				_collider->move(movevec);
 			if (!_pushed)
 				_velocity = sf::Vector2f(0, 0);
 		}
@@ -50,7 +52,7 @@ namespace Core {
 	const sf::RectangleShape& Actor::GetCollider() const {
 		return *_collider;
 	}
-	void Actor::SetWorld(WorldBase* worldptr){
+	void Actor::SetWorld(WorldBase* worldptr) {
 		_world = worldptr;
 	}
 	void Actor::Draw(sf::RenderWindow& window) {

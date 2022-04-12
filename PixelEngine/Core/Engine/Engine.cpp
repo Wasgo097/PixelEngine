@@ -83,6 +83,7 @@ namespace Core {
 			}
 			else
 				_worlds.top()->Update(time.asSeconds());
+			//std::cout << "Tick time " << time.asSeconds() << "\n";
 		}
 		/*else{
 			Close();

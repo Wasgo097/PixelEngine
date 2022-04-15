@@ -11,7 +11,7 @@ namespace Test {
 	void WorldForAnimationTest::CheckQuit(){
 		if (sf::Keyboard::isKeyPressed(sf::Keyboard::Escape)) {
 			_quit = true;
-			std::cout << "Escape pressed, empty level is quit\n";
+			std::cout << "Escape pressed, WorldForAnimationTest is quit\n";
 		}
 	}
 	void WorldForAnimationTest::InitWorld(){

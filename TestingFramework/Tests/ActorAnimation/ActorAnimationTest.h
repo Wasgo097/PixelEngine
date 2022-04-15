@@ -2,8 +2,7 @@
 #include "BaseTest.h"
 #include "EngineForAnimationTest.h"
 namespace Test {
-	class ActorAnimationTest : public BaseTest
-	{
+	class ActorAnimationTest : public BaseTest{
 	public:
 		// Inherited via BaseTest
 		virtual void PrepareTest() override;

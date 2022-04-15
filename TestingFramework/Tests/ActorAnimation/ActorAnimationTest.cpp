@@ -11,12 +11,12 @@ namespace Test {
 		MainActorSettings._position = sf::Vector2f(60, 60);
 		MainActorSettings._collidersize = sf::Vector2f(60, 60);
 		MainActorSettings._tickflag = true;
-		Factory::SettingsFactory::CreateSettingsJsonFile("cfg\\MainActorSettings.json",MainActorSettings);
+		CREATE_SETTINGS_FILE("cfg\\MainActorSettings.json",MainActorSettings)
 		Settings::TextureSettings MainTextureSettings;
 		MainTextureSettings._texturepath = "C:\\programowanie\\Resource\\PixelEngine Base Character\\BaseCharacter.png";
 		MainTextureSettings._smooth = true;
 		MainTextureSettings._repeatable = false;
-		Factory::SettingsFactory::CreateSettingsJsonFile("cfg\\MainTextureSettings.json", MainTextureSettings);
+		CREATE_SETTINGS_FILE("cfg\\MainTextureSettings.json", MainTextureSettings)
 		Settings::AnimationSettings MainAnimationSettings;
 		MainAnimationSettings._rectsize = sf::Vector2u(60, 60);
 		MainAnimationSettings._switchtime = 0.5f;
@@ -25,14 +25,13 @@ namespace Test {
 		MainAnimationSettings._directiontorow[AnimationEnums::Direction::Left] = 9;
 		MainAnimationSettings._directiontorow[AnimationEnums::Direction::Down] = 10;
 		MainAnimationSettings._directiontorow[AnimationEnums::Direction::DownIdle] = 2;
-		MainAnimationSettings._directiontorow[AnimationEnums::Direction::Right] = 11;
-		
+		MainAnimationSettings._directiontorow[AnimationEnums::Direction::Right] = 11;		
 		MainAnimationSettings._framescount[2] = 7;
 		MainAnimationSettings._framescount[8] = 9;
 		MainAnimationSettings._framescount[9] = 9;
 		MainAnimationSettings._framescount[10] = 9;
 		MainAnimationSettings._framescount[11] = 9;
-		Factory::SettingsFactory::CreateSettingsJsonFile("cfg\\MainAnimationSettings.json", MainAnimationSettings);
+		CREATE_SETTINGS_FILE("cfg\\MainAnimationSettings.json", MainAnimationSettings)
 #endif
 		int result = _engine.Main();
 	}

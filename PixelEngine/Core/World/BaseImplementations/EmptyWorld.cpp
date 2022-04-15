@@ -9,7 +9,7 @@ Core::EmptyWorld::EmptyWorld(const Settings::WorldSettings& worlsettings, Engine
 void Core::EmptyWorld::CheckQuit(){
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Escape)) {
 		_quit = true;
-		std::cout << "Escape pressed, empty level is quit\n";
+		std::cout << "Escape pressed, empty world is quit\n";
 	}
 }
 

@@ -142,6 +142,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Tests\ActorAnimation\ControllerForAnimationTest.cpp" />
     <ClCompile Include="Tests\ActorAnimation\EngineForAnimationTest.cpp" />
     <ClCompile Include="Tests\ActorAnimation\ActorAnimationTest.cpp" />
     <ClCompile Include="Tests\EngineSettup\EngineSetup.cpp" />
@@ -155,6 +156,7 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Tests\ActorAnimation\ControllerForAnimationTest.h" />
     <ClInclude Include="Tests\ActorAnimation\EngineForAnimationTest.h" />
     <ClInclude Include="Tests\ActorAnimation\ActorAnimationTest.h" />
     <ClInclude Include="Tests\EngineSettup\EngineSetup.h" />

@@ -10,7 +10,7 @@
 #include <string>
 #include <iostream>
 #define CREATE_SETTINGS(settingsclass,path)Factory::SettingsFactory::CreateSettings<settingsclass>(path);
-#define CREATE_SETTINGS_FILE(settingsclass,path,settingsobject)Factory::SettingsFactory::CreateSettingsJsonFile<settingsclass>(path,settingsobject);
+#define CREATE_SETTINGS_FILE(path,settingsobject)Factory::SettingsFactory::CreateSettingsJsonFile(path,settingsobject);
 namespace Factory {
 	class SettingsFactory{
 	public:

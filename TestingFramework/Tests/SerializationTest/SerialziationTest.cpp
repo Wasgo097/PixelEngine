@@ -6,19 +6,19 @@ namespace Test {
 	void SerialziationTest::PrepareTest() {
 		//create default json files here
 		std::string filepath = _rootpath + "actorsettings.json";
-		CREATE_SETTINGS_FILE(ActorSettings, filepath, _actorsettings);
+		CREATE_SETTINGS_FILE(filepath, _actorsettings);
 		filepath = _rootpath + "animationsettings.json";
-		CREATE_SETTINGS_FILE(AnimationSettings, filepath, _animationsettings);
+		CREATE_SETTINGS_FILE(filepath, _animationsettings);
 		filepath = _rootpath + "enginesettings.json";
-		CREATE_SETTINGS_FILE(EngineSettings, filepath, _enginesettings);
+		CREATE_SETTINGS_FILE(filepath, _enginesettings);
 		filepath = _rootpath + "musicsettings.json";
-		CREATE_SETTINGS_FILE(MusicSettings, filepath, _musicsettings);
+		CREATE_SETTINGS_FILE(filepath, _musicsettings);
 		filepath = _rootpath + "texturesettings.json";
-		CREATE_SETTINGS_FILE(TextureSettings, filepath, _texturesettings);
+		CREATE_SETTINGS_FILE(filepath, _texturesettings);
 		filepath = _rootpath + "windowsettings.json";
-		CREATE_SETTINGS_FILE(WindowSettings, filepath, _windowsettings);
+		CREATE_SETTINGS_FILE( filepath, _windowsettings);
 		filepath = _rootpath + "worldsettings.json";
-		CREATE_SETTINGS_FILE(WorldSettings, filepath, _worldsettings);
+		CREATE_SETTINGS_FILE(filepath, _worldsettings);
 	}
 	bool SerialziationTest::RunTest() {
 		try {

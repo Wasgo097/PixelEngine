@@ -47,7 +47,7 @@ namespace Core {
 	void Engine::Run() {
 		_mainwindow->setActive(true);
 		while (!_terminated || !_mainwindow->isOpen()) {
-			_mainwindow->clear(sf::Color::Blue);
+			_mainwindow->clear();
 			if (!_worlds.empty())
 				_worlds.top()->Draw(*_mainwindow);
 			_mainwindow->display();
@@ -83,7 +83,6 @@ namespace Core {
 			}
 			else
 				_worlds.top()->Update(time.asSeconds());
-			//std::cout << "Tick time " << time.asSeconds() << "\n";
 		}
 	}
 	void Engine::InitEngine() {

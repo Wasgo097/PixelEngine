@@ -9,5 +9,6 @@ namespace Core {
 		virtual void InitWorld() override;
 		virtual void EndWorld() override;
 		virtual void CheckQuit() override;
+		virtual void Draw(sf::RenderWindow& window);
 	};
 }

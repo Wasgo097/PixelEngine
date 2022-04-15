@@ -13,6 +13,12 @@ void Core::EmptyWorld::CheckQuit(){
 	}
 }
 
+void Core::EmptyWorld::Draw(sf::RenderWindow& window)
+{
+	window.clear(sf::Color::Blue);
+	WorldBase::Draw(window);
+}
+
 void Core::EmptyWorld::InitWorld(){
 	WorldBase::InitWorld();
 	std::cout << "Init empty world\n";

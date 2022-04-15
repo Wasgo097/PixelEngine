@@ -15,7 +15,8 @@ namespace Core{
 		Actor& operator=(Actor&&) = delete;;
 		virtual ~Actor()=default;
 	public:
-		bool & TickFlag();
+		bool TickFlag()const;
+		void SetTickFlag(bool Flag);
 		bool CanCollide()const;
 		const sf::RectangleShape &GetCollider()const;
 		void SetWorld(WorldBase* worldptr);

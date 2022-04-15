@@ -4,6 +4,8 @@
 namespace Core {
 	Actor::Actor(WorldBase* world, const Settings::ActorSettings& actorsettings, const Settings::TextureSettings& texturesettings) :
 		_world(world), _actorsettings(actorsettings), _texturesettings(texturesettings), _velocity(_actorsettings._velocity), _tickon(_actorsettings._tickflag) {
+		if (!_tickon)
+			std::cout << "Tick on = false\n";
 		//collision
 		if (static_cast<int>(_actorsettings._collision) > 1) {
 			_collider = sf::RectangleShape(_actorsettings._collidersize);
@@ -32,14 +34,16 @@ namespace Core {
 
 		}
 	}
-	bool& Actor::TickFlag() {
+	bool Actor::TickFlag()const {
 		return _tickon;
 	}
+	void Actor::SetTickFlag(bool Flag)
+	{
+		_tickon = Flag;
+	}
 	void Actor::Tick(float deltatime) {
-		std::cout << "Actor tick " << deltatime << "\n";
 		if (_actorsettings._type == ActorsEnums::ActorType::Dynamic&&_velocity!=sf::Vector2f()) {
 			auto movevec = _velocity ;
-			std::cout << "Move actor x:" << movevec.x << " y: " << movevec.y << "\n";
 			if (_sprite)
 				_sprite->move(movevec);
 			if (_collider)

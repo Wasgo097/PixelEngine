@@ -1,5 +1,6 @@
 #include "EmptyControlledActor.h"
 #include <SFML/Window.hpp>
+#include <iostream>
 Core::EmptyControlledActor::EmptyControlledActor(WorldBase* world, const Settings::ActorSettings& actorsettings, const Settings::TextureSettings& texturesettings, const Settings::AnimationSettings& animationsettings, Controller::ControllerBase* controller):ControlledActor(world,actorsettings,texturesettings,animationsettings,controller)
 {
 	if (_collider)
@@ -18,4 +19,9 @@ void Core::EmptyControlledActor::Draw(sf::RenderWindow& window){
 	ControlledActor::Draw(window);
 	if (_collider)
 		window.draw(*_collider);
+}
+
+void Core::EmptyControlledActor::Init()
+{
+	SetTickFlag(true);
 }

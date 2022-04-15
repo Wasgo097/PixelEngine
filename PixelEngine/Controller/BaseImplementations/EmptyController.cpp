@@ -18,33 +18,34 @@ namespace Controller {
 		key._eventtype = sf::Event::KeyPressed;
 		key._keyboardbutton = sf::Keyboard::W;
 		_actions[key] = [](std::shared_ptr<Core::ControlledActor> Actor) {
-			std::cout << "W Pressed\n";
+			//std::cout << "W Pressed\n";
 			Actor->Move(sf::Vector2f(0, -10.0));
 		};
 		key._inputtype = Controller::InputType::KeyboardInput;
 		key._eventtype = sf::Event::KeyPressed;
 		key._keyboardbutton = sf::Keyboard::S;
 		_actions[key] = [](std::shared_ptr<Core::ControlledActor> Actor) {
-			std::cout << "S Pressed\n";
+			//std::cout << "S Pressed\n";
 			Actor->Move(sf::Vector2f(0, 10.0));
 		};
 		key._inputtype = Controller::InputType::KeyboardInput;
 		key._eventtype = sf::Event::KeyPressed;
 		key._keyboardbutton = sf::Keyboard::A;
 		_actions[key] = [](std::shared_ptr<Core::ControlledActor> Actor) {
-			std::cout << "A Pressed\n";
+			//std::cout << "A Pressed\n";
 			Actor->Move(sf::Vector2f(-10.0,0));
 		};
 		key._inputtype = Controller::InputType::KeyboardInput;
 		key._eventtype = sf::Event::KeyPressed;
 		key._keyboardbutton = sf::Keyboard::D;
 		_actions[key] = [](std::shared_ptr<Core::ControlledActor> Actor) {
-			std::cout << "D Pressed\n";
+			//std::cout << "D Pressed\n";
 			Actor->Move(sf::Vector2f(10.0, 0));
 		};
 	}
 
 	void EmptyController::InitMainCharacter() {
+		std::cout << "Init Main Character\n";
 		Settings::ActorSettings actorsettings;
 		actorsettings._collidersize = sf::Vector2f(20, 20);
 		actorsettings._collision = ActorsEnums::CollisionType::Collision;

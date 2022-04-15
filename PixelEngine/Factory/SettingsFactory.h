@@ -12,9 +12,9 @@
 #define CREATE_SETTINGS(settingsclass,path)Factory::SettingsFactory<settingsclass>::CreateSettings(path);
 #define CREATE_SETTINGS_FILE(settingsclass,path,settingsobject)Factory::SettingsFactory<settingsclass>::CreateSettingsJsonFile(path,settingsobject);
 namespace Factory {
-	template<class T>
 	class SettingsFactory{
 	public:
+		template<class T>
 		static T CreateSettings(std::string path) {
 			T result;
 			std::ifstream stream(path, std::fstream::in);
@@ -34,6 +34,7 @@ namespace Factory {
 			}
 			return result;
 		}
+		template<class T>
 		static void CreateSettingsJsonFile(std::string path, const T& settings = T()) {
 			std::ofstream stream(path, std::ofstream::out);
 			if (stream.is_open()) {

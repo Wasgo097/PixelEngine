@@ -1,7 +1,6 @@
- #include "EngineSetup.h"
+
+#include "EngineSetup.h"
 namespace Test {
-	EngineSetup::EngineSetup(){
-	}
 	void EngineSetup::PrepareTest(){
 		int result=_engine.Main();
 	}

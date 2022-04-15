@@ -36,8 +36,9 @@ namespace Core {
 		return _tickon;
 	}
 	void Actor::Tick(float deltatime) {
-		if (_actorsettings._type == ActorsEnums::ActorType::Dynamic) {
+		if (_actorsettings._type == ActorsEnums::ActorType::Dynamic&&_velocity!=sf::Vector2f()) {
 			auto movevec = _velocity ;
+			std::cout << "Move actor x:" << movevec.x << " y: " << movevec.y << "\n";
 			if (_sprite)
 				_sprite->move(movevec);
 			if (_collider)

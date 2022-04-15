@@ -122,9 +122,9 @@ namespace Core {
 	void ActorsManager::Update(float deltatime) {
 		{
 			std::lock_guard lock(_firststage._mtx);
-			for (auto& [Key, Value] : _firststage._rsc) {
-				if (Value->TickFlag())
-					Value->Tick(deltatime);
+			for (auto& [Cycle, Actor] : _firststage._rsc) {
+				if (Actor->TickFlag())
+					Actor->Tick(deltatime);
 			}
 		}
 		{

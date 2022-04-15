@@ -1,11 +1,14 @@
 #include "ControllerBase.h"
 #include "Utility/CommonHeaders.h"
+#include <iostream>
 namespace Controller {
 	ControllerBase::ControllerBase(Core::WorldBase* world):_world(world){}
 	void ControllerBase::ServiceInput(sf::Event currentevent){
 		for (const auto& [Key, Value] : _actions) {
 			if (TestEvent(Key, currentevent)) {
+				std::cout << "Match action!\n";
 				DoAction(Key);
+				break;
 			}
 		}
 	}
@@ -29,6 +32,7 @@ namespace Controller {
 		return false;
 	}
 	void ControllerBase::DoAction(const Controller::Key& key) {
+		std::cout << "Do action!\n";
 		_actions[key](_maincharacter);
 	}
 }

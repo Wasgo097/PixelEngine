@@ -4,6 +4,7 @@ namespace Core {
 	AnimatedActor::AnimatedActor(WorldBase* world, const Settings::ActorSettings& actorsettings, const Settings::TextureSettings& texturesettings, const Settings::AnimationSettings& animationsettings) :
 		Actor(world, actorsettings, texturesettings),
 		_animationsettings(animationsettings),
+		_animation(std::make_unique<Animation::Animation>(*_sprite, _animationsettings)),
 		_directiontorowref(_animationsettings._directiontorow)
 	{
 		if (_sprite) {
@@ -21,6 +22,7 @@ namespace Core {
 		if (!_directiontorowref.empty()) {
 			if (_animation)
 				_animation->Tick(_animatedrow, deltatime);
+			//to do check why 4
 			if (_animatedrow <= 4)
 				_animatedrow = _directiontorowref.at(static_cast<AnimationEnums::Direction>(_animatedrow + 4));
 		}
@@ -32,7 +34,7 @@ namespace Core {
 				if (_velocity.x != 0) {
 					if (_velocity.x > 0) {
 						if (_directiontorowref.count(AnimationEnums::Direction::Right))
-							_animatedrow = _directiontorowref[AnimationEnums::Direction::Right];
+							_animatedrow = _directiontorowref.at(AnimationEnums::Direction::Right);
 						else {
 							_animatedrow = _directiontorowref.begin()->second;
 							throw std::out_of_range("Wrong animation row in " + ToString() + " missed row (int int): " + std::to_string(static_cast<int>(AnimationEnums::Direction::Right)));
@@ -40,7 +42,7 @@ namespace Core {
 					}
 					else {
 						if (_directiontorowref.count(AnimationEnums::Direction::Left))
-							_animatedrow = _directiontorowref[AnimationEnums::Direction::Left];
+							_animatedrow = _directiontorowref.at(AnimationEnums::Direction::Left);
 						else {
 							_animatedrow = _directiontorowref.begin()->second;
 							throw std::out_of_range("Wrong animation row in " + ToString() + " missed row (int int): " + std::to_string(static_cast<int>(AnimationEnums::Direction::Left)));
@@ -50,7 +52,7 @@ namespace Core {
 				else {
 					if (_velocity.y > 0) {
 						if (_directiontorowref.count(AnimationEnums::Direction::Down))
-							_animatedrow = _directiontorowref[AnimationEnums::Direction::Down];
+							_animatedrow = _directiontorowref.at(AnimationEnums::Direction::Down);
 						else {
 							_animatedrow = _directiontorowref.begin()->second;
 							throw std::out_of_range("Wrong animation row in " + ToString() + " missed row (int int): " + std::to_string(static_cast<int>(AnimationEnums::Direction::Down)));
@@ -58,7 +60,7 @@ namespace Core {
 					}
 					else {
 						if (_directiontorowref.count(AnimationEnums::Direction::Up))
-							_animatedrow = _directiontorowref[AnimationEnums::Direction::Up];
+							_animatedrow = _directiontorowref.at(AnimationEnums::Direction::Up);
 						else {
 							_animatedrow = _directiontorowref.begin()->second;
 							throw std::out_of_range("Wrong animation row in " + ToString() + " missed row (int int): " + std::to_string(static_cast<int>(AnimationEnums::Direction::Up)));
@@ -67,7 +69,7 @@ namespace Core {
 				}
 			}
 			else {
-				_animatedrow = _directiontorowref[AnimationEnums::Direction::DownIdle];
+				_animatedrow = _directiontorowref.at(AnimationEnums::Direction::DownIdle);
 			}
 		}
 	}

@@ -4,8 +4,6 @@
 namespace Core {
 	Actor::Actor(WorldBase* world, const Settings::ActorSettings& actorsettings, const Settings::TextureSettings& texturesettings) :
 		_world(world), _actorsettings(actorsettings), _texturesettings(texturesettings), _velocity(_actorsettings._velocity), _tickon(_actorsettings._tickflag) {
-		if (!_tickon)
-			std::cout << "Tick on = false\n";
 		//collision
 		if (static_cast<int>(_actorsettings._collision) > 1) {
 			_collider = sf::RectangleShape(_actorsettings._collidersize);

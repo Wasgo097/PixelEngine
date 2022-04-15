@@ -16,7 +16,9 @@ namespace Settings{
 	public:
 		sf::Vector2u _rectsize;
 		float _switchtime = .0f;
+		//k - row number  v - count of columns
 		std::map<int, int> _framescount;
+		//k - direction v-row number
 		std::map<AnimationEnums::Direction, int> _directiontorow;
 		bool operator ==(const AnimationSettings& obj)const {
 			return (_rectsize == obj._rectsize) &&

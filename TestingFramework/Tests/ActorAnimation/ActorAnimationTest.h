@@ -1,6 +1,6 @@
 #pragma once
 #include "BaseTest.h"
-#include "Core/Engine/Engine.h"
+#include "EngineForAnimationTest.h"
 namespace Test {
 	class ActorAnimationTest : public BaseTest
 	{
@@ -9,6 +9,6 @@ namespace Test {
 		virtual void PrepareTest() override;
 		virtual bool RunTest() override;
 	protected:
-		Core::Engine _engine;
+		EngineForAnimationTest _engine;
 	};
 }

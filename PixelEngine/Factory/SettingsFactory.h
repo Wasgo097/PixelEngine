@@ -9,8 +9,8 @@
 #include <fstream>
 #include <string>
 #include <iostream>
-#define CREATE_SETTINGS(settingsclass,path)Factory::SettingsFactory<settingsclass>::CreateSettings(path);
-#define CREATE_SETTINGS_FILE(settingsclass,path,settingsobject)Factory::SettingsFactory<settingsclass>::CreateSettingsJsonFile(path,settingsobject);
+#define CREATE_SETTINGS(settingsclass,path)Factory::SettingsFactory::CreateSettings<settingsclass>(path);
+#define CREATE_SETTINGS_FILE(settingsclass,path,settingsobject)Factory::SettingsFactory::CreateSettingsJsonFile<settingsclass>(path,settingsobject);
 namespace Factory {
 	class SettingsFactory{
 	public:

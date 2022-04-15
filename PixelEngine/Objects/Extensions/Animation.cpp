@@ -2,7 +2,9 @@
 #include "Animation.h"
 namespace Core{
 	namespace Animation{
-		Animation::Animation(sf::Sprite & animatedsprite, const Settings::AnimationSettings & animationsettings) :_animatedsprite(animatedsprite), _settings(animationsettings){
+		Animation::Animation(sf::Sprite & animatedsprite, const Settings::AnimationSettings & animationsettings) :
+			_animatedsprite(animatedsprite), 
+			_settings(animationsettings),_CountOfColumnsFromRow(_settings._framescount) {
 			_frame.width = _settings._rectsize.x;
 			_frame.height = _settings._rectsize.y;
 		}
@@ -12,7 +14,7 @@ namespace Core{
 			if(_totaltime >= _settings._switchtime){
 				_totaltime -= _settings._switchtime;
 				_currentimage.x++;
-				if(_currentimage.x >= _settings._framescount.at(_currentimage.y))
+				if(_currentimage.x >= _CountOfColumnsFromRow.at(_currentimage.y))
 					_currentimage.x = 0;
 			}
 			_frame.left = _currentimage.x*_settings._rectsize.x;

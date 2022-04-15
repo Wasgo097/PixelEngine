@@ -1,7 +1,7 @@
 #include "EmptyWorld.h"
 #include "Utility/CommonHeaders.h"
-#include"Controller/BaseImplementations/EmptyController.h"
-Core::EmptyWorld::EmptyWorld(const Settings::WorldSettings& worlsettings, Engine* parrent) :WorldBase(worlsettings, parrent) {
+#include "Controller/BaseImplementations/EmptyController.h"
+Core::EmptyWorld::EmptyWorld(const Settings::WorldSettings& worlsettings, Engine* parent) :WorldBase(worlsettings, parent) {
 	_maincontroller = std::make_unique<Controller::EmptyController>(this);
 	_maincontroller->InitMainCharacterInputBindings();
 	_maincontroller->InitMainCharacter();

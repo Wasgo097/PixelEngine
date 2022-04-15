@@ -3,6 +3,8 @@
 namespace Test {
 	void ActorAnimationTest::PrepareTest()
 	{
+#define PREPARE_SETTINGS
+#ifdef PREPARE_SETTINGS
 		Settings::ActorSettings MainActorSettings;
 		MainActorSettings._collision = ActorsEnums::CollisionType::Collision;
 		MainActorSettings._type = ActorsEnums::ActorType::Dynamic;
@@ -18,8 +20,20 @@ namespace Test {
 		Settings::AnimationSettings MainAnimationSettings;
 		MainAnimationSettings._rectsize = sf::Vector2u(60, 60);
 		MainAnimationSettings._switchtime = 0.5f;
-		//fill MainAnimationMap
+		//fill MainAnimationMaps
+		MainAnimationSettings._directiontorow[AnimationEnums::Direction::Up] = 8;
+		MainAnimationSettings._directiontorow[AnimationEnums::Direction::Left] = 9;
+		MainAnimationSettings._directiontorow[AnimationEnums::Direction::Down] = 10;
+		MainAnimationSettings._directiontorow[AnimationEnums::Direction::DownIdle] = 2;
+		MainAnimationSettings._directiontorow[AnimationEnums::Direction::Right] = 11;
+		
+		MainAnimationSettings._framescount[2] = 7;
+		MainAnimationSettings._framescount[8] = 9;
+		MainAnimationSettings._framescount[9] = 9;
+		MainAnimationSettings._framescount[10] = 9;
+		MainAnimationSettings._framescount[11] = 9;
 		Factory::SettingsFactory::CreateSettingsJsonFile("cfg\\MainAnimationSettings.json", MainAnimationSettings);
+#endif
 		int result = _engine.Main();
 	}
 

@@ -8,7 +8,7 @@ namespace Core{
 	class Engine;
 	class WorldBase {
 	public:
-		WorldBase(const Settings::WorldSettings & worlsettings=Settings::WorldSettings(),Engine* parrent=nullptr);
+		WorldBase(const Settings::WorldSettings & worlsettings=Settings::WorldSettings(),Engine* parent=nullptr);
 		WorldBase(const WorldBase&) = delete;
 		WorldBase(WorldBase&&) = delete;
 		void operator=(const WorldBase&) = delete;

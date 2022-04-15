@@ -7,10 +7,10 @@ namespace Core{
 		class Animation{
 		public:
 			Animation(sf::Sprite & animatedsprite, const Settings::AnimationSettings & animationsettings);
-			Animation() = default;
-			virtual ~Animation() = default;
+		public:
 			void Tick(int row, float deltatime);
 		protected:
+			std::map<int, int>& _CountOfColumnsFromRow;
 			sf::Sprite & _animatedsprite;
 			Settings::AnimationSettings _settings;
 			sf::IntRect _frame;

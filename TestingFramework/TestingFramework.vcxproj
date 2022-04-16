@@ -142,6 +142,10 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Tests\ActorAnimation\ActorAnimationTest.cpp" />
+    <ClCompile Include="Tests\ActorAnimation\ControllerForAnimationTest.cpp" />
+    <ClCompile Include="Tests\ActorAnimation\EngineForAnimationTest.cpp" />
+    <ClCompile Include="Tests\ActorAnimation\WorldForAnimationTest.cpp" />
     <ClCompile Include="Tests\EngineSettup\EngineSetup.cpp" />
     <ClCompile Include="Tests\SerializationTest\SerialziationTest.cpp" />
     <ClCompile Include="Main.cpp" />
@@ -152,6 +156,10 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Tests\ActorAnimation\ActorAnimationTest.h" />
+    <ClInclude Include="Tests\ActorAnimation\ControllerForAnimationTest.h" />
+    <ClInclude Include="Tests\ActorAnimation\EngineForAnimationTest.h" />
+    <ClInclude Include="Tests\ActorAnimation\WorldForAnimationTest.h" />
     <ClInclude Include="Tests\EngineSettup\EngineSetup.h" />
     <ClInclude Include="BaseTest.h" />
     <ClInclude Include="Tests\SerializationTest\SerialziationTest.h" />

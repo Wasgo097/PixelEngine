@@ -22,13 +22,13 @@ namespace Core {
 	}
 	void AnimatedActor::Tick(float deltatime) {
 		Actor::Tick(deltatime);
-		if (!_directiontorowref.empty()) {
-			if (_animation)
-				_animation->Tick(_animatedrow, deltatime);
-			//to do check why 4
-			if (_animatedrow <= 4)
-				_animatedrow = _directiontorowref.at(static_cast<AnimationEnums::Direction>(_animatedrow + 4));
-		}
+		//if (!_directiontorowref.empty()) {
+		//	if (_animation)
+		//		_animation->Tick(_animatedrow, deltatime);
+		//	//to do check why 4
+		//	if (_animatedrow <= 4)
+		//		_animatedrow = _directiontorowref.at(static_cast<AnimationEnums::Direction>(_animatedrow + 4));
+		//}
 	}
 	void AnimatedActor::Move(const sf::Vector2f& velocity) {
 		Actor::Move(velocity);

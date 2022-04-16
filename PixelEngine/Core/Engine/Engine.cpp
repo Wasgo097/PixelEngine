@@ -111,6 +111,5 @@ namespace Core {
 	}
 	void Engine::InitEngine() {
 		PushWorldToQueue(std::make_unique<EmptyWorld>(_worldsettings, this));
-		PushWorldToQueue(std::make_unique<EmptyWorld>(_worldsettings, this));
 	}
 }

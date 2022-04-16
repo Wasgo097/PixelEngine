@@ -7,7 +7,7 @@ namespace Controller {
 	}
 	void EmptyController::InitMainCharacterInputBindings() {
 		Controller::Key key;
-		std::cout << "Init keybinding\n";
+		std::cout << "Init Keybinding\n";
 		key._inputtype = Controller::InputType::MouseInput;
 		key._eventtype = sf::Event::MouseButtonPressed;
 		key._mousebutton = sf::Mouse::Left;

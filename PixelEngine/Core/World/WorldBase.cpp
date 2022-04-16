@@ -10,10 +10,14 @@ namespace Core {
 	WorldBase::~WorldBase(){
 	}
 	void WorldBase::Draw(sf::RenderWindow& window) {
+		if (!_Initialized)
+			std::cout << "Draw uninitialized world\n";
 		if (_actormanager)
 			_actormanager->Draw(window);
 	}
 	void WorldBase::Update(float delta){
+		if (!_Initialized)
+			std::cout << "Update uninitialized world\n";
 		if (_actormanager)
 			_actormanager->Update(delta);
 	}

@@ -7,7 +7,8 @@
 #include "Core/World/WorldBase.h"
 #include <SFML/System/Clock.hpp>
 #include <SFML/Graphics/RenderWindow.hpp>
-#include <stack>
+#include "Utility/ThreadingResource.h"
+#include <queue>
 //#define CREATE_ACTOR(_actorclass,actorsettings,texturesettings,...)_world->SpawnActor<_actorclass>(_world.get(),actorsettings,texturesettings,##__VA_ARGS__);
 //#define CREATE_ANIMATED_ACTOR(_actorclass,actorsettings,texturesettings,animationsettings,...)_world->SpawnControlledActor<_actorclass>(_world.get(),actorsettings,texturesettings,animationsettings,##__VA_ARGS__);
 namespace Core {
@@ -18,10 +19,11 @@ namespace Core {
 		Engine(Engine&&) = delete;
 		Engine& operator=(const Engine&) = delete;
 		Engine& operator=(Engine&&) = delete;
-		virtual ~Engine()=default;
+		virtual ~Engine();
 	protected:
-		std::stack<std::unique_ptr<WorldBase>> _worlds;
-		std::unique_ptr<std::thread> _drawingthread;
+		Utility::ThreadingResourceLight<std::unique_ptr<WorldBase>> _CurrentWorld;
+		Utility::ThreadingResourceLight < std::queue<std::unique_ptr<WorldBase>>> _WorldsQueue;
+		std::unique_ptr<std::thread> _TickThread;
 		std::unique_ptr<sf::RenderWindow> _mainwindow;
 	protected:
 		sf::Clock _clock;
@@ -37,11 +39,11 @@ namespace Core {
 		bool _terminated = false;
 	private:
 		void Close();
-		void Update();
+		void Render();
 	protected:
 		virtual void InitEngine();
 	public:
-		void PushWorld(std::unique_ptr<WorldBase>&& newworld);
+		void PushWorldToQueue(std::unique_ptr<WorldBase>&& newworld);
 	public:
 		int Main();
 	};

@@ -3,8 +3,6 @@
 #include "Controller/BaseImplementations/EmptyController.h"
 Core::EmptyWorld::EmptyWorld(const Settings::WorldSettings& worlsettings, Engine* parent) :WorldBase(worlsettings, parent) {
 	_maincontroller = std::make_unique<Controller::EmptyController>(this);
-	_maincontroller->InitMainCharacterInputBindings();
-	_maincontroller->InitMainCharacter();
 }
 void Core::EmptyWorld::CheckQuit(){
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Escape)) {

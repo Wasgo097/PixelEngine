@@ -42,37 +42,37 @@ namespace Time{
 	}
 	void TimeManager::AttachToSeconds(ITimeObserver * item){
 		if(item != nullptr){
-			std::lock_guard lock(_seconds._mtx);
-			_seconds._rsc.insert(item);
+			std::lock_guard lock(_seconds.Mtx);
+			_seconds.Rsc.insert(item);
 		}
 	}
 	void TimeManager::AttachToMinutes(ITimeObserver * item){
 		if(item){
-			std::lock_guard lock(_minutes._mtx);
-			_minutes._rsc.insert(item);
+			std::lock_guard lock(_minutes.Mtx);
+			_minutes.Rsc.insert(item);
 		}
 	}
 	void TimeManager::DetachFromSeconds(ITimeObserver * item){
 		if(item){
-			std::lock_guard lock(_seconds._mtx);
-			_seconds._rsc.erase(item);
+			std::lock_guard lock(_seconds.Mtx);
+			_seconds.Rsc.erase(item);
 		}
 	}
 	void TimeManager::DetachFromMinutes(ITimeObserver * item){
 		if(item){
-			std::lock_guard lock(_minutes._mtx);
-			_minutes._rsc.erase(item);
+			std::lock_guard lock(_minutes.Mtx);
+			_minutes.Rsc.erase(item);
 		}
 	}
 	void TimeManager::NotifyForSecondPassed(){
-		std::lock_guard lock(_seconds._mtx);
-		for(auto & observator : _seconds._rsc){
+		std::lock_guard lock(_seconds.Mtx);
+		for(auto & observator : _seconds.Rsc){
 			observator->SecondPassed();
 		}
 	}
 	void TimeManager::NotifyForMinutePassed(){
-		std::lock_guard lock(this->_minutes._mtx);
-		for(auto & observator : _minutes._rsc){
+		std::lock_guard lock(this->_minutes.Mtx);
+		for(auto & observator : _minutes.Rsc){
 			observator->MinutePassed();
 		}
 	}

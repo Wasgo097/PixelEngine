@@ -3,33 +3,33 @@
 namespace Utility{
 	template<typename T>
 	struct ThreadingResource{
-		std::unique_ptr<T> _rsc;
-		std::mutex _mtx;
+		std::unique_ptr<T> Rsc;
+		std::mutex Mtx;
 		ThreadingResource() {
-			_rsc = std::make_unique<T>();
+			Rsc = std::make_unique<T>();
 		}
 		ThreadingResource(const ThreadingResource<T>&src) = delete;
 		ThreadingResource & operator=(const ThreadingResource<T>&src) = delete;
 		ThreadingResource(ThreadingResource<T>&&src){
-			_rsc = std::move(src._rsc);
+			Rsc = std::move(src.Rsc);
 		}
 		ThreadingResource & operator=(ThreadingResource<T>&&src){
-			_rsc = std::move(src._rsc);
+			Rsc = std::move(src.Rsc);
 			return *this;
 		}
 	};
 	template<typename T>
 	struct ThreadingResourceLight{
-		T _rsc;
-		std::mutex _mtx;
+		T Rsc;
+		std::mutex Mtx;
 		ThreadingResourceLight() = default;
 		ThreadingResourceLight(const ThreadingResourceLight<T>&src) = delete;
 		ThreadingResourceLight & operator=(const ThreadingResourceLight<T>&src) = delete;
 		ThreadingResourceLight(ThreadingResourceLight<T>&&src){
-			_rsc = std::move(src._rsc);
+			Rsc = std::move(src.Rsc);
 		}
 		ThreadingResourceLight & operator=(ThreadingResourceLight<T>&&src){
-			_rsc = std::move(src._rsc);
+			Rsc = std::move(src.Rsc);
 			return *this;
 		}
 	};

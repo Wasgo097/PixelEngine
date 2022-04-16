@@ -31,11 +31,14 @@ namespace Core {
 		return false;
 	}
 	void WorldBase::ServiceInput(sf::Event event){
-		_maincontroller->ServiceInput(event);
+		if(_maincontroller)
+			_maincontroller->ServiceInput(event);
 	}
 	void WorldBase::InitWorld()	{
 		if (_Initialized)
 			throw std::runtime_error("Double initialization of world\n");
+		_maincontroller->InitMainCharacterInputBindings();
+		_maincontroller->InitMainCharacter();
 		if (_actormanager && _maincontroller) {
 			_actormanager->RegisterMainActor(_maincontroller->GetMainCharacter());
 		}

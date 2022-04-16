@@ -60,6 +60,8 @@ namespace Core {
 		_world = worldptr;
 	}
 	void Actor::Draw(sf::RenderWindow& window) {
+		if (_collider)
+			window.draw(*_collider);
 		if (_sprite)
 			window.draw(*_sprite);
 	}

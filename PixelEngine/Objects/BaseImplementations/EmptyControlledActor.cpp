@@ -14,8 +14,6 @@ void Core::EmptyControlledActor::Move(const sf::Vector2f& velocity) {
 }
 
 void Core::EmptyControlledActor::Draw(sf::RenderWindow& window) {
-	if (_collider)
-		window.draw(*_collider);
 	ControlledActor::Draw(window);
 }
 

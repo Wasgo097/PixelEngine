@@ -7,6 +7,7 @@ namespace Core {
 		_animation(std::make_unique<Animation::Animation>(*_sprite, _animationsettings)),
 		_directiontorowref(_animationsettings._directiontorow)
 	{
+		_animatedrow = _directiontorowref.at(AnimationEnums::Direction::DownIdle);
 		if (_sprite) {
 			sf::Vector2f temporigin(_animationsettings._rectsize.x, _animationsettings._rectsize.y);
 			temporigin.x /= 2.0f;

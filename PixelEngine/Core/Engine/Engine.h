@@ -12,7 +12,7 @@
 //#define CREATE_ACTOR(_actorclass,actorsettings,texturesettings,...)_world->SpawnActor<_actorclass>(_world.get(),actorsettings,texturesettings,##__VA_ARGS__);
 //#define CREATE_ANIMATED_ACTOR(_actorclass,actorsettings,texturesettings,animationsettings,...)_world->SpawnControlledActor<_actorclass>(_world.get(),actorsettings,texturesettings,animationsettings,##__VA_ARGS__);
 namespace Core {
-	class Engine:public Types::ILoopingThread {
+	class Engine{
 	public:
 		Engine();
 		Engine(const Engine&) = delete;
@@ -31,15 +31,10 @@ namespace Core {
 		Settings::WindowSettings _windowsettings;
 		Settings::MusicSettings _musicsettings;
 		Settings::WorldSettings _worldsettings;
-	protected:
-		// Inherited via ILoopingThread
-		virtual void Run() override;
-		virtual void Wait() override;
-		virtual void Terminate() override;
-		bool _terminated = false;
 	private:
 		void Close();
 		void Render();
+		void Update();
 	protected:
 		virtual void InitEngine();
 	public:

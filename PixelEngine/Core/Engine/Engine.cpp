@@ -21,39 +21,40 @@ namespace Core {
 		_mainwindow->setVerticalSyncEnabled(_windowsettings._vsync);
 		if (_windowsettings._fps > 1)
 			_mainwindow->setFramerateLimit(_windowsettings._fps);
-		_mainwindow->setActive(false);
-		_TickThread = std::make_unique<std::thread>(std::bind(&Engine::Run, this));
 	}
-	Engine::~Engine(){
+	Engine::~Engine() {
 		Close();
 	}
 	int Engine::Main() {
 		InitEngine();
 		bool GameLoopConditional = false;
 		{
-			std::lock_guard lock(_CurrentWorld.Mtx);
+			//std::lock_guard lock(_CurrentWorld.Mtx);
 			GameLoopConditional = _mainwindow->isOpen() && _CurrentWorld.Rsc;
 		}
 		while (GameLoopConditional) {
 			sf::Event event;
 			while (_mainwindow->pollEvent(event)) {
-				if (event.type == sf::Event::Closed)
+				if (event.type == sf::Event::Closed) {
+					_CurrentWorld.Rsc->EndWorld();
 					Close();
+				}
 				else {
-					std::lock_guard lock(_CurrentWorld.Mtx);
+					//std::lock_guard lock(_CurrentWorld.Mtx);
 					_CurrentWorld.Rsc->ServiceInput(event);
 				}
 			}
 			Render();
-			std::lock_guard lock(_CurrentWorld.Mtx);
+			Update();
+			//std::lock_guard lock(_CurrentWorld.Mtx);
 			GameLoopConditional = _mainwindow->isOpen() && _CurrentWorld.Rsc;
 		}
 		return 1;
 	}
 	void Engine::PushWorldToQueue(std::unique_ptr<WorldBase>&& newworld) {
-		std::lock_guard lock(_CurrentWorld.Mtx);
+		//std::lock_guard lock(_CurrentWorld.Mtx);
 		if (_CurrentWorld.Rsc) {
-			std::lock_guard lock(_WorldsQueue.Mtx);
+			//std::lock_guard lock(_WorldsQueue.Mtx);
 			_WorldsQueue.Rsc.push(std::move(newworld));
 		}
 		else {
@@ -61,49 +62,36 @@ namespace Core {
 			_CurrentWorld.Rsc->InitWorld();
 		}
 	}
-	void Engine::Run() {
-		while (!_terminated) {
-			sf::Time time = _clock.restart();
-			std::lock_guard lock(_CurrentWorld.Mtx);
-			if (_CurrentWorld.Rsc) {
-				_CurrentWorld.Rsc->CheckQuit();
-				if (_CurrentWorld.Rsc->Quit()) {
-					_CurrentWorld.Rsc->EndWorld();
-					_CurrentWorld.Rsc.reset();
-					std::lock_guard lock2(_WorldsQueue.Mtx);
-					if (!_WorldsQueue.Rsc.empty()) {
-						_CurrentWorld.Rsc = std::move(_WorldsQueue.Rsc.front());
-						_CurrentWorld.Rsc->InitWorld();
-						_WorldsQueue.Rsc.pop();
-					}
-					else
-						Terminate();
+	void Engine::Update() {
+		sf::Time time = _clock.restart();
+		//std::lock_guard lock(_CurrentWorld.Mtx);
+		if (_CurrentWorld.Rsc) {
+			_CurrentWorld.Rsc->CheckQuit();
+			if (_CurrentWorld.Rsc->Quit()) {
+				_CurrentWorld.Rsc->EndWorld();
+				_CurrentWorld.Rsc.reset();
+				//std::lock_guard lock2(_WorldsQueue.Mtx);
+				if (!_WorldsQueue.Rsc.empty()) {
+					_CurrentWorld.Rsc = std::move(_WorldsQueue.Rsc.front());
+					_CurrentWorld.Rsc->InitWorld();
+					_WorldsQueue.Rsc.pop();
 				}
 				else
-					_CurrentWorld.Rsc->Update(time.asSeconds());
+					Close();
 			}
+			else
+				_CurrentWorld.Rsc->Update(time.asSeconds());
 		}
 	}
-	void Engine::Wait() {
-		if (_TickThread->joinable())
-			_TickThread->join();
-	}
-	void Engine::Terminate() {
-		_terminated = true;
-	}
 	void Engine::Close() {
-		Terminate();
-		Wait();
 		while (!_WorldsQueue.Rsc.empty())
 			_WorldsQueue.Rsc.pop();
-		/*_CurrentWorld.Rsc->EndWorld();
-		_CurrentWorld.Rsc.reset();*/
 		_mainwindow->close();
 	}
 	void Engine::Render() {
 		_mainwindow->clear();
 		{
-			std::lock_guard lock(_CurrentWorld.Mtx);
+			//std::lock_guard lock(_CurrentWorld.Mtx);
 			if (_CurrentWorld.Rsc)
 				_CurrentWorld.Rsc->Draw(*_mainwindow);
 		}

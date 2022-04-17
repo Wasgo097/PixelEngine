@@ -22,4 +22,8 @@ namespace Test {
 		WorldBase::EndWorld();
 		std::cout << "End WorldForAnimationTest world\n";
 	}
+	void WorldForAnimationTest::Draw(sf::RenderWindow& window)	{
+		window.clear(sf::Color::Green);
+		WorldBase::Draw(window);
+	}
 }

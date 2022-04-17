@@ -10,12 +10,12 @@
 using namespace std::chrono_literals;
 namespace Core {
 	Engine::Engine() {
-		_enginesettings = CREATE_SETTINGS(Settings::EngineSettings, "cfg\\enginesettings.json");
-		std::string settingspath = "cfg\\" + _enginesettings._windowsettings;
+		_enginesettings = CREATE_SETTINGS(Settings::EngineSettings, "Cfg\\enginesettings.json");
+		std::string settingspath = "Cfg\\" + _enginesettings._windowsettings;
 		_windowsettings = CREATE_SETTINGS(Settings::WindowSettings, settingspath);
-		settingspath = "cfg\\" + _enginesettings._musicsettings;
+		settingspath = "Cfg\\" + _enginesettings._musicsettings;
 		_musicsettings = CREATE_SETTINGS(Settings::MusicSettings, settingspath);
-		settingspath = "cfg\\" + _enginesettings._worldsettings;
+		settingspath = "Cfg\\" + _enginesettings._worldsettings;
 		_worldsettings = CREATE_SETTINGS(Settings::WorldSettings, settingspath);
 		_mainwindow = std::make_unique<sf::RenderWindow>(_windowsettings._videomode, _windowsettings._winname, _windowsettings._style);
 		_mainwindow->setVerticalSyncEnabled(_windowsettings._vsync);

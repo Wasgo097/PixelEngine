@@ -1,0 +1,11 @@
+{
+    "_fps": 60,
+    "_style": 7,
+    "_videomode": {
+        "bitsPerPixel": 30,
+        "height": 720,
+        "width": 1280
+    },
+    "_vsync": false,
+    "_winname": "Window"
+}

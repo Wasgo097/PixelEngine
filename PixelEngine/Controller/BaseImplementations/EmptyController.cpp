@@ -47,11 +47,11 @@ namespace Controller {
 	void EmptyController::InitMainCharacter() {
 		std::cout << "Init Main Character\n";
 		Settings::ActorSettings actorsettings;
-		actorsettings._collidersize = sf::Vector2f(20, 20);
-		actorsettings._collision = ActorsEnums::CollisionType::Collision;
-		actorsettings._position = sf::Vector2f(20,20);
-		actorsettings._tickflag = true;
-		actorsettings._type = ActorsEnums::ActorType::Dynamic;
+		actorsettings.ColliderSize = sf::Vector2f(20, 20);
+		actorsettings.CollisionType = ActorsEnums::CollisionType::Collision;
+		actorsettings.Position = sf::Vector2f(20,20);
+		actorsettings.TickFlag = true;
+		actorsettings.ActorType = ActorsEnums::ActorType::Dynamic;
 		Settings::TextureSettings texturesettings;
 		texturesettings._repeatable = false;
 		texturesettings._smooth = true;

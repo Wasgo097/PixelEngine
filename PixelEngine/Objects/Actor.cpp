@@ -3,15 +3,15 @@
 #include "Core/World/WorldBase.h"
 namespace Core {
 	Actor::Actor(WorldBase* world, const Settings::ActorSettings& actorsettings, const Settings::TextureSettings& texturesettings) :
-		_world(world), _actorsettings(actorsettings), _texturesettings(texturesettings), _velocity(_actorsettings._velocity), _tickon(_actorsettings._tickflag) {
+		_world(world), _actorsettings(actorsettings), _texturesettings(texturesettings), _velocity(_actorsettings.Velocity), _tickon(_actorsettings.TickFlag) {
 		//collision
-		if (static_cast<int>(_actorsettings._collision) > 1) {
-			_collider = sf::RectangleShape(_actorsettings._collidersize);
+		if (static_cast<int>(_actorsettings.CollisionType) > 1) {
+			_collider = sf::RectangleShape(_actorsettings.ColliderSize);
 			sf::Vector2f temporigin = _collider->getSize();
 			temporigin.x /= 2.0f;
 			//bottom center
 			_collider->setOrigin(temporigin);
-			_collider->setPosition(_actorsettings._position);
+			_collider->setPosition(_actorsettings.Position);
 		}
 		//texture and sprite
 		if (!_texturesettings._texturepath.empty()) {
@@ -24,7 +24,7 @@ namespace Core {
 				sf::Vector2f temporigin(_texture->getSize().x, _texture->getSize().y);
 				temporigin.x /= 2.0f;
 				_sprite->setOrigin(temporigin);
-				_sprite->setPosition(_actorsettings._position);
+				_sprite->setPosition(_actorsettings.Position);
 			}
 			else {
 				throw std::invalid_argument("Wrong path in actor constructor: " + _texturesettings._texturepath + " in " + ToString() + " " + _actorsettings.ToStdString());
@@ -40,7 +40,7 @@ namespace Core {
 		_tickon = Flag;
 	}
 	void Actor::Tick(float deltatime) {
-		if (_actorsettings._type == ActorsEnums::ActorType::Dynamic&&_velocity!=sf::Vector2f()) {
+		if (_actorsettings.ActorType == ActorsEnums::ActorType::Dynamic&&_velocity!=sf::Vector2f()) {
 			auto movevec = _velocity ;
 			if (_sprite)
 				_sprite->move(movevec);
@@ -51,7 +51,7 @@ namespace Core {
 		}
 	}
 	bool Actor::CanCollide() const {
-		return static_cast<int>(_actorsettings._collision) > 0;
+		return static_cast<int>(_actorsettings.CollisionType) > 0;
 	}
 	const sf::RectangleShape& Actor::GetCollider() const {
 		return *_collider;
@@ -60,7 +60,7 @@ namespace Core {
 		_world = worldptr;
 	}
 	void Actor::Draw(sf::RenderWindow& window) {
-		if (_collider)
+		if (_collider&&_actorsettings.DrawableCollisionBox)
 			window.draw(*_collider);
 		if (_sprite)
 			window.draw(*_sprite);

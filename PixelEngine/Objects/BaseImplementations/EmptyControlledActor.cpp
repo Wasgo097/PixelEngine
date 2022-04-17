@@ -18,5 +18,5 @@ void Core::EmptyControlledActor::Draw(sf::RenderWindow& window) {
 }
 
 void Core::EmptyControlledActor::Init(){
-	SetTickFlag(_actorsettings._tickflag);
+	SetTickFlag(_actorsettings.TickFlag);
 }

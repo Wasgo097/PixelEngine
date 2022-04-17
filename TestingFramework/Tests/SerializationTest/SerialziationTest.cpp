@@ -37,7 +37,7 @@ namespace Test {
 			auto windowsettings = CREATE_SETTINGS(WindowSettings, filepath);
 			filepath = _rootpath + "worldsettings.json";
 			auto worldsettings = CREATE_SETTINGS(WorldSettings, filepath);
-			return _actorsettings == actorsettings && _animationsettings == animationsettings && _enginesettings == enginesettings && 
+			return _actorsettings == actorsettings && _animationsettings == animationsettings && _enginesettings == enginesettings &&
 				musicsettings == _musicsettings && _texturesettings == texturesettings && _windowsettings == windowsettings	&& _worldsettings == worldsettings;
 		}
 		catch (...) {

@@ -1,6 +1,7 @@
 #pragma once
 #include <string>
 #include "Utility/json.hpp"
+#include <compare>
 using nlohmann::json;
 namespace Settings{
 	class SettingsBase{

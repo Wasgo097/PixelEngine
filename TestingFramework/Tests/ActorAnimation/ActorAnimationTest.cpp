@@ -3,22 +3,23 @@
 namespace Test {
 	void ActorAnimationTest::PrepareTest()
 	{
-//#define PREPARE_SETTINGS
+#define PREPARE_SETTINGS
 #ifdef PREPARE_SETTINGS
 		Settings::ActorSettings MainActorSettings;
-		MainActorSettings._collision = ActorsEnums::CollisionType::Collision;
-		MainActorSettings._type = ActorsEnums::ActorType::Dynamic;
-		MainActorSettings._position = sf::Vector2f(60, 60);
-		MainActorSettings._collidersize = sf::Vector2f(60, 60);
-		MainActorSettings._tickflag = true;
+		MainActorSettings.CollisionType = ActorsEnums::CollisionType::Collision;
+		MainActorSettings.ActorType = ActorsEnums::ActorType::Dynamic;
+		MainActorSettings.Position = sf::Vector2f(60, 60);
+		MainActorSettings.ColliderSize = sf::Vector2f(64, 64);
+		MainActorSettings.TickFlag = true;
+		MainActorSettings.DrawableCollisionBox = false;
 		CREATE_SETTINGS_FILE("Cfg\\MainActorSettings.json",MainActorSettings)
 		Settings::TextureSettings MainTextureSettings;
-		MainTextureSettings._texturepath = "C:\\programowanie\\Resource\\PixelEngine Base Character\\BaseCharacter.png";
+		MainTextureSettings._texturepath = "Resource\\PixelEngine Base Character\\BaseCharacter.png";
 		MainTextureSettings._smooth = true;
 		MainTextureSettings._repeatable = false;
 		CREATE_SETTINGS_FILE("Cfg\\MainTextureSettings.json", MainTextureSettings)
 		Settings::AnimationSettings MainAnimationSettings;
-		MainAnimationSettings._rectsize = sf::Vector2u(60, 60);
+		MainAnimationSettings._rectsize = sf::Vector2u(64, 64);
 		MainAnimationSettings._switchtime = 0.5f;
 		//fill MainAnimationMaps
 		MainAnimationSettings._directiontorow[AnimationEnums::Direction::Up] = 8;

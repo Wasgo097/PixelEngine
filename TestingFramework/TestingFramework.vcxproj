@@ -142,13 +142,13 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Main.cpp" />
     <ClCompile Include="Tests\ActorAnimation\ActorAnimationTest.cpp" />
     <ClCompile Include="Tests\ActorAnimation\ControllerForAnimationTest.cpp" />
     <ClCompile Include="Tests\ActorAnimation\EngineForAnimationTest.cpp" />
     <ClCompile Include="Tests\ActorAnimation\WorldForAnimationTest.cpp" />
     <ClCompile Include="Tests\EngineSettup\EngineSetup.cpp" />
     <ClCompile Include="Tests\SerializationTest\SerialziationTest.cpp" />
-    <ClCompile Include="Main.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\PixelEngine\PixelEngine.vcxproj">

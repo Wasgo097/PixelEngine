@@ -20,28 +20,28 @@ namespace Test {
 		key._keyboardbutton = sf::Keyboard::W;
 		_actions[key] = [](std::shared_ptr<Core::ControlledActor> Actor) {
 			//std::cout << "W Pressed\n";
-			Actor->Move(sf::Vector2f(0, -1.0));
+			Actor->Move(sf::Vector2f(0, -2.0));
 		};
 		key._inputtype = Controller::InputType::KeyboardInput;
 		key._eventtype = sf::Event::KeyPressed;
 		key._keyboardbutton = sf::Keyboard::S;
 		_actions[key] = [](std::shared_ptr<Core::ControlledActor> Actor) {
 			//std::cout << "S Pressed\n";
-			Actor->Move(sf::Vector2f(0, 1.0));
+			Actor->Move(sf::Vector2f(0, 2.0));
 		};
 		key._inputtype = Controller::InputType::KeyboardInput;
 		key._eventtype = sf::Event::KeyPressed;
 		key._keyboardbutton = sf::Keyboard::A;
 		_actions[key] = [](std::shared_ptr<Core::ControlledActor> Actor) {
 			//std::cout << "A Pressed\n";
-			Actor->Move(sf::Vector2f(-1.0, 0));
+			Actor->Move(sf::Vector2f(-2.0, 0));
 		};
 		key._inputtype = Controller::InputType::KeyboardInput;
 		key._eventtype = sf::Event::KeyPressed;
 		key._keyboardbutton = sf::Keyboard::D;
 		_actions[key] = [](std::shared_ptr<Core::ControlledActor> Actor) {
 			//std::cout << "D Pressed\n";
-			Actor->Move(sf::Vector2f(1.0, 0));
+			Actor->Move(sf::Vector2f(2.0, 0));
 		};
 	}
 

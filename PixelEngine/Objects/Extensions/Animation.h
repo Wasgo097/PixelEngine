@@ -16,6 +16,7 @@ namespace Core{
 			sf::IntRect _frame;
 			sf::Vector2u _currentimage;
 			float _totaltime = .0f;
+			int _CurrentRow = -1;
 		};
 	}
 }

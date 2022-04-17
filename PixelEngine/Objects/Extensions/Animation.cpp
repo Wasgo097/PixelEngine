@@ -9,6 +9,10 @@ namespace Core{
 			_frame.height = _settings._rectsize.y;
 		}
 		void Animation::Tick(int row, float deltatime){
+			if (_CurrentRow != row) {
+				_CurrentRow = row;
+				_currentimage.x = 0;
+			}
 			_currentimage.y = row;
 			_totaltime += deltatime;
 			if(_totaltime >= _settings._switchtime){

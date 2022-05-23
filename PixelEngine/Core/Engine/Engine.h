@@ -39,6 +39,6 @@ namespace Core {
 	public:
 		void PushWorldToQueue(std::unique_ptr<WorldBase>&& newworld);
 	public:
-		int Main();
+		int Run();
 	};
 }

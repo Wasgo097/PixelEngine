@@ -25,7 +25,7 @@ namespace Core {
 	Engine::~Engine() {
 		Close();
 	}
-	int Engine::Main() {
+	int Engine::Run() {
 		InitEngine();
 		bool GameLoopConditional = _mainwindow->isOpen() && _CurrentWorld;
 		while (GameLoopConditional) {

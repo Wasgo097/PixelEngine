@@ -2,7 +2,7 @@
 #include "EngineSetup.h"
 namespace Test {
 	void EngineSetup::PrepareTest(){
-		int result=_engine.Main();
+		int result=_engine.Run();
 	}
 	bool EngineSetup::RunTest(){
 		try {

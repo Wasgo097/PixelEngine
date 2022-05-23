@@ -18,6 +18,8 @@ namespace Core {
 	void WorldBase::Update(float delta){
 		if (!_Initialized)
 			std::cout << "Update uninitialized world\n";
+		if (delta > 0.1)
+			std::cout << "Tick time above save value " << delta << "\n";
 		if (_actormanager)
 			_actormanager->Update(delta);
 	}

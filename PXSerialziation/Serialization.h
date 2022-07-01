@@ -1,16 +1,16 @@
 #pragma once
 #include "BasicSFMLTypesToJson.h"
-#include "Enums/ActorEnums.h"
-#include "Enums/AnimationEnums.h"
-#include "Enums/InputEnums.h"
+#include "PXUtilities/Enums/ActorEnums.h"
+#include "PXUtilities/Enums/AnimationEnums.h"
+#include "PXUtilities/Enums/InputEnums.h"
 
-#include "Settings/ActorSettings.h"
-#include "Settings/AnimationSettings.h"
-#include "Settings/EngineSettings.h"
-#include "Settings/MusicSettings.h"
-#include "Settings/TextureSettings.h"
-#include "Settings/WindowSettings.h"
-#include "Settings/WorldSettings.h"
+#include "PXSettings/ActorSettings.h"
+#include "PXSettings/AnimationSettings.h"
+#include "PXSettings/EngineSettings.h"
+#include "PXSettings/MusicSettings.h"
+#include "PXSettings/TextureSettings.h"
+#include "PXSettings/WindowSettings.h"
+#include "PXSettings/WorldSettings.h"
 namespace ActorsEnums {
 
 NLOHMANN_JSON_SERIALIZE_ENUM(CollisionType, {

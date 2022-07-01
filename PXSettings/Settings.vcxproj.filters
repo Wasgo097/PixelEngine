@@ -36,42 +36,15 @@
     <ClInclude Include="MusicSettings.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="SettingsBase.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="TextureSettings.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="WindowSettings.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Serialization.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="pch.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="ActorSettings.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="AnimationSettings.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="EngineSettings.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="MusicSettings.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="TextureSettings.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="WindowSettings.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="WorldSettings.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

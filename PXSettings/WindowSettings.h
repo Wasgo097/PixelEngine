@@ -1,17 +1,10 @@
 #pragma once
-#include "SettingsBase.h"
-#include "Utility/BasicSFMLTypesToJson.h"
-#include <SFML/Window.hpp>
+#include <string>
+#include <SFML/Window/VideoMode.hpp>
 namespace Settings {
-	struct WindowSettings :public SettingsBase {
+	struct WindowSettings{
 		WindowSettings(sf::VideoMode mode, int fps, unsigned int style, std::string win_name, bool vsync) :video_mode{ mode }, fps{ fps }, display_style{ style }, window_name{ win_name }, vsync{ vsync } {}
 		WindowSettings() = default;
-		virtual std::string ToStdString()const override;
-		sf::VideoMode video_mode;
-		int fps = 30;
-		unsigned int display_style = sf::Style::Fullscreen;
-		std::string window_name = "Window";
-		bool vsync = false;
 
 		bool operator ==(const WindowSettings& obj)const {
 			return (video_mode == obj.video_mode) &&
@@ -20,5 +13,11 @@ namespace Settings {
 				(window_name == obj.window_name) &&
 				(vsync == obj.vsync);
 		}
+
+		sf::VideoMode video_mode;
+		int fps = 30;
+		unsigned int display_style = sf::Style::Fullscreen;
+		std::string window_name = "Window";
+		bool vsync = false;
 	};
 }

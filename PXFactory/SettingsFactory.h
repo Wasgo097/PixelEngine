@@ -1,19 +1,16 @@
 #pragma once
 #include <fstream>
-#include <string>
 #include <iostream>
-#include <concepts>
-#include "Utility/Serialization.h"
+#include "PXSerialziation/Serialization.h"
 #define CREATE_SETTINGS(SettingsClass,Path)Factory::SettingsFactory::CreateSettings<SettingsClass>(Path);
 #define CREATE_SETTINGS_FILE(SettingsObj,Path)Factory::SettingsFactory::CreateSettingsJsonFile(Path,SettingsObj);
 namespace Factory {
 	class SettingsFactory {
 	public:
 		template<class T>
-			requires std::derived_from<T, Settings::SettingsBase>
 		static T CreateSettings(const std::string& path) {
 			T result;
-			std::ifstream stream(path, std::fstream::in);
+			std::ifstream stream(path);
 			try {
 				if (stream.is_open()) {
 					json jobj;
@@ -31,10 +28,8 @@ namespace Factory {
 			return result;
 		}
 		template<class T>
-			requires std::derived_from<T, Settings::SettingsBase>
-		static void CreateSettingsJsonFile(const std::string& path, const T& settings = T()) {
-			std::ofstream stream(path, std::ofstream::out);
-			if (stream.is_open()) {
+		static void CreateSettingsJsonFile(const std::string& path, const T& settings = T()) {			
+			if (std::ofstream stream(path); stream.is_open()) {
 				json jobj = settings;
 				stream << jobj.dump(4);
 				stream.close();

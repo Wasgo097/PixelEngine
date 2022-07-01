@@ -27,9 +27,6 @@
     <ClInclude Include="CommonHeaders.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="json.hpp">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="Enums\ActorEnums.h">
       <Filter>Header Files</Filter>
     </ClInclude>

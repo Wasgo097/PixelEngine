@@ -4,7 +4,7 @@
 #include "Settings/TextureSettings.h"
 #include <SFML/Graphics.hpp>
 #include <optional>
-namespace Core{
+namespace Object {
 	class WorldBase;
 	class Actor :public Object{
 	public:

@@ -5,7 +5,7 @@
 namespace Controller {
 	class ControllerBase;
 }
-namespace Core{
+namespace Object {
 	class ControlledActor:public AnimatedActor{
 	public:
 		ControlledActor(WorldBase* world, const Settings::ActorSettings& actor_settings, const Settings::TextureSettings& texture_settings, const Settings::AnimationSettings& animation_settings,Controller::ControllerBase * controller);

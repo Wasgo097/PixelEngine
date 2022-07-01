@@ -2,7 +2,7 @@
 #include "Utility/CommonHeaders.h"
 #include <iostream>
 namespace Controller {
-	ControllerBase::ControllerBase(Core::WorldBase* world) :_world{ world } {}
+	ControllerBase::ControllerBase(){}
 	void ControllerBase::ServiceInput(sf::Event current_event){
 		for (const auto& [key, value] : _actions) {
 			if (TestEvent(key, current_event)) {

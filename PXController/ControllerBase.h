@@ -5,13 +5,12 @@
 #include <map>
 #include <functional>
 namespace Core {
-	class WorldBase;
 	class ControlledActor;
 }
 namespace Controller {
 	class ControllerBase {
 	public:
-		ControllerBase(Core::WorldBase* world);
+		ControllerBase();
 		virtual ~ControllerBase() = default;
 		virtual void InitMainCharacterInputBindings() = 0;
 		virtual void InitMainCharacter() = 0;
@@ -23,6 +22,5 @@ namespace Controller {
 
 		std::map<Controller::Key, std::function<void(std::shared_ptr<Core::ControlledActor>)>> _actions;
 		std::shared_ptr<Core::ControlledActor> _main_character;
-		Core::WorldBase* _world = nullptr;
 	};
 }

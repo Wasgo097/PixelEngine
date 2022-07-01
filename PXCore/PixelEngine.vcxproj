@@ -19,6 +19,11 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="Object\Actor.cpp" />
+    <ClCompile Include="Object\AnimatedActor.cpp" />
+    <ClCompile Include="Object\BaseImplementations\EmptyControlledActor.cpp" />
+    <ClCompile Include="Object\ControlledActor.cpp" />
+    <ClCompile Include="Object\Extensions\Animation.cpp" />
     <ClCompile Include="World\BaseImplementations\EmptyWorld.cpp" />
     <ClCompile Include="ActorsManager\ActorsManager.cpp" />
     <ClCompile Include="Time\TimeManager.cpp" />
@@ -26,6 +31,12 @@
     <ClCompile Include="World\WorldBase.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Object\Actor.h" />
+    <ClInclude Include="Object\AnimatedActor.h" />
+    <ClInclude Include="Object\BaseImplementations\EmptyControlledActor.h" />
+    <ClInclude Include="Object\ControlledActor.h" />
+    <ClInclude Include="Object\Extensions\Animation.h" />
+    <ClInclude Include="Object\Object.h" />
     <ClInclude Include="World\BaseImplementations\EmptyWorld.h" />
     <ClInclude Include="ActorsManager\ActorsManager.h" />
     <ClInclude Include="Time\ITimeObservable.h" />

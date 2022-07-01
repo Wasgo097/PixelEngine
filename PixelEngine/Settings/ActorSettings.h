@@ -3,30 +3,26 @@
 #include "Enums/ActorEnums.h"
 #include "Utility/BasicSFMLTypesToJson.h"
 namespace Settings {
-	class ActorSettings :public SettingsBase {
-	public:
-		ActorSettings(ActorsEnums::CollisionType collision, ActorsEnums::ActorType type, sf::Vector2f position, sf::Vector2f collidersize, sf::Vector2f velocity, bool tickflag) :
-			CollisionType(collision), ActorType(type), Position(position), ColliderSize(collidersize), Velocity(velocity), TickFlag(tickflag) {}
+	struct ActorSettings :public SettingsBase {
+		ActorSettings(ActorsEnums::CollisionType collision, ActorsEnums::ActorType type, sf::Vector2f position, sf::Vector2f collider_size, sf::Vector2f velocity, bool tick) :
+			collision{ collision }, type{ type }, position{ position }, collider_size{ collider_size }, velocity{ velocity }, tick{ tick } {}
 		ActorSettings() = default;
-	public:
 		virtual std::string ToStdString()const override;
-	public:
-		ActorsEnums::CollisionType CollisionType = ActorsEnums::CollisionType::None;
-		ActorsEnums::ActorType ActorType = ActorsEnums::ActorType::Static;;
-		sf::Vector2f Position;
-		sf::Vector2f ColliderSize;
-		sf::Vector2f Velocity;
-		bool TickFlag = false;
-		bool DrawableCollisionBox = false;
+		ActorsEnums::CollisionType collision = ActorsEnums::CollisionType::None;
+		ActorsEnums::ActorType type = ActorsEnums::ActorType::Static;;
+		sf::Vector2f position;
+		sf::Vector2f collider_size;
+		sf::Vector2f velocity;
+		bool tick = false;
+		bool drawable_collision_box = false;
 		bool operator ==(const ActorSettings& obj)const {
-			return (CollisionType == obj.CollisionType) &&
-				(ActorType == obj.ActorType) &&
-				(Position == obj.Position) &&
-				(ColliderSize == obj.ColliderSize) &&
-				(Velocity == obj.Velocity) &&
-				(TickFlag == obj.TickFlag) &&
-				(DrawableCollisionBox == obj.DrawableCollisionBox);
+			return (collision == obj.collision) &&
+				(type == obj.type) &&
+				(position == obj.position) &&
+				(collider_size == obj.collider_size) &&
+				(velocity == obj.velocity) &&
+				(tick == obj.tick) &&
+				(drawable_collision_box == obj.drawable_collision_box);
 		}
 	};
-	NLOHMANN_DEFINE_TYPE_NON_INTRUSIVE(ActorSettings, CollisionType, ActorType, Position, ColliderSize, Velocity, TickFlag, DrawableCollisionBox)
 }

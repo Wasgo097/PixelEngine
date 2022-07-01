@@ -9,22 +9,20 @@ namespace Core {
 	class ControlledActor;
 }
 namespace Controller {
-	class ControllerBase{
+	class ControllerBase {
 	public:
 		ControllerBase(Core::WorldBase* world);
 		virtual ~ControllerBase() = default;
-	public:
-		virtual void InitMainCharacterInputBindings()=0;
-		virtual void InitMainCharacter()=0;
-		virtual void ServiceInput(sf::Event currentevent);
-	public:
+		virtual void InitMainCharacterInputBindings() = 0;
+		virtual void InitMainCharacter() = 0;
+		virtual void ServiceInput(sf::Event current_event);
 		std::shared_ptr<Core::ControlledActor> GetMainCharacter();
 	protected:
-		std::map<Controller::Key, std::function<void(std::shared_ptr<Core::ControlledActor>)>> _actions;
-		std::shared_ptr<Core::ControlledActor> _maincharacter;
-		Core::WorldBase* _world = nullptr;
-	protected:
-		bool TestEvent(const Controller::Key& k, sf::Event e)const;
+		bool TestEvent(const Controller::Key& key, sf::Event action)const;
 		void DoAction(const Controller::Key& key);
+
+		std::map<Controller::Key, std::function<void(std::shared_ptr<Core::ControlledActor>)>> _actions;
+		std::shared_ptr<Core::ControlledActor> _main_character;
+		Core::WorldBase* _world = nullptr;
 	};
 }

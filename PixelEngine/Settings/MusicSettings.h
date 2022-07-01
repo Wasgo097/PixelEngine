@@ -1,22 +1,14 @@
 #pragma once
 #include "SettingsBase.h"
 namespace Settings{
-	class MusicSettings :public SettingsBase{
-	public:
-		MusicSettings(float mastervolume, float musicvolume, float effectvolume) :_mastervolume(mastervolume), _musicvolume(musicvolume), _effectvolume(effectvolume) {}
+	struct MusicSettings :public SettingsBase{
+		MusicSettings(float master, float music, float effect) :master_vol{ master }, music_vol{ music }, effect_vol{ effect } {}
 		MusicSettings() = default;
-	public:
-		// Inherited via SettingsBase
 		virtual std::string ToStdString()const override;
-	public:
-		float _mastervolume = 0.0f;
-		float _musicvolume = 0.0f;
-		float _effectvolume = 0.0f;
-		bool operator ==(const MusicSettings& obj)const {
-			return (_mastervolume == obj._mastervolume) &&
-				(_musicvolume == obj._musicvolume) &&
-				(_effectvolume == obj._effectvolume);
-		}
+		float master_vol = 0.0f;
+		float music_vol = 0.0f;
+		float effect_vol = 0.0f;
+
+		auto operator <=>(const MusicSettings&)const = default;
 	};
-	NLOHMANN_DEFINE_TYPE_NON_INTRUSIVE(MusicSettings, _mastervolume, _musicvolume, _effectvolume)
 }

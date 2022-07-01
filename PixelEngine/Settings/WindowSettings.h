@@ -2,27 +2,22 @@
 #include "SettingsBase.h"
 #include "Utility/BasicSFMLTypesToJson.h"
 #include <SFML/Window.hpp>
-namespace Settings{
-	class WindowSettings :public SettingsBase{
-	public:
-		WindowSettings(sf::VideoMode mode, int fps, unsigned int style, std::string winname, bool vsync) :_videomode(mode), _fps(fps), _style(style), _winname(winname), _vsync(vsync) {}
+namespace Settings {
+	struct WindowSettings :public SettingsBase {
+		WindowSettings(sf::VideoMode mode, int fps, unsigned int style, std::string win_name, bool vsync) :video_mode{ mode }, fps{ fps }, display_style{ style }, window_name{ win_name }, vsync{ vsync } {}
 		WindowSettings() = default;
-	public:
-		// Inherited via SettingsBase
 		virtual std::string ToStdString()const override;
-	public:
-		sf::VideoMode _videomode;
-		int _fps = 30;
-		unsigned int _style = sf::Style::Fullscreen;
-		std::string _winname="Window";
-		bool _vsync = false;
+		sf::VideoMode video_mode;
+		int fps = 30;
+		unsigned int display_style = sf::Style::Fullscreen;
+		std::string window_name = "Window";
+		bool vsync = false;
 		bool operator ==(const WindowSettings& obj)const {
-			return (_videomode == obj._videomode) &&
-				(_fps == obj._fps) &&
-				(_style == obj._style) &&
-				(_winname == obj._winname) &&
-				(_vsync == obj._vsync);
+			return (video_mode == obj.video_mode) &&
+				(fps == obj.fps) &&
+				(display_style == obj.display_style) &&
+				(window_name == obj.window_name) &&
+				(vsync == obj.vsync);
 		}
 	};
-	NLOHMANN_DEFINE_TYPE_NON_INTRUSIVE(WindowSettings, _videomode, _fps, _style, _winname, _vsync)
 }

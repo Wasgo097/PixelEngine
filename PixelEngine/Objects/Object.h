@@ -2,8 +2,6 @@
 #include <string>
 namespace Core{
 	class Object{
-	private:
-		bool _todestroy = false;
 	public:
 		virtual ~Object() = default;
 		virtual std::string ToString()const { return "Default Object ToString"; }
@@ -13,5 +11,7 @@ namespace Core{
 		virtual void OnDelete(){}
 		void Destroy();
 		bool ToDestroy();
+	private:
+		bool _to_destroy = false;
 	};
 }

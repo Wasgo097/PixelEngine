@@ -1,22 +1,14 @@
 #pragma once
 #include"SettingsBase.h"
-namespace Settings{
-	class TextureSettings:public SettingsBase{
-	public:
-		TextureSettings(std::string texture, bool smooth, bool repeatable) :_texturepath(texture), _smooth(smooth), _repeatable(repeatable) {}
+namespace Settings {
+	struct TextureSettings :public SettingsBase {
+		TextureSettings(std::string texture, bool smooth, bool repeatable) :texture_path{ texture }, smooth{ smooth }, repeatable{ repeatable } {}
 		TextureSettings() = default;
-	public:
-		// Inherited via SettingsBase
 		virtual std::string ToStdString()const override;
-	public:
-		std::string _texturepath;
-		bool _smooth = false;
-		bool _repeatable = false;
-		bool operator ==(const TextureSettings& obj)const {
-			return (_texturepath == obj._texturepath) &&
-				(_smooth == obj._smooth) &&
-				(_repeatable == obj._repeatable);
-		}
+		std::string texture_path;
+		bool smooth = false;
+		bool repeatable = false;
+
+		auto operator <=>(const TextureSettings&)const = default;
 	};
-	NLOHMANN_DEFINE_TYPE_NON_INTRUSIVE(TextureSettings, _texturepath, _smooth, _repeatable)
 }

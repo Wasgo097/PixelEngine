@@ -8,37 +8,28 @@
 #include <SFML/System/Clock.hpp>
 #include <SFML/Graphics/RenderWindow.hpp>
 #include <queue>
-//#define CREATE_ACTOR(_actorclass,actorsettings,texturesettings,...)_world->SpawnActor<_actorclass>(_world.get(),actorsettings,texturesettings,##__VA_ARGS__);
-//#define CREATE_ANIMATED_ACTOR(_actorclass,actorsettings,texturesettings,animationsettings,...)_world->SpawnControlledActor<_actorclass>(_world.get(),actorsettings,texturesettings,animationsettings,##__VA_ARGS__);
 namespace Core {
-	class Engine{
+	class Engine {
 	public:
 		Engine();
-		Engine(const Engine&) = delete;
-		Engine(Engine&&) = delete;
-		Engine& operator=(const Engine&) = delete;
-		Engine& operator=(Engine&&) = delete;
 		virtual ~Engine();
-	protected:
-		std::unique_ptr<WorldBase> _CurrentWorld;
-		std::queue<std::unique_ptr<WorldBase>> _WorldsQueue;
-		std::unique_ptr<std::thread> _TickThread;
-		std::unique_ptr<sf::RenderWindow> _mainwindow;
-	protected:
-		sf::Clock _clock;
-		Settings::EngineSettings _enginesettings;
-		Settings::WindowSettings _windowsettings;
-		Settings::MusicSettings _musicsettings;
-		Settings::WorldSettings _worldsettings;
+
+		void PushWorldToQueue(std::unique_ptr<WorldBase>&& new_world);
+		int Run();
 	private:
 		void Close();
 		void Render();
 		void Update();
 	protected:
 		virtual void InitEngine();
-	public:
-		void PushWorldToQueue(std::unique_ptr<WorldBase>&& newworld);
-	public:
-		int Run();
+		std::unique_ptr<WorldBase> _current_world;
+		std::queue<std::unique_ptr<WorldBase>> _worlds;
+		std::unique_ptr<sf::RenderWindow> _main_window;
+
+		sf::Clock _clock;
+		Settings::EngineSettings _engine_settings;
+		Settings::WindowSettings _window_settings;
+		Settings::MusicSettings _music_settings;
+		Settings::WorldSettings _world_settings;
 	};
 }

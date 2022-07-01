@@ -10,79 +10,78 @@
 using namespace std::chrono_literals;
 namespace Core {
 	Engine::Engine() {
-		_enginesettings = CREATE_SETTINGS(Settings::EngineSettings, "Cfg\\enginesettings.json");
-		std::string settingspath = "Cfg\\" + _enginesettings._windowsettings;
-		_windowsettings = CREATE_SETTINGS(Settings::WindowSettings, settingspath);
-		settingspath = "Cfg\\" + _enginesettings._musicsettings;
-		_musicsettings = CREATE_SETTINGS(Settings::MusicSettings, settingspath);
-		settingspath = "Cfg\\" + _enginesettings._worldsettings;
-		_worldsettings = CREATE_SETTINGS(Settings::WorldSettings, settingspath);
-		_mainwindow = std::make_unique<sf::RenderWindow>(_windowsettings._videomode, _windowsettings._winname, _windowsettings._style);
-		_mainwindow->setVerticalSyncEnabled(_windowsettings._vsync);
-		if (_windowsettings._fps > 1)
-			_mainwindow->setFramerateLimit(_windowsettings._fps);
+	/*	_engine_settings = CREATE_SETTINGS(Settings::EngineSettings, "Cfg\\enginesettings.json");
+		std::string settings_path = "Cfg\\" + _engine_settings.window_settings_path;
+		_window_settings = CREATE_SETTINGS(Settings::WindowSettings, settings_path);
+		settings_path = "Cfg\\" + _engine_settings.music_settings_path;
+		_music_settings = CREATE_SETTINGS(Settings::MusicSettings, settings_path);
+		settings_path = "Cfg\\" + _engine_settings.world_settings_path;
+		_world_settings = CREATE_SETTINGS(Settings::WorldSettings, settings_path);
+		_main_window = std::make_unique<sf::RenderWindow>(_window_settings.video_mode, _window_settings.window_name, _window_settings.display_style);
+		_main_window->setVerticalSyncEnabled(_window_settings.vsync);
+		if (_window_settings.fps > 1)
+			_main_window->setFramerateLimit(_window_settings.fps);*/
 	}
 	Engine::~Engine() {
 		Close();
 	}
 	int Engine::Run() {
 		InitEngine();
-		bool GameLoopConditional = _mainwindow->isOpen() && _CurrentWorld;
-		while (GameLoopConditional) {
+		bool game_loop_condition = _main_window->isOpen() && _current_world;
+		while (game_loop_condition) {
 			sf::Event event;
-			while (_mainwindow->pollEvent(event)) {
+			while (_main_window->pollEvent(event)) {
 				if (event.type == sf::Event::Closed) {
-					_CurrentWorld->EndWorld();
+					_current_world->EndWorld();
 					Close();
 				}
 				else
-					_CurrentWorld->ServiceInput(event);
+					_current_world->ServiceInput(event);
 			}
 			Render();
 			Update();
-			GameLoopConditional = _mainwindow->isOpen() && _CurrentWorld;
+			game_loop_condition = _main_window->isOpen() && _current_world;
 		}
 		return 1;
 	}
-	void Engine::PushWorldToQueue(std::unique_ptr<WorldBase>&& newworld) {
-		if (_CurrentWorld)
-			_WorldsQueue.push(std::move(newworld));
+	void Engine::PushWorldToQueue(std::unique_ptr<WorldBase>&& new_world) {
+		if (_current_world)
+			_worlds.push(std::move(new_world));
 		else {
-			_CurrentWorld = std::move(newworld);
-			_CurrentWorld->InitWorld();
+			_current_world = std::move(new_world);
+			_current_world->InitWorld();
 		}
 	}
 	void Engine::Update() {
 		sf::Time time = _clock.restart();
-		if (_CurrentWorld) {
-			_CurrentWorld->CheckQuit();
-			if (_CurrentWorld->Quit()) {
-				_CurrentWorld->EndWorld();
-				_CurrentWorld.reset();
-				if (!_WorldsQueue.empty()) {
-					_CurrentWorld = std::move(_WorldsQueue.front());
-					_CurrentWorld->InitWorld();
-					_WorldsQueue.pop();
-				}
-				else
-					Close();
+		if (!_current_world)return;
+		_current_world->CheckQuit();
+		if (_current_world->Quit()) {
+			_current_world->EndWorld();
+			_current_world.reset();
+			if (!_worlds.empty()) {
+				_current_world = std::move(_worlds.front());
+				_current_world->InitWorld();
+				_worlds.pop();
 			}
 			else
-				_CurrentWorld->Update(time.asSeconds());
+				Close();
 		}
+		else
+			_current_world->Update(time.asSeconds());
 	}
 	void Engine::Close() {
-		while (!_WorldsQueue.empty())
-			_WorldsQueue.pop();
-		_mainwindow->close();
+		while (!_worlds.empty())
+			_worlds.pop();
+		_main_window->close();
 	}
 	void Engine::Render() {
-		_mainwindow->clear();
-		if (_CurrentWorld)
-			_CurrentWorld->Draw(*_mainwindow);
-		_mainwindow->display();
+		_main_window->clear();
+		if (_current_world)
+			_current_world->Draw(*_main_window);
+		_main_window->display();
 	}
 	void Engine::InitEngine() {
-		PushWorldToQueue(std::make_unique<EmptyWorld>(_worldsettings, this));
+		PushWorldToQueue(std::make_unique<EmptyWorld>(_world_settings, this));
 	}
 }

@@ -9,36 +9,36 @@ namespace Test {
 	void ControllerForAnimationTest::InitMainCharacterInputBindings() {
 		Controller::Key key;
 		std::cout << "Init keybinding\n";
-		key._inputtype = Controller::InputType::MouseInput;
-		key._eventtype = sf::Event::MouseButtonPressed;
-		key._mousebutton = sf::Mouse::Left;
+		key.input_type = Controller::InputType::MouseInput;
+		key.event_type = sf::Event::MouseButtonPressed;
+		key.mouse_button = sf::Mouse::Left;
 		_actions[key] = [](std::shared_ptr<Core::ControlledActor> Actor) {
 			std::cout << "Left Button Pressed\n";
 		};
-		key._inputtype = Controller::InputType::KeyboardInput;
-		key._eventtype = sf::Event::KeyPressed;
-		key._keyboardbutton = sf::Keyboard::W;
+		key.input_type = Controller::InputType::KeyboardInput;
+		key.event_type = sf::Event::KeyPressed;
+		key.keyboard_button = sf::Keyboard::W;
 		_actions[key] = [](std::shared_ptr<Core::ControlledActor> Actor) {
 			//std::cout << "W Pressed\n";
 			Actor->Move(sf::Vector2f(0, -2.0));
 		};
-		key._inputtype = Controller::InputType::KeyboardInput;
-		key._eventtype = sf::Event::KeyPressed;
-		key._keyboardbutton = sf::Keyboard::S;
+		key.input_type = Controller::InputType::KeyboardInput;
+		key.event_type = sf::Event::KeyPressed;
+		key.keyboard_button = sf::Keyboard::S;
 		_actions[key] = [](std::shared_ptr<Core::ControlledActor> Actor) {
 			//std::cout << "S Pressed\n";
 			Actor->Move(sf::Vector2f(0, 2.0));
 		};
-		key._inputtype = Controller::InputType::KeyboardInput;
-		key._eventtype = sf::Event::KeyPressed;
-		key._keyboardbutton = sf::Keyboard::A;
+		key.input_type = Controller::InputType::KeyboardInput;
+		key.event_type = sf::Event::KeyPressed;
+		key.keyboard_button = sf::Keyboard::A;
 		_actions[key] = [](std::shared_ptr<Core::ControlledActor> Actor) {
 			//std::cout << "A Pressed\n";
 			Actor->Move(sf::Vector2f(-2.0, 0));
 		};
-		key._inputtype = Controller::InputType::KeyboardInput;
-		key._eventtype = sf::Event::KeyPressed;
-		key._keyboardbutton = sf::Keyboard::D;
+		key.input_type = Controller::InputType::KeyboardInput;
+		key.event_type = sf::Event::KeyPressed;
+		key.keyboard_button = sf::Keyboard::D;
 		_actions[key] = [](std::shared_ptr<Core::ControlledActor> Actor) {
 			//std::cout << "D Pressed\n";
 			Actor->Move(sf::Vector2f(2.0, 0));
@@ -46,10 +46,10 @@ namespace Test {
 	}
 
 	void ControllerForAnimationTest::InitMainCharacter() {
-		auto ActorSettings = CREATE_SETTINGS(Settings::ActorSettings, "Cfg\\MainActorSettings.json");
+		/*auto ActorSettings = CREATE_SETTINGS(Settings::ActorSettings, "Cfg\\MainActorSettings.json");
 		auto TextureSettings = CREATE_SETTINGS(Settings::TextureSettings, "Cfg\\MainTextureSettings.json");
 		auto AnimationSettings = CREATE_SETTINGS(Settings::AnimationSettings, "Cfg\\MainAnimationSettings.json");
-		_maincharacter = std::make_shared<Core::EmptyControlledActor>(_world, ActorSettings, TextureSettings, AnimationSettings, this);
+		_main_character = std::make_shared<Core::EmptyControlledActor>(_world, ActorSettings, TextureSettings, AnimationSettings, this);*/
 	}
 
 }

@@ -2,23 +2,14 @@
 #include "SettingsBase.h"
 #include <compare>
 namespace Settings {
-	class EngineSettings :public SettingsBase{
-	public:
-		EngineSettings(std::string winsettings, std::string mussettings, std::string worldsettings):
-			_windowsettings(winsettings),_musicsettings(mussettings),_worldsettings(worldsettings){}
+	struct EngineSettings :public SettingsBase{
+		EngineSettings(std::string window_settings, std::string music_settings, std::string world_settings):
+			window_settings_path{ window_settings }, music_settings_path{ music_settings }, world_settings_path{ world_settings }{}
 		EngineSettings() = default;
-	public:
-		// Inherited via SettingsBase
 		virtual std::string ToStdString()const override;
-	public:
-		std::string _windowsettings = "windowsettings.json";
-		std::string _musicsettings = "musicsettings.json";
-		std::string _worldsettings = "worldsettings.json";
-		bool operator ==(const EngineSettings& obj)const {
-			return (_windowsettings == obj._windowsettings) &&
-				(_musicsettings == obj._musicsettings) &&
-				(_worldsettings == obj._worldsettings);
-		}
+		std::string window_settings_path = "windowsettings.json";
+		std::string music_settings_path = "musicsettings.json";
+		std::string world_settings_path = "worldsettings.json";
+		auto operator <=>(const EngineSettings&)const = default;
 	};
-	NLOHMANN_DEFINE_TYPE_NON_INTRUSIVE(EngineSettings, _windowsettings, _musicsettings, _worldsettings)
 }

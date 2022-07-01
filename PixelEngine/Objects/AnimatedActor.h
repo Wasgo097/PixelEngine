@@ -6,27 +6,21 @@
 namespace Core{
 	class AnimatedActor :public Actor{
 	public:
-		AnimatedActor(WorldBase* world, const Settings::ActorSettings& actorsettings, const Settings::TextureSettings& texturesettings, const Settings::AnimationSettings& animationsettings);
+		AnimatedActor(WorldBase* world, const Settings::ActorSettings& actor_settings, const Settings::TextureSettings& texture_settings, const Settings::AnimationSettings& animation_settings);
 		AnimatedActor(const AnimatedActor&) = delete;
 		AnimatedActor&operator=(const AnimatedActor&) = delete;
 		AnimatedActor(AnimatedActor&&) = delete;
 		AnimatedActor&operator=(AnimatedActor&&) = delete;
 		virtual ~AnimatedActor() = default;
-	public:
-		virtual void Tick(float deltatime)override;
+
+		virtual void Tick(float delta_time)override;
 		virtual void Move(const sf::Vector2f& velocity)override;
-		virtual void ConstPush(const sf::Vector2f& constvelocity)override;
-		virtual void Draw(sf::RenderWindow & window)override;
-	public:
-		virtual void Init()override{}
-		virtual void OnLoad()override{}
-		virtual void OnSpawn()override{}
-		virtual void OnDelete()override{}
+
 		virtual std::string ToString()const override;
 	protected:
-		Settings::AnimationSettings _animationsettings;
+		Settings::AnimationSettings _animation_settings;
 		std::unique_ptr<Animation::Animation> _animation;
-		std::map<AnimationEnums::Direction, int>& _directiontorowref;
-		int _animatedrow = 0;
+		std::map<AnimationEnums::Direction, int> _direction_row;
+		int _animated_row = 0;
 	};
 }

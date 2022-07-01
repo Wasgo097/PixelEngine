@@ -2,65 +2,65 @@
 #include "Actor.h"
 #include "Core/World/WorldBase.h"
 namespace Core {
-	Actor::Actor(WorldBase* world, const Settings::ActorSettings& actorsettings, const Settings::TextureSettings& texturesettings) :
-		_world(world), _actorsettings(actorsettings), _texturesettings(texturesettings), _velocity(_actorsettings.Velocity), _tickon(_actorsettings.TickFlag) {
+	Actor::Actor(WorldBase* world, const Settings::ActorSettings& actor_settings, const Settings::TextureSettings& texture_settings) :
+		_world(world), _actor_settings(actor_settings), _texture_settings(texture_settings), _velocity(_actor_settings.velocity), _tick(_actor_settings.tick) {
 		//collision
-		if (static_cast<int>(_actorsettings.CollisionType) > 1) {
-			_collider = sf::RectangleShape(_actorsettings.ColliderSize);
-			sf::Vector2f temporigin = _collider->getSize();
-			temporigin.x /= 2.0f;
+		if (static_cast<int>(_actor_settings.collision) > 1) {
+			_collider = sf::RectangleShape(_actor_settings.collider_size);
+			sf::Vector2f temp_origin = _collider->getSize();
+			temp_origin.x /= 2.0f;
 			//bottom center
-			_collider->setOrigin(temporigin);
-			_collider->setPosition(_actorsettings.Position);
+			_collider->setOrigin(temp_origin);
+			_collider->setPosition(_actor_settings.position);
 		}
 		//texture and sprite
-		if (!_texturesettings._texturepath.empty()) {
+		if (!_texture_settings.texture_path.empty()) {
 			_texture = std::make_unique<sf::Texture>();
-			if (_texture->loadFromFile(_texturesettings._texturepath)) {
-				_texture->setSmooth(texturesettings._smooth);
-				_texture->setRepeated(texturesettings._repeatable);
+			if (_texture->loadFromFile(_texture_settings.texture_path)) {
+				_texture->setSmooth(texture_settings.smooth);
+				_texture->setRepeated(texture_settings.repeatable);
 				_sprite = std::make_unique<sf::Sprite>();
 				_sprite->setTexture(*_texture);
-				sf::Vector2f temporigin(_texture->getSize().x, _texture->getSize().y);
-				temporigin.x /= 2.0f;
-				_sprite->setOrigin(temporigin);
-				_sprite->setPosition(_actorsettings.Position);
+				sf::Vector2f temp_origin(_texture->getSize().x, _texture->getSize().y);
+				temp_origin.x /= 2.0f;
+				_sprite->setOrigin(temp_origin);
+				_sprite->setPosition(_actor_settings.position);
 			}
 			else {
-				throw std::invalid_argument("Wrong path in actor constructor: " + _texturesettings._texturepath + " in " + ToString() + " " + _actorsettings.ToStdString());
+				throw std::invalid_argument("Wrong path in actor constructor: " + _texture_settings.texture_path + " in " + ToString() + " " + _actor_settings.ToStdString());
 			}
 
 		}
 	}
 	bool Actor::TickFlag()const {
-		return _tickon;
+		return _tick;
 	}
-	void Actor::SetTickFlag(bool Flag)
+	void Actor::SetTickFlag(bool flag)
 	{
-		_tickon = Flag;
+		_tick = flag;
 	}
-	void Actor::Tick(float deltatime) {
-		if (_actorsettings.ActorType == ActorsEnums::ActorType::Dynamic&&_velocity!=sf::Vector2f()) {
-			auto movevec = _velocity ;
+	void Actor::Tick(float delta_time) {
+		if (_actor_settings.type == ActorsEnums::ActorType::Dynamic&&_velocity!=sf::Vector2f()) {
+			auto move_vector = _velocity ;
 			if (_sprite)
-				_sprite->move(movevec);
+				_sprite->move(move_vector);
 			if (_collider)
-				_collider->move(movevec);
+				_collider->move(move_vector);
 			if (!_pushed)
 				_velocity = sf::Vector2f(0, 0);
 		}
 	}
 	bool Actor::CanCollide() const {
-		return static_cast<int>(_actorsettings.CollisionType) > 0;
+		return static_cast<int>(_actor_settings.collision) > 0;
 	}
 	const sf::RectangleShape& Actor::GetCollider() const {
 		return *_collider;
 	}
-	void Actor::SetWorld(WorldBase* worldptr) {
-		_world = worldptr;
+	void Actor::SetWorld(WorldBase* world_ptr) {
+		_world = world_ptr;
 	}
 	void Actor::Draw(sf::RenderWindow& window) {
-		if (_collider&&_actorsettings.DrawableCollisionBox)
+		if (_collider&&_actor_settings.drawable_collision_box)
 			window.draw(*_collider);
 		if (_sprite)
 			window.draw(*_sprite);
@@ -70,8 +70,8 @@ namespace Core {
 		_velocity = velocity;
 		_pushed = false;
 	}
-	void Actor::ConstPush(const sf::Vector2f& constvelocity) {
-		_velocity = constvelocity;
+	void Actor::ConstPush(const sf::Vector2f& const_velocity) {
+		_velocity = const_velocity;
 		_pushed = true;
 	}
 }

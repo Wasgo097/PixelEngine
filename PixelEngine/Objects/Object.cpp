@@ -2,9 +2,9 @@
 #include "Object.h"
 namespace Core{
 	void Object::Destroy(){
-		_todestroy = true;
+		_to_destroy = true;
 	}
 	bool Object::ToDestroy(){
-		return _todestroy;
+		return _to_destroy;
 	}
 }

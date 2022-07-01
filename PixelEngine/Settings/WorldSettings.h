@@ -1,23 +1,15 @@
 #pragma once
 #include "SettingsBase.h"
 namespace Settings{
-	class WorldSettings :public SettingsBase{
-	public:
-		WorldSettings(size_t buffer_size, int gcfrequentlevel,int cycletomove) :
-			_buffersize(buffer_size),_gcfrequentlevel(gcfrequentlevel),_cycletomove(cycletomove){};
+	struct WorldSettings :public SettingsBase{
+		WorldSettings(size_t buffer_size, int gc_frequent_level,int cycle_to_move) :
+			buffer_size{ buffer_size }, gc_frequent_level{ gc_frequent_level }, cycle_to_move{ cycle_to_move }{};
 		WorldSettings() = default;
-	public:
-		// Inherited via SettingsBase
 		virtual std::string ToStdString()const override;
-	public:
-		size_t _buffersize=200;
-		int _gcfrequentlevel=5;
-		int _cycletomove=10;
-		bool operator ==(const WorldSettings& obj)const {
-			return (_buffersize == obj._buffersize) &&
-				(_gcfrequentlevel == obj._gcfrequentlevel) &&
-				(_cycletomove == obj._cycletomove);
-		}
+		size_t buffer_size=200;
+		int gc_frequent_level=5;
+		int cycle_to_move=10;
+
+		auto operator <=>(const WorldSettings&)const = default;
 	};
-	NLOHMANN_DEFINE_TYPE_NON_INTRUSIVE(WorldSettings, _buffersize, _gcfrequentlevel, _cycletomove)
 }

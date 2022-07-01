@@ -2,7 +2,7 @@
 #include "Utility/CommonHeaders.h"
 #include "Controller/BaseImplementations/EmptyController.h"
 Core::EmptyWorld::EmptyWorld(const Settings::WorldSettings& worlsettings, Engine* parent) :WorldBase(worlsettings, parent) {
-	_maincontroller = std::make_unique<Controller::EmptyController>(this);
+	_main_controller = std::make_unique<Controller::EmptyController>(this);
 }
 void Core::EmptyWorld::CheckQuit(){
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Escape)) {

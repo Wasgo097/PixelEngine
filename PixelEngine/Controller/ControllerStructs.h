@@ -4,14 +4,10 @@
 #include <compare>
 namespace Controller{
 	struct Key{
-		InputType _inputtype;
-		sf::Event::EventType _eventtype;
-		sf::Keyboard::Key _keyboardbutton;
-		sf::Mouse::Button _mousebutton;
-		//for std::map as key
-		/*bool operator<(const Key& key)const{
-			return static_cast<int>(_inputtype) < static_cast<int>(key._inputtype);
-		}*/
+		InputType input_type;
+		sf::Event::EventType event_type;
+		sf::Keyboard::Key keyboard_button;
+		sf::Mouse::Button mouse_button;
 		auto operator<=>(const Key& rhs)const = default;
 	};
 }

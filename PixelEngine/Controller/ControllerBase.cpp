@@ -2,35 +2,35 @@
 #include "Utility/CommonHeaders.h"
 #include <iostream>
 namespace Controller {
-	ControllerBase::ControllerBase(Core::WorldBase* world):_world(world){}
-	void ControllerBase::ServiceInput(sf::Event currentevent){
-		for (const auto& [Key, Value] : _actions) {
-			if (TestEvent(Key, currentevent)) {
-				DoAction(Key);
+	ControllerBase::ControllerBase(Core::WorldBase* world) :_world{ world } {}
+	void ControllerBase::ServiceInput(sf::Event current_event){
+		for (const auto& [key, value] : _actions) {
+			if (TestEvent(key, current_event)) {
+				DoAction(key);
 				break;
 			}
 		}
 	}
 	std::shared_ptr<Core::ControlledActor> ControllerBase::GetMainCharacter(){
-		return _maincharacter;
+		return _main_character;
 	}
-	bool ControllerBase::TestEvent(const Controller::Key& k, sf::Event e)const {
+	bool ControllerBase::TestEvent(const Controller::Key& key, sf::Event action)const {
 		// Mouse event
-		if (k._inputtype == Controller::InputType::MouseInput &&
-			k._eventtype == e.type &&
-			k._mousebutton == e.mouseButton.button) {
+		if (key.input_type == Controller::InputType::MouseInput &&
+			key.event_type == action.type &&
+			key.mouse_button == action.mouseButton.button) {
 			return true;
 		}
 		// Keyboard event
-		if (k._inputtype == Controller::InputType::KeyboardInput &&
-			k._eventtype == e.type &&
-			k._keyboardbutton == e.key.code) {
+		if (key.input_type == Controller::InputType::KeyboardInput &&
+			key.event_type == action.type &&
+			key.keyboard_button == action.key.code) {
 			return true;
 		}
 		//todo service joystick input here
 		return false;
 	}
 	void ControllerBase::DoAction(const Controller::Key& key) {
-		_actions[key](_maincharacter);
+		_actions[key](_main_character);
 	}
 }

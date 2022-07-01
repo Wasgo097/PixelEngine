@@ -1,7 +1,6 @@
 #include "ControllerBase.h"
 #include <iostream>
 namespace Core::Controller {
-	ControllerBase::ControllerBase(){}
 	void ControllerBase::ServiceInput(sf::Event current_event){
 		for (const auto& [key, value] : _actions) {
 			if (TestEvent(key, current_event)) {

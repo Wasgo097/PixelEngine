@@ -1,20 +1,19 @@
 #pragma once
-#include "Settings/EngineSettings.h"
-#include "Settings/WindowSettings.h"
-#include "Settings/WorldSettings.h"
-#include "Settings/MusicSettings.h"
-#include "Interfaces/ILoopingThread.h"
-#include "Core/World/WorldBase.h"
 #include <SFML/System/Clock.hpp>
 #include <SFML/Graphics/RenderWindow.hpp>
 #include <queue>
+#include "PXSettings/EngineSettings.h"
+#include "PXSettings/WindowSettings.h"
+#include "PXSettings/WorldSettings.h"
+#include "PXSettings/MusicSettings.h"
+#include "World/WorldBase.h"
 namespace Core {
 	class Engine {
 	public:
 		Engine();
 		virtual ~Engine();
 
-		void PushWorldToQueue(std::unique_ptr<WorldBase>&& new_world);
+		void PushWorldToQueue(std::unique_ptr<World::WorldBase>&& new_world);
 		int Run();
 	private:
 		void Close();
@@ -22,8 +21,8 @@ namespace Core {
 		void Update();
 	protected:
 		virtual void InitEngine();
-		std::unique_ptr<WorldBase> _current_world;
-		std::queue<std::unique_ptr<WorldBase>> _worlds;
+		std::unique_ptr<World::WorldBase> _current_world;
+		std::queue<std::unique_ptr<World::WorldBase>> _worlds;
 		std::unique_ptr<sf::RenderWindow> _main_window;
 
 		sf::Clock _clock;

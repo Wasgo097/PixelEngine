@@ -37,7 +37,7 @@ namespace AnimationEnums {
 	{Direction::DownIdle, "DownIdle"}
 		})
 }
-namespace Controller {
+namespace Core::Controller {
 	NLOHMANN_JSON_SERIALIZE_ENUM(InputType, {
 	{InputType::KeyboardInput, "KeyboardInput"},
 	{InputType::MouseInput, "MouseInput"},

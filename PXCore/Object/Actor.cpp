@@ -1,9 +1,7 @@
-#include "pch.h"
-#include "Utility/CommonHeaders.h"
 #include "Actor.h"
-#include "Core/World/WorldBase.h"
-namespace Core {
-	Actor::Actor(WorldBase* world, const Settings::ActorSettings& actor_settings, const Settings::TextureSettings& texture_settings) :
+#include "World/WorldBase.h"
+namespace Core::Object {
+	Actor::Actor(World::WorldBase* world, const Settings::ActorSettings& actor_settings, const Settings::TextureSettings& texture_settings) :
 		_world(world), _actor_settings(actor_settings), _texture_settings(texture_settings), _velocity(_actor_settings.velocity), _tick(_actor_settings.tick) {
 		//collision
 		if (static_cast<int>(_actor_settings.collision) > 1) {
@@ -28,7 +26,7 @@ namespace Core {
 				_sprite->setPosition(_actor_settings.position);
 			}
 			else {
-				throw std::invalid_argument("Wrong path in actor constructor: " + _texture_settings.texture_path + " in " + ToString() + " " + _actor_settings.ToStdString());
+				throw std::invalid_argument("Wrong path in actor constructor: " + _texture_settings.texture_path + " in " + ToString());
 			}
 
 		}
@@ -57,7 +55,7 @@ namespace Core {
 	const sf::RectangleShape& Actor::GetCollider() const {
 		return *_collider;
 	}
-	void Actor::SetWorld(WorldBase* world_ptr) {
+	void Actor::SetWorld(World::WorldBase* world_ptr) {
 		_world = world_ptr;
 	}
 	void Actor::Draw(sf::RenderWindow& window) {

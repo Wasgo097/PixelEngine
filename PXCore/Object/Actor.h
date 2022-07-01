@@ -4,11 +4,13 @@
 #include "PXSettings/TextureSettings.h"
 #include <SFML/Graphics.hpp>
 #include <optional>
-namespace Core::Object {
+namespace Core::World {
 	class WorldBase;
+}
+namespace Core::Object {
 	class Actor :public Object{
 	public:
-		Actor(WorldBase* world, const Settings::ActorSettings & actor_settings,const Settings::TextureSettings& texture_settings);
+		Actor(World::WorldBase* world, const Settings::ActorSettings & actor_settings,const Settings::TextureSettings& texture_settings);
 		Actor(const Actor &) = delete;
 		Actor & operator=(const Actor &) = delete;
 		Actor(Actor &&) = delete;;
@@ -19,7 +21,7 @@ namespace Core::Object {
 		void SetTickFlag(bool flag);
 		bool CanCollide()const;
 		const sf::RectangleShape &GetCollider()const;
-		void SetWorld(WorldBase* world_ptr);
+		void SetWorld(World::WorldBase* world_ptr);
 	public:
 		virtual void Tick(float delta_time);
 		virtual void Move(const sf::Vector2f& velocity);
@@ -30,7 +32,7 @@ namespace Core::Object {
 	private:
 		bool _tick=false;
 	protected:
-		WorldBase* _world;
+		World::WorldBase* _world;
 		std::unique_ptr<sf::Texture> _texture;
 		std::unique_ptr<sf::Sprite> _sprite;
 		std::optional<sf::RectangleShape> _collider;

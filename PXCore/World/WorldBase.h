@@ -16,7 +16,7 @@ namespace Core::World {
 		virtual ~WorldBase() = default;
 
 		template<typename type_to_create, typename ...Argv>
-			requires std::derived_from<type_to_create, Core::Actor>
+			requires std::derived_from<type_to_create, Core::Object::Actor>
 		std::shared_ptr<type_to_create> SpawnActor(const Settings::ActorSettings& actor_settings, const Settings::TextureSettings& texture_settings, Argv && ...argv) {
 			std::shared_ptr<type_to_create> result;
 			type_to_create* ptr = new type_to_create(this, actor_settings, texture_settings, std::forward<Argv>(argv)...);
@@ -26,7 +26,7 @@ namespace Core::World {
 			return result;
 		}
 		template<typename type_to_create, typename ...Argv>
-			requires std::derived_from<type_to_create, Core::Actor>
+			requires std::derived_from<type_to_create, Core::Object::Actor>
 		std::shared_ptr<type_to_create> SpawnConstActor(const Settings::ActorSettings& actor_settings, const Settings::TextureSettings& texture_settings, Argv && ...argv) {
 			std::shared_ptr<type_to_create> result;
 			type_to_create* ptr = new type_to_create(this, actor_settings, texture_settings, std::forward<Argv>(argv)...);

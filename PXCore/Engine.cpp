@@ -1,10 +1,8 @@
-#include "Utility/CommonHeaders.h"
 #include "Engine.h"
-#include "Core/World/WorldBase.h"
-#include "Objects/ControlledActor.h"
-#include "Factory/SettingsFactory.h"
+#include "Object/ControlledActor.h"
+#include "PXFactory/SettingsFactory.h"
 #include "Controller/ControllerBase.h"
-#include "Core/World/BaseImplementations/EmptyWorld.h"
+#include "World/BaseImplementations/EmptyWorld.h"
 #include <SFML/System.hpp>
 #include <chrono>
 using namespace std::chrono_literals;
@@ -44,7 +42,7 @@ namespace Core {
 		}
 		return 1;
 	}
-	void Engine::PushWorldToQueue(std::unique_ptr<WorldBase>&& new_world) {
+	void Engine::PushWorldToQueue(std::unique_ptr<World::WorldBase>&& new_world) {
 		if (_current_world)
 			_worlds.push(std::move(new_world));
 		else {
@@ -82,6 +80,6 @@ namespace Core {
 		_main_window->display();
 	}
 	void Engine::InitEngine() {
-		PushWorldToQueue(std::make_unique<EmptyWorld>(_world_settings, this));
+		PushWorldToQueue(std::make_unique<World::EmptyWorld>(_world_settings, this));
 	}
 }

@@ -1,11 +1,9 @@
-#include "pch.h"
-#include "Utility/CommonHeaders.h"
 #include "AnimatedActor.h"
-namespace Core {
-	AnimatedActor::AnimatedActor(WorldBase* world, const Settings::ActorSettings& actor_settings, const Settings::TextureSettings& texture_settings, const Settings::AnimationSettings& animation_settings) :
+namespace Core::Object {
+	AnimatedActor::AnimatedActor(World::WorldBase* world, const Settings::ActorSettings& actor_settings, const Settings::TextureSettings& texture_settings, const Settings::AnimationSettings& animation_settings) :
 		Actor(world, actor_settings, texture_settings),
 		_animation_settings(animation_settings),
-		_animation(std::make_unique<Animation::Animation>(*_sprite, _animation_settings)),
+		_animation(std::make_unique<Extension::Animation>(*_sprite, _animation_settings)),
 		_direction_row(_animation_settings.direction_to_row)
 	{
 		if (!_direction_row.empty()) {

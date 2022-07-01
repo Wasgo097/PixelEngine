@@ -11,6 +11,6 @@ namespace Core::Controller {
 		virtual void InitMainCharacterInputBindings() override;
 		virtual void InitMainCharacter() override;
 	protected:
-		Core::World::WorldBase* _world
+		Core::World::WorldBase* _world;
 	};
 }

@@ -55,6 +55,15 @@
     <ClInclude Include="Object\ControlledActor.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="Controller\ControllerStructs.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Controller\BaseImplementations\EmptyController.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Controller\ControllerBase.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Engine\Engine.cpp" />
@@ -83,6 +92,12 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Object\ControlledActor.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Controller\BaseImplementations\EmptyController.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Controller\ControllerBase.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

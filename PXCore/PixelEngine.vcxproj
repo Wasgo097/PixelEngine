@@ -19,6 +19,8 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="Controller\BaseImplementations\EmptyController.cpp" />
+    <ClCompile Include="Controller\ControllerBase.cpp" />
     <ClCompile Include="Object\Actor.cpp" />
     <ClCompile Include="Object\AnimatedActor.cpp" />
     <ClCompile Include="Object\BaseImplementations\EmptyControlledActor.cpp" />
@@ -31,6 +33,9 @@
     <ClCompile Include="World\WorldBase.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Controller\BaseImplementations\EmptyController.h" />
+    <ClInclude Include="Controller\ControllerBase.h" />
+    <ClInclude Include="Controller\ControllerStructs.h" />
     <ClInclude Include="Object\Actor.h" />
     <ClInclude Include="Object\AnimatedActor.h" />
     <ClInclude Include="Object\BaseImplementations\EmptyControlledActor.h" />

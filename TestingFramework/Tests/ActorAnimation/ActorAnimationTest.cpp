@@ -34,7 +34,7 @@ namespace Test {
 		MainAnimationSettings._framescount[11] = 9;
 		CREATE_SETTINGS_FILE("Cfg\\MainAnimationSettings.json", MainAnimationSettings)
 #endif
-		int result = _engine.Main();
+		int result = _engine.Run();
 	}
 
 	bool ActorAnimationTest::RunTest()

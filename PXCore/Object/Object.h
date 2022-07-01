@@ -1,6 +1,6 @@
 #pragma once
 #include <string>
-namespace Object{
+namespace Core::Object{
 	class Object{
 	public:
 		virtual ~Object() = default;

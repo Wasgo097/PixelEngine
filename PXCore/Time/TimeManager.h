@@ -1,14 +1,14 @@
 #pragma once
-#include "Interfaces/ITimeObservable.h"
-#include "Interfaces/ILoopingThread.h"
+#include "PXUtilities/Interfaces/ITimeObservable.h"
+#include "PXUtilities/Interfaces/ILoopingThread.h"
 #include "Objects/Actor.h"
 #include "Utility/ThreadingResource.h"
 namespace Core{
 	class WorldBase;
 }
-namespace Time {
+namespace Core::Time {
 	class ITimeObserver;
-	class TimeManager : public ITimeObservable,Types::ILoopingThread,Core::Actor {
+	class TimeManager : public Time::ITimeObservable,ILoopingThread,Core::Object::Actor {
 	public:
 		// Inherited via ITimeObservable
 		virtual void AttachToSeconds(ITimeObserver * item) override;

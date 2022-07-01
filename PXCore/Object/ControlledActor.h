@@ -1,11 +1,10 @@
 #pragma once
 #include "AnimatedActor.h"
-#include "Controller/ControllerStructs.h"
-#include <functional>
-namespace Controller {
+#include "PXCore/Controller/ControllerBase.h"
+namespace Core::Controller {
 	class ControllerBase;
 }
-namespace Object {
+namespace Core::Object {
 	class ControlledActor:public AnimatedActor{
 	public:
 		ControlledActor(WorldBase* world, const Settings::ActorSettings& actor_settings, const Settings::TextureSettings& texture_settings, const Settings::AnimationSettings& animation_settings,Controller::ControllerBase * controller);

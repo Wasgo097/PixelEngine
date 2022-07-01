@@ -1,26 +1,26 @@
 #pragma once
 #include <SFML/Window/Event.hpp>
-#include "ControllerStructs.h"
 #include <memory>
 #include <map>
 #include <functional>
-namespace Core {
+#include "PXUtilities/ControllerStructs.h"
+namespace Core::Object {
 	class ControlledActor;
 }
-namespace Controller {
+namespace Core::Controller {
 	class ControllerBase {
 	public:
-		ControllerBase();
 		virtual ~ControllerBase() = default;
 		virtual void InitMainCharacterInputBindings() = 0;
 		virtual void InitMainCharacter() = 0;
 		virtual void ServiceInput(sf::Event current_event);
-		std::shared_ptr<Core::ControlledActor> GetMainCharacter();
+		std::shared_ptr<Core::Object::ControlledActor> GetMainCharacter();
 	protected:
-		bool TestEvent(const Controller::Key& key, sf::Event action)const;
-		void DoAction(const Controller::Key& key);
+		bool TestEvent(const Key& key, sf::Event action)const;
+		void DoAction(const Key& key);
 
-		std::map<Controller::Key, std::function<void(std::shared_ptr<Core::ControlledActor>)>> _actions;
-		std::shared_ptr<Core::ControlledActor> _main_character;
+		std::map<Key, std::function<void(std::shared_ptr<Core::Object::ControlledActor>)>> _actions;
+		std::shared_ptr<Core::Object::ControlledActor> _main_character;
+
 	};
 }

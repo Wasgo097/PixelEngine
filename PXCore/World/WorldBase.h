@@ -1,16 +1,19 @@
 #pragma once
 #include <stack>
-#include "Objects/Actor.h"
-#include "Objects/ControlledActor.h"
-#include "Core/ActorsManager/ActorsManager.h"
-#include "Settings/WorldSettings.h"
 #include <concepts>
+#include "Object/Actor.h"
+#include "Object/AnimatedActor.h"
+#include "Object/ControlledActor.h"
+#include "ActorsManager.h"
+#include "PXSettings/WorldSettings.h"
 namespace Core {
 	class Engine;
+}
+namespace Core::World {
 	class WorldBase {
 	public:
 		WorldBase(const Settings::WorldSettings& world_settings = Settings::WorldSettings(), Engine* parent = nullptr);
-		virtual ~WorldBase()=default;
+		virtual ~WorldBase() = default;
 
 		template<typename type_to_create, typename ...Argv>
 			requires std::derived_from<type_to_create, Core::Actor>
@@ -33,7 +36,7 @@ namespace Core {
 			return result;
 		}
 		template<typename type_to_create, typename ...Argv>
-			requires std::derived_from<type_to_create, Core::AnimatedActor>
+			requires std::derived_from<type_to_create, Core::Object::AnimatedActor>
 		std::shared_ptr<type_to_create> SpawnAnimatedActor(const Settings::ActorSettings& actor_settings, const Settings::TextureSettings& texture_settings, const Settings::AnimationSettings& animation_settings, Argv && ...argv) {
 			std::shared_ptr<type_to_create> result;
 			type_to_create* ptr = new type_to_create(this, actor_settings, texture_settings, animation_settings, std::forward<Argv>(argv)...);

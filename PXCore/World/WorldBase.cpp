@@ -1,9 +1,9 @@
-#include "Utility/CommonHeaders.h"
 #include "WorldBase.h"
-#include "Core/ActorsManager/ActorsManager.h"
+#include <iostream>
+#include "ActorsManager.h"
 #include "Controller/ControllerBase.h"
-#include "Core/Engine/Engine.h"
-namespace Core {
+#include "Engine.h"
+namespace Core::World {
 	WorldBase::WorldBase(const Settings::WorldSettings& world_settings, Engine* parent) :_parent(parent),
 		_world_settings(world_settings),_actor_manager(std::make_unique<ActorsManager>(world_settings.buffer_size, world_settings.gc_frequent_level, world_settings.cycle_to_move)){
 	}

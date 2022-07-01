@@ -1,9 +1,9 @@
 #pragma once
 #include "Actor.h"
 #include "Extensions/Animation.h"
-#include "Settings/AnimationSettings.h"
-#include "Enums/AnimationEnums.h"
-namespace Core{
+#include "PXSettings/AnimationSettings.h"
+#include "PXUtilities/Enums/AnimationEnums.h"
+namespace Core::Object{
 	class AnimatedActor :public Actor{
 	public:
 		AnimatedActor(WorldBase* world, const Settings::ActorSettings& actor_settings, const Settings::TextureSettings& texture_settings, const Settings::AnimationSettings& animation_settings);

@@ -1,8 +1,8 @@
 #pragma once
 #include <SFML/Window/Event.hpp>
-#include "Enums/InputEnums.h"
 #include <compare>
-namespace Controller{
+#include "Enums/InputEnums.h"
+namespace Core::Controller{
 	struct Key{
 		InputType input_type;
 		sf::Event::EventType event_type;

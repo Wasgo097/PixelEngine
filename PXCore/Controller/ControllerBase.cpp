@@ -1,7 +1,6 @@
 #include "ControllerBase.h"
-#include "Utility/CommonHeaders.h"
 #include <iostream>
-namespace Controller {
+namespace Core::Controller {
 	ControllerBase::ControllerBase(){}
 	void ControllerBase::ServiceInput(sf::Event current_event){
 		for (const auto& [key, value] : _actions) {
@@ -11,7 +10,7 @@ namespace Controller {
 			}
 		}
 	}
-	std::shared_ptr<Core::ControlledActor> ControllerBase::GetMainCharacter(){
+	std::shared_ptr<Object::ControlledActor> ControllerBase::GetMainCharacter(){
 		return _main_character;
 	}
 	bool ControllerBase::TestEvent(const Controller::Key& key, sf::Event action)const {

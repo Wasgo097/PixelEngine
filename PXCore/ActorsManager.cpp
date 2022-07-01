@@ -1,15 +1,14 @@
-#include "Utility/CommonHeaders.h"
 #include "ActorsManager.h"
-#include <Objects/Actor.h>
+#include "Object/Actor.h"
 namespace Core {
 	void ActorsManager::DeleteActors() {
 		for (int i = 0; i < _frequency_level; i++) {
 			{
-				std::lock_guard lock(_first_stage.Mtx);
-				for (auto it = _first_stage.Rsc.begin(); it != _first_stage.Rsc.end(); it++) {
+				std::lock_guard lock(_first_stage.mtx);
+				for (auto it = _first_stage.rsc.begin(); it != _first_stage.rsc.end(); it++) {
 					if (it->second->ToDestroy()) {
 						it->second->OnDelete();
-						_first_stage.Rsc.erase(it);
+						_first_stage.rsc.erase(it);
 						it--;
 					}
 				}
@@ -17,11 +16,11 @@ namespace Core {
 			std::this_thread::sleep_for(std::chrono::milliseconds(_frequency_level * 30));
 		}
 		{
-			std::lock_guard lock(_second_stage.Mtx);
-			for (auto it = _second_stage.Rsc.begin(); it != _second_stage.Rsc.end(); it++) {
+			std::lock_guard lock(_second_stage.mtx);
+			for (auto it = _second_stage.rsc.begin(); it != _second_stage.rsc.end(); it++) {
 				if ((*it)->ToDestroy()) {
 					(*it)->OnDelete();
-					_second_stage.Rsc.erase(it);
+					_second_stage.rsc.erase(it);
 					it--;
 				}
 			}

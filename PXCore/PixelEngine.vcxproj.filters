@@ -15,23 +15,11 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Engine\Engine.h" />
+    <ClInclude Include="Engine.h" />
     <ClInclude Include="World\WorldBase.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="ActorsManager\ActorsManager.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Time\ILoopingThread.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Time\ITimeObservable.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Time\ITimeObserver.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Time\TimeManager.h">
+    <ClInclude Include="ActorsManager.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="World\BaseImplementations\EmptyWorld.h">
@@ -55,9 +43,6 @@
     <ClInclude Include="Object\ControlledActor.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Controller\ControllerStructs.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="Controller\BaseImplementations\EmptyController.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -66,14 +51,11 @@
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="Engine\Engine.cpp" />
-    <ClCompile Include="Time\TimeManager.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
+    <ClCompile Include="Engine.cpp" />
     <ClCompile Include="World\WorldBase.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="ActorsManager\ActorsManager.cpp">
+    <ClCompile Include="ActorsManager.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="World\BaseImplementations\EmptyWorld.cpp">

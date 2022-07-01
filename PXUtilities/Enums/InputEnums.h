@@ -1,5 +1,5 @@
 #pragma once
-namespace Controller {
+namespace Core::Controller {
 	enum class InputType {
 		KeyboardInput,
 		MouseInput,

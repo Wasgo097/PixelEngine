@@ -1,9 +1,12 @@
 #include "EmptyController.h"
-#include "Utility/CommonHeaders.h"
-#include "Objects/BaseImplementations/EmptyControlledActor.h"
-#include "Core/World/WorldBase.h"
-namespace Controller {
-	EmptyController::EmptyController(Core::WorldBase* world) :ControllerBase(world){
+#include <iostream>
+#include "Object/BaseImplementations/EmptyControlledActor.h"
+#include "PXSettings/ActorSettings.h"
+#include "PXSettings/TextureSettings.h"
+#include "PXSettings/AnimationSettings.h"
+namespace Core::Controller {
+	Controller::EmptyController::EmptyController(Core::World::WorldBase* world) :_world { world }
+	{
 	}
 	void EmptyController::InitMainCharacterInputBindings() {
 		Controller::Key key;
@@ -11,34 +14,34 @@ namespace Controller {
 		key.input_type = Controller::InputType::MouseInput;
 		key.event_type = sf::Event::MouseButtonPressed;
 		key.mouse_button = sf::Mouse::Left;
-		_actions[key] = [](std::shared_ptr<Core::ControlledActor> Actor) {
+		_actions[key] = [](std::shared_ptr<Core::Object::ControlledActor> Actor) {
 			std::cout << "Left Button Pressed\n";
 		};
 		key.input_type = Controller::InputType::KeyboardInput;
 		key.event_type = sf::Event::KeyPressed;
 		key.keyboard_button = sf::Keyboard::W;
-		_actions[key] = [](std::shared_ptr<Core::ControlledActor> Actor) {
+		_actions[key] = [](std::shared_ptr<Core::Object::ControlledActor> Actor) {
 			//std::cout << "W Pressed\n";
 			Actor->Move(sf::Vector2f(0, -10.0));
 		};
 		key.input_type = Controller::InputType::KeyboardInput;
 		key.event_type = sf::Event::KeyPressed;
 		key.keyboard_button = sf::Keyboard::S;
-		_actions[key] = [](std::shared_ptr<Core::ControlledActor> Actor) {
+		_actions[key] = [](std::shared_ptr<Core::Object::ControlledActor> Actor) {
 			//std::cout << "S Pressed\n";
 			Actor->Move(sf::Vector2f(0, 10.0));
 		};
 		key.input_type = Controller::InputType::KeyboardInput;
 		key.event_type = sf::Event::KeyPressed;
 		key.keyboard_button = sf::Keyboard::A;
-		_actions[key] = [](std::shared_ptr<Core::ControlledActor> Actor) {
+		_actions[key] = [](std::shared_ptr<Core::Object::ControlledActor> Actor) {
 			//std::cout << "A Pressed\n";
 			Actor->Move(sf::Vector2f(-10.0,0));
 		};
 		key.input_type = Controller::InputType::KeyboardInput;
 		key.event_type = sf::Event::KeyPressed;
 		key.keyboard_button = sf::Keyboard::D;
-		_actions[key] = [](std::shared_ptr<Core::ControlledActor> Actor) {
+		_actions[key] = [](std::shared_ptr<Core::Object::ControlledActor> Actor) {
 			//std::cout << "D Pressed\n";
 			Actor->Move(sf::Vector2f(10.0, 0));
 		};
@@ -57,6 +60,6 @@ namespace Controller {
 		texture_settings.smooth = true;
 		texture_settings.texture_path = "";
 		Settings::AnimationSettings animation_settings;
-		_main_character = std::make_shared<Core::EmptyControlledActor>(_world, actor_settings, texture_settings, animation_settings, this);
+		_main_character = std::make_shared<Core::Object::EmptyControlledActor>(_world, actor_settings, texture_settings, animation_settings, this);
 	}
 }

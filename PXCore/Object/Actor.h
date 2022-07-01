@@ -1,10 +1,10 @@
 #pragma once
 #include "Object.h"
-#include "Settings/ActorSettings.h"
-#include "Settings/TextureSettings.h"
+#include "PXSettings/ActorSettings.h"
+#include "PXSettings/TextureSettings.h"
 #include <SFML/Graphics.hpp>
 #include <optional>
-namespace Object {
+namespace Core::Object {
 	class WorldBase;
 	class Actor :public Object{
 	public:

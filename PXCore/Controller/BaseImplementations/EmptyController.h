@@ -1,13 +1,16 @@
 #pragma once
 #include "Controller/ControllerBase.h"
-namespace Controller {
+#include "World/WorldBase.h"
+namespace Core::Controller {
 	class EmptyController:public ControllerBase{
 	public:
-		EmptyController(Core::WorldBase* world);
+		EmptyController(Core::World::WorldBase* world);
 		virtual ~EmptyController() = default;
-	public:
+
 		// Inherited via ControllerBase
 		virtual void InitMainCharacterInputBindings() override;
 		virtual void InitMainCharacter() override;
+	protected:
+		Core::World::WorldBase* _world
 	};
 }

@@ -20,12 +20,12 @@ namespace Test{
 	protected:
 		std::string _rootpath;
 	private:
-		ActorSettings _actorsettings;
-		AnimationSettings _animationsettings;
-		EngineSettings _enginesettings;
-		MusicSettings _musicsettings;
-		TextureSettings _texturesettings;
-		WindowSettings _windowsettings;
-		WorldSettings _worldsettings;
+		ActorSettings _actor_settings;
+		AnimationSettings _animation_settings;
+		EngineSettings _engine_settings;
+		MusicSettings _music_settings;
+		TextureSettings _texture_settings;
+		WindowSettings _window_settings;
+		WorldSettings _world_settings;
 	};
 }

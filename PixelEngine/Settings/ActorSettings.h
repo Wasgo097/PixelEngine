@@ -15,6 +15,7 @@ namespace Settings {
 		sf::Vector2f velocity;
 		bool tick = false;
 		bool drawable_collision_box = false;
+
 		bool operator ==(const ActorSettings& obj)const {
 			return (collision == obj.collision) &&
 				(type == obj.type) &&

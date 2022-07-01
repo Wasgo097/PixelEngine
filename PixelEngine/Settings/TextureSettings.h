@@ -9,6 +9,8 @@ namespace Settings {
 		bool smooth = false;
 		bool repeatable = false;
 
-		auto operator <=>(const TextureSettings&)const = default;
+		bool operator==(const TextureSettings& obj)const {
+			return texture_path == obj.texture_path && smooth == obj.smooth && repeatable == obj.repeatable;
+		}
 	};
 }

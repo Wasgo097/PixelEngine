@@ -10,7 +10,7 @@
 using namespace std::chrono_literals;
 namespace Core {
 	Engine::Engine() {
-	/*	_engine_settings = CREATE_SETTINGS(Settings::EngineSettings, "Cfg\\enginesettings.json");
+		_engine_settings = CREATE_SETTINGS(Settings::EngineSettings, "Cfg\\enginesettings.json");
 		std::string settings_path = "Cfg\\" + _engine_settings.window_settings_path;
 		_window_settings = CREATE_SETTINGS(Settings::WindowSettings, settings_path);
 		settings_path = "Cfg\\" + _engine_settings.music_settings_path;
@@ -20,7 +20,7 @@ namespace Core {
 		_main_window = std::make_unique<sf::RenderWindow>(_window_settings.video_mode, _window_settings.window_name, _window_settings.display_style);
 		_main_window->setVerticalSyncEnabled(_window_settings.vsync);
 		if (_window_settings.fps > 1)
-			_main_window->setFramerateLimit(_window_settings.fps);*/
+			_main_window->setFramerateLimit(_window_settings.fps);
 	}
 	Engine::~Engine() {
 		Close();

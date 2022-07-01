@@ -10,7 +10,7 @@ namespace Core {
 	class WorldBase {
 	public:
 		WorldBase(const Settings::WorldSettings& world_settings = Settings::WorldSettings(), Engine* parent = nullptr);
-		virtual ~WorldBase()=0;
+		virtual ~WorldBase()=default;
 
 		template<typename type_to_create, typename ...Argv>
 			requires std::derived_from<type_to_create, Core::Actor>

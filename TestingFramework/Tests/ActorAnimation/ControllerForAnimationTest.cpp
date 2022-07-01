@@ -46,10 +46,10 @@ namespace Test {
 	}
 
 	void ControllerForAnimationTest::InitMainCharacter() {
-		/*auto ActorSettings = CREATE_SETTINGS(Settings::ActorSettings, "Cfg\\MainActorSettings.json");
+		auto ActorSettings = CREATE_SETTINGS(Settings::ActorSettings, "Cfg\\MainActorSettings.json");
 		auto TextureSettings = CREATE_SETTINGS(Settings::TextureSettings, "Cfg\\MainTextureSettings.json");
 		auto AnimationSettings = CREATE_SETTINGS(Settings::AnimationSettings, "Cfg\\MainAnimationSettings.json");
-		_main_character = std::make_shared<Core::EmptyControlledActor>(_world, ActorSettings, TextureSettings, AnimationSettings, this);*/
+		_main_character = std::make_shared<Core::EmptyControlledActor>(_world, ActorSettings, TextureSettings, AnimationSettings, this);
 	}
 
 }

@@ -12,6 +12,7 @@ namespace Settings {
 		unsigned int display_style = sf::Style::Fullscreen;
 		std::string window_name = "Window";
 		bool vsync = false;
+
 		bool operator ==(const WindowSettings& obj)const {
 			return (video_mode == obj.video_mode) &&
 				(fps == obj.fps) &&

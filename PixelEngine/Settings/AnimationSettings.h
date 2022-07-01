@@ -17,6 +17,7 @@ namespace Settings {
 		std::map<int, int> frames_count;
 		//k - direction v-row number
 		std::map<AnimationEnums::Direction, int> direction_to_row;
+
 		bool operator ==(const AnimationSettings& obj)const {
 			return (rect_size == obj.rect_size) &&
 				(switch_time == obj.switch_time) &&

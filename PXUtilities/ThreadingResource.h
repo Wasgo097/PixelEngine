@@ -23,7 +23,7 @@ namespace Utility {
 			rsc = std::move(src.rsc);
 			mtx = std::move(src.mtx);
 		}
-		SharedThreadingResource& operator=(SharedThreadingResource<T>&&) {
+		SharedThreadingResource& operator=(SharedThreadingResource<T>&& src) {
 			rsc = std::move(src.rsc);
 			mtx = std::move(src.mtx);
 			return *this;
@@ -31,7 +31,7 @@ namespace Utility {
 	};
 	template<typename T>
 	struct ThreadingResourceLight {
-		T rsc;
+		std::unique_ptr<T> rsc;
 		std::mutex mtx;
 		ThreadingResourceLight() {
 			rsc = std::make_unique<T>();

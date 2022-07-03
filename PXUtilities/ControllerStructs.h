@@ -8,6 +8,6 @@ namespace Core::Controller{
 		sf::Event::EventType event_type;
 		sf::Keyboard::Key keyboard_button;
 		sf::Mouse::Button mouse_button;
-		auto operator<=>(const Key& rhs)const = default;
+		auto operator<=>(const Key&)const = default;
 	};
 }

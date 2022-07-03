@@ -1,8 +1,10 @@
 #pragma once
 #include <mutex>
 #include <memory>
+#include <concepts>
 namespace Utility {
 	template<typename T>
+		requires std::is_default_constructible_v<T>
 	struct SharedThreadingResource {
 		std::shared_ptr<T> rsc;
 		std::shared_ptr<std::mutex> mtx;
@@ -30,6 +32,7 @@ namespace Utility {
 		}
 	};
 	template<typename T>
+		requires std::is_default_constructible_v<T>
 	struct ThreadingResourceLight {
 		std::unique_ptr<T> rsc;
 		std::mutex mtx;

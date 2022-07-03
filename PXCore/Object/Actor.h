@@ -20,7 +20,7 @@ namespace Core::Object {
 		bool TickFlag()const;
 		void SetTickFlag(bool flag);
 		bool CanCollide()const;
-		const sf::RectangleShape &GetCollider()const;
+		std::optional<sf::RectangleShape> GetCollider();
 		void SetWorld(World::WorldBase* world_ptr);
 	public:
 		virtual void Tick(float delta_time);

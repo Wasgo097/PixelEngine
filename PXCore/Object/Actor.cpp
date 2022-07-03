@@ -52,8 +52,8 @@ namespace Core::Object {
 	bool Actor::CanCollide() const {
 		return static_cast<int>(_actor_settings.collision) > 0;
 	}
-	const sf::RectangleShape& Actor::GetCollider() const {
-		return *_collider;
+	std::optional<sf::RectangleShape> Actor::GetCollider() {
+		return _collider;
 	}
 	void Actor::SetWorld(World::WorldBase* world_ptr) {
 		_world = world_ptr;

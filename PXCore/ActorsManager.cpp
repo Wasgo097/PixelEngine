@@ -128,31 +128,15 @@ namespace Core {
 		}
 	}
 	void ActorsManager::MoveToSecondStage() {
-		{
-			std::lock_guard lock(_first_stage.mtx);
-			//for (auto it = _first_stage.rsc->begin(); it != _first_stage.rsc->end(); it++) {
-			//	if (it->first >= _cycle_to_move) {
-			//		actors_to_move.push_back(it->second);
-			//		_first_stage.rsc->erase(it);
-			//		it--;
-			//	}
-			//	else
-			//		(it->first)++;
-			//}
-			auto it = std::partition(_first_stage.rsc->begin(), _first_stage.rsc->end(), [this](std::pair<int, std::shared_ptr<Object::Actor>>& element) {
-				element.first++;
-				return element.first >= _cycle_to_move;
-				});
-			//use move iterator 
-		}
-		{
-			std::lock_guard lock(_second_stage.mtx);
-			/*int to_reserve = (_second_stage.rsc->capacity() - _second_stage.rsc->size()) > actors_to_move.size() ? 0 : actors_to_move.size();
-			if (to_reserve > 0)
-				_second_stage.rsc->reserve(to_reserve);
-			for (const auto& actor : actors_to_move) {
-				_second_stage.rsc->push_back(actor);
-			}*/
-		}
+		std::lock_guard lock(_first_stage.mtx);
+		auto& first_stage_rsc = _first_stage.rsc;
+		auto it = std::partition(first_stage_rsc->begin(), first_stage_rsc->end(), [this](std::pair<int, std::shared_ptr<Object::Actor>>& element) {
+			element.first++;
+			return element.first >= _cycle_to_move;
+			});
+		std::lock_guard second_lock(_second_stage.mtx);
+		auto& second_stage_rsc = _second_stage.rsc;
+		second_stage_rsc->insert(second_stage_rsc->end(), std::make_move_iterator(first_stage_rsc->begin()), std::make_move_iterator(it));
+		first_stage_rsc->erase(first_stage_rsc->begin(), it);
 	}
 }

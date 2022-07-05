@@ -15,9 +15,6 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="Tests\SerializationTest\SerialziationTest.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="Tests\EngineSettup\EngineSetup.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -38,9 +35,6 @@
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Tests\SerializationTest\SerialziationTest.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="BaseTest.h">
       <Filter>Header Files</Filter>
     </ClInclude>

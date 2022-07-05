@@ -11,6 +11,7 @@
 #include "PXSettings/TextureSettings.h"
 #include "PXSettings/WindowSettings.h"
 #include "PXSettings/WorldSettings.h"
+using nlohmann::json;
 namespace ActorsEnums {
 
 NLOHMANN_JSON_SERIALIZE_ENUM(CollisionType, {

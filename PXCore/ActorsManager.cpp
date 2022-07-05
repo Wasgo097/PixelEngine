@@ -128,15 +128,15 @@ namespace Core {
 		}
 	}
 	void ActorsManager::MoveToSecondStage() {
-		std::lock_guard lock(_first_stage.mtx);
-		auto& first_stage_rsc = _first_stage.rsc;
-		auto it = std::partition(first_stage_rsc->begin(), first_stage_rsc->end(), [this](std::pair<int, std::shared_ptr<Object::Actor>>& element) {
-			element.first++;
-			return element.first >= _cycle_to_move;
-			});
-		std::lock_guard second_lock(_second_stage.mtx);
-		auto& second_stage_rsc = _second_stage.rsc;
-		second_stage_rsc->insert(second_stage_rsc->end(), std::make_move_iterator(first_stage_rsc->begin()), std::make_move_iterator(it));
-		first_stage_rsc->erase(first_stage_rsc->begin(), it);
+		//std::lock_guard lock(_first_stage.mtx);
+		//auto& first_stage_rsc = _first_stage.rsc;
+		//auto it = std::partition(first_stage_rsc->begin(), first_stage_rsc->end(), [this](std::pair<int, std::shared_ptr<Object::Actor>>& element) {
+		//	element.first++;
+		//	return element.first >= _cycle_to_move;
+		//	});
+		//std::lock_guard second_lock(_second_stage.mtx);
+		//auto& second_stage_rsc = _second_stage.rsc;
+		//second_stage_rsc->insert(second_stage_rsc->end(), std::make_move_iterator(first_stage_rsc->begin()), std::make_move_iterator(it));
+		//first_stage_rsc->erase(first_stage_rsc->begin(), it);
 	}
 }

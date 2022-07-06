@@ -21,8 +21,8 @@ namespace Factory {
 					std::cout << "Error in SettingsFactory<" << typeid(T).name() << ">::CreateSettings. Cant open path: " << path << std::endl;
 				}
 			}
-			catch (...) {
-				std::cout << "Fatal error in SettingsFactory<" << typeid(T).name() << ">::CreateSettings. Path: " << path << std::endl;
+			catch (std::exception & exception) {
+				std::cout << "Fatal error in SettingsFactory<" << typeid(T).name() << ">::CreateSettings. Path: " << path << std::endl<<exception.what();
 			}
 			return result;
 		}

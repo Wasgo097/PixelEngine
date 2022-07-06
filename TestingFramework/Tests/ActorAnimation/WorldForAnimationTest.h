@@ -9,6 +9,5 @@ namespace Test {
 		virtual void InitWorld()override;
 		virtual void EndWorld()override;
 		virtual void Draw(sf::RenderWindow& window)override;
-		virtual void Update(float delta)override;
 	};
 }

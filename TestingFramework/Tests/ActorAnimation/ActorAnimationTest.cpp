@@ -1,5 +1,5 @@
 #include "ActorAnimationTest.h"
-#include "Factory/SettingsFactory.h"
+#include "PXFactory/SettingsFactory.h"
 namespace Test {
 	void ActorAnimationTest::PrepareTest()
 	{
@@ -45,9 +45,6 @@ namespace Test {
 		}
 		catch (std::exception& ex) {
 			std::cout << "std exc " << ex.what() << "\n";
-		}
-		catch (...) {
-			return false;
 		}
 		return false;
 	}

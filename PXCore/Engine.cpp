@@ -8,7 +8,7 @@
 using namespace std::chrono_literals;
 namespace Core {
 	Engine::Engine() {
-		_engine_settings = CREATE_SETTINGS(Settings::EngineSettings, "Cfg\\enginesettings.json");
+		_engine_settings = CREATE_SETTINGS(Settings::EngineSettings, "Cfg\\engine_settings.json");
 		std::string settings_path = "Cfg\\" + _engine_settings.window_settings_path;
 		_window_settings = CREATE_SETTINGS(Settings::WindowSettings, settings_path);
 		settings_path = "Cfg\\" + _engine_settings.music_settings_path;

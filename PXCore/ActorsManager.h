@@ -1,6 +1,6 @@
 #pragma once
 #include <SFML/Graphics/RenderWindow.hpp>
-#include <list>
+#include <vector>
 #include "PXUtilities/ThreadingResource.h"
 #include "PXUtilities/Interfaces/ILoopingThread.h"
 namespace Core {
@@ -25,12 +25,12 @@ namespace Core {
 		void DeleteActors();
 		void MoveToSecondStage();
 		//pair: k -number of cycles 
-		Utility::ThreadingResourceLight<std::list<std::pair<int, std::shared_ptr<Object::Actor>>>> _first_stage;
-		Utility::ThreadingResourceLight<std::list<std::shared_ptr<Object::Actor>>> _second_stage;
-		Utility::ThreadingResourceLight<std::list<std::shared_ptr<Object::Actor>>> _const_actors;
-		const size_t _buffer_size;
-		const int _frequency_level;
-		const int _cycle_to_move;
+		Utility::ThreadingResourceLight<std::vector<std::pair<int, std::shared_ptr<Object::Actor>>>> _first_stage;
+		Utility::ThreadingResourceLight<std::vector<std::shared_ptr<Object::Actor>>> _second_stage;
+		Utility::ThreadingResourceLight<std::vector<std::shared_ptr<Object::Actor>>> _const_actors;
+		const size_t _BUFFER_SIZE;
+		const int _FREQUENCY_LEVEL;
+		const int _CYCLE_TO_MOVE;
 		std::unique_ptr<std::thread> _management_thr;
 		bool _terminated = false;
 	};

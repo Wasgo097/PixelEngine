@@ -93,7 +93,7 @@
     <Link>
       <SubSystem>Console</SubSystem>
       <AdditionalLibraryDirectories>$(SolutionDir)Build\Exe\PixelEngine\$(Platform)\$(Configuration)\;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
-      <AdditionalDependencies>PixelEngine.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
@@ -138,7 +138,7 @@
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
       <AdditionalLibraryDirectories>$(SolutionDir)Build\Exe\PixelEngine\$(Platform)\$(Configuration)\;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
-      <AdditionalDependencies>PixelEngine.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
@@ -152,6 +152,21 @@
   <ItemGroup>
     <ProjectReference Include="..\PixelEngine\PixelEngine.vcxproj">
       <Project>{7d35154a-9b4e-4c71-8fe8-37a7d467a355}</Project>
+    </ProjectReference>
+    <ProjectReference Include="..\PXCore\PixelEngine.vcxproj">
+      <Project>{7d35154a-9b4e-4c71-8fe8-37a7d467a355}</Project>
+    </ProjectReference>
+    <ProjectReference Include="..\PXFactory\PXFactory.vcxproj">
+      <Project>{863cee10-1256-4edd-8211-72317cdc7cda}</Project>
+    </ProjectReference>
+    <ProjectReference Include="..\PXSerialziation\PXSerialziation.vcxproj">
+      <Project>{bc7c08a7-29f9-418a-ae41-e4cb75b08a42}</Project>
+    </ProjectReference>
+    <ProjectReference Include="..\PXSettings\Settings.vcxproj">
+      <Project>{98ceb288-7710-4d3f-8e83-2a4ab5694af6}</Project>
+    </ProjectReference>
+    <ProjectReference Include="..\PXUtilities\Utilities.vcxproj">
+      <Project>{65b956ad-0588-4b53-837a-bf4db85f2e61}</Project>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

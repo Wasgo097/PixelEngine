@@ -5,7 +5,9 @@
 namespace Core {
 	ActorsManager::ActorsManager(size_t buffer_size, int gcfrequentlevel, int cycletomove) :
 		_management_thr{ std::make_unique<std::thread>(std::bind(&ActorsManager::Run, this)) },
-		_buffer_size{ buffer_size }, _frequency_level{ gcfrequentlevel }, _cycle_to_move{ cycletomove } {
+		_BUFFER_SIZE{ buffer_size }, _FREQUENCY_LEVEL{ gcfrequentlevel }, _CYCLE_TO_MOVE{ cycletomove } {
+		_first_stage.rsc->reserve(_BUFFER_SIZE);
+		_second_stage.rsc->reserve(_BUFFER_SIZE);
 	}
 	void ActorsManager::RegistrNewActor(std::shared_ptr<Object::Actor> actor) {
 		std::lock_guard lock(_first_stage.mtx);
@@ -91,8 +93,8 @@ namespace Core {
 	}
 	void ActorsManager::Run() {
 		while (!_terminated) {
-			DeleteActors();
-			MoveToSecondStage();
+			/*DeleteActors();
+			MoveToSecondStage();*/
 		}
 	}
 	void ActorsManager::Terminate() {
@@ -104,7 +106,7 @@ namespace Core {
 	}
 
 	void ActorsManager::DeleteActors() {
-		for (int i = 0; i < _frequency_level; i++) {
+		for (int i = 0; i < _FREQUENCY_LEVEL; i++) {
 			{
 				std::lock_guard lock(_first_stage.mtx);
 				auto it = std::partition(_first_stage.rsc->begin(), _first_stage.rsc->end(), [](const std::pair<int, std::shared_ptr<Object::Actor>>& item) {
@@ -114,7 +116,7 @@ namespace Core {
 					return result; });
 				_first_stage.rsc->erase(_first_stage.rsc->begin(), it);
 			}
-			std::this_thread::sleep_for(std::chrono::milliseconds(_frequency_level * 30));
+			std::this_thread::sleep_for(std::chrono::milliseconds(_FREQUENCY_LEVEL * 30));
 		}
 		{
 			std::lock_guard lock(_second_stage.mtx);
@@ -124,19 +126,20 @@ namespace Core {
 					item->OnDelete();
 				return result; });
 			_second_stage.rsc->erase(_second_stage.rsc->begin(), it);
-			std::this_thread::sleep_for(std::chrono::milliseconds(_frequency_level * 30));
+			std::this_thread::sleep_for(std::chrono::milliseconds(_FREQUENCY_LEVEL * 30));
 		}
 	}
 	void ActorsManager::MoveToSecondStage() {
-		//std::lock_guard lock(_first_stage.mtx);
-		//auto& first_stage_rsc = _first_stage.rsc;
-		//auto it = std::partition(first_stage_rsc->begin(), first_stage_rsc->end(), [this](std::pair<int, std::shared_ptr<Object::Actor>>& element) {
-		//	element.first++;
-		//	return element.first >= _cycle_to_move;
-		//	});
-		//std::lock_guard second_lock(_second_stage.mtx);
-		//auto& second_stage_rsc = _second_stage.rsc;
-		//second_stage_rsc->insert(second_stage_rsc->end(), std::make_move_iterator(first_stage_rsc->begin()), std::make_move_iterator(it));
-		//first_stage_rsc->erase(first_stage_rsc->begin(), it);
+		std::lock_guard lock(_first_stage.mtx);
+		auto& first_stage_rsc = _first_stage.rsc;
+		auto it = std::partition(first_stage_rsc->begin(), first_stage_rsc->end(), [this](std::pair<int, std::shared_ptr<Object::Actor>>& element) {
+			element.first++;
+			return element.first >= _CYCLE_TO_MOVE;
+			});
+		std::lock_guard second_lock(_second_stage.mtx);
+		auto& second_stage_rsc = _second_stage.rsc;
+		for (auto current_it = first_stage_rsc->begin(); current_it != it; current_it++) 
+			second_stage_rsc->insert(second_stage_rsc->end(), current_it->second);
+		first_stage_rsc->erase(first_stage_rsc->begin(), it);
 	}
 }

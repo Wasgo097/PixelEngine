@@ -26,9 +26,4 @@ namespace Test {
 		window.clear(sf::Color::Green);
 		WorldBase::Draw(window);
 	}
-	void WorldForAnimationTest::Update(float delta)
-	{
-		//std::cout << "WorldForAnimationTest update time " << delta << "\n";
-		Core::WorldBase::Update(delta);
-	}
 }

@@ -1,5 +1,5 @@
 {
     "buffer_size": 200,
     "cycle_to_move": 100,
-    "gc_frequent_level": 4
+    "gc_frequent_level": 5
 }

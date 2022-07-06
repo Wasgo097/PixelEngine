@@ -1,10 +1,11 @@
 #pragma once
 #include <stack>
 #include <concepts>
-#include "Object/Actor.h"
-#include "Object/AnimatedActor.h"
-#include "Object/ControlledActor.h"
-#include "ActorsManager.h"
+#include <SFML/Graphics/RenderWindow.hpp>
+#include "PXCore/Object/Actor.h"
+#include "PXCore/Object/AnimatedActor.h"
+#include "PXCore/Object/ControlledActor.h"
+#include "PXCore/ActorsManager.h"
 #include "PXSettings/WorldSettings.h"
 namespace Core {
 	class Engine;

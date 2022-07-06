@@ -27,14 +27,14 @@ namespace Core {
 		InitEngine();
 		bool game_loop_condition = _main_window->isOpen() && _current_world;
 		while (game_loop_condition) {
-			sf::Event event;
-			while (_main_window->pollEvent(event)) {
-				if (event.type == sf::Event::Closed) {
+			sf::Event action;
+			while (_main_window->pollEvent(action)) {
+				if (action.type == sf::Event::Closed) {
 					_current_world->EndWorld();
 					Close();
 				}
 				else
-					_current_world->ServiceInput(event);
+					_current_world->ServiceInput(action);
 			}
 			Render();
 			Update();

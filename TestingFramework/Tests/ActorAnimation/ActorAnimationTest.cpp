@@ -3,7 +3,7 @@
 namespace Test {
 	void ActorAnimationTest::PrepareTest()
 	{
-#define PREPARE_SETTINGS
+//#define PREPARE_SETTINGS
 #ifdef PREPARE_SETTINGS
 		Settings::ActorSettings main_actor_settings;
 		main_actor_settings.collision = ActorsEnums::CollisionType::Collision;

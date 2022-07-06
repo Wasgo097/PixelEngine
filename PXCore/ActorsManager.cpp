@@ -1,6 +1,7 @@
 #include "ActorsManager.h"
 #include <functional>
 #include <algorithm>
+#include <iostream>
 #include "Object/Actor.h"
 namespace Core {
 	ActorsManager::ActorsManager(size_t buffer_size, int gcfrequentlevel, int cycletomove) :
@@ -93,8 +94,8 @@ namespace Core {
 	}
 	void ActorsManager::Run() {
 		while (!_terminated) {
-			/*DeleteActors();
-			MoveToSecondStage();*/
+			DeleteActors();
+			MoveToSecondStage();
 		}
 	}
 	void ActorsManager::Terminate() {
@@ -136,10 +137,12 @@ namespace Core {
 			element.first++;
 			return element.first >= _CYCLE_TO_MOVE;
 			});
-		std::lock_guard second_lock(_second_stage.mtx);
-		auto& second_stage_rsc = _second_stage.rsc;
-		for (auto current_it = first_stage_rsc->begin(); current_it != it; current_it++) 
-			second_stage_rsc->insert(second_stage_rsc->end(), current_it->second);
-		first_stage_rsc->erase(first_stage_rsc->begin(), it);
+		if (it != first_stage_rsc->begin()) {
+			std::lock_guard second_lock(_second_stage.mtx);
+			auto& second_stage_rsc = _second_stage.rsc;
+			for (auto current_it = first_stage_rsc->begin(); current_it != it; current_it++)
+				second_stage_rsc->insert(second_stage_rsc->end(), current_it->second);
+			first_stage_rsc->erase(first_stage_rsc->begin(), it);
+		}
 	}
 }

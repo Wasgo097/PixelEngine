@@ -41,8 +41,8 @@ namespace Core::World {
 	void WorldBase::InitWorld()	{
 		if (_initialized)
 			throw std::runtime_error("Double initialization of world\n");
-		_main_controller->InitMainCharacterInputBindings();
 		_main_controller->InitMainCharacter();
+		_main_controller->InitMainCharacterInputBindings();
 		if (_actor_manager && _main_controller)
 			_actor_manager->RegisterMainActor(_main_controller->GetMainCharacter());
 		_initialized = true;

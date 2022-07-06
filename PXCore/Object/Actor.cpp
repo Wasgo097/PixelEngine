@@ -1,5 +1,6 @@
 #include "Actor.h"
 #include "World/WorldBase.h"
+#include <iostream>
 namespace Core::Object {
 	Actor::Actor(World::WorldBase* world, const Settings::ActorSettings& actor_settings, const Settings::TextureSettings& texture_settings) :
 		_world(world), _actor_settings(actor_settings), _texture_settings(texture_settings), _velocity(_actor_settings.velocity), _tick(_actor_settings.tick) {
@@ -63,6 +64,7 @@ namespace Core::Object {
 			window.draw(*_collider);
 		if (_sprite)
 			window.draw(*_sprite);
+		std::cout << "Draw actor\n";
 	}
 	std::string Actor::ToString() const { return "Default Actor ToString"; }
 	void Actor::Move(const sf::Vector2f& velocity) {

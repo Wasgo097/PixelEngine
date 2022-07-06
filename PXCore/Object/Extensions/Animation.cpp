@@ -1,4 +1,5 @@
 #include "Animation.h"
+#include <iostream>
 namespace Core::Object::Extension {
 	Animation::Animation(sf::Sprite& animated_sprite, const Settings::AnimationSettings& animation_settings) :
 		_animated_sprite{ animated_sprite },
@@ -6,13 +7,15 @@ namespace Core::Object::Extension {
 		_frame_on_texture.width = _animation_settings.rect_size.x;
 		_frame_on_texture.height = _animation_settings.rect_size.y;
 	}
-	void Animation::Tick(int row, float deltatime) {
+	void Animation::Tick(int row, float delta_time) {
 		if (_row != row) {
+			std::cout << "New row = "<<row<<" old row = "<<_row<<"\n";
 			_row = row;
 			_movable_view_on_texture.x = 0;
+			_elapsed_time = .0f;
 		}
 		_movable_view_on_texture.y = row;
-		_elapsed_time += deltatime;
+		_elapsed_time += delta_time;
 		if (_elapsed_time >= _animation_settings.switch_time) {
 			_elapsed_time -= _animation_settings.switch_time;
 			_movable_view_on_texture.x++;

@@ -8,7 +8,7 @@ namespace Core::Object::Extension {
 	public:
 		Animation(sf::Sprite& animated_sprite, const Settings::AnimationSettings& animation_settings);
 	public:
-		void Tick(int row, float deltatime);
+		void Tick(int row, float delta_time);
 	protected:
 		std::map<int, int>& _count_of_columns_in_row;
 		sf::Sprite& _animated_sprite;

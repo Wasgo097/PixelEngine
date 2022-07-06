@@ -32,21 +32,21 @@ public:
 
 TEST_F(SerializationTest, SerializationAndDeserialziationTest) {
 	//serialziation
-	CREATE_SETTINGS_FILE(actor_settings, "actor_settings.json");
-	CREATE_SETTINGS_FILE(animation_settings, "animation_settings.json");
-	CREATE_SETTINGS_FILE(engine_settings, "engine_settings.json");
-	CREATE_SETTINGS_FILE(music_settings, "music_settings.json");
-	CREATE_SETTINGS_FILE(texture_settings, "texture_settings.json");
-	CREATE_SETTINGS_FILE(window_settings, "window_settings.json");
-	CREATE_SETTINGS_FILE(world_settings, "world_settings.json");
+	CREATE_SETTINGS_FILE(actor_settings, "cfg\\actor_settings.json");
+	CREATE_SETTINGS_FILE(animation_settings, "cfg\\animation_settings.json");
+	CREATE_SETTINGS_FILE(engine_settings, "cfg\\engine_settings.json");
+	CREATE_SETTINGS_FILE(music_settings, "cfg\\music_settings.json");
+	CREATE_SETTINGS_FILE(texture_settings, "cfg\\texture_settings.json");
+	CREATE_SETTINGS_FILE(window_settings, "cfg\\window_settings.json");
+	CREATE_SETTINGS_FILE(world_settings, "cfg\\world_settings.json");
 	//deserialization
-	auto new_actor_settings = CREATE_SETTINGS(ActorSettings, "actor_settings.json");
-	auto new_animation_settings = CREATE_SETTINGS(AnimationSettings, "animation_settings.json");
-	auto new_engine_settings = CREATE_SETTINGS(EngineSettings, "engine_settings.json");
-	auto new_music_settings = CREATE_SETTINGS(MusicSettings, "music_settings.json");
-	auto new_texture_settings = CREATE_SETTINGS(TextureSettings, "texture_settings.json");
-	auto new_window_settings = CREATE_SETTINGS(WindowSettings, "window_settings.json");
-	auto new_world_settings = CREATE_SETTINGS(WorldSettings, "world_settings.json");
+	auto new_actor_settings = CREATE_SETTINGS(ActorSettings, "cfg\\actor_settings.json");
+	auto new_animation_settings = CREATE_SETTINGS(AnimationSettings, "cfg\\animation_settings.json");
+	auto new_engine_settings = CREATE_SETTINGS(EngineSettings, "cfg\\engine_settings.json");
+	auto new_music_settings = CREATE_SETTINGS(MusicSettings, "cfg\\music_settings.json");
+	auto new_texture_settings = CREATE_SETTINGS(TextureSettings, "cfg\\texture_settings.json");
+	auto new_window_settings = CREATE_SETTINGS(WindowSettings, "cfg\\window_settings.json");
+	auto new_world_settings = CREATE_SETTINGS(WorldSettings, "cfg\\world_settings.json");
 	EXPECT_TRUE(actor_settings == new_actor_settings);
 	EXPECT_TRUE(animation_settings == new_animation_settings);
 	EXPECT_TRUE(engine_settings == new_engine_settings);

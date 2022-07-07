@@ -5,6 +5,7 @@
 #include "World/BaseImplementations/EmptyWorld.h"
 #include <SFML/System.hpp>
 #include <chrono>
+#include <iostream>
 using namespace std::chrono_literals;
 namespace Core {
 	Engine::Engine() {
@@ -28,14 +29,17 @@ namespace Core {
 		bool game_loop_condition = _main_window->isOpen() && _current_world;
 		while (game_loop_condition) {
 			sf::Event action;
-			while (_main_window->pollEvent(action)) {
+			int pool_event_size = 0;
+			while (_main_window->pollEvent(action)){
 				if (action.type == sf::Event::Closed) {
 					_current_world->EndWorld();
 					Close();
 				}
 				else
 					_current_world->ServiceInput(action);
+				pool_event_size++;
 			}
+			std::cout << "pool event size " << pool_event_size << std::endl;
 			Render();
 			Update();
 			game_loop_condition = _main_window->isOpen() && _current_world;
@@ -52,7 +56,8 @@ namespace Core {
 	}
 	void Engine::Update() {
 		sf::Time time = _clock.restart();
-		if (!_current_world)return;
+		if (!_current_world)
+			return;
 		_current_world->CheckQuit();
 		if (_current_world->Quit()) {
 			_current_world->EndWorld();

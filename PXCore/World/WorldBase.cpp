@@ -34,9 +34,9 @@ namespace Core::World {
 	{
 		return _initialized;
 	}
-	void WorldBase::ServiceInput(sf::Event action){
+	void WorldBase::ServiceInput(const Core::Controller::Key& key){
 		if(_main_controller)
-			_main_controller->ServiceInput(action);
+			_main_controller->ServiceInput(key);
 	}
 	void WorldBase::InitWorld()	{
 		if (_initialized)

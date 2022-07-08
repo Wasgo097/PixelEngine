@@ -7,11 +7,12 @@ namespace Core::Controller {
 	class InputManager
 	{
 	public:
-		void PressedBtn(const sf::Event& action);
-		void ReleasedBtn(const sf::Event& action);
+		void ServiceEvent(const sf::Event& action);
 		const std::set<Core::Controller::Key>& GetClickedBtn()const;
 		static std::optional<Core::Controller::Key> ConvertSfEventToKey(const sf::Event& action);
 	private:
+		void PressedBtn(const sf::Event& action);
+		void ReleasedBtn(const sf::Event& action);
 		std::set<Core::Controller::Key> _clicked_btn;
 	};
 }

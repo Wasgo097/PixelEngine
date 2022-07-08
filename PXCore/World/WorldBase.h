@@ -51,7 +51,7 @@ namespace Core::World {
 		void SetParnet(Engine* parent);
 		bool Quit()const;
 		bool Initialized()const;
-		virtual void ServiceInput(sf::Event action);
+		virtual void ServiceInput(const Core::Controller::Key& key);
 		virtual void InitWorld();
 		virtual void EndWorld();
 		virtual void CheckQuit() = 0;

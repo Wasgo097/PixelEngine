@@ -19,12 +19,11 @@ namespace Core::Controller {
 		virtual ~ControllerBase() = default;
 		virtual void InitMainCharacterInputBindings() = 0;
 		virtual void InitMainCharacter() = 0;
-		virtual void ServiceInput(sf::Event current_event);
+		virtual void ServiceInput(const Core::Controller::Key& key);
 		std::shared_ptr<Core::Object::ControlledActor> GetMainCharacter();
 	protected:
-		bool TestEvent(const Key& key, sf::Event action)const;
-		void DoAction(const Key& key);
-
+		/*bool TestEvent(const Key& key, sf::Event action)const;
+		void DoAction(const Key& key);*/
 		std::map<Key, std::function<void(std::shared_ptr<Core::Object::ControlledActor>)>> _actions;
 		std::shared_ptr<Core::Object::ControlledActor> _main_character;
 		Core::World::WorldBase* _world_parent;

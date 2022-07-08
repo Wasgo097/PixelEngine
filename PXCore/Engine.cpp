@@ -28,31 +28,25 @@ namespace Core {
 		InitEngine();
 		bool game_loop_condition = _main_window->isOpen() && _current_world;
 		while (game_loop_condition) {
-			sf::Event action;
-			int pool_event_size = 0;
-			while (_main_window->pollEvent(action)){
-				if (action.type == sf::Event::EventType::KeyPressed)
-					std::cout << "Key pressed\n";
-				else if (action.type == sf::Event::EventType::KeyReleased)
-					std::cout << "Key released\n";
-				if (action.type == sf::Event::MouseButtonPressed)
-					std::cout << "Mouse pressed\n";
-				else if (action.type == sf::Event::MouseButtonReleased)
-					std::cout << "Mouse released\n";
-				if (action.type == sf::Event::Closed) {
-					_current_world->EndWorld();
-					Close();
-				}
-				else
-					_current_world->ServiceInput(action);
-				pool_event_size++;
-			}
-			//std::cout << "pool event size " << pool_event_size << std::endl;
+			ServiceInput();
 			Render();
 			Update();
 			game_loop_condition = _main_window->isOpen() && _current_world;
 		}
 		return 1;
+	}
+	void Engine::ServiceInput()
+	{
+		sf::Event action;
+		while (_main_window->pollEvent(action)) {
+			if (action.type == sf::Event::Closed) {
+				_current_world->EndWorld();
+				Close();
+			}
+			_input_manager.ServiceEvent(action);
+		}
+		for (const auto& key : _input_manager.GetClickedBtn())
+			_current_world->ServiceInput(key);
 	}
 	void Engine::PushWorldToQueue(std::unique_ptr<World::WorldBase>&& new_world) {
 		if (_current_world)

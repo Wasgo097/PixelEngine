@@ -14,6 +14,15 @@ namespace Core::Controller {
 				_clicked_btn.erase(*key);
 	}
 
+	void InputManager::ServiceEvent(const sf::Event& action){
+		if (action.type == sf::Event::EventType::KeyPressed
+			or action.type == sf::Event::EventType::MouseButtonPressed)
+			PressedBtn(action);
+		else if (action.type == sf::Event::EventType::KeyReleased
+			or action.type == sf::Event::EventType::MouseButtonReleased)
+			ReleasedBtn(action);
+	}
+
 	const std::set<Core::Controller::Key>& InputManager::GetClickedBtn() const{
 		return _clicked_btn;
 	}

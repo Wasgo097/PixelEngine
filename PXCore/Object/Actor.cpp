@@ -64,7 +64,7 @@ namespace Core::Object {
 			window.draw(*_collider);
 		if (_sprite)
 			window.draw(*_sprite);
-		std::cout << "Draw actor\n";
+		//std::cout << "Draw actor\n";
 	}
 	std::string Actor::ToString() const { return "Default Actor ToString"; }
 	void Actor::Move(const sf::Vector2f& velocity) {

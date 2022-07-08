@@ -25,10 +25,10 @@ namespace Core::Object {
 		if (_animation)
 			_animation->Tick(_animated_row, delta_time);
 		if (_velocity == sf::Vector2f()) {
-			std::cout << "Set row on null velocity\n";
+			//std::cout << "Set row on null velocity\n";
 			_animated_row = _direction_row.at(AnimationEnums::Direction::DownIdle);
 		}
-		std::cout << "Animated row in tick " << _animated_row << "\n";
+		//std::cout << "Animated row in tick " << _animated_row << "\n";
 		Actor::Tick(delta_time);
 	}
 	void AnimatedActor::Move(const sf::Vector2f& velocity) {
@@ -70,7 +70,7 @@ namespace Core::Object {
 				}
 			}
 		}
-		std::cout << "Animated row in move " << _animated_row << "\n";
+		//std::cout << "Animated row in move " << _animated_row << "\n";
 	}
 
 	std::string AnimatedActor::ToString() const { return "Default AnimatedActor ToString"; }

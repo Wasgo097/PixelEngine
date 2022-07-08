@@ -5,7 +5,7 @@ namespace Core::Controller {
 		for (const auto& [key, value] : _actions) {
 			if (TestEvent(key, current_event)) {
 				DoAction(key);
-				break;
+				return;
 			}
 		}
 	}

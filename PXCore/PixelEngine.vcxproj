@@ -21,6 +21,7 @@
   <ItemGroup>
     <ClCompile Include="Controller\BaseImplementations\EmptyController.cpp" />
     <ClCompile Include="Controller\ControllerBase.cpp" />
+    <ClCompile Include="Controller\InputManager.cpp" />
     <ClCompile Include="Object\Actor.cpp" />
     <ClCompile Include="Object\AnimatedActor.cpp" />
     <ClCompile Include="Object\BaseImplementations\EmptyControlledActor.cpp" />
@@ -34,6 +35,7 @@
   <ItemGroup>
     <ClInclude Include="Controller\BaseImplementations\EmptyController.h" />
     <ClInclude Include="Controller\ControllerBase.h" />
+    <ClInclude Include="Controller\InputManager.h" />
     <ClInclude Include="Object\Actor.h" />
     <ClInclude Include="Object\AnimatedActor.h" />
     <ClInclude Include="Object\BaseImplementations\EmptyControlledActor.h" />

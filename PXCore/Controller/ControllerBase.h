@@ -3,6 +3,7 @@
 #include <memory>
 #include <map>
 #include <functional>
+#include <optional>
 #include "PXUtilities/ControllerStructs.h"
 namespace Core{
 	namespace Object {
@@ -22,8 +23,7 @@ namespace Core::Controller {
 		virtual void ServiceInput(const Core::Controller::Key& key);
 		std::shared_ptr<Core::Object::ControlledActor> GetMainCharacter();
 	protected:
-		/*bool TestEvent(const Key& key, sf::Event action)const;
-		void DoAction(const Key& key);*/
+		std::optional<std::reference_wrapper<const Key>> ActionsContainsKey(const Key & key)const;
 		std::map<Key, std::function<void(std::shared_ptr<Core::Object::ControlledActor>)>> _actions;
 		std::shared_ptr<Core::Object::ControlledActor> _main_character;
 		Core::World::WorldBase* _world_parent;

@@ -43,6 +43,9 @@ namespace Core {
 				_current_world->EndWorld();
 				Close();
 			}
+			if (action.type == sf::Event::EventType::GainedFocus
+				or action.type == sf::Event::EventType::LostFocus)
+				continue;
 			_input_manager.ServiceEvent(action);
 		}
 		for (const auto& key : _input_manager.GetClickedBtn())

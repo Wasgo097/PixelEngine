@@ -13,6 +13,7 @@ namespace Core::Controller {
 	private:
 		void PressedBtn(const sf::Event& action);
 		void ReleasedBtn(const sf::Event& action);
+		std::optional<std::reference_wrapper<const Key>> ClickedBtnContainsKey(const Key& key)const;
 		std::set<Core::Controller::Key> _clicked_btn;
 	};
 }

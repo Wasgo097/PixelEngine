@@ -15,6 +15,7 @@ namespace Core::Controller {
 		if (auto key = ConvertSfEventToKey(action); key) {
 			if (auto key_from_set = ClickedBtnContainsKey(*key); key_from_set) {
 				_clicked_btn.erase(*key_from_set);
+				_released_btn.insert(*key);
 			}
 		}
 	}
@@ -47,6 +48,16 @@ namespace Core::Controller {
 
 	const std::set<Core::Controller::Key>& InputManager::GetClickedBtn() const {
 		return _clicked_btn;
+	}
+
+	const std::set<Core::Controller::Key>& InputManager::GetReleasedBtn() const
+	{
+		return _released_btn;
+	}
+
+	void InputManager::ClearReleasedBtn()
+	{
+		_released_btn.clear();
 	}
 
 	std::optional<Core::Controller::Key> InputManager::ConvertSfEventToKey(const sf::Event& action)

@@ -49,12 +49,10 @@ namespace Core {
 			_input_manager.ServiceEvent(action);
 		}
 		for (auto& key : _input_manager.GetClickedBtn())
-			if(key.repeatable)			
-				_current_world->ServiceInput(key);
-			else if (!key.repeatable and !key.consumed) {
-				_current_world->ServiceInput(key);
-				key.consumed = true;
-			}
+			_current_world->ServiceInput(key);
+		for (auto& key : _input_manager.GetReleasedBtn())
+			_current_world->ServiceInput(key);
+		_input_manager.ClearReleasedBtn();
 	}
 	void Engine::PushWorldToQueue(std::unique_ptr<World::WorldBase>&& new_world) {
 		if (_current_world)

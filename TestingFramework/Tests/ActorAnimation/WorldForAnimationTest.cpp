@@ -5,8 +5,6 @@ using namespace Core;
 namespace Test {
 	WorldForAnimationTest::WorldForAnimationTest(const Settings::WorldSettings& worlsettings, Core::Engine* parent):WorldBase(worlsettings,parent){
 		_main_controller = std::make_unique<Test::ControllerForAnimationTest>(this);
-		/*_main_controller->InitMainCharacterInputBindings();
-		_main_controller->InitMainCharacter();*/
 	}
 	void WorldForAnimationTest::CheckQuit(){
 		if (sf::Keyboard::isKeyPressed(sf::Keyboard::Escape)) {

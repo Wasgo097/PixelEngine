@@ -148,6 +148,11 @@
     <ClCompile Include="Tests\ActorAnimation\EngineForAnimationTest.cpp" />
     <ClCompile Include="Tests\ActorAnimation\WorldForAnimationTest.cpp" />
     <ClCompile Include="Tests\EngineSettup\EngineSetup.cpp" />
+    <ClCompile Include="Tests\Forest\ForestTest.cpp" />
+    <ClCompile Include="Tests\Forest\ControllerForForestTest.cpp" />
+    <ClCompile Include="Tests\Forest\EngineForForestTest.cpp" />
+    <ClCompile Include="Tests\Forest\WorldForForestTest.cpp" />
+    <ClCompile Include="Tests\Forest\Actors\Tree.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\PixelEngine\PixelEngine.vcxproj">
@@ -176,6 +181,11 @@
     <ClInclude Include="Tests\ActorAnimation\WorldForAnimationTest.h" />
     <ClInclude Include="Tests\EngineSettup\EngineSetup.h" />
     <ClInclude Include="BaseTest.h" />
+    <ClInclude Include="Tests\Forest\ForestTest.h" />
+    <ClInclude Include="Tests\Forest\ControllerForForestTest.h" />
+    <ClInclude Include="Tests\Forest\EngineForForestTest.h" />
+    <ClInclude Include="Tests\Forest\WorldForForestTest.h" />
+    <ClInclude Include="Tests\Forest\Actors\Tree.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

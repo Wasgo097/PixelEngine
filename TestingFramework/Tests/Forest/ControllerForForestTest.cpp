@@ -1,5 +1,5 @@
 #include "ControllerForForestTest.h"
-#include "PXCore/Object/BaseImplementations/EmptyControlledActor.h"
+#include "Actors/ForestMainCharacter.h"
 #include "PXFactory/SettingsFactory.h"
 namespace Test {
 	ControllerForForestTest::ControllerForForestTest(Core::World::WorldBase* world) :ControllerBase(world) {
@@ -11,40 +11,43 @@ namespace Test {
 		key.input_type = Core::Controller::InputType::MouseInput;
 		key.event_type = sf::Event::MouseButtonPressed;
 		key.mouse_button = sf::Mouse::Left;
-		_actions[key] = [](std::shared_ptr<Core::Object::ControlledActor> Actor) {
+		_actions[key] = [](std::shared_ptr<Core::Object::ControlledActor> actor) {
 			std::cout << "Left Button Pressed\n";
+			if (auto ptr = std::dynamic_pointer_cast<ForestMainCharacter>(actor); ptr) {
+				ptr->CreateNewTree();
+			}
+		};
+		key.mouse_button = sf::Mouse::Right;
+		_actions[key] = [](std::shared_ptr<Core::Object::ControlledActor> actor) {
+			std::cout << "Right Button Pressed\n";
+			if (auto ptr = std::dynamic_pointer_cast<ForestMainCharacter>(actor); ptr)
+				ptr->EraseTree();
 		};
 		key.input_type = Core::Controller::InputType::KeyboardInput;
 		key.event_type = sf::Event::KeyPressed;
 		key.keyboard_button = sf::Keyboard::W;
-		_actions[key] = [](std::shared_ptr<Core::Object::ControlledActor> Actor) {
-			Actor->Move(sf::Vector2f(0, -1.0));
+		_actions[key] = [](std::shared_ptr<Core::Object::ControlledActor> actor) {
+			actor->Move(sf::Vector2f(0, -1.0));
 		};
-		key.input_type = Core::Controller::InputType::KeyboardInput;
-		key.event_type = sf::Event::KeyPressed;
 		key.keyboard_button = sf::Keyboard::S;
-		_actions[key] = [](std::shared_ptr<Core::Object::ControlledActor> Actor) {
-			Actor->Move(sf::Vector2f(0, 1.0));
+		_actions[key] = [](std::shared_ptr<Core::Object::ControlledActor> actor) {
+			actor->Move(sf::Vector2f(0, 1.0));
 		};
-		key.input_type = Core::Controller::InputType::KeyboardInput;
-		key.event_type = sf::Event::KeyPressed;
 		key.keyboard_button = sf::Keyboard::A;
-		_actions[key] = [](std::shared_ptr<Core::Object::ControlledActor> Actor) {
-			Actor->Move(sf::Vector2f(-1.0, 0));
+		_actions[key] = [](std::shared_ptr<Core::Object::ControlledActor> actor) {
+			actor->Move(sf::Vector2f(-1.0, 0));
 		};
-		key.input_type = Core::Controller::InputType::KeyboardInput;
-		key.event_type = sf::Event::KeyPressed;
 		key.keyboard_button = sf::Keyboard::D;
-		_actions[key] = [](std::shared_ptr<Core::Object::ControlledActor> Actor) {
-			Actor->Move(sf::Vector2f(1.0, 0));
+		_actions[key] = [](std::shared_ptr<Core::Object::ControlledActor> actor) {
+			actor->Move(sf::Vector2f(1.0, 0));
 		};
 	}
 
 	void ControllerForForestTest::InitMainCharacter() {
-		auto ActorSettings = CREATE_SETTINGS(Settings::ActorSettings, "Cfg\\MainActorSettings.json");
-		auto TextureSettings = CREATE_SETTINGS(Settings::TextureSettings, "Cfg\\MainTextureSettings.json");
-		auto AnimationSettings = CREATE_SETTINGS(Settings::AnimationSettings, "Cfg\\MainAnimationSettings.json");
-		_main_character = std::make_shared<Core::Object::EmptyControlledActor>(_world_parent, ActorSettings, TextureSettings, AnimationSettings, this);
+		auto actor_settings = CREATE_SETTINGS(Settings::ActorSettings, "Cfg\\MainActorSettings.json");
+		auto texture_settings = CREATE_SETTINGS(Settings::TextureSettings, "Cfg\\MainTextureSettings.json");
+		auto animation_settings = CREATE_SETTINGS(Settings::AnimationSettings, "Cfg\\MainAnimationSettings.json");
+		_main_character = std::make_shared<ForestMainCharacter>(_world_parent, actor_settings, texture_settings, animation_settings, this);
 	}
 
 }

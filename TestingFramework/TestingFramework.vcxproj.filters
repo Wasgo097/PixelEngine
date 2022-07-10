@@ -48,6 +48,9 @@
     <ClCompile Include="Tests\Forest\Actors\Tree.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="Tests\Forest\Actors\ForestMainCharacter.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="BaseTest.h">
@@ -81,6 +84,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Tests\Forest\Actors\Tree.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Tests\Forest\Actors\ForestMainCharacter.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

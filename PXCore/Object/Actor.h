@@ -22,7 +22,7 @@ namespace Core::Object {
 		bool CanCollide()const;
 		std::optional<sf::RectangleShape> GetCollider();
 		void SetWorld(World::WorldBase* world_ptr);
-	public:
+
 		virtual void Tick(float delta_time);
 		virtual void Move(const sf::Vector2f& velocity);
 		virtual void ConstPush(const sf::Vector2f& const_velocity);

@@ -2,6 +2,7 @@
 #include <iostream>
 #include "ControllerForForestTest.h"
 #include "Actors/Tree.h"
+#include "PXFactory/SettingsFactory.h"
 using namespace Core;
 namespace Test {
 	WorldForForestTest::WorldForForestTest(const Settings::WorldSettings& worlsettings, Core::Engine* parent):WorldBase(worlsettings,parent){
@@ -15,9 +16,12 @@ namespace Test {
 	}
 	void WorldForForestTest::InitWorld(){
 		WorldBase::InitWorld();
-		SpawnConstActor<Tree>(
-			Settings::ActorSettings(ActorsEnums::CollisionType::Collision, ActorsEnums::ActorType::Static, sf::Vector2f(500, 500), sf::Vector2f(96, 96), sf::Vector2f(), true),
-			Settings::TextureSettings("Resource\\Actors\\Tree.jpg", true, false));
+		auto tree_settings = CREATE_SETTINGS(Settings::ActorSettings, "Cfg\\TreeActorSettings.json");
+		auto tree_texture = CREATE_SETTINGS(Settings::TextureSettings, "Cfg\\TreeTextureSettings.json");
+		SpawnConstActor<Tree>(tree_settings, tree_texture);
+		tree_settings.position.x += (96*2);
+		tree_settings.position.y += 96;
+		SpawnConstActor<Tree>(tree_settings, tree_texture);
 		std::cout << "Init WorldForForestTest world\n";
 	}
 	void WorldForForestTest::EndWorld(){

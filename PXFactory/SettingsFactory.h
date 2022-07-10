@@ -2,8 +2,8 @@
 #include <fstream>
 #include <iostream>
 #include "PXSerialziation/Serialization.h"
-#define CREATE_SETTINGS(SettingsClass,Path)Factory::SettingsFactory::CreateSettings<SettingsClass>(Path);
-#define CREATE_SETTINGS_FILE(SettingsObj,Path)Factory::SettingsFactory::CreateSettingsJsonFile(Path,SettingsObj);
+#define CREATE_SETTINGS(SettingsClass,Path)Factory::SettingsFactory::CreateSettings<SettingsClass>(Path)
+#define CREATE_SETTINGS_FILE(SettingsObj,Path)Factory::SettingsFactory::CreateSettingsJsonFile(Path,SettingsObj)
 namespace Factory {
 	class SettingsFactory {
 	public:

@@ -1,7 +1,6 @@
 #pragma once
 #include <set>
 #include <optional>
-#include <vector>
 #include "PXUtilities/ControllerStructs.h"
 namespace Core::Controller {
 	class InputManager

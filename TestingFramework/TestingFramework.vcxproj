@@ -142,13 +142,14 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Tests\EngineSettup\BaseEngine.cpp" />
     <ClCompile Include="Tests\Forest\Actors\ForestMainCharacter.cpp" />
     <ClCompile Include="Main.cpp" />
     <ClCompile Include="Tests\ActorAnimation\ActorAnimationTest.cpp" />
     <ClCompile Include="Tests\ActorAnimation\ControllerForAnimationTest.cpp" />
     <ClCompile Include="Tests\ActorAnimation\EngineForAnimationTest.cpp" />
     <ClCompile Include="Tests\ActorAnimation\WorldForAnimationTest.cpp" />
-    <ClCompile Include="Tests\EngineSettup\EngineSetup.cpp" />
+    <ClCompile Include="Tests\EngineSettup\EngineSetupTest.cpp" />
     <ClCompile Include="Tests\Forest\ForestTest.cpp" />
     <ClCompile Include="Tests\Forest\ControllerForForestTest.cpp" />
     <ClCompile Include="Tests\Forest\EngineForForestTest.cpp" />
@@ -176,12 +177,13 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Tests\EngineSettup\BaseEngine.h" />
     <ClInclude Include="Tests\Forest\Actors\ForestMainCharacter.h" />
     <ClInclude Include="Tests\ActorAnimation\ActorAnimationTest.h" />
     <ClInclude Include="Tests\ActorAnimation\ControllerForAnimationTest.h" />
     <ClInclude Include="Tests\ActorAnimation\EngineForAnimationTest.h" />
     <ClInclude Include="Tests\ActorAnimation\WorldForAnimationTest.h" />
-    <ClInclude Include="Tests\EngineSettup\EngineSetup.h" />
+    <ClInclude Include="Tests\EngineSettup\EngineSetupTest.h" />
     <ClInclude Include="BaseTest.h" />
     <ClInclude Include="Tests\Forest\ForestTest.h" />
     <ClInclude Include="Tests\Forest\ControllerForForestTest.h" />

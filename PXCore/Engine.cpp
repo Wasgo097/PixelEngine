@@ -14,8 +14,6 @@ namespace Core {
 		_window_settings = CREATE_SETTINGS(Settings::WindowSettings, settings_path);
 		settings_path = "Cfg\\" + _engine_settings.music_settings_path;
 		_music_settings = CREATE_SETTINGS(Settings::MusicSettings, settings_path);
-		settings_path = "Cfg\\" + _engine_settings.world_settings_path;
-		_world_settings = CREATE_SETTINGS(Settings::WorldSettings, settings_path);
 		_main_window = std::make_unique<sf::RenderWindow>(_window_settings.video_mode, _window_settings.window_name, _window_settings.display_style);
 		_main_window->setVerticalSyncEnabled(_window_settings.vsync);
 		if (_window_settings.fps > 1)
@@ -43,9 +41,9 @@ namespace Core {
 				_current_world->EndWorld();
 				Close();
 			}
-			if (action.type == sf::Event::EventType::GainedFocus
+			/*if (action.type == sf::Event::EventType::GainedFocus
 				or action.type == sf::Event::EventType::LostFocus)
-				continue;
+				continue;*/
 			_input_manager.ServiceEvent(action);
 		}
 		for (auto& key : _input_manager.GetClickedBtn())
@@ -92,7 +90,7 @@ namespace Core {
 			_current_world->Draw(*_main_window);
 		_main_window->display();
 	}
-	void Engine::InitEngine() {
+	/*void Engine::InitEngine() {
 		PushWorldToQueue(std::make_unique<World::EmptyWorld>(_world_settings, this));
-	}
+	}*/
 }

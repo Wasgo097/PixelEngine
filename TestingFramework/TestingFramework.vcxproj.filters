@@ -15,7 +15,7 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="Tests\EngineSettup\EngineSetup.cpp">
+    <ClCompile Include="Tests\EngineSettup\EngineSetupTest.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Tests\ActorAnimation\ActorAnimationTest.cpp">
@@ -51,12 +51,15 @@
     <ClCompile Include="Tests\Forest\Actors\ForestMainCharacter.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="Tests\EngineSettup\BaseEngine.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="BaseTest.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Tests\EngineSettup\EngineSetup.h">
+    <ClInclude Include="Tests\EngineSettup\EngineSetupTest.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Tests\ActorAnimation\ActorAnimationTest.h">
@@ -87,6 +90,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Tests\Forest\Actors\ForestMainCharacter.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Tests\EngineSettup\BaseEngine.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

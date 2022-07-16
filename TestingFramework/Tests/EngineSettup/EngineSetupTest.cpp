@@ -1,10 +1,10 @@
 
-#include "EngineSetup.h"
+#include "EngineSetupTest.h"
 namespace Test {
-	void EngineSetup::PrepareTest(){
+	void EngineSetupTest::PrepareTest(){
 		int result=_engine.Run();
 	}
-	bool EngineSetup::RunTest(){
+	bool EngineSetupTest::RunTest(){
 		try {
 			PrepareTest();
 			return true;

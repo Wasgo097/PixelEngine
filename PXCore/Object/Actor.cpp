@@ -66,6 +66,9 @@ namespace Core::Object {
 			window.draw(*_sprite);
 		//std::cout << "Draw actor\n";
 	}
+	void Actor::Init() {
+		SetTickFlag(_actor_settings.tick);
+	}
 	std::string Actor::ToString() const { return "Default Actor ToString"; }
 	void Actor::Move(const sf::Vector2f& velocity) {
 		_velocity = velocity;

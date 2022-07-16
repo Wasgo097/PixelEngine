@@ -19,7 +19,7 @@ namespace Test {
 	}
 	void ForestMainCharacter::EraseTree()
 	{
-		if (_created_tree.size() > 0) {
+		if (!_created_tree.empty()) {
 			auto& tree = _created_tree.front();
 			tree->Destroy();
 			_created_tree.erase(_created_tree.begin());

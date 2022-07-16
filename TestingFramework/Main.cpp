@@ -5,8 +5,8 @@
 using namespace Test;
 int main(){
 	/*EngineSetup test2;
-	std::cout << "Engine setup test result: \n" << test2.RunTest() << std::endl;
-	ActorAnimationTest test3;
+	std::cout << "Engine setup test result: \n" << test2.RunTest() << std::endl;*/
+	/*ActorAnimationTest test3;
 	std::cout << "Animation test result: \n" << test3.RunTest() << std::endl;*/
 	ForestTest test4;
 	std::cout << "Forest test result: \n" << test4.RunTest() << std::endl;

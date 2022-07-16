@@ -4,8 +4,4 @@ namespace Core::Object {
 		if (_collider)
 			_collider->setFillColor(sf::Color::Magenta);
 	}
-
-	void EmptyControlledActor::Init() {
-		SetTickFlag(_actor_settings.tick);
-	}
 }

@@ -27,6 +27,7 @@ namespace Core::Object {
 		virtual void Move(const sf::Vector2f& velocity);
 		virtual void ConstPush(const sf::Vector2f& const_velocity);
 		virtual void Draw(sf::RenderWindow & window);
+		virtual void Init()override;
 
 		virtual std::string ToString()const override;
 	private:

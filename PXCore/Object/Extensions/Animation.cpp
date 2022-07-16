@@ -9,7 +9,6 @@ namespace Core::Object::Extension {
 	}
 	void Animation::Tick(int row, float delta_time) {
 		if (_row != row) {
-			//std::cout << "New row = "<<row<<" old row = "<<_row<<"\n";
 			_row = row;
 			_movable_view_on_texture.x = 0;
 			_elapsed_time = .0f;

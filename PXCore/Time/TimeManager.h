@@ -1,14 +1,18 @@
 #pragma once
+#include <set>
 #include "PXUtilities/Interfaces/ITimeObservable.h"
 #include "PXUtilities/Interfaces/ILoopingThread.h"
-#include "Objects/Actor.h"
-#include "Utility/ThreadingResource.h"
+#include "Object/Actor.h"
+#include "PXUtilities/ThreadingResource.h"
 namespace Core{
 	class WorldBase;
 }
-namespace Core::Time {
+namespace Time {
 	class ITimeObserver;
-	class TimeManager : public Time::ITimeObservable,ILoopingThread,Core::Object::Actor {
+}
+using namespace Time;
+namespace Core::Time {
+	class TimeManager : public ::Time::ITimeObservable , ILoopingThread, Core::Object::Actor{
 	public:
 		// Inherited via ITimeObservable
 		virtual void AttachToSeconds(ITimeObserver * item) override;
@@ -18,7 +22,7 @@ namespace Core::Time {
 		virtual void NotifyForSecondPassed()  override;
 		virtual void NotifyForMinutePassed()  override;
 	public:
-		TimeManager(Core::WorldBase* world,float multiplier = 1.0);
+		TimeManager(Core::World::WorldBase* world=nullptr,float multiplier = 1.0);
 		TimeManager(const TimeManager&) = delete;
 		TimeManager& operator=(const TimeManager&) = delete;
 		TimeManager(TimeManager&& src) = delete;

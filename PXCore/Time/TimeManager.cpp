@@ -1,11 +1,10 @@
-#include "Utility/CommonHeaders.h"
 #include "TimeManager.h"
-#include "Interfaces/ITimeObserver.h"
-#include "Core/World/WorldBase.h"
-namespace Time{
-	TimeManager::TimeManager(Core::WorldBase* world, float multiplier) :
+#include "PXUtilities/Interfaces/ITimeObserver.h"
+#include "PXCore/World/WorldBase.h"
+namespace Core::Time{
+	TimeManager::TimeManager(Core::World::WorldBase* world, float multiplier) :
 		_thread(std::make_unique<std::thread>(&TimeManager::Run, this)),
-		Core::Actor(world,Settings::ActorSettings(),Settings::TextureSettings()){
+		Core::Object::Actor(world,Settings::ActorSettings(),Settings::TextureSettings()){
 		_multipler = multiplier;
 	}
 	void TimeManager::Multiplier(float value){
@@ -42,37 +41,37 @@ namespace Time{
 	}
 	void TimeManager::AttachToSeconds(ITimeObserver * item){
 		if(item != nullptr){
-			std::lock_guard lock(_seconds.Mtx);
-			_seconds.Rsc.insert(item);
+			std::lock_guard lock(_seconds.mtx);
+			_seconds.rsc->insert(item);
 		}
 	}
 	void TimeManager::AttachToMinutes(ITimeObserver * item){
 		if(item){
-			std::lock_guard lock(_minutes.Mtx);
-			_minutes.Rsc.insert(item);
+			std::lock_guard lock(_minutes.mtx);
+			_minutes.rsc->insert(item);
 		}
 	}
 	void TimeManager::DetachFromSeconds(ITimeObserver * item){
 		if(item){
-			std::lock_guard lock(_seconds.Mtx);
-			_seconds.Rsc.erase(item);
+			std::lock_guard lock(_seconds.mtx);
+			_seconds.rsc->erase(item);
 		}
 	}
 	void TimeManager::DetachFromMinutes(ITimeObserver * item){
 		if(item){
-			std::lock_guard lock(_minutes.Mtx);
-			_minutes.Rsc.erase(item);
+			std::lock_guard lock(_minutes.mtx);
+			_minutes.rsc->erase(item);
 		}
 	}
 	void TimeManager::NotifyForSecondPassed(){
-		std::lock_guard lock(_seconds.Mtx);
-		for(auto & observator : _seconds.Rsc){
+		std::lock_guard lock(_seconds.mtx);
+		for(auto & observator : *_seconds.rsc){
 			observator->SecondPassed();
 		}
 	}
 	void TimeManager::NotifyForMinutePassed(){
-		std::lock_guard lock(this->_minutes.Mtx);
-		for(auto & observator : _minutes.Rsc){
+		std::lock_guard lock(this->_minutes.mtx);
+		for(auto & observator : *_minutes.rsc){
 			observator->MinutePassed();
 		}
 	}

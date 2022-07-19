@@ -35,13 +35,12 @@ namespace Core::Object {
 	bool Actor::TickFlag()const {
 		return _tick;
 	}
-	void Actor::SetTickFlag(bool flag)
-	{
+	void Actor::SetTickFlag(bool flag) {
 		_tick = flag;
 	}
 	void Actor::Tick(float delta_time) {
-		if (_actor_settings.type == ActorsEnums::ActorType::Dynamic&&_velocity!=sf::Vector2f()) {
-			auto move_vector = _velocity ;
+		if (_actor_settings.type == ActorsEnums::ActorType::Dynamic && _velocity != sf::Vector2f()) {
+			auto move_vector = _velocity;
 			if (_sprite)
 				_sprite->move(move_vector);
 			if (_collider)
@@ -60,11 +59,10 @@ namespace Core::Object {
 		_world = world_ptr;
 	}
 	void Actor::Draw(sf::RenderWindow& window) {
-		if (_collider&&_actor_settings.drawable_collision_box)
+		if (_collider && _actor_settings.drawable_collision_box)
 			window.draw(*_collider);
 		if (_sprite)
 			window.draw(*_sprite);
-		//std::cout << "Draw actor\n";
 	}
 	void Actor::Init() {
 		SetTickFlag(_actor_settings.tick);

@@ -4,7 +4,7 @@
 #include "PXSerialziation/Serialization.h"
 using namespace Settings;
 class SerializationTest :public testing::Test {
-public:
+protected:
 	ActorSettings actor_settings;
 	AnimationSettings animation_settings;
 	EngineSettings engine_settings;
@@ -12,6 +12,7 @@ public:
 	TextureSettings texture_settings;
 	WindowSettings window_settings;
 	WorldSettings world_settings;
+public:
 	virtual void SetUp()override {
 		actor_settings.drawable_collision_box = false;
 		actor_settings.collision = ActorsEnums::CollisionType::Collision;

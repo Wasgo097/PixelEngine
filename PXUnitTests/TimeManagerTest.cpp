@@ -17,7 +17,7 @@ public:
 		_manager.reset(new TimeManager(nullptr,Settings::ActorSettings(),Settings::TextureSettings(), multipler));
 	}
 };
-class BaseObserver :public Time::ITimeObserver {
+class BaseObserver :public ITimeObserver {
 public:
 	BaseObserver() :_id{ _next_id } {
 		_next_id++;
@@ -38,7 +38,7 @@ protected:
 	int _id = -1;
 	static int _next_id;
 };
-class BaseObserverForMultipler :public Time::ITimeObserver {
+class BaseObserverForMultipler :public ITimeObserver {
 public:
 	BaseObserverForMultipler() :_id{ _next_id } {
 		_next_id++;

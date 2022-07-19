@@ -3,8 +3,7 @@
 #include <optional>
 #include "PXUtilities/ControllerStructs.h"
 namespace Core::Controller {
-	class InputManager
-	{
+	class InputManager {
 	public:
 		void ServiceEvent(const sf::Event& action);
 		const std::set<Core::Controller::Key>& GetClickedBtn()const;

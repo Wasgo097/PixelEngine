@@ -22,11 +22,11 @@ namespace Core {
 		actor->OnSpawn();
 		actor->Init();
 	}
-	void ActorsManager::RegisterMainActor(std::shared_ptr<Object::Actor> mainactor) {
+	void ActorsManager::RegisterMainActor(std::shared_ptr<Object::Actor> main_actor) {
 		std::lock_guard lock(_second_stage.mtx);
-		_second_stage.rsc->push_back(mainactor);
-		mainactor->OnSpawn();
-		mainactor->Init();
+		_second_stage.rsc->push_back(main_actor);
+		main_actor->OnSpawn();
+		main_actor->Init();
 	}
 	void ActorsManager::UnregisterActor(Object::Actor* actor) {
 		if (actor == nullptr)

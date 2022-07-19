@@ -2,10 +2,10 @@
 #include "PXUtilities/Interfaces/ITimeObserver.h"
 #include "PXCore/World/WorldBase.h"
 namespace Core::Time {
-	TimeManager::TimeManager(Core::World::WorldBase* world, float multiplier) :
+	TimeManager::TimeManager(Core::World::WorldBase* world , const Settings::ActorSettings& actor_settings, const Settings::TextureSettings& texture_settings, float multiplier) :
 		_thread(std::make_unique<std::thread>(&TimeManager::Run, this)),
-		Core::Object::Actor(world, Settings::ActorSettings(), Settings::TextureSettings()) {
-		_multipler = multiplier;
+		Core::Object::Actor(world, actor_settings, texture_settings),
+		_multipler{multiplier}{
 	}
 	void TimeManager::Multiplier(float value) {
 		_multipler = value;

@@ -8,11 +8,10 @@
 namespace Core {
 	class WorldBase;
 }
-using namespace Time;
 namespace Core::Time {
-	class TimeManager : public ITimeObservable, ILoopingThread, Core::Object::Actor {
+	class TimeManager : public Core::Object::Actor, public ITimeObservable, public ILoopingThread {
 	public:
-		TimeManager(Core::World::WorldBase* world = nullptr, float multiplier = 1.0);
+		TimeManager(Core::World::WorldBase* world = nullptr, const Settings::ActorSettings& actor_settings = Settings::ActorSettings(), const Settings::TextureSettings& texture_settings = Settings::TextureSettings(), float multiplier = 1.0);
 		TimeManager(const TimeManager&) = delete;
 		TimeManager& operator=(const TimeManager&) = delete;
 		TimeManager(TimeManager&& src) = delete;

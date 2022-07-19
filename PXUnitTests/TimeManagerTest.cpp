@@ -14,7 +14,7 @@ public:
 		Reset();
 	}
 	void Reset(float multipler = 1.0) {
-		_manager.reset(new TimeManager(nullptr, multipler));
+		_manager.reset(new TimeManager(nullptr,Settings::ActorSettings(),Settings::TextureSettings(), multipler));
 	}
 };
 class BaseObserver :public Time::ITimeObserver {

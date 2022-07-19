@@ -54,6 +54,9 @@
     <ClCompile Include="Tests\EngineSettup\BaseEngine.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="Tests\GUISettup\GUISettupTest.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="BaseTest.h">
@@ -93,6 +96,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Tests\EngineSettup\BaseEngine.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Tests\GUISettup\GUISettupTest.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

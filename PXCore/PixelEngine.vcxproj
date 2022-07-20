@@ -19,6 +19,7 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="Object\Components\ActorComponentBase.cpp" />
     <ClCompile Include="Controller\BaseImplementations\EmptyController.cpp" />
     <ClCompile Include="Controller\ControllerBase.cpp" />
     <ClCompile Include="Controller\InputManager.cpp" />
@@ -26,7 +27,7 @@
     <ClCompile Include="Object\AnimatedActor.cpp" />
     <ClCompile Include="Object\BaseImplementations\EmptyControlledActor.cpp" />
     <ClCompile Include="Object\ControlledActor.cpp" />
-    <ClCompile Include="Object\Extensions\Animation.cpp" />
+    <ClCompile Include="Object\Components\Animation.cpp" />
     <ClCompile Include="Time\TimeManager.cpp" />
     <ClCompile Include="World\BaseImplementations\EmptyWorld.cpp" />
     <ClCompile Include="ActorsManager.cpp" />
@@ -34,6 +35,7 @@
     <ClCompile Include="World\WorldBase.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Object\Components\ActorComponentBase.h" />
     <ClInclude Include="Controller\BaseImplementations\EmptyController.h" />
     <ClInclude Include="Controller\ControllerBase.h" />
     <ClInclude Include="Controller\InputManager.h" />
@@ -41,7 +43,7 @@
     <ClInclude Include="Object\AnimatedActor.h" />
     <ClInclude Include="Object\BaseImplementations\EmptyControlledActor.h" />
     <ClInclude Include="Object\ControlledActor.h" />
-    <ClInclude Include="Object\Extensions\Animation.h" />
+    <ClInclude Include="Object\Components\Animation.h" />
     <ClInclude Include="Object\Object.h" />
     <ClInclude Include="Time\TimeManager.h" />
     <ClInclude Include="World\BaseImplementations\EmptyWorld.h" />

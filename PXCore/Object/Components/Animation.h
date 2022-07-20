@@ -1,14 +1,15 @@
 #pragma once
+#include "ActorComponentBase.h"
 #include <SFML/Graphics/Sprite.hpp>
 #include "PXUtilities/Enums/AnimationEnums.h"
 #include "PXSettings/TextureSettings.h"
 #include "PXSettings/AnimationSettings.h"
-namespace Core::Object::Extension {
-	class Animation {
+namespace Core::Object::Components {
+	class Animation:public ActorComponentBase {
 	public:
 		Animation(sf::Sprite& animated_sprite, const Settings::AnimationSettings& animation_settings);
-	public:
-		void Tick(int row, float delta_time);
+		void SetRow(int row);
+		virtual void Tick(float delta_time)override;
 	protected:
 		std::map<int, int>& _count_of_columns_in_row;
 		sf::Sprite& _animated_sprite;

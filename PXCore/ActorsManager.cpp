@@ -52,7 +52,7 @@ namespace Core {
 			}
 		}
 	}
-	void ActorsManager::Update(float delta_time) {
+	void ActorsManager::UpdateActors(float delta_time) {
 		{
 			std::lock_guard lock(_first_stage.mtx);
 			for (auto& [_, actor] : *_first_stage.rsc) {
@@ -74,6 +74,9 @@ namespace Core {
 					actor->Tick(delta_time);
 			}
 		}
+	}
+	void ActorsManager::Update(float delta_time) {
+		UpdateActors(delta_time);
 	}
 	void ActorsManager::Draw(sf::RenderWindow& window) {
 		{

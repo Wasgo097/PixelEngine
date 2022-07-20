@@ -15,6 +15,7 @@ namespace Core {
 		void RegisterConstActor(std::shared_ptr<Object::Actor> actor);
 		void RegisterMainActor(std::shared_ptr<Object::Actor> main_actor);
 		void UnregisterActor(Object::Actor* actor);
+		void UpdateActors(float delta_time);
 		void Update(float delta_time);
 		void Draw(sf::RenderWindow& window);
 		// Inherited via IThread

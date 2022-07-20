@@ -1,6 +1,7 @@
 #include "Actor.h"
-#include "World/WorldBase.h"
 #include <iostream>
+#include "Components/ActorComponentBase.h"
+#include "World/WorldBase.h"
 namespace Core::Object {
 	Actor::Actor(World::WorldBase* world, const Settings::ActorSettings& actor_settings, const Settings::TextureSettings& texture_settings) :
 		_world(world), _actor_settings(actor_settings), _texture_settings(texture_settings), _velocity(_actor_settings.velocity), _tick(_actor_settings.tick) {
@@ -32,6 +33,10 @@ namespace Core::Object {
 
 		}
 	}
+	Actor::~Actor(){
+		for (const auto& component : _components)
+			component->EndComponent();
+	}
 	bool Actor::TickFlag()const {
 		return _tick;
 	}
@@ -48,6 +53,9 @@ namespace Core::Object {
 			if (!_pushed)
 				_velocity = sf::Vector2f(0, 0);
 		}
+		for (const auto& component : _components)
+			if (component->TickFlag())
+				component->Tick(delta_time);
 	}
 	bool Actor::CanCollide() const {
 		return static_cast<int>(_actor_settings.collision) > 0;
@@ -71,6 +79,8 @@ namespace Core::Object {
 	}
 	void Actor::Init() {
 		SetTickFlag(_actor_settings.tick);
+		for (const auto& component : _components)
+			component->InitComponent();
 	}
 	std::string Actor::ToString() const { return "Default Actor ToString"; }
 	void Actor::Move(const sf::Vector2f& velocity) {

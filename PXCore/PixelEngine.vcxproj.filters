@@ -31,7 +31,7 @@
     <ClInclude Include="Object\BaseImplementations\EmptyControlledActor.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Object\Extensions\Animation.h">
+    <ClInclude Include="Object\Components\Animation.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Object\Actor.h">
@@ -55,6 +55,9 @@
     <ClInclude Include="Time\TimeManager.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="Object\Components\ActorComponentBase.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Engine.cpp" />
@@ -70,7 +73,7 @@
     <ClCompile Include="Object\BaseImplementations\EmptyControlledActor.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Object\Extensions\Animation.cpp">
+    <ClCompile Include="Object\Components\Animation.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Object\Actor.cpp">
@@ -92,6 +95,9 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Time\TimeManager.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Object\Components\ActorComponentBase.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

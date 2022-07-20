@@ -1,6 +1,6 @@
 #pragma once
 #include "Actor.h"
-#include "Extensions/Animation.h"
+#include "Components/Animation.h"
 #include "PXSettings/AnimationSettings.h"
 #include "PXUtilities/Enums/AnimationEnums.h"
 namespace Core::Object{
@@ -19,7 +19,6 @@ namespace Core::Object{
 		virtual std::string ToString()const override;
 	protected:
 		Settings::AnimationSettings _animation_settings;
-		std::unique_ptr<Extension::Animation> _animation;
 		std::map<AnimationEnums::Direction, int> _direction_row;
 		int _animated_row = 0;
 	};

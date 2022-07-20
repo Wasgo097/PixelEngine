@@ -2,6 +2,7 @@
 #include "PXCore/Object/ControlledActor.h"
 #include <vector>
 namespace Test {
+	class Tree;
 	class ForestMainCharacter :public Core::Object::ControlledActor
 	{
 	public:
@@ -9,6 +10,6 @@ namespace Test {
 		void CreateNewTree();
 		void EraseTree();
 	protected:
-		std::vector<std::shared_ptr<Core::Object::Actor>> _created_tree;
+		std::vector<std::shared_ptr<Tree>> _created_tree;
 	};
 }

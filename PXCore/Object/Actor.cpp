@@ -7,12 +7,7 @@ namespace Core::Object {
 		_world(world), _actor_settings(actor_settings), _texture_settings(texture_settings), _velocity(_actor_settings.velocity), _tick(_actor_settings.tick) {
 		//collision
 		if (static_cast<int>(_actor_settings.collision) > 1) {
-			_collider = sf::RectangleShape(_actor_settings.collider_size);
-			sf::Vector2f temp_origin = _collider->getSize();
-			temp_origin.x /= 2.0f;
-			//bottom center
-			_collider->setOrigin(temp_origin);
-			_collider->setPosition(_actor_settings.position);
+			_components.emplace_back(std::make_shared<Components::Collider>(this,actor_settings));
 		}
 		//texture and sprite
 		if (!_texture_settings.texture_path.empty()) {
@@ -45,11 +40,10 @@ namespace Core::Object {
 	}
 	void Actor::Tick(float delta_time) {
 		if (_actor_settings.type == ActorsEnums::ActorType::Dynamic && _velocity != sf::Vector2f()) {
-			auto move_vector = _velocity;
 			if (_sprite)
-				_sprite->move(move_vector);
-			if (_collider)
-				_collider->move(move_vector);
+				_sprite->move(_velocity);
+			if (auto collider = GetTComponent<Components::Collider>(); collider)
+				collider->Move(_velocity);
 			if (!_pushed)
 				_velocity = sf::Vector2f(0, 0);
 		}
@@ -61,7 +55,9 @@ namespace Core::Object {
 		return static_cast<int>(_actor_settings.collision) > 0;
 	}
 	std::optional<sf::RectangleShape> Actor::GetCollider() {
-		return _collider;
+		if (auto collider = GetTComponent<Components::Collider>(); collider)
+			return collider->GetCollider();
+		return {};
 	}
 	void Actor::SetWorld(World::WorldBase* world_ptr) {
 		_world = world_ptr;
@@ -69,12 +65,14 @@ namespace Core::Object {
 	void Actor::Draw(sf::RenderWindow& window) {
 		if (_sprite)
 			window.draw(*_sprite);
-		if (_collider && _actor_settings.drawable_collision_box) {
-			window.draw(*_collider);
-			sf::CircleShape circle(1.0);
-			circle.setPosition(_collider->getPosition());
-			circle.setFillColor(sf::Color::Black);
-			window.draw(circle);
+		if (_actor_settings.drawable_collision_box) {
+			if (auto collider = GetTComponent<Components::Collider>(); collider) {
+				window.draw(collider->GetCollider());
+				sf::CircleShape circle(1.0);
+				circle.setPosition(collider->GetCollider().getPosition());
+				circle.setFillColor(sf::Color::Black);
+				window.draw(circle);
+			}
 		}
 	}
 	void Actor::Init() {

@@ -1,11 +1,12 @@
 #pragma once
 #include "Object.h"
-#include "PXSettings/ActorSettings.h"
-#include "PXSettings/TextureSettings.h"
 #include <SFML/Graphics.hpp>
 #include <optional>
 #include <list>
 #include <concepts>
+#include "PXSettings/ActorSettings.h"
+#include "PXSettings/TextureSettings.h"
+#include "Components/Collider.h"
 namespace Core::World {
 	class WorldBase;
 }
@@ -50,7 +51,7 @@ namespace Core::Object {
 		World::WorldBase* _world;
 		std::unique_ptr<sf::Texture> _texture;
 		std::unique_ptr<sf::Sprite> _sprite;
-		std::optional<sf::RectangleShape> _collider;
+		//std::optional<sf::RectangleShape> _collider;
 		std::list<std::shared_ptr<Components::ActorComponentBase>> _components;
 		Settings::ActorSettings _actor_settings;
 		Settings::TextureSettings _texture_settings;

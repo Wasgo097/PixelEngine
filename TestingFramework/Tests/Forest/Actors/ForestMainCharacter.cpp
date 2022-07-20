@@ -2,6 +2,7 @@
 #include "PXFactory/SettingsFactory.h"
 #include "../WorldForForestTest.h"
 #include "Tree.h"
+#include "PXCore/Object/Components/Collider.h"
 namespace Test {
 	ForestMainCharacter::ForestMainCharacter(Core::World::WorldBase* world, const Settings::ActorSettings& actor_settings, const Settings::TextureSettings& texture_settings, const Settings::AnimationSettings& animation_settings, Core::Controller::ControllerBase* controller) :
 		Core::Object::ControlledActor{ world,actor_settings,texture_settings,animation_settings,controller }
@@ -10,8 +11,8 @@ namespace Test {
 	void ForestMainCharacter::CreateNewTree()
 	{
 		auto tree_settings = CREATE_SETTINGS(Settings::ActorSettings, "Cfg\\TreeActorSettings.json");
-		if (_collider)
-			tree_settings.position = _collider->getPosition();
+		if (auto collider = GetTComponent<Core::Object::Components::Collider>(); collider)
+			tree_settings.position = collider->GetCollider().getPosition();
 		else if (_sprite)
 			tree_settings.position = _sprite->getPosition();
 		auto tree_texture = CREATE_SETTINGS(Settings::TextureSettings, "Cfg\\TreeTextureSettings.json");

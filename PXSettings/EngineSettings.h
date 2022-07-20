@@ -2,7 +2,7 @@
 #include <string>
 namespace Settings {
 	struct EngineSettings{
-		EngineSettings(std::string window_settings, std::string music_settings, std::string world_settings) :
+		EngineSettings(const std::string& window_settings, const std::string& music_settings, const std::string& world_settings) :
 			window_settings_path{ window_settings }, music_settings_path{ music_settings }, world_settings_path{ world_settings }{}
 		EngineSettings() = default;
 

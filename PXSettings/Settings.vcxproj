@@ -162,6 +162,7 @@
     <ClInclude Include="pch.h" />
     <ClInclude Include="TextureSettings.h" />
     <ClInclude Include="WindowSettings.h" />
+    <ClInclude Include="WindowSettingsDTO.h" />
     <ClInclude Include="WorldSettings.h" />
   </ItemGroup>
   <ItemGroup>

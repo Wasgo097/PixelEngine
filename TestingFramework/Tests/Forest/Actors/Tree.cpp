@@ -13,6 +13,7 @@ namespace Test {
 			currect_scale.x += 0.1f;
 			currect_scale.y += 0.1f;
 			_sprite->setScale(currect_scale);
+			_collider->setScale(currect_scale);
 		}
 	}
 }

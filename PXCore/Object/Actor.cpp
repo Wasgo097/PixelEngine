@@ -59,10 +59,15 @@ namespace Core::Object {
 		_world = world_ptr;
 	}
 	void Actor::Draw(sf::RenderWindow& window) {
-		if (_collider && _actor_settings.drawable_collision_box)
-			window.draw(*_collider);
 		if (_sprite)
 			window.draw(*_sprite);
+		if (_collider && _actor_settings.drawable_collision_box) {
+			window.draw(*_collider);
+			sf::CircleShape circle(1.0);
+			circle.setPosition(_collider->getPosition());
+			circle.setFillColor(sf::Color::Black);
+			window.draw(circle);
+		}
 	}
 	void Actor::Init() {
 		SetTickFlag(_actor_settings.tick);

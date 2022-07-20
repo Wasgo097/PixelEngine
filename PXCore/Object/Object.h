@@ -9,6 +9,8 @@ namespace Core::Object{
 		virtual void OnLoad(){}
 		virtual void OnSpawn(){}
 		virtual void OnDelete(){}
+		virtual void OnOverlapp() {}
+		virtual void OnCollide() {}
 		void Destroy() { _to_destroy = true; }
 		bool ToDestroy()const { return _to_destroy; }
 	private:

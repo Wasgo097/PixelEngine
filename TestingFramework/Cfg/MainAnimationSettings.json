@@ -1,5 +1,5 @@
 {
-    "_directiontorow": [
+    "direction_to_row": [
         [
             "Left",
             9
@@ -21,7 +21,7 @@
             2
         ]
     ],
-    "_framescount": [
+    "frames_count": [
         [
             2,
             7
@@ -43,9 +43,9 @@
             9
         ]
     ],
-    "_rectsize": {
+    "rect_size": {
         "x": 64,
         "y": 64
     },
-    "_switchtime": 0.1
+    "switch_time": 0.3
 }

@@ -2,7 +2,7 @@
 #include <string>
 namespace Settings {
 	struct TextureSettings{
-		TextureSettings(std::string texture, bool smooth, bool repeatable) :texture_path{ texture }, smooth{ smooth }, repeatable{ repeatable } {}
+		TextureSettings(const std::string& texture, bool smooth, bool repeatable) :texture_path{ texture }, smooth{ smooth }, repeatable{ repeatable } {}
 		TextureSettings() = default;
 
 		bool operator==(const TextureSettings& obj)const {

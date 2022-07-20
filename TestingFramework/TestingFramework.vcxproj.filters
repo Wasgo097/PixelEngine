@@ -15,10 +15,7 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="Tests\SerializationTest\SerialziationTest.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Tests\EngineSettup\EngineSetup.cpp">
+    <ClCompile Include="Tests\EngineSettup\EngineSetupTest.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Tests\ActorAnimation\ActorAnimationTest.cpp">
@@ -36,15 +33,36 @@
     <ClCompile Include="Main.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="Tests\Forest\ForestTest.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Tests\Forest\ControllerForForestTest.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Tests\Forest\EngineForForestTest.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Tests\Forest\WorldForForestTest.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Tests\Forest\Actors\Tree.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Tests\Forest\Actors\ForestMainCharacter.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Tests\EngineSettup\BaseEngine.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Tests\GUISettup\GUISettupTest.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Tests\SerializationTest\SerialziationTest.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="BaseTest.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Tests\EngineSettup\EngineSetup.h">
+    <ClInclude Include="Tests\EngineSettup\EngineSetupTest.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Tests\ActorAnimation\ActorAnimationTest.h">
@@ -57,6 +75,30 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Tests\ActorAnimation\WorldForAnimationTest.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Tests\Forest\WorldForForestTest.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Tests\Forest\ForestTest.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Tests\Forest\ControllerForForestTest.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Tests\Forest\EngineForForestTest.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Tests\Forest\Actors\Tree.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Tests\Forest\Actors\ForestMainCharacter.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Tests\EngineSettup\BaseEngine.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Tests\GUISettup\GUISettupTest.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

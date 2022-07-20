@@ -1,17 +1,17 @@
 {
-    "ActorType": "Dynamic",
-    "ColliderSize": {
-        "x": 64.0,
+    "collider_size": {
+        "x": 32.0,
         "y": 64.0
     },
-    "CollisionType": "Collision",
-    "DrawableCollisionBox": false,
-    "Position": {
+    "collision": "Collision",
+    "drawable_collision_box": true,
+    "position": {
         "x": 60.0,
         "y": 60.0
     },
-    "TickFlag": true,
-    "Velocity": {
+    "tick": true,
+    "type": "Dynamic",
+    "velocity": {
         "x": 0.0,
         "y": 0.0
     }

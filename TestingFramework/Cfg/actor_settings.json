@@ -1,0 +1,18 @@
+{
+    "collider_size": {
+        "x": 0.0,
+        "y": 0.0
+    },
+    "collision": "Collision",
+    "drawable_collision_box": false,
+    "position": {
+        "x": 0.0,
+        "y": 0.0
+    },
+    "tick": false,
+    "type": "Static",
+    "velocity": {
+        "x": 0.0,
+        "y": 0.0
+    }
+}

@@ -16,7 +16,7 @@ namespace Core::World {
 	void WorldBase::Update(float delta){
 		if (!_initialized)
 			std::cout << "Update uninitialized world\n";
-		if (delta > 0.1)
+		if (delta > 0.2)
 			std::cout << "Tick time above save value " << delta << "\n";
 		if (_actor_manager)
 			_actor_manager->Update(delta);
@@ -34,18 +34,19 @@ namespace Core::World {
 	{
 		return _initialized;
 	}
-	void WorldBase::ServiceInput(sf::Event action){
+	void WorldBase::ServiceInput(const Core::Controller::Key& key){
 		if(_main_controller)
-			_main_controller->ServiceInput(action);
+			_main_controller->ServiceInput(key);
 	}
 	void WorldBase::InitWorld()	{
 		if (_initialized)
 			throw std::runtime_error("Double initialization of world\n");
-		_main_controller->InitMainCharacterInputBindings();
-		_main_controller->InitMainCharacter();
-		if (_actor_manager && _main_controller)
+		if (_actor_manager && _main_controller) {
+			_main_controller->InitMainCharacter();
+			_main_controller->InitMainCharacterInputBindings();
 			_actor_manager->RegisterMainActor(_main_controller->GetMainCharacter());
-		_initialized = true;
+			_initialized = true;
+		}
 	}
 	void WorldBase::EndWorld(){
 		if (!_initialized)

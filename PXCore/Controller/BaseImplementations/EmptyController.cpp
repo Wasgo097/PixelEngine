@@ -5,9 +5,7 @@
 #include "PXSettings/TextureSettings.h"
 #include "PXSettings/AnimationSettings.h"
 namespace Core::Controller {
-	Controller::EmptyController::EmptyController(Core::World::WorldBase* world) :_world { world }
-	{
-	}
+	Controller::EmptyController::EmptyController(Core::World::WorldBase* world_parent) :Core::Controller::ControllerBase(world_parent) {}
 	void EmptyController::InitMainCharacterInputBindings() {
 		Controller::Key key;
 		std::cout << "Init Keybinding\n";
@@ -59,7 +57,6 @@ namespace Core::Controller {
 		texture_settings.repeatable = false;
 		texture_settings.smooth = true;
 		texture_settings.texture_path = "";
-		Settings::AnimationSettings animation_settings;
-		_main_character = std::make_shared<Core::Object::EmptyControlledActor>(_world, actor_settings, texture_settings, animation_settings, this);
+		_main_character = std::make_shared<Core::Object::EmptyControlledActor>(_world_parent, actor_settings, texture_settings, Settings::AnimationSettings(), this);
 	}
 }

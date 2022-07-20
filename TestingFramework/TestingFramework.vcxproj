@@ -65,12 +65,16 @@
   <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
     <Import Project="SFMLLibD.props" />
-    <Import Project="..\PixelEngine\SFMLInclude.props" />
+    <Import Project="..\PXCore\SFMLInclude.props" />
+    <Import Project="..\PXCore\TGUIInclude.props" />
+    <Import Project="TGUILibD.props" />
   </ImportGroup>
   <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
     <Import Project="SFMLLibR.props" />
-    <Import Project="..\PixelEngine\SFMLInclude.props" />
+    <Import Project="..\PXCore\SFMLInclude.props" />
+    <Import Project="..\PXCore\TGUIInclude.props" />
+    <Import Project="TGUILibR.props" />
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
@@ -88,12 +92,12 @@
       <SDLCheck>true</SDLCheck>
       <ConformanceMode>true</ConformanceMode>
       <LanguageStandard>stdcpp20</LanguageStandard>
-      <AdditionalIncludeDirectories>$(SolutionDir)PixelEngine;$(ProjectDir);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir);$(ProjectDir);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
       <AdditionalLibraryDirectories>$(SolutionDir)Build\Exe\PixelEngine\$(Platform)\$(Configuration)\;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
-      <AdditionalDependencies>PixelEngine.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
@@ -131,38 +135,64 @@
       <SDLCheck>true</SDLCheck>
       <ConformanceMode>true</ConformanceMode>
       <LanguageStandard>stdcpp20</LanguageStandard>
-      <AdditionalIncludeDirectories>$(SolutionDir)PixelEngine;$(ProjectDir);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir);$(ProjectDir);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
       <AdditionalLibraryDirectories>$(SolutionDir)Build\Exe\PixelEngine\$(Platform)\$(Configuration)\;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
-      <AdditionalDependencies>PixelEngine.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Tests\GUISettup\GUISettupTest.cpp" />
+    <ClCompile Include="Tests\EngineSettup\BaseEngine.cpp" />
+    <ClCompile Include="Tests\Forest\Actors\ForestMainCharacter.cpp" />
     <ClCompile Include="Main.cpp" />
     <ClCompile Include="Tests\ActorAnimation\ActorAnimationTest.cpp" />
     <ClCompile Include="Tests\ActorAnimation\ControllerForAnimationTest.cpp" />
     <ClCompile Include="Tests\ActorAnimation\EngineForAnimationTest.cpp" />
     <ClCompile Include="Tests\ActorAnimation\WorldForAnimationTest.cpp" />
-    <ClCompile Include="Tests\EngineSettup\EngineSetup.cpp" />
-    <ClCompile Include="Tests\SerializationTest\SerialziationTest.cpp" />
+    <ClCompile Include="Tests\EngineSettup\EngineSetupTest.cpp" />
+    <ClCompile Include="Tests\Forest\ForestTest.cpp" />
+    <ClCompile Include="Tests\Forest\ControllerForForestTest.cpp" />
+    <ClCompile Include="Tests\Forest\EngineForForestTest.cpp" />
+    <ClCompile Include="Tests\Forest\WorldForForestTest.cpp" />
+    <ClCompile Include="Tests\Forest\Actors\Tree.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\PixelEngine\PixelEngine.vcxproj">
+    <ProjectReference Include="..\PXCore\PixelEngine.vcxproj">
       <Project>{7d35154a-9b4e-4c71-8fe8-37a7d467a355}</Project>
+    </ProjectReference>
+    <ProjectReference Include="..\PXFactory\PXFactory.vcxproj">
+      <Project>{863cee10-1256-4edd-8211-72317cdc7cda}</Project>
+    </ProjectReference>
+    <ProjectReference Include="..\PXSerialziation\PXSerialziation.vcxproj">
+      <Project>{bc7c08a7-29f9-418a-ae41-e4cb75b08a42}</Project>
+    </ProjectReference>
+    <ProjectReference Include="..\PXSettings\Settings.vcxproj">
+      <Project>{98ceb288-7710-4d3f-8e83-2a4ab5694af6}</Project>
+    </ProjectReference>
+    <ProjectReference Include="..\PXUtilities\Utilities.vcxproj">
+      <Project>{65b956ad-0588-4b53-837a-bf4db85f2e61}</Project>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Tests\GUISettup\GUISettupTest.h" />
+    <ClInclude Include="Tests\EngineSettup\BaseEngine.h" />
+    <ClInclude Include="Tests\Forest\Actors\ForestMainCharacter.h" />
     <ClInclude Include="Tests\ActorAnimation\ActorAnimationTest.h" />
     <ClInclude Include="Tests\ActorAnimation\ControllerForAnimationTest.h" />
     <ClInclude Include="Tests\ActorAnimation\EngineForAnimationTest.h" />
     <ClInclude Include="Tests\ActorAnimation\WorldForAnimationTest.h" />
-    <ClInclude Include="Tests\EngineSettup\EngineSetup.h" />
+    <ClInclude Include="Tests\EngineSettup\EngineSetupTest.h" />
     <ClInclude Include="BaseTest.h" />
-    <ClInclude Include="Tests\SerializationTest\SerialziationTest.h" />
+    <ClInclude Include="Tests\Forest\ForestTest.h" />
+    <ClInclude Include="Tests\Forest\ControllerForForestTest.h" />
+    <ClInclude Include="Tests\Forest\EngineForForestTest.h" />
+    <ClInclude Include="Tests\Forest\WorldForForestTest.h" />
+    <ClInclude Include="Tests\Forest\Actors\Tree.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

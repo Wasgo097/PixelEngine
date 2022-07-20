@@ -5,16 +5,15 @@
 #include "World/BaseImplementations/EmptyWorld.h"
 #include <SFML/System.hpp>
 #include <chrono>
+#include <iostream>
 using namespace std::chrono_literals;
 namespace Core {
 	Engine::Engine() {
-		_engine_settings = CREATE_SETTINGS(Settings::EngineSettings, "Cfg\\enginesettings.json");
+		_engine_settings = CREATE_SETTINGS(Settings::EngineSettings, "Cfg\\engine_settings.json");
 		std::string settings_path = "Cfg\\" + _engine_settings.window_settings_path;
 		_window_settings = CREATE_SETTINGS(Settings::WindowSettings, settings_path);
 		settings_path = "Cfg\\" + _engine_settings.music_settings_path;
 		_music_settings = CREATE_SETTINGS(Settings::MusicSettings, settings_path);
-		settings_path = "Cfg\\" + _engine_settings.world_settings_path;
-		_world_settings = CREATE_SETTINGS(Settings::WorldSettings, settings_path);
 		_main_window = std::make_unique<sf::RenderWindow>(_window_settings.video_mode, _window_settings.window_name, _window_settings.display_style);
 		_main_window->setVerticalSyncEnabled(_window_settings.vsync);
 		if (_window_settings.fps > 1)
@@ -27,20 +26,31 @@ namespace Core {
 		InitEngine();
 		bool game_loop_condition = _main_window->isOpen() && _current_world;
 		while (game_loop_condition) {
-			sf::Event event;
-			while (_main_window->pollEvent(event)) {
-				if (event.type == sf::Event::Closed) {
-					_current_world->EndWorld();
-					Close();
-				}
-				else
-					_current_world->ServiceInput(event);
-			}
+			ServiceInput();
 			Render();
 			Update();
 			game_loop_condition = _main_window->isOpen() && _current_world;
 		}
 		return 1;
+	}
+	void Engine::ServiceInput()
+	{
+		sf::Event action;
+		while (_main_window->pollEvent(action)) {
+			if (action.type == sf::Event::Closed) {
+				_current_world->EndWorld();
+				Close();
+			}
+			/*if (action.type == sf::Event::EventType::GainedFocus
+				or action.type == sf::Event::EventType::LostFocus)
+				continue;*/
+			_input_manager.ServiceEvent(action);
+		}
+		for (auto& key : _input_manager.GetClickedBtn())
+			_current_world->ServiceInput(key);
+		for (auto& key : _input_manager.GetReleasedBtn())
+			_current_world->ServiceInput(key);
+		_input_manager.ClearReleasedBtn();
 	}
 	void Engine::PushWorldToQueue(std::unique_ptr<World::WorldBase>&& new_world) {
 		if (_current_world)
@@ -52,7 +62,8 @@ namespace Core {
 	}
 	void Engine::Update() {
 		sf::Time time = _clock.restart();
-		if (!_current_world)return;
+		if (!_current_world)
+			return;
 		_current_world->CheckQuit();
 		if (_current_world->Quit()) {
 			_current_world->EndWorld();
@@ -79,7 +90,7 @@ namespace Core {
 			_current_world->Draw(*_main_window);
 		_main_window->display();
 	}
-	void Engine::InitEngine() {
+	/*void Engine::InitEngine() {
 		PushWorldToQueue(std::make_unique<World::EmptyWorld>(_world_settings, this));
-	}
+	}*/
 }

@@ -24,9 +24,6 @@
     <ClInclude Include="ThreadingResource.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="CommonHeaders.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="Enums\ActorEnums.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -40,6 +37,12 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="ControllerStructs.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Interfaces\ITimeObservable.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Interfaces\ITimeObserver.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

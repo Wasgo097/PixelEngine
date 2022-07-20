@@ -1,9 +1,10 @@
 #pragma once
-#include "Controller/ControllerBase.h"
+#include "PXCore/Controller/ControllerBase.h"
+#include "PXCore/World/WorldBase.h"
 namespace Test {
-	class ControllerForAnimationTest:public Controller::ControllerBase{
+	class ControllerForAnimationTest:public Core::Controller::ControllerBase{
 	public:
-		ControllerForAnimationTest(Core::WorldBase* world);
+		ControllerForAnimationTest(Core::World::WorldBase* world);
 	public:
 		// Inherited via ControllerBase
 		virtual void InitMainCharacterInputBindings() override;

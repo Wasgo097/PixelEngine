@@ -154,13 +154,14 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClInclude Include="CommonHeaders.h" />
     <ClInclude Include="ControllerStructs.h" />
     <ClInclude Include="Enums\ActorEnums.h" />
     <ClInclude Include="Enums\AnimationEnums.h" />
     <ClInclude Include="Enums\InputEnums.h" />
     <ClInclude Include="framework.h" />
     <ClInclude Include="Interfaces\ILoopingThread.h" />
+    <ClInclude Include="Interfaces\ITimeObservable.h" />
+    <ClInclude Include="Interfaces\ITimeObserver.h" />
     <ClInclude Include="pch.h" />
     <ClInclude Include="ThreadingResource.h" />
   </ItemGroup>

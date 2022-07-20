@@ -1,12 +1,10 @@
 #include "WorldForAnimationTest.h"
-#include "Utility/CommonHeaders.h"
+#include <iostream>
 #include "ControllerForAnimationTest.h"
 using namespace Core;
 namespace Test {
 	WorldForAnimationTest::WorldForAnimationTest(const Settings::WorldSettings& worlsettings, Core::Engine* parent):WorldBase(worlsettings,parent){
 		_main_controller = std::make_unique<Test::ControllerForAnimationTest>(this);
-		_main_controller->InitMainCharacterInputBindings();
-		_main_controller->InitMainCharacter();
 	}
 	void WorldForAnimationTest::CheckQuit(){
 		if (sf::Keyboard::isKeyPressed(sf::Keyboard::Escape)) {
@@ -25,10 +23,5 @@ namespace Test {
 	void WorldForAnimationTest::Draw(sf::RenderWindow& window)	{
 		window.clear(sf::Color::Green);
 		WorldBase::Draw(window);
-	}
-	void WorldForAnimationTest::Update(float delta)
-	{
-		//std::cout << "WorldForAnimationTest update time " << delta << "\n";
-		Core::WorldBase::Update(delta);
 	}
 }

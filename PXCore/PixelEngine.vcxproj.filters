@@ -58,6 +58,9 @@
     <ClInclude Include="Object\Components\ActorComponentBase.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="Object\Components\Collider.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Engine.cpp" />
@@ -98,6 +101,9 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Object\Components\ActorComponentBase.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Object\Components\Collider.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

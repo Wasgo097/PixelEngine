@@ -22,7 +22,7 @@ namespace Core::Object {
 				_texture->setRepeated(texture_settings.repeatable);
 				_sprite = std::make_unique<sf::Sprite>();
 				_sprite->setTexture(*_texture);
-				sf::Vector2f temp_origin(_texture->getSize().x, _texture->getSize().y);
+				sf::Vector2f temp_origin(static_cast<float>(_texture->getSize().x), static_cast<float>(_texture->getSize().y));
 				temp_origin.x /= 2.0f;
 				_sprite->setOrigin(temp_origin);
 				_sprite->setPosition(_actor_settings.position);

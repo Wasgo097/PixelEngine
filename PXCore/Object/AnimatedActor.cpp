@@ -6,7 +6,7 @@ namespace Core::Object {
 		_animation_settings(animation_settings),
 		_direction_row(_animation_settings.direction_to_row)
 	{
-		auto animation = std::make_shared<Components::Animation>(*_sprite, _animation_settings);
+		auto animation = std::make_shared<Components::Animation>(this,*_sprite, _animation_settings);
 		animation->SetTickFlag(true);
 		_components.emplace_back(animation);
 		if (!_direction_row.empty()) {

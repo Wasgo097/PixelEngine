@@ -162,9 +162,6 @@
     <ClCompile Include="Tests\Forest\Actors\Tree.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\PixelEngine\PixelEngine.vcxproj">
-      <Project>{7d35154a-9b4e-4c71-8fe8-37a7d467a355}</Project>
-    </ProjectReference>
     <ProjectReference Include="..\PXCore\PixelEngine.vcxproj">
       <Project>{7d35154a-9b4e-4c71-8fe8-37a7d467a355}</Project>
     </ProjectReference>

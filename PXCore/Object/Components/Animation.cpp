@@ -1,7 +1,8 @@
 #include "Animation.h"
 #include <iostream>
 namespace Core::Object::Components {
-	Animation::Animation(sf::Sprite& animated_sprite, const Settings::AnimationSettings& animation_settings) :
+	Animation::Animation(Core::Object::Actor* parent, sf::Sprite& animated_sprite, const Settings::AnimationSettings& animation_settings) :
+		ActorComponentBase(parent),
 		_animated_sprite{ animated_sprite },
 		_animation_settings{ animation_settings }, _count_of_columns_in_row{ _animation_settings.frames_count } {
 		_frame_on_texture.width = _animation_settings.rect_size.x;
@@ -20,7 +21,7 @@ namespace Core::Object::Components {
 		_frame_on_texture.top = _movable_view_on_texture.y * _animation_settings.rect_size.y;
 		_animated_sprite.setTextureRect(_frame_on_texture);
 	}
-	void Animation::SetRow(int row){
+	void Animation::SetRow(int row) {
 		if (_row != row) {
 			_row = row;
 			_movable_view_on_texture.x = 0;

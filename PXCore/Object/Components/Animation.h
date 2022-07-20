@@ -7,7 +7,7 @@
 namespace Core::Object::Components {
 	class Animation:public ActorComponentBase {
 	public:
-		Animation(sf::Sprite& animated_sprite, const Settings::AnimationSettings& animation_settings);
+		Animation(Core::Object::Actor* parent,sf::Sprite& animated_sprite, const Settings::AnimationSettings& animation_settings);
 		void SetRow(int row);
 		virtual void Tick(float delta_time)override;
 	protected:

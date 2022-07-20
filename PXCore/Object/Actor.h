@@ -45,6 +45,7 @@ namespace Core::Object {
 				if (auto casted_component = std::dynamic_pointer_cast<T>(component); casted_component)
 					return casted_component;
 			}
+			return {};
 		}
 		World::WorldBase* _world;
 		std::unique_ptr<sf::Texture> _texture;

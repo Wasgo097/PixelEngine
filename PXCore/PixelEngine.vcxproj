@@ -19,6 +19,7 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="Object\Components\Collider.cpp" />
     <ClCompile Include="Object\Components\ActorComponentBase.cpp" />
     <ClCompile Include="Controller\BaseImplementations\EmptyController.cpp" />
     <ClCompile Include="Controller\ControllerBase.cpp" />
@@ -35,6 +36,7 @@
     <ClCompile Include="World\WorldBase.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Object\Components\Collider.h" />
     <ClInclude Include="Object\Components\ActorComponentBase.h" />
     <ClInclude Include="Controller\BaseImplementations\EmptyController.h" />
     <ClInclude Include="Controller\ControllerBase.h" />

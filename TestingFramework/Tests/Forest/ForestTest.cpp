@@ -1,7 +1,7 @@
 #include "ForestTest.h"
 #include "PXFactory/SettingsFactory.h"
 namespace Test {
-	void ForestTest::PrepareTest()
+	bool ForestTest::PrepareTest()
 	{
 //#define PREPARE_SETTINGS
 #ifdef PREPARE_SETTINGS
@@ -34,14 +34,15 @@ namespace Test {
 		main_animation_settings.frames_count[11] = 9;
 		CREATE_SETTINGS_FILE(main_animation_settings, "Cfg\\MainAnimationSettings.json")
 #endif
-		int result = _engine.Run();
+		return _engine.Run()==1;
 	}
 
 	bool ForestTest::RunTest()
 	{
 		try {
-			PrepareTest();
-			return true;
+			if (PrepareTest())
+				return true;
+			return false;
 		}
 		catch (std::exception& ex) {
 			std::cout << "std exc " << ex.what() << "\n";

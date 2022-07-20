@@ -1,13 +1,14 @@
 
 #include "EngineSetupTest.h"
 namespace Test {
-	void EngineSetupTest::PrepareTest(){
-		int result=_engine.Run();
+	bool EngineSetupTest::PrepareTest(){
+		return _engine.Run()==1;
 	}
 	bool EngineSetupTest::RunTest(){
 		try {
-			PrepareTest();
-			return true;
+			if (PrepareTest())
+				return true;
+			return false;
 		}
 		catch (std::exception& ex) {
 			std::cout << "std exc " << ex.what() << "\n";

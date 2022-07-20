@@ -5,7 +5,7 @@ namespace Test {
 	class ActorAnimationTest : public BaseTest{
 	public:
 		// Inherited via BaseTest
-		virtual void PrepareTest() override;
+		virtual bool PrepareTest() override;
 		virtual bool RunTest() override;
 	protected:
 		EngineForAnimationTest _engine;

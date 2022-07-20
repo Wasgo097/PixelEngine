@@ -3,7 +3,7 @@
 namespace Test {
 	class GUISettupTest:public BaseTest{
 	public:
-		virtual void PrepareTest() override;
+		virtual bool PrepareTest() override;
 		virtual bool RunTest() override;
 	};
 }

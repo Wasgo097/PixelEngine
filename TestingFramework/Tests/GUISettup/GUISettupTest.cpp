@@ -1,84 +1,260 @@
 #include "GUISettupTest.h"
 #include <TGUI/TGUI.hpp>
 namespace Test {
-	void login(tgui::EditBox::Ptr username, tgui::EditBox::Ptr password){
-		std::cout << "Username: " << username->getText() << std::endl;
-		std::cout << "Password: " << password->getText() << std::endl;
-	}
+	bool runExample(tgui::GuiBase& gui)
+	{
+		try
+		{
+			tgui::Theme theme{ "Resource\\GUI\\themes\\Black.txt" };
 
-	void updateTextSize(tgui::GuiBase& gui)	{
-		// Update the text size of all widgets in the gui, based on the current window height
-		const float windowHeight = gui.getView().getRect().height;
-		gui.setTextSize(static_cast<unsigned int>(0.07f * windowHeight)); // 7% of height
-	}
+			gui.add(tgui::Picture::create("Resource\\GUI\\RedBackground.jpg"));
 
-	void loadWidgets(tgui::GuiBase& gui){
-		// Specify an initial text size instead of using the default value
-		updateTextSize(gui);
+			auto tabs = tgui::Tabs::create();
+			tabs->setRenderer(theme.getRenderer("Tabs"));
+			tabs->setTabHeight(30);
+			tabs->setPosition(70, 40);
+			tabs->add("Tab - 1");
+			tabs->add("Tab - 2");
+			tabs->add("Tab - 3");
+			gui.add(tabs);
 
-		// We want the text size to be updated when the window is resized
-		gui.onViewChange([&gui] { updateTextSize(gui); });
+			auto menu = tgui::MenuBar::create();
+			menu->setRenderer(theme.getRenderer("MenuBar"));
+			menu->setHeight(22.f);
+			menu->addMenu("File");
+			menu->addMenuItem("Load");
+			menu->addMenuItem("Save");
+			menu->addMenuItem("Exit");
+			menu->addMenu("Edit");
+			menu->addMenuItem("Copy");
+			menu->addMenuItem("Paste");
+			menu->addMenu("Help");
+			menu->addMenuItem("About");
+			gui.add(menu);
 
-		// Create the background image
-		// The picture is of type tgui::Picture::Ptr which is actually just a typedef for std::shared_widget<tgui::Picture>
-		// The picture will fit the entire window and will scale with it
-		auto picture = tgui::Picture::create("Resource\\GUI\\backend.png");
-		picture->setSize({ "100%", "100%" });
-		gui.add(picture);
+			auto label = tgui::Label::create();
+			label->setRenderer(theme.getRenderer("Label"));
+			label->setText("This is a label.\nAnd these are radio buttons:");
+			label->setPosition(10, 90);
+			label->setTextSize(18);
+			gui.add(label);
 
-		// Create the username edit box
-		// Similar to the picture, we set a relative position and size
-		// In case it isn't obvious, the default text is the text that is displayed when the edit box is empty
-		auto editBoxUsername = tgui::EditBox::create();
-		editBoxUsername->setSize({ "66.67%", "12.5%" });
-		editBoxUsername->setPosition({ "16.67%", "16.67%" });
-		editBoxUsername->setDefaultText("Username");
-		gui.add(editBoxUsername);
+			auto radioButton = tgui::RadioButton::create();
+			radioButton->setRenderer(theme.getRenderer("RadioButton"));
+			radioButton->setPosition(20, 140);
+			radioButton->setText("Yep!");
+			radioButton->setSize(25, 25);
+			gui.add(radioButton);
 
-		// Create the password edit box
-		// We copy the previous edit box here and keep the same size
-		auto editBoxPassword = tgui::EditBox::copy(editBoxUsername);
-		editBoxPassword->setPosition({ "16.67%", "41.6%" });
-		editBoxPassword->setPasswordCharacter('*');
-		editBoxPassword->setDefaultText("Password");
-		gui.add(editBoxPassword);
+			radioButton = tgui::RadioButton::create();
+			radioButton->setRenderer(theme.getRenderer("RadioButton"));
+			radioButton->setPosition(20, 170);
+			radioButton->setText("Nope!");
+			radioButton->setSize(25, 25);
+			gui.add(radioButton);
 
-		// Create the login button
-		auto button = tgui::Button::create("Login");
-		button->setSize({ "50%", "16.67%" });
-		button->setPosition({ "25%", "70%" });
-		gui.add(button);
+			radioButton = tgui::RadioButton::create();
+			radioButton->setRenderer(theme.getRenderer("RadioButton"));
+			radioButton->setPosition(20, 200);
+			radioButton->setText("Don't know!");
+			radioButton->setSize(25, 25);
+			gui.add(radioButton);
 
-		// Call the login function when the button is pressed and pass the edit boxes that we created as parameters
-		// The "&" in front of "login" can be removed on newer compilers, but is kept here for compatibility with GCC < 8.
-		button->onPress(&login, editBoxUsername, editBoxPassword);
-	}
+			label = tgui::Label::create();
+			label->setRenderer(theme.getRenderer("Label"));
+			label->setText("We've got some edit boxes:");
+			label->setPosition(10, 240);
+			label->setTextSize(18);
+			gui.add(label);
 
-	bool runExample(tgui::GuiBase& gui)	{
-		try		{
-			loadWidgets(gui);
-			return true;
+			auto editBox = tgui::EditBox::create();
+			editBox->setRenderer(theme.getRenderer("EditBox"));
+			editBox->setSize(200, 25);
+			editBox->setTextSize(18);
+			editBox->setPosition(10, 270);
+			editBox->setDefaultText("Click to edit text...");
+			gui.add(editBox);
+
+			label = tgui::Label::create();
+			label->setRenderer(theme.getRenderer("Label"));
+			label->setText("And some list boxes too...");
+			label->setPosition(10, 310);
+			label->setTextSize(18);
+			gui.add(label);
+
+			auto listBox = tgui::ListBox::create();
+			listBox->setRenderer(theme.getRenderer("ListBox"));
+			listBox->setSize(250, 120);
+			listBox->setItemHeight(24);
+			listBox->setPosition(10, 340);
+			listBox->addItem("Item 1");
+			listBox->addItem("Item 2");
+			listBox->addItem("Item 3");
+			gui.add(listBox);
+
+			label = tgui::Label::create();
+			label->setRenderer(theme.getRenderer("Label"));
+			label->setText("It's the progress bar below");
+			label->setPosition(10, 470);
+			label->setTextSize(18);
+			gui.add(label);
+
+			auto progressBar = tgui::ProgressBar::create();
+			progressBar->setRenderer(theme.getRenderer("ProgressBar"));
+			progressBar->setPosition(10, 500);
+			progressBar->setSize(200, 20);
+			progressBar->setValue(50);
+			gui.add(progressBar);
+
+			label = tgui::Label::create();
+			label->setRenderer(theme.getRenderer("Label"));
+			label->setText(tgui::String::fromNumber(progressBar->getValue()) + "%");
+			label->setPosition(220, 500);
+			label->setTextSize(18);
+			gui.add(label);
+
+			label = tgui::Label::create();
+			label->setRenderer(theme.getRenderer("Label"));
+			label->setText("That's the slider");
+			label->setPosition(10, 530);
+			label->setTextSize(18);
+			gui.add(label);
+
+			auto slider = tgui::Slider::create();
+			slider->setRenderer(theme.getRenderer("Slider"));
+			slider->setPosition(10, 560);
+			slider->setSize(200, 18);
+			slider->setValue(4);
+			gui.add(slider);
+
+			auto scrollbar = tgui::Scrollbar::create();
+			scrollbar->setRenderer(theme.getRenderer("Scrollbar"));
+			scrollbar->setPosition(380, 40);
+			scrollbar->setSize(18, 540);
+			scrollbar->setMaximum(100);
+			scrollbar->setViewportSize(70);
+			gui.add(scrollbar);
+
+			auto comboBox = tgui::ComboBox::create();
+			comboBox->setRenderer(theme.getRenderer("ComboBox"));
+			comboBox->setSize(120, 21);
+			comboBox->setPosition(420, 40);
+			comboBox->addItem("Item 1");
+			comboBox->addItem("Item 2");
+			comboBox->addItem("Item 3");
+			comboBox->setSelectedItem("Item 2");
+			gui.add(comboBox);
+
+			auto child = tgui::ChildWindow::create();
+			child->setRenderer(theme.getRenderer("ChildWindow"));
+			child->setClientSize({ 250, 120 });
+			child->setPosition(420, 80);
+			child->setTitle("Child window");
+			gui.add(child);
+
+			label = tgui::Label::create();
+			label->setRenderer(theme.getRenderer("Label"));
+			label->setText("Hi! I'm a child window.");
+			label->setPosition(30, 30);
+			label->setTextSize(15);
+			child->add(label);
+
+			auto button = tgui::Button::create();
+			button->setRenderer(theme.getRenderer("Button"));
+			button->setPosition(75, 70);
+			button->setText("OK");
+			button->setSize(100, 30);
+			button->onPress([=] { child->close(); });
+			child->add(button);
+
+			auto checkbox = tgui::CheckBox::create();
+			checkbox->setRenderer(theme.getRenderer("CheckBox"));
+			checkbox->setPosition(420, 240);
+			checkbox->setText("Ok, I got it");
+			checkbox->setSize(25, 25);
+			gui.add(checkbox);
+
+			checkbox = tgui::CheckBox::create();
+			checkbox->setRenderer(theme.getRenderer("CheckBox"));
+			checkbox->setPosition(570, 240);
+			checkbox->setText("No, I didn't");
+			checkbox->setSize(25, 25);
+			gui.add(checkbox);
+
+			label = tgui::Label::create();
+			label->setRenderer(theme.getRenderer("Label"));
+			label->setText("Chatbox");
+			label->setPosition(420, 280);
+			label->setTextSize(18);
+			gui.add(label);
+
+			auto chatbox = tgui::ChatBox::create();
+			chatbox->setRenderer(theme.getRenderer("ChatBox"));
+			chatbox->setSize(300, 100);
+			chatbox->setTextSize(18);
+			chatbox->setPosition(420, 310);
+			chatbox->setLinesStartFromTop();
+			chatbox->addLine("texus: Hey, this is TGUI!", tgui::Color::Green);
+			chatbox->addLine("Me: Looks awesome! ;)", tgui::Color::Yellow);
+			chatbox->addLine("texus: Thanks! :)", tgui::Color::Green);
+			chatbox->addLine("Me: The widgets rock ^^", tgui::Color::Yellow);
+			gui.add(chatbox);
+
+			sf::Texture texture;
+			sf::Sprite  sprite;
+			texture.loadFromFile("Resource\\GUI\\ThinkLinux.jpg");
+			sprite.setTexture(texture);
+			sprite.setScale(200.f / texture.getSize().x, 140.f / texture.getSize().y);
+
+			auto canvas = tgui::Canvas::create({ 200, 140 });
+			canvas->setPosition(420, 430);
+			canvas->clear();
+			canvas->draw(sprite);
+			canvas->display();
+			gui.add(canvas);
+
+			button = tgui::Button::create();
+			button->setRenderer(theme.getRenderer("Button"));
+			button->setPosition(gui.getView().getSize().x - 115.f, gui.getView().getSize().y - 50.f);
+			button->setText("Exit");
+			button->setSize(100, 40);
+			gui.add(button);
 		}
-		catch (const tgui::Exception& e)		{
-			std::cerr << "Failed to load TGUI widgets: " << e.what() << std::endl;
+		catch (const tgui::Exception& e)
+		{
+			std::cerr << "TGUI Exception: " << e.what() << std::endl;
 			return false;
 		}
+
+		return true;
 	}
 
-	void GUISettupTest::PrepareTest()	{
+	bool GUISettupTest::PrepareTest() {
 		sf::RenderWindow window(sf::VideoMode(800, 600), "TGUI window");
-
 		tgui::Gui gui(window);
-		if (!runExample(gui))
-			return;
+		if (!runExample(gui)) {
+			return false;
+		}
+		while (window.isOpen()) {
+			sf::Event event;
+			while (window.pollEvent(event)) {
+				gui.handleEvent(event);
 
-		gui.mainLoop();
-		return;
+				if (event.type == sf::Event::Closed)
+					window.close();
+			}
+
+			window.clear();
+			gui.draw();
+			window.display();
+		}
+		return true;
 	}
-	bool GUISettupTest::RunTest()	{
+	bool GUISettupTest::RunTest() {
 		try {
-			PrepareTest();
-			return true;
+			if (PrepareTest())
+				return true;
+			return false;
 		}
 		catch (std::exception& ex) {
 			std::cout << "std exc " << ex.what() << "\n";

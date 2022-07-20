@@ -1,8 +1,39 @@
-#include "GUISettupTest.h"
-#include <TGUI/TGUI.hpp>
+#include "MultipleWidgetsTest.h"
 namespace Test {
-	bool runExample(tgui::GuiBase& gui)
-	{
+
+	bool MultipleWidgetsTest::PrepareTest() {
+		sf::RenderWindow window(sf::VideoMode(800, 600), "TGUI window");
+		tgui::Gui gui(window);
+		if (!runExample(gui)) {
+			return false;
+		}
+		while (window.isOpen()) {
+			sf::Event event;
+			while (window.pollEvent(event)) {
+				gui.handleEvent(event);
+
+				if (event.type == sf::Event::Closed)
+					window.close();
+			}
+
+			window.clear();
+			gui.draw();
+			window.display();
+		}
+		return true;
+	}
+	bool MultipleWidgetsTest::RunTest() {
+		try {
+			if (PrepareTest())
+				return true;
+			return false;
+		}
+		catch (std::exception& ex) {
+			std::cout << "std exc " << ex.what() << "\n";
+		}
+		return false;
+	}
+	bool MultipleWidgetsTest::runExample(tgui::GuiBase& gui) {
 		try
 		{
 			tgui::Theme theme{ "Resource\\GUI\\themes\\Black.txt" };
@@ -227,38 +258,5 @@ namespace Test {
 		}
 
 		return true;
-	}
-
-	bool GUISettupTest::PrepareTest() {
-		sf::RenderWindow window(sf::VideoMode(800, 600), "TGUI window");
-		tgui::Gui gui(window);
-		if (!runExample(gui)) {
-			return false;
-		}
-		while (window.isOpen()) {
-			sf::Event event;
-			while (window.pollEvent(event)) {
-				gui.handleEvent(event);
-
-				if (event.type == sf::Event::Closed)
-					window.close();
-			}
-
-			window.clear();
-			gui.draw();
-			window.display();
-		}
-		return true;
-	}
-	bool GUISettupTest::RunTest() {
-		try {
-			if (PrepareTest())
-				return true;
-			return false;
-		}
-		catch (std::exception& ex) {
-			std::cout << "std exc " << ex.what() << "\n";
-		}
-		return false;
 	}
 }

@@ -146,7 +146,11 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="Tests\GUISettup\GUISettupTest.cpp" />
+    <ClCompile Include="Tests\GUISettup\LoginExample.cpp" />
+    <ClCompile Include="Tests\MainMenu\MainMenuEngine.cpp" />
+    <ClCompile Include="Tests\MainMenu\MainMenuWorld.cpp" />
+    <ClCompile Include="Tests\MainMenu\MainMenuTest.cpp" />
+    <ClCompile Include="Tests\GUISettup\MultipleWidgetsTest.cpp" />
     <ClCompile Include="Tests\EngineSettup\BaseEngine.cpp" />
     <ClCompile Include="Tests\Forest\Actors\ForestMainCharacter.cpp" />
     <ClCompile Include="Main.cpp" />
@@ -179,7 +183,11 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Tests\GUISettup\GUISettupTest.h" />
+    <ClInclude Include="Tests\GUISettup\LoginExample.h" />
+    <ClInclude Include="Tests\MainMenu\MainMenuEngine.h" />
+    <ClInclude Include="Tests\MainMenu\MainMenuWorld.h" />
+    <ClInclude Include="Tests\MainMenu\MainMenuTest.h" />
+    <ClInclude Include="Tests\GUISettup\MultipleWidgetsTest.h" />
     <ClInclude Include="Tests\EngineSettup\BaseEngine.h" />
     <ClInclude Include="Tests\Forest\Actors\ForestMainCharacter.h" />
     <ClInclude Include="Tests\ActorAnimation\ActorAnimationTest.h" />

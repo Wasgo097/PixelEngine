@@ -14,8 +14,8 @@ int main(){
 	/*ForestTest test3;
 	std::cout << "Forest test result: \n" << test3.RunTest() << std::endl;*/
 	/*LoginExample test4;
-	std::cout << "LoginExample result: \n" << test4.RunTest() << std::endl;
-	MultipleWidgetsTest test5;
+	std::cout << "LoginExample result: \n" << test4.RunTest() << std::endl;*/
+	/*MultipleWidgetsTest test5;
 	std::cout << "MultipleWidgetsTest result: \n" << test5.RunTest() << std::endl;*/
 	MainMenuTest test6;
 	std::cout << "MainMenuTest result: \n" << test6.RunTest() << std::endl;

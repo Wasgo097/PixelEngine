@@ -58,7 +58,6 @@ namespace Core::World {
 		virtual void CheckQuit() = 0;
 	protected:
 		Engine* _parent = nullptr;
-
 		Settings::WorldSettings _world_settings;
 		std::unique_ptr<ActorsManager> _actor_manager;
 		std::unique_ptr<Controller::ControllerBase> _main_controller;

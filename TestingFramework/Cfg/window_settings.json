@@ -2,7 +2,7 @@
     "display_style": 7,
     "fps": 60,
     "video_mode": {
-        "bitsPerPixel": 30,
+        "bitsPerPixel": 32,
         "height": 720,
         "width": 1280
     },

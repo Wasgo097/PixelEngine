@@ -52,6 +52,7 @@ namespace Core::World {
 		bool Quit()const;
 		bool Initialized()const;
 		virtual void ServiceInput(const Core::Controller::Key& key);
+		virtual void ServiceInput(const sf::Event& action) {};
 		virtual void InitWorld();
 		virtual void EndWorld();
 		virtual void CheckQuit() = 0;

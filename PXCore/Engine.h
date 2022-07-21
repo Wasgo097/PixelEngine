@@ -17,6 +17,7 @@ namespace Core {
 		void PushWorldToQueue(std::unique_ptr<World::WorldBase>&& new_world);
 		int Run();
 		void ServiceInput();
+		sf::RenderWindow* GetWindow();
 	private:
 		void Close();
 		void Render();
@@ -31,6 +32,5 @@ namespace Core {
 		Settings::EngineSettings _engine_settings;
 		Settings::WindowSettings _window_settings;
 		Settings::MusicSettings _music_settings;
-		//Settings::WorldSettings _world_settings;
 	};
 }

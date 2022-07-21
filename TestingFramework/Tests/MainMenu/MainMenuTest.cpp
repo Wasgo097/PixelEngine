@@ -1,8 +1,7 @@
 #include "MainMenuTest.h"
 
-bool Test::MainMenuTest::PrepareTest()
-{
-	return false;
+bool Test::MainMenuTest::PrepareTest() {
+	return _engine.Run() == 1;
 }
 
 bool Test::MainMenuTest::RunTest() {

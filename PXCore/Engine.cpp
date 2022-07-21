@@ -6,6 +6,20 @@
 #include <SFML/System.hpp>
 #include <chrono>
 #include <iostream>
+#include "wtypes.h"
+void GetDesktopResolution(int& horizontal, int& vertical)
+{
+	RECT desktop;
+	// Get a handle to the desktop window
+	const HWND hDesktop = GetDesktopWindow();
+	// Get the size of screen to the variable desktop
+	GetWindowRect(hDesktop, &desktop);
+	// The top left corner will have coordinates (0,0)
+	// and the bottom right corner will have coordinates
+	// (horizontal, vertical)
+	horizontal = desktop.right;
+	vertical = desktop.bottom;
+}
 using namespace std::chrono_literals;
 namespace Core {
 	Engine::Engine() {
@@ -18,6 +32,7 @@ namespace Core {
 		_main_window->setVerticalSyncEnabled(_window_settings.vsync);
 		if (_window_settings.fps > 1)
 			_main_window->setFramerateLimit(_window_settings.fps);
+		GetDesktopResolution(_monitor_resolution.x, _monitor_resolution.y);
 	}
 	Engine::~Engine() {
 		Close();
@@ -33,14 +48,36 @@ namespace Core {
 		}
 		return 1;
 	}
-	void Engine::ServiceInput()
-	{
+	sf::Vector2i Engine::ConvertMouseCoords(const sf::Vector2i& coord)const {
+		sf::Vector2i result;
+
+		std::cout << "Old pos X: " << coord.x << " Y: " << coord.y << "\n";
+		float x_ratio = static_cast<float>(coord.x) / static_cast<float>(_window_settings.video_mode.width);
+		result.x = static_cast<int>(x_ratio * static_cast<float>(_monitor_resolution.x));
+		float y_ratio = static_cast<float>(coord.y) / static_cast<float>(_window_settings.video_mode.height);
+		result.y = static_cast<int>(y_ratio * static_cast<float>(_monitor_resolution.y));
+		std::cout << "New pos X: " << result.x << " Y: " << result.y << "\n";
+		return result;
+	}
+	void Engine::ServiceInput() {
 		if (_current_world) {
 			sf::Event action;
 			while (_main_window->pollEvent(action)) {
 				if (action.type == sf::Event::Closed) {
 					_current_world->EndWorld();
 					Close();
+				}
+				else if (action.type == sf::Event::MouseButtonPressed) {
+					std::cout << "Pressed\n";
+					auto new_cord = ConvertMouseCoords({ action.mouseButton.x,action.mouseButton.y });
+					action.mouseButton.x = new_cord.x;
+					action.mouseButton.y = new_cord.y;
+				}
+				else if (action.type == sf::Event::MouseMoved) {
+					std::cout << "Moved\n";
+					auto new_cord = ConvertMouseCoords({ action.mouseMove.x,action.mouseMove.y });
+					action.mouseMove.x = new_cord.x;
+					action.mouseMove.y = new_cord.y;
 				}
 				_input_manager.ServiceEvent(action);
 				_current_world->ServiceInput(action);
@@ -54,6 +91,9 @@ namespace Core {
 	}
 	sf::RenderWindow* Engine::GetWindow() {
 		return _main_window.get();
+	}
+	const sf::Vector2i& Engine::GetMonitorResolution() const {
+		return _monitor_resolution;
 	}
 	void Engine::PushWorldToQueue(std::unique_ptr<World::WorldBase>&& new_world) {
 		if (_current_world)

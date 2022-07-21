@@ -151,6 +151,7 @@ namespace Test {
 	}
 	void MainMenuWorld::ApplySettings(){
 		if (auto engine = dynamic_cast<MainMenuEngine*>(_parent); engine != nullptr) {
+			std::cout << "Apply new settings\n";
 			engine->ApplyWindowSettings(*_working_window_settings);
 			SettingsClick();
 		}

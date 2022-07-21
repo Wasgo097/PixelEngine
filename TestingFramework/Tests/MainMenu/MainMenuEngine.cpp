@@ -8,9 +8,6 @@ namespace Test {
 		_window_settings.video_mode = new_settings.video_mode;
 		_main_window->create(_window_settings.video_mode, _window_settings.window_name, _window_settings.display_style);
 		_main_window->setFramerateLimit(_window_settings.fps);
-		auto modes = sf::VideoMode::getFullscreenModes();
-		int x = 0;
-		x--;
 	}
 	void MainMenuEngine::InitEngine() {
 		PushWorldToQueue(std::make_unique<MainMenuWorld>(_window_settings, CREATE_SETTINGS(Settings::WorldSettings, "Cfg\\" + _engine_settings.world_settings_path), this));

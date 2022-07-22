@@ -6,6 +6,7 @@
 #include <SFML/System.hpp>
 #include <chrono>
 #include <iostream>
+
 using namespace std::chrono_literals;
 namespace Core {
 	Engine::Engine() {
@@ -33,24 +34,26 @@ namespace Core {
 		}
 		return 1;
 	}
-	void Engine::ServiceInput()
-	{
-		sf::Event action;
-		while (_main_window->pollEvent(action)) {
-			if (action.type == sf::Event::Closed) {
-				_current_world->EndWorld();
-				Close();
+	void Engine::ServiceInput() {
+		if (_current_world) {
+			sf::Event action;
+			while (_main_window->pollEvent(action)) {
+				if (action.type == sf::Event::Closed) {
+					_current_world->EndWorld();
+					Close();
+				}
+				_input_manager.ServiceEvent(action);
+				_current_world->ServiceInput(action);
 			}
-			/*if (action.type == sf::Event::EventType::GainedFocus
-				or action.type == sf::Event::EventType::LostFocus)
-				continue;*/
-			_input_manager.ServiceEvent(action);
+			for (auto& key : _input_manager.GetClickedBtn())
+				_current_world->ServiceInput(key);
+			for (auto& key : _input_manager.GetReleasedBtn())
+				_current_world->ServiceInput(key);
+			_input_manager.ClearReleasedBtn();
 		}
-		for (auto& key : _input_manager.GetClickedBtn())
-			_current_world->ServiceInput(key);
-		for (auto& key : _input_manager.GetReleasedBtn())
-			_current_world->ServiceInput(key);
-		_input_manager.ClearReleasedBtn();
+	}
+	sf::RenderWindow* Engine::GetWindow() {
+		return _main_window.get();
 	}
 	void Engine::PushWorldToQueue(std::unique_ptr<World::WorldBase>&& new_world) {
 		if (_current_world)

@@ -12,8 +12,7 @@ namespace Core::World {
 		}
 	}
 
-	void EmptyWorld::Draw(sf::RenderWindow& window)
-	{
+	void EmptyWorld::Draw(sf::RenderWindow& window) {
 		window.clear(sf::Color::Blue);
 		WorldBase::Draw(window);
 	}

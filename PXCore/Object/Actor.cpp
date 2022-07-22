@@ -7,7 +7,7 @@ namespace Core::Object {
 		_world(world), _actor_settings(actor_settings), _texture_settings(texture_settings), _velocity(_actor_settings.velocity), _tick(_actor_settings.tick) {
 		//collision
 		if (static_cast<int>(_actor_settings.collision) > 1) {
-			_components.emplace_back(std::make_shared<Components::Collider>(this,actor_settings));
+			_components.emplace_back(std::make_shared<Components::Collider>(this, actor_settings));
 		}
 		//texture and sprite
 		if (!_texture_settings.texture_path.empty()) {
@@ -28,7 +28,7 @@ namespace Core::Object {
 
 		}
 	}
-	Actor::~Actor(){
+	Actor::~Actor() {
 		for (const auto& component : _components)
 			component->EndComponent();
 	}
@@ -42,7 +42,7 @@ namespace Core::Object {
 		if (_actor_settings.type == ActorsEnums::ActorType::Dynamic && _velocity != sf::Vector2f()) {
 			if (_sprite)
 				_sprite->move(_velocity);
-			if (auto collider = GetTComponent<Components::Collider>(); collider)
+			if (auto collider = GetCollider(); collider)
 				collider->Move(_velocity);
 			if (!_pushed)
 				_velocity = sf::Vector2f(0, 0);
@@ -54,13 +54,13 @@ namespace Core::Object {
 	bool Actor::CanCollide() const {
 		return static_cast<int>(_actor_settings.collision) > 0;
 	}
-	std::optional<sf::RectangleShape> Actor::GetCollider() {
-		if (auto collider = GetTComponent<Components::Collider>(); collider)
-			return collider->GetCollider();
-		return {};
+	sf::Vector2f Actor::GetVelocity() const {
+		return sf::Vector2f();
 	}
-	void Actor::SetWorld(World::WorldBase* world_ptr) {
-		_world = world_ptr;
+	std::shared_ptr<Components::Collider> Actor::GetCollider()const {
+		if (auto collider = GetTComponent<Components::Collider>(); collider)
+			return collider;
+		return {};
 	}
 	void Actor::Draw(sf::RenderWindow& window) {
 		if (_sprite)

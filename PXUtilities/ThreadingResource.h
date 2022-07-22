@@ -7,7 +7,7 @@ namespace Utility {
 		requires std::is_default_constructible_v<T>
 	struct ThreadingResourceShared {
 		std::shared_ptr<T> rsc;
-		std::shared_ptr<std::recursive_mutex> mtx;
+		std::shared_ptr<mutable std::recursive_mutex> mtx;
 		ThreadingResourceShared() {
 			rsc = std::make_shared<T>();
 			mtx = std::make_shared<std::recursive_mutex>();
@@ -35,7 +35,7 @@ namespace Utility {
 		requires std::is_default_constructible_v<T>
 	struct ThreadingResourceLight {
 		std::unique_ptr<T> rsc;
-		std::recursive_mutex mtx;
+		mutable std::recursive_mutex mtx;
 		ThreadingResourceLight() {
 			rsc = std::make_unique<T>();
 		}

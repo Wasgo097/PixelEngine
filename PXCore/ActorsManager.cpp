@@ -2,11 +2,11 @@
 #include <functional>
 #include <algorithm>
 #include <iostream>
+#include <future>
 #include "Object/Actor.h"
 namespace Core {
 	struct ActorsManager::Impl {
 		Impl(size_t buffer_size, int gc_frequent_level, int cycle_to_move) :
-			_management_thr{ std::make_unique<std::thread>(std::bind(&ActorsManager::Run, this)) },
 			_BUFFER_SIZE{ buffer_size }, _FREQUENCY_LEVEL{ gc_frequent_level }, _CYCLE_TO_MOVE{ cycle_to_move } {
 			_first_stage.rsc->reserve(_BUFFER_SIZE);
 			_second_stage.rsc->reserve(_BUFFER_SIZE);
@@ -73,30 +73,36 @@ namespace Core {
 				}
 			}
 		}
-		std::vector<std::shared_ptr<Core::Object::Actor>> GetActorsFromFirstStage() {
+		std::vector<std::shared_ptr<Core::Object::Actor>> GetCollidableActorsFromFirstStage() {
 			std::vector<std::shared_ptr<Core::Object::Actor>> result;
 			std::lock_guard lock(_first_stage.mtx);
 			result.reserve(_first_stage.rsc->size());
-			for (const auto& [_, actor] : *_first_stage.rsc)
-				result.push_back(actor);
+			auto last_it = std::partition(_first_stage.rsc->begin(), _first_stage.rsc->end(), [](const auto& actor) {
+				return actor.second->CanCollide(); });
+			for (auto iterator = _first_stage.rsc->begin(); iterator != last_it; iterator++)
+				result.push_back(iterator->second);
 			return result;
 		}
-		std::vector<std::shared_ptr<Core::Object::Actor>> GetActors() {
+		std::vector<std::shared_ptr<Object::Actor>> GetCollidableActors(const Utility::ThreadingResourceLight<std::vector<std::shared_ptr<Object::Actor>>>& input) {
+			std::vector<std::shared_ptr<Core::Object::Actor>> result;
+			std::lock_guard lock(input.mtx);
+			result.reserve(input.rsc->size());
+			auto last_it = std::partition(input.rsc->begin(), input.rsc->end(), [](const auto& actor) {
+				return actor->CanCollide(); });
+			result.insert(result.end(), input.rsc->begin(), last_it);
+			return result;
+		}
+		std::vector<std::shared_ptr<Core::Object::Actor>> GetCollidableActors() {
 			std::vector<std::shared_ptr<Object::Actor>> all_actors;
 			std::lock_guard lock1(_first_stage.mtx);
-			const auto& all_actors_from_first_stage = GetActorsFromFirstStage();
-			all_actors.reserve(_first_stage.rsc->size());
-			all_actors.insert(all_actors.end(), all_actors_from_first_stage.begin(), all_actors_from_first_stage.end());
+			auto first = std::async(std::launch::async, &Impl::GetCollidableActorsFromFirstStage, this);
 			std::lock_guard lock2(_second_stage.mtx);
-			all_actors.reserve(_second_stage.rsc->size());
-			all_actors.insert(all_actors.end(), _second_stage.rsc->begin(), _second_stage.rsc->end());
+			auto second = std::async(std::launch::async, [this]() {return GetCollidableActors(_second_stage); });
 			std::lock_guard lockc(_const_actors.mtx);
-			all_actors.reserve(_const_actors.rsc->size());
-			all_actors.insert(all_actors.end(), _const_actors.rsc->begin(), _const_actors.rsc->end());
+			auto third = std::async(std::launch::async, [this]() {return GetCollidableActors(_const_actors); });
 			return all_actors;
 		}
 		void CheckCollision() {
-			//auto all_actors = GetActors();
 		}
 		//pair: k -number of cycles 
 		Utility::ThreadingResourceLight<std::vector<std::pair<int, std::shared_ptr<Object::Actor>>>> _first_stage;
@@ -109,6 +115,7 @@ namespace Core {
 		bool _terminated = false;
 	};
 	ActorsManager::ActorsManager(size_t buffer_size, int gc_frequent_level, int cycle_to_move) :_impl{ std::make_unique<Impl>(buffer_size,gc_frequent_level,cycle_to_move) } {
+		_impl->_management_thr = std::make_unique<std::thread>(std::bind(&ActorsManager::Run, this));
 	}
 	void ActorsManager::RegistrNewActor(std::shared_ptr<Object::Actor> actor) {
 		std::lock_guard lock(_impl->_first_stage.mtx);

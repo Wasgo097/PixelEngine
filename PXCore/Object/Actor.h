@@ -26,22 +26,22 @@ namespace Core::Object {
 		bool TickFlag()const;
 		void SetTickFlag(bool flag);
 		bool CanCollide()const;
-		std::optional<sf::RectangleShape> GetCollider();
-		void SetWorld(World::WorldBase* world_ptr);
+		std::shared_ptr<Components::Collider> GetCollider()const;
+		sf::Vector2f GetVelocity()const;
 
 		virtual void Tick(float delta_time);
 		virtual void Move(const sf::Vector2f& velocity);
 		virtual void ConstPush(const sf::Vector2f& const_velocity);
 		virtual void Draw(sf::RenderWindow& window);
-		virtual void Init()override;
 
+		virtual void Init()override;
 		virtual std::string ToString()const override;
 	private:
 		bool _tick = false;
 	protected:
 		template<typename T>
 			requires std::derived_from<T, Core::Object::Components::ActorComponentBase>
-		std::shared_ptr<T> GetTComponent() {
+		std::shared_ptr<T> GetTComponent()const {
 			for (auto& component : _components) {
 				if (auto casted_component = std::dynamic_pointer_cast<T>(component); casted_component)
 					return casted_component;
@@ -51,7 +51,6 @@ namespace Core::Object {
 		World::WorldBase* _world;
 		std::unique_ptr<sf::Texture> _texture;
 		std::unique_ptr<sf::Sprite> _sprite;
-		//std::optional<sf::RectangleShape> _collider;
 		std::list<std::shared_ptr<Components::ActorComponentBase>> _components;
 		Settings::ActorSettings _actor_settings;
 		Settings::TextureSettings _texture_settings;

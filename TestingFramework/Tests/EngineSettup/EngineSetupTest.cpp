@@ -11,10 +11,7 @@ namespace Test {
 			return false;
 		}
 		catch (std::exception& ex) {
-			std::cout << "std exc " << ex.what() << "\n";
-		}
-		catch (...) {
-			return false;
+			std::cerr << "EngineSetupTest exception " << ex.what() << "\n";
 		}
 		return false;
 	}

@@ -68,8 +68,9 @@ namespace Core::Object {
 					throw std::out_of_range("Wrong animation row in " + ToString() + " missed row (int int): " + std::to_string(static_cast<int>(AnimationEnums::Direction::Up)));
 				}
 			}
+
+
 		}
-		//std::cout << "Animated row in move " << _animated_row << "\n";
 	}
 
 	std::string AnimatedActor::ToString() const { return "Default AnimatedActor ToString"; }

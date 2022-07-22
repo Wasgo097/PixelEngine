@@ -6,7 +6,6 @@ namespace Test {
 	{
 	}
 	void Tree::SecondPassed() {
-		std::cout << "Second passed on tree\n";
 		_growing_counter++;
 		if (_growing_counter < 10) {
 			auto currect_scale = _sprite->getScale();

@@ -1,8 +1,7 @@
 #include "ActorAnimationTest.h"
 #include "PXFactory/SettingsFactory.h"
 namespace Test {
-	bool ActorAnimationTest::PrepareTest()
-	{
+	bool ActorAnimationTest::PrepareTest() {
 		//#define PREPARE_SETTINGS
 #ifdef PREPARE_SETTINGS
 		Settings::ActorSettings main_actor_settings;
@@ -36,18 +35,15 @@ namespace Test {
 #endif
 			return _engine.Run() == 1;
 	}
-
-	bool ActorAnimationTest::RunTest()
-	{
+	bool ActorAnimationTest::RunTest() {
 		try {
 			if (PrepareTest())
 				return true;
 			return false;
 		}
 		catch (std::exception& ex) {
-			std::cout << "std exc " << ex.what() << "\n";
+			std::cerr << "ActorAnimationTest exception " << ex.what() << "\n";
 		}
 		return false;
 	}
-
 }

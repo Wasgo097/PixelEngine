@@ -7,7 +7,6 @@ namespace Test {
 
 	void ControllerForAnimationTest::InitMainCharacterInputBindings() {
 		Core::Controller::Key key;
-		std::cout << "Init keybinding\n";
 		key.input_type = Core::Controller::InputType::MouseInput;
 		key.event_type = sf::Event::MouseButtonPressed;
 		key.mouse_button = sf::Mouse::Left;

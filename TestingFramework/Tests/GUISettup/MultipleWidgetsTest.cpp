@@ -29,7 +29,8 @@ namespace Test {
 			return false;
 		}
 		catch (std::exception& ex) {
-			std::cout << "std exc " << ex.what() << "\n";
+
+			std::cerr << "MultipleWidgetsTest exception " << ex.what() << "\n";
 		}
 		return false;
 	}

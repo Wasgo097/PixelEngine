@@ -7,7 +7,7 @@ namespace Test {
 	public:
 		MainMenuWorld(Settings::WindowSettingsDTO& window_settings, const Settings::WorldSettings& world_settings = Settings::WorldSettings(), Core::Engine* parent = nullptr);
 		virtual void Draw(sf::RenderWindow& window)override;
-		virtual void ServiceInput(const sf::Event& action);;
+		virtual void ServiceGUIInput(const sf::Event& action)override;
 	protected:
 		// Inherited via WorldBase
 		virtual void CheckQuit() override {};

@@ -11,7 +11,7 @@ bool Test::MainMenuTest::RunTest() {
 		return false;
 	}
 	catch (std::exception& ex) {
-		std::cout << "std exc " << ex.what() << "\n";
+		std::cerr << "MainMenuTest exception " << ex.what() << "\n";
 	}
 	return false;
 }

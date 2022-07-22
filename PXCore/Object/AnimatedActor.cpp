@@ -12,7 +12,7 @@ namespace Core::Object {
 		if (!_direction_row.empty()) {
 			_animated_row = _direction_row.at(AnimationEnums::Direction::DownIdle);
 			if (_sprite) {
-				sf::Vector2f temp_origin(_animation_settings.rect_size.x, _animation_settings.rect_size.y);
+				sf::Vector2f temp_origin(static_cast<float>(_animation_settings.rect_size.x), static_cast<float>(_animation_settings.rect_size.y));
 				temp_origin.x /= 2.0f;
 				_sprite->setOrigin(temp_origin);
 				_sprite->setPosition(_actor_settings.position);

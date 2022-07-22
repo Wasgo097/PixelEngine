@@ -11,7 +11,7 @@ namespace Test {
 		window.clear(sf::Color::Green);
 		_gui.draw();
 	}
-	void MainMenuWorld::ServiceInput(const sf::Event& action) {
+	void MainMenuWorld::ServiceGUIInput(const sf::Event& action) {
 		_gui.handleEvent(action);
 	}
 	void MainMenuWorld::InitWorld() {
@@ -31,17 +31,21 @@ namespace Test {
 	}
 	void MainMenuWorld::DefaultGuiSettup() {
 		CommonGuiSettup();
+		tgui::Theme theme{ "Resource\\GUI\\themes\\TransparentGrey.txt" };
 		auto new_game_btn = tgui::Button::create("New Game");
+		new_game_btn->setRenderer(theme.getRenderer("Button"));
 		new_game_btn->setSize({ "20%", "15%" });
 		new_game_btn->setPosition({ "40%", "40%" });
 		_gui.add(new_game_btn);
 		new_game_btn->onPress(&MainMenuWorld::NewGameClick, this);
 		auto settings_btn = tgui::Button::create("Settings");
+		settings_btn->setRenderer(theme.getRenderer("Button"));
 		settings_btn->setSize({ "20%", "15%" });
 		settings_btn->setPosition({ "40%", "60%" });
 		_gui.add(settings_btn);
 		settings_btn->onPress(&MainMenuWorld::SettingsClick, this);
 		auto exit_btn = tgui::Button::create("Exit Game");
+		exit_btn->setRenderer(theme.getRenderer("Button"));
 		exit_btn->setSize({ "20%", "15%" });
 		exit_btn->setPosition({ "40%", "80%" });
 		_gui.add(exit_btn);
@@ -49,28 +53,32 @@ namespace Test {
 	}
 	void MainMenuWorld::NewGameClick() {
 		_parent->PushWorldToQueue(std::make_unique<WorldForForestTest>(_world_settings, _parent));
-		std::cout << "New Game clicked\n";
 		_quit = true;
 	}
 	void MainMenuWorld::SettingsClick() {
 		CommonGuiSettup();
+		tgui::Theme theme{ "Resource\\GUI\\themes\\TransparentGrey.txt" };
 		_working_window_settings = std::make_unique<Settings::WindowSettingsDTO>(_window_settings);
 		auto return_btn = tgui::Button::create("<-");
+		return_btn->setRenderer(theme.getRenderer("Button"));
 		return_btn->setSize({ "5%", "5%" });
 		return_btn->setPosition({ "2%", "5%" });
 		_gui.add(return_btn);
 		return_btn->onPress(&MainMenuWorld::DefaultGuiSettup, this); 
 		auto apply_btn = tgui::Button::create("Apply");
+		apply_btn->setRenderer(theme.getRenderer("Button"));
 		apply_btn->setSize({ "5%", "5%" });
 		apply_btn->setPosition({ "2%", "10%" });
 		_gui.add(apply_btn);
 		apply_btn->onPress(&MainMenuWorld::ApplySettings, this);
 		//resolution
 		auto label = tgui::Label::create();
+		label->setRenderer(theme.getRenderer("Label"));
 		label->setText("Resolutions:");
 		label->setPosition({ "5%", "30%" });
 		_gui.add(label);
 		_resolutions_tabs = tgui::Tabs::create();
+		_resolutions_tabs->setRenderer(theme.getRenderer("Tabs"));
 		_resolutions_tabs->setTabHeight(30);
 		_resolutions_tabs->setPosition({ "15%", "30%" });
 		_resolutions_tabs->add("1280*720");
@@ -88,10 +96,12 @@ namespace Test {
 		_resolutions_tabs->onTabSelect(&MainMenuWorld::RewriteSettings, this);
 		//fps
 		label = tgui::Label::create();
+		label->setRenderer(theme.getRenderer("Label"));
 		label->setText("Fps:");
 		label->setPosition({ "5%", "45%" });
 		_gui.add(label);
 		_fps_slider = tgui::Slider::create();
+		_fps_slider->setRenderer(theme.getRenderer("Slider"));
 		_fps_slider->setPosition({ "15%", "45%" });
 		_fps_slider->setMinimum(0.0f);
 		_fps_slider->setMaximum(120.0f);
@@ -101,14 +111,17 @@ namespace Test {
 		_fps_slider->onValueChange(&MainMenuWorld::RewriteSettings, this);
 		//window mode
 		label = tgui::Label::create();
+		label->setRenderer(theme.getRenderer("Label"));
 		label->setText("Window mode:");
 		label->setPosition({ "5%", "65%" });
 		_gui.add(label);
 		_fullscreen_radio = tgui::RadioButton::create();
+		_fullscreen_radio->setRenderer(theme.getRenderer("RadioButton"));
 		_fullscreen_radio->setPosition({ "15%", "62%" });
 		_fullscreen_radio->setText("Fullscreen!");
 		_gui.add(_fullscreen_radio);
 		_window_radio = tgui::RadioButton::create();
+		_window_radio->setRenderer(theme.getRenderer("RadioButton"));
 		_window_radio->setPosition({ "15%", "72%" });
 		_window_radio->setText("Window");
 		_gui.add(_window_radio);
@@ -124,7 +137,6 @@ namespace Test {
 		_fullscreen_radio->onCheck(&MainMenuWorld::RewriteSettings, this);
 	}
 	void MainMenuWorld::ExitClick() {
-		std::cout << "Exit clicked\n";
 		_quit = true;
 	}
 	void MainMenuWorld::ReturnClick() {
@@ -151,7 +163,6 @@ namespace Test {
 	}
 	void MainMenuWorld::ApplySettings(){
 		if (auto engine = dynamic_cast<MainMenuEngine*>(_parent); engine != nullptr) {
-			std::cout << "Apply new settings\n";
 			engine->ApplyWindowSettings(*_working_window_settings);
 			//fix for wrong coord convert
 			_gui.setTarget(*_parent->GetWindow());

@@ -47,6 +47,7 @@ public:
 		_next_id--;
 	}
 	virtual void SecondPassed()override {
+
 		std::cout << "Second passed on MultiplerObserver" << _id << std::endl;
 		if (_counter>0)
 			_value = !_value;

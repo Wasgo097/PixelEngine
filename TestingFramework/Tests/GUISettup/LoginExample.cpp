@@ -3,7 +3,6 @@
 #include <SFML/Graphics/RenderWindow.hpp>
 
 namespace Test {
-
 	bool LoginExample::PrepareTest() {
 		sf::RenderWindow window(sf::VideoMode(800, 600), "TGUI window");
 
@@ -21,7 +20,7 @@ namespace Test {
 			return false;
 		}
 		catch (std::exception& ex) {
-			std::cout << "std exc " << ex.what() << "\n";
+			std::cerr << "LoginExample exception " << ex.what() << "\n";
 		}
 		return false;
 	}
@@ -29,8 +28,7 @@ namespace Test {
 		std::cout << "Username: " << username->getText() << std::endl;
 		std::cout << "Password: " << password->getText() << std::endl;
 	}
-	void LoginExample::updateTextSize(tgui::GuiBase& gui)
-	{
+	void LoginExample::updateTextSize(tgui::GuiBase& gui) {
 		// Update the text size of all widgets in the gui, based on the current window height
 		const float windowHeight = gui.getView().getRect().height;
 		gui.setTextSize(static_cast<unsigned int>(0.07f * windowHeight)); // 7% of height
@@ -74,7 +72,7 @@ namespace Test {
 
 		// Call the login function when the button is pressed and pass the edit boxes that we created as parameters
 		// The "&" in front of "login" can be removed on newer compilers, but is kept here for compatibility with GCC < 8.
-		button->onPress(&LoginExample::login,this, editBoxUsername, editBoxPassword);
+		button->onPress(&LoginExample::login, this, editBoxUsername, editBoxPassword);
 		return true;
 	}
 	bool LoginExample::runExample(tgui::GuiBase& gui) {

@@ -43,7 +43,7 @@ namespace Core {
 					Close();
 				}
 				_input_manager.ServiceEvent(action);
-				_current_world->ServiceInput(action);
+				_current_world->ServiceGUIInput(action);
 			}
 			for (auto& key : _input_manager.GetClickedBtn())
 				_current_world->ServiceInput(key);

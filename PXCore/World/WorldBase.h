@@ -48,11 +48,11 @@ namespace Core::World {
 		}
 		virtual void Draw(sf::RenderWindow& window);
 		virtual void Update(float delta);
-		void SetParnet(Engine* parent);
+		void SetParent(Engine* parent);
 		bool Quit()const;
 		bool Initialized()const;
 		virtual void ServiceInput(const Core::Controller::Key& key);
-		virtual void ServiceInput(const sf::Event& action) {};
+		virtual void ServiceGUIInput(const sf::Event& action) {};
 		virtual void InitWorld();
 		virtual void EndWorld();
 		virtual void CheckQuit() = 0;

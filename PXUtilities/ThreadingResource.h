@@ -5,27 +5,27 @@
 namespace Utility {
 	template<typename T>
 		requires std::is_default_constructible_v<T>
-	struct SharedThreadingResource {
+	struct ThreadingResourceShared {
 		std::shared_ptr<T> rsc;
-		std::shared_ptr<std::mutex> mtx;
-		SharedThreadingResource() {
+		std::shared_ptr<std::recursive_mutex> mtx;
+		ThreadingResourceShared() {
 			rsc = std::make_shared<T>();
-			mtx = std::make_shared<std::mutex>();
+			mtx = std::make_shared<std::recursive_mutex>();
 		}
-		SharedThreadingResource(const SharedThreadingResource<T>& src) {
+		ThreadingResourceShared(const ThreadingResourceShared<T>& src) {
 			rsc = src.rsc;
 			mtx = src.mtx;
 		}
-		SharedThreadingResource& operator=(const SharedThreadingResource<T>& src) {
+		ThreadingResourceShared& operator=(const ThreadingResourceShared<T>& src) {
 			rsc = src.rsc;
 			mtx = src.mtx;
 			return *this;
 		}
-		SharedThreadingResource(SharedThreadingResource<T>&& src) {
+		ThreadingResourceShared(ThreadingResourceShared<T>&& src) {
 			rsc = std::move(src.rsc);
 			mtx = std::move(src.mtx);
 		}
-		SharedThreadingResource& operator=(SharedThreadingResource<T>&& src) {
+		ThreadingResourceShared& operator=(ThreadingResourceShared<T>&& src) {
 			rsc = std::move(src.rsc);
 			mtx = std::move(src.mtx);
 			return *this;
@@ -35,7 +35,7 @@ namespace Utility {
 		requires std::is_default_constructible_v<T>
 	struct ThreadingResourceLight {
 		std::unique_ptr<T> rsc;
-		std::mutex mtx;
+		std::recursive_mutex mtx;
 		ThreadingResourceLight() {
 			rsc = std::make_unique<T>();
 		}

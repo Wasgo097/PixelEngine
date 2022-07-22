@@ -22,7 +22,6 @@ namespace Core {
 		void Close();
 		void Render();
 		void Update();
-		sf::Vector2i ConvertMouseCoords(const sf::Vector2i& coord) const;
 	protected:
 		virtual void InitEngine() = 0;
 		std::unique_ptr<World::WorldBase> _current_world;

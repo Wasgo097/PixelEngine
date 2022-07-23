@@ -1,5 +1,6 @@
 #pragma once
 #include <string>
+#include <memory>
 namespace Core::Object{
 	class Object{
 	public:
@@ -9,8 +10,8 @@ namespace Core::Object{
 		virtual void OnLoad(){}
 		virtual void OnSpawn(){}
 		virtual void OnDelete(){}
-		virtual void OnOverlapp() {}
-		virtual void OnCollide() {}
+		virtual void OnOverlap(std::shared_ptr<Object> other) {}
+		virtual void OnCollide(std::shared_ptr<Object> other) {}
 		void Destroy() { _to_destroy = true; }
 		bool ToDestroy()const { return _to_destroy; }
 	private:

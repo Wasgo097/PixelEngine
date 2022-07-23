@@ -73,9 +73,8 @@ namespace Core {
 				}
 			}
 		}
-		std::vector<std::shared_ptr<Core::Object::Actor>> GetCollidableActorsFromFirstStage() {
+		std::vector<std::shared_ptr<Core::Object::Actor>> GetCollidableActorsFromFirstStage()const {
 			std::vector<std::shared_ptr<Core::Object::Actor>> result;
-			std::lock_guard lock(_first_stage.mtx);
 			result.reserve(_first_stage.rsc->size());
 			auto last_it = std::partition(_first_stage.rsc->begin(), _first_stage.rsc->end(), [](const auto& actor) {
 				return actor.second->CanCollide(); });
@@ -83,26 +82,41 @@ namespace Core {
 				result.push_back(iterator->second);
 			return result;
 		}
-		std::vector<std::shared_ptr<Object::Actor>> GetCollidableActors(const Utility::ThreadingResourceLight<std::vector<std::shared_ptr<Object::Actor>>>& input) {
+		static std::vector<std::shared_ptr<Object::Actor>> GetCollidableActors(std::vector<std::shared_ptr<Object::Actor>>& input) {
 			std::vector<std::shared_ptr<Core::Object::Actor>> result;
-			std::lock_guard lock(input.mtx);
-			result.reserve(input.rsc->size());
-			auto last_it = std::partition(input.rsc->begin(), input.rsc->end(), [](const auto& actor) {
+			result.reserve(input.size());
+			auto last_it = std::partition(input.begin(), input.end(), [](const auto& actor) {
 				return actor->CanCollide(); });
-			result.insert(result.end(), input.rsc->begin(), last_it);
+			result.insert(result.end(), input.begin(), last_it);
 			return result;
 		}
-		std::vector<std::shared_ptr<Core::Object::Actor>> GetCollidableActors() {
+		std::vector<std::shared_ptr<Core::Object::Actor>> GetCollidableActors()const {
+			auto first = std::async(std::launch::async, [this]() {return GetCollidableActorsFromFirstStage(); });
+			auto second = std::async(std::launch::async, [this]() {return GetCollidableActors(*_second_stage.rsc); });
+			auto third = std::async(std::launch::async, [this]() {return GetCollidableActors(*_const_actors.rsc); });
 			std::vector<std::shared_ptr<Object::Actor>> all_actors;
-			std::lock_guard lock1(_first_stage.mtx);
-			auto first = std::async(std::launch::async, &Impl::GetCollidableActorsFromFirstStage, this);
-			std::lock_guard lock2(_second_stage.mtx);
-			auto second = std::async(std::launch::async, [this]() {return GetCollidableActors(_second_stage); });
-			std::lock_guard lockc(_const_actors.mtx);
-			auto third = std::async(std::launch::async, [this]() {return GetCollidableActors(_const_actors); });
+			all_actors = first.get();
+			auto actors_to_insert = second.get();
+			all_actors.insert(all_actors.end(), actors_to_insert.begin(), actors_to_insert.end());
+			actors_to_insert = third.get();
+			all_actors.insert(all_actors.end(), actors_to_insert.begin(), actors_to_insert.end());
 			return all_actors;
 		}
 		void CheckCollision() {
+			std::lock_guard lock1(_first_stage.mtx);
+			std::lock_guard lock2(_second_stage.mtx);
+			std::lock_guard lockc(_const_actors.mtx);
+			auto actors = GetCollidableActors();
+			for (const auto& first : actors) {
+				for (const auto& second : actors) {
+					if (first == second or !first->Collide(second))
+						continue;
+					if (first->GetCollisionType() == second->GetCollisionType() and first->GetCollisionType() == ActorsEnums::CollisionType::Collision)
+						first->OnCollide(second);
+					else if (first->GetCollisionType() == second->GetCollisionType() and first->GetCollisionType() == ActorsEnums::CollisionType::Overlap)
+						first->OnOverlap(second);
+				}
+			}
 		}
 		//pair: k -number of cycles 
 		Utility::ThreadingResourceLight<std::vector<std::pair<int, std::shared_ptr<Object::Actor>>>> _first_stage;

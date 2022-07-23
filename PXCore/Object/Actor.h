@@ -28,6 +28,8 @@ namespace Core::Object {
 		bool CanCollide()const;
 		std::shared_ptr<Components::Collider> GetCollider()const;
 		sf::Vector2f GetVelocity()const;
+		ActorsEnums::CollisionType GetCollisionType()const;
+		bool Collide(std::shared_ptr<Actor> other)const;
 
 		virtual void Tick(float delta_time);
 		virtual void Move(const sf::Vector2f& velocity);
@@ -36,6 +38,8 @@ namespace Core::Object {
 
 		virtual void Init()override;
 		virtual std::string ToString()const override;
+		virtual void OnOverlap(std::shared_ptr<Object> other)override;
+		virtual void OnCollide(std::shared_ptr<Object> other)override;
 	private:
 		bool _tick = false;
 	protected:

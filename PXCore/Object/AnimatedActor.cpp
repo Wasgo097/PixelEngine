@@ -23,7 +23,8 @@ namespace Core::Object {
 		}
 	}
 	void AnimatedActor::Tick(float delta_time) {
-		if (_direction_row.empty()) return;
+		if (_direction_row.empty())
+			return;
 		if (_velocity == sf::Vector2f())
 			_animated_row = _direction_row.at(AnimationEnums::Direction::DownIdle);
 		if (auto animation = GetTComponent<Core::Object::Components::Animation>(); animation)
@@ -32,7 +33,8 @@ namespace Core::Object {
 	}
 	void AnimatedActor::Move(const sf::Vector2f& velocity) {
 		Actor::Move(velocity);
-		if (_direction_row.empty()) return;
+		if (_direction_row.empty())
+			return;
 		if (_velocity.x != 0) {
 			if (_velocity.x > 0) {
 				if (_direction_row.contains(AnimationEnums::Direction::Right))

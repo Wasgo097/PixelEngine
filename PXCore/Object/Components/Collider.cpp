@@ -16,4 +16,7 @@ namespace Core::Object::Components {
 	sf::RectangleShape& Collider::GetCollider() {
 		return _collider;
 	}
+	bool Collider::Collide(const Collider& other) const {
+		return _collider.getGlobalBounds().intersects(other._collider.getGlobalBounds());
+	}
 }

@@ -6,7 +6,7 @@ namespace Core::Object {
 	Actor::Actor(World::WorldBase* world, const Settings::ActorSettings& actor_settings, const Settings::TextureSettings& texture_settings) :
 		_world(world), _actor_settings(actor_settings), _texture_settings(texture_settings), _velocity(_actor_settings.velocity), _tick(_actor_settings.tick) {
 		//collision
-		if (static_cast<int>(_actor_settings.collision) > 1) {
+		if (static_cast<int>(_actor_settings.collision) > 0) {
 			_components.emplace_back(std::make_shared<Components::Collider>(this, actor_settings));
 		}
 		//texture and sprite
@@ -57,6 +57,12 @@ namespace Core::Object {
 	sf::Vector2f Actor::GetVelocity() const {
 		return sf::Vector2f();
 	}
+	ActorsEnums::CollisionType Actor::GetCollisionType() const {
+		return _actor_settings.collision;
+	}
+	bool Actor::Collide(std::shared_ptr<Actor> other) const {
+		return GetCollider()->Collide(*other->GetCollider());
+	}
 	std::shared_ptr<Components::Collider> Actor::GetCollider()const {
 		if (auto collider = GetTComponent<Components::Collider>(); collider)
 			return collider;
@@ -81,6 +87,12 @@ namespace Core::Object {
 			component->InitComponent();
 	}
 	std::string Actor::ToString() const { return "Default Actor ToString"; }
+	void Actor::OnOverlap(std::shared_ptr<Object> other) {
+		std::cout << ToString() << " overlap with " << other->ToString() << std::endl;
+	}
+	void Actor::OnCollide(std::shared_ptr<Object> other) {
+		std::cout << ToString() << " collide with " << other->ToString() << std::endl;
+	}
 	void Actor::Move(const sf::Vector2f& velocity) {
 		_velocity = velocity;
 		_pushed = false;

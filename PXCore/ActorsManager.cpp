@@ -113,8 +113,9 @@ namespace Core {
 						continue;
 					if (first->GetCollisionType() == second->GetCollisionType() and first->GetCollisionType() == ActorsEnums::CollisionType::Collision)
 						first->OnCollide(second);
-					else if (first->GetCollisionType() == second->GetCollisionType() and first->GetCollisionType() == ActorsEnums::CollisionType::Overlap)
+					else
 						first->OnOverlap(second);
+
 				}
 			}
 		}

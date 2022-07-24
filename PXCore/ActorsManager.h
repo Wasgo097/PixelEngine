@@ -9,12 +9,11 @@ namespace Core {
 	}
 	class ActorsManager :public ILoopingThread {
 	public:
-		ActorsManager(size_t buffer_size, int gc_frequent_level, int cycle_to_move);
+		ActorsManager(size_t init_buffer_size,unsigned gc_delay);
 		virtual ~ActorsManager() = default;
 		void RegistrNewActor(std::shared_ptr<Object::Actor> actor);
 		void RegisterConstActor(std::shared_ptr<Object::Actor> actor);
 		void RegisterMainActor(std::shared_ptr<Object::Actor> main_actor);
-		void UnregisterActor(Object::Actor* actor);
 		void Update(float delta_time);
 		void Draw(sf::RenderWindow& window);
 		// Inherited via IThread

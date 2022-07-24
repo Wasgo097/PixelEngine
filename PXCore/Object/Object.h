@@ -7,7 +7,6 @@ namespace Core::Object{
 		virtual ~Object() = default;
 		virtual std::string ToString()const { return "Default Object ToString"; }
 		virtual void Init(){}
-		virtual void OnLoad(){}
 		virtual void OnSpawn(){}
 		virtual void OnDelete(){}
 		virtual void OnOverlap(std::shared_ptr<Object> other) {}

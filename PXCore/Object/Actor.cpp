@@ -88,10 +88,10 @@ namespace Core::Object {
 	}
 	std::string Actor::ToString() const { return "Default Actor ToString"; }
 	void Actor::OnOverlap(std::shared_ptr<Object> other) {
-		std::cout << ToString() << " overlap with " << other->ToString() << std::endl;
+		//std::cout << ToString() << " overlap with " << other->ToString() << std::endl;
 	}
 	void Actor::OnCollide(std::shared_ptr<Object> other) {
-		std::cout << ToString() << " collide with " << other->ToString() << std::endl;
+		//std::cout << ToString() << " collide with " << other->ToString() << std::endl;
 	}
 	void Actor::Move(const sf::Vector2f& velocity) {
 		_velocity = velocity;

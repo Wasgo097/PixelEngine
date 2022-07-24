@@ -5,7 +5,7 @@
 #include "Engine.h"
 namespace Core::World {
 	WorldBase::WorldBase(const Settings::WorldSettings& world_settings, Engine* parent) :_parent(parent),
-		_world_settings(world_settings), _actor_manager(std::make_unique<ActorsManager>(world_settings.buffer_size, world_settings.gc_frequent_level, world_settings.cycle_to_move)) {
+		_world_settings(world_settings), _actor_manager(std::make_unique<ActorsManager>(world_settings.buffer_size, world_settings.gc_delay)) {
 	}
 	void WorldBase::Draw(sf::RenderWindow& window) {
 		if (!_initialized)
@@ -21,10 +21,7 @@ namespace Core::World {
 		if (_actor_manager)
 			_actor_manager->Update(delta);
 	}
-	void WorldBase::SetParent(Engine* parent) {
-		if (_parent != nullptr)
-			std::cerr << "WARNIGN!! WorldBase::SetParrnet change parent when parrent is setted\n";
-		_parent = parent;
+	void WorldBase::CheckCollisionOnMove(Core::Object::Actor* actor) {
 	}
 	bool WorldBase::Quit() const {
 		return _quit;

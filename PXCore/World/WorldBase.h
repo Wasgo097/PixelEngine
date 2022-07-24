@@ -20,42 +20,39 @@ namespace Core::World {
 			requires std::derived_from<type_to_create, Core::Object::Actor>
 		std::shared_ptr<type_to_create> SpawnActor(const Settings::ActorSettings& actor_settings, const Settings::TextureSettings& texture_settings, Argv && ...argv) {
 			std::shared_ptr<type_to_create> result;
-			type_to_create* ptr = new type_to_create(this, actor_settings, texture_settings, std::forward<Argv>(argv)...);
-			result.reset(ptr);
-			ptr = nullptr;
+			result.reset(new type_to_create(this, actor_settings, texture_settings, std::forward<Argv>(argv)...));
 			_actor_manager->RegistrNewActor(result);
+			result->OnSpawn();
 			return result;
 		}
 		template<typename type_to_create, typename ...Argv>
 			requires std::derived_from<type_to_create, Core::Object::Actor>
 		std::shared_ptr<type_to_create> SpawnConstActor(const Settings::ActorSettings& actor_settings, const Settings::TextureSettings& texture_settings, Argv && ...argv) {
 			std::shared_ptr<type_to_create> result;
-			type_to_create* ptr = new type_to_create(this, actor_settings, texture_settings, std::forward<Argv>(argv)...);
-			result.reset(ptr);
-			ptr = nullptr;
+			result.reset(new type_to_create(this, actor_settings, texture_settings, std::forward<Argv>(argv)...));
 			_actor_manager->RegisterConstActor(result);
+			result->OnSpawn();
 			return result;
 		}
 		template<typename type_to_create, typename ...Argv>
 			requires std::derived_from<type_to_create, Core::Object::AnimatedActor>
 		std::shared_ptr<type_to_create> SpawnAnimatedActor(const Settings::ActorSettings& actor_settings, const Settings::TextureSettings& texture_settings, const Settings::AnimationSettings& animation_settings, Argv && ...argv) {
 			std::shared_ptr<type_to_create> result;
-			type_to_create* ptr = new type_to_create(this, actor_settings, texture_settings, animation_settings, std::forward<Argv>(argv)...);
-			result.reset(ptr);
-			ptr = nullptr;
+			result.reset(new type_to_create(this, actor_settings, texture_settings, animation_settings, std::forward<Argv>(argv)...));
 			_actor_manager->RegistrNewActor(result);
+			result->OnSpawn();
 			return result;
 		}
 		virtual void Draw(sf::RenderWindow& window);
 		virtual void Update(float delta);
-		void SetParent(Engine* parent);
-		bool Quit()const;
-		bool Initialized()const;
 		virtual void ServiceInput(const Core::Controller::Key& key);
 		virtual void ServiceGUIInput(const sf::Event& action) {};
 		virtual void InitWorld();
 		virtual void EndWorld();
 		virtual void CheckQuit() = 0;
+		virtual void CheckCollisionOnMove(Core::Object::Actor* actor);
+		bool Quit()const;
+		bool Initialized()const;
 	protected:
 		Engine* _parent = nullptr;
 		Settings::WorldSettings _world_settings;

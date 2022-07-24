@@ -16,6 +16,7 @@ namespace Core {
 		void RegisterMainActor(std::shared_ptr<Object::Actor> main_actor);
 		void Update(float delta_time);
 		void Draw(sf::RenderWindow& window);
+		void CheckCollisionAfterMove(Core::Object::Actor* moved_actor)const;
 		// Inherited via IThread
 		virtual void Run() override;
 		virtual void Terminate()override;

@@ -21,7 +21,8 @@ namespace Core::World {
 		if (_actor_manager)
 			_actor_manager->Update(delta);
 	}
-	void WorldBase::CheckCollisionOnMove(Core::Object::Actor* actor) {
+	void WorldBase::CheckCollisionAfterMove(Core::Object::Actor* moved_actor)const {
+		_actor_manager->CheckCollisionAfterMove(moved_actor);
 	}
 	bool WorldBase::Quit() const {
 		return _quit;

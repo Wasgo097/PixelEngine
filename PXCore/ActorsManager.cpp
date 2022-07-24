@@ -10,7 +10,7 @@ namespace Core {
 			_actors.rsc->reserve(init_buffer_size);
 			_const_actors.rsc->reserve(init_buffer_size);
 		}
-		void DeleteActors() {
+		void DeleteTagedActors() {
 			{
 				std::lock_guard lock(_actors.mtx);
 				auto it = std::partition(_actors.rsc->begin(), _actors.rsc->end(), [](const std::shared_ptr<Object::Actor>& actor) {
@@ -19,8 +19,8 @@ namespace Core {
 						actor->OnDelete();
 					return result; });
 				_actors.rsc->erase(_actors.rsc->begin(), it);
-				//ddddstd::this_thread::sleep_for(std::chrono::milliseconds(_DELAY));
 			}
+			std::this_thread::sleep_for(std::chrono::milliseconds(_DELAY));
 			{
 				std::lock_guard lock(_const_actors.mtx);
 				auto it = std::partition(_const_actors.rsc->begin(), _const_actors.rsc->end(), [](const std::shared_ptr<Object::Actor>& actor) {
@@ -29,8 +29,8 @@ namespace Core {
 						actor->OnDelete();
 					return result; });
 				_const_actors.rsc->erase(_const_actors.rsc->begin(), it);
-				//std::this_thread::sleep_for(std::chrono::milliseconds(_DELAY));
 			}
+			std::this_thread::sleep_for(std::chrono::milliseconds(_DELAY));
 		}
 		void UpdateActors(float delta_time) {
 			{
@@ -57,32 +57,25 @@ namespace Core {
 			return result;
 		}
 		std::vector<std::shared_ptr<Core::Object::Actor>> GetCollidableActors()const {
-			auto actors = std::async(std::launch::async | std::launch::deferred, [this]() {return GetCollidableActors(*_actors.rsc); });
-			auto const_actors = std::async(std::launch::async | std::launch::deferred, [this]() {return GetCollidableActors(*_const_actors.rsc); });
+			auto actors = std::async(std::launch::async, [this]() {return GetCollidableActors(*_actors.rsc); });
+			auto const_actors = std::async(std::launch::async, [this]() {return GetCollidableActors(*_const_actors.rsc); });
 			std::vector<std::shared_ptr<Object::Actor>> all_actors = actors.get();
 			auto const_actors_res = const_actors.get();
 			all_actors.insert(all_actors.end(), const_actors_res.begin(), const_actors_res.end());
 			return all_actors;
 		}
-		void CheckCollision() {
-			auto start = std::chrono::high_resolution_clock::now();
-			std::lock_guard lock1(_actors.mtx);
+		void CheckCollisionAfterMove(Core::Object::Actor* moved_actor)const {
+			std::lock_guard lock(_actors.mtx);
 			std::lock_guard lockc(_const_actors.mtx);
 			auto actors = GetCollidableActors();
-			for (const auto& first : actors) {
-				for (const auto& second : actors) {
-					if (first == second or !first->Collide(second))
-						continue;
-					if (first->GetCollisionType() == second->GetCollisionType() and first->GetCollisionType() == ActorsEnums::CollisionType::Collision)
-						first->OnCollide(second);
-					else
-						first->OnOverlap(second);
-
-				}
+			for (const auto& actor : actors) {
+				if (moved_actor == actor.get() or !moved_actor->Collide(actor))
+					continue;
+				if (moved_actor->GetCollisionType() == actor->GetCollisionType() and moved_actor->GetCollisionType() == ActorsEnums::CollisionType::Collision)
+					moved_actor->OnCollide(actor);
+				else
+					moved_actor->OnOverlap(actor);
 			}
-			auto end = std::chrono::high_resolution_clock::now();
-			auto diff = end - start;
-			std::cout << "Time collision detection: " << diff.count() << std::endl;
 		}
 		//pair: k -number of cycles 
 		Utility::ThreadingResourceLight<std::vector<std::shared_ptr<Object::Actor>>> _actors;
@@ -111,7 +104,6 @@ namespace Core {
 	}
 	void ActorsManager::Update(float delta_time) {
 		_impl->UpdateActors(delta_time);
-		//_impl->CheckCollision();
 	}
 	void ActorsManager::Draw(sf::RenderWindow& window) {
 		{
@@ -125,10 +117,12 @@ namespace Core {
 				actor->Draw(window);
 		}
 	}
+	void ActorsManager::CheckCollisionAfterMove(Core::Object::Actor* moved_actor)const {
+		_impl->CheckCollisionAfterMove(moved_actor);
+	}
 	void ActorsManager::Run() {
-		while (!_impl->_terminated) {
-			_impl->DeleteActors();
-		}
+		while (!_impl->_terminated)
+			_impl->DeleteTagedActors();
 	}
 	void ActorsManager::Terminate() {
 		_impl->_terminated = true;

@@ -50,7 +50,7 @@ namespace Core::World {
 		virtual void InitWorld();
 		virtual void EndWorld();
 		virtual void CheckQuit() = 0;
-		virtual void CheckCollisionOnMove(Core::Object::Actor* actor);
+		virtual void CheckCollisionAfterMove(Core::Object::Actor* moved_actor)const;
 		bool Quit()const;
 		bool Initialized()const;
 	protected:

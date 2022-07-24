@@ -46,6 +46,7 @@ namespace Core::Object {
 				collider->Move(_velocity);
 			if (!_pushed)
 				_velocity = sf::Vector2f(0, 0);
+			_world->CheckCollisionAfterMove(this);
 		}
 		for (const auto& component : _components)
 			if (component->TickFlag())

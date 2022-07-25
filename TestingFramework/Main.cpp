@@ -19,5 +19,13 @@ int main(){
 	std::cout << "MultipleWidgetsTest result: \n" << test5.RunTest() << std::endl;*/
 	/*MainMenuTest test6;
 	std::cout << "MainMenuTest result: \n" << test6.RunTest() << std::endl;*/
+	sf::Vector2f f{ 20,30 };
+	sf::Vector2f f2{ 30,40 };
+	//o tyle powinien pojsc f2
+	auto res = f2 - f;
+	//a o tyle f1
+	auto res2 = f - f2;
+	int x = 0;
+	x--;
 	return 0;
 }

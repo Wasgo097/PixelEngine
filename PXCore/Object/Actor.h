@@ -1,7 +1,6 @@
 #pragma once
 #include "Object.h"
 #include <SFML/Graphics.hpp>
-#include <optional>
 #include <list>
 #include <concepts>
 #include "PXSettings/ActorSettings.h"
@@ -13,6 +12,7 @@ namespace Core::World {
 namespace Core::Object {
 	namespace Components {
 		class ActorComponentBase;
+		class Collider;
 	}
 	class Actor :public Object {
 	public:
@@ -29,7 +29,7 @@ namespace Core::Object {
 		std::shared_ptr<Components::Collider> GetCollider()const;
 		sf::Vector2f GetVelocity()const;
 		ActorsEnums::CollisionType GetCollisionType()const;
-		bool Collide(std::shared_ptr<Actor> other)const;
+		bool Collide(std::shared_ptr<Actor> other, sf::FloatRect& out_rect)const;
 
 		virtual void Tick(float delta_time);
 		virtual void Move(const sf::Vector2f& velocity);
@@ -38,8 +38,8 @@ namespace Core::Object {
 
 		virtual void Init()override;
 		virtual std::string ToString()const override;
-		virtual void OnOverlap(std::shared_ptr<Object> other)override;
-		virtual void OnCollide(std::shared_ptr<Object> other)override;
+		virtual void OnOverlap(const Actor* other, std::optional<sf::Vector2f> diference)override;
+		virtual void OnCollide(const Actor* other, std::optional<sf::Vector2f> diference)override;
 	private:
 		bool _tick = false;
 	protected:
@@ -52,6 +52,7 @@ namespace Core::Object {
 			}
 			return {};
 		}
+		void ChangePosition(const sf::Vector2f& vector);
 		World::WorldBase* _world;
 		std::unique_ptr<sf::Texture> _texture;
 		std::unique_ptr<sf::Sprite> _sprite;

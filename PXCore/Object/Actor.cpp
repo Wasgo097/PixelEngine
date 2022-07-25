@@ -40,10 +40,7 @@ namespace Core::Object {
 	}
 	void Actor::Tick(float delta_time) {
 		if (_actor_settings.type == ActorsEnums::ActorType::Dynamic && _velocity != sf::Vector2f()) {
-			if (_sprite)
-				_sprite->move(_velocity);
-			if (auto collider = GetCollider(); collider)
-				collider->Move(_velocity);
+			ChangePosition(_velocity);
 			if (!_pushed)
 				_velocity = sf::Vector2f(0, 0);
 			_world->CheckCollisionAfterMove(this);
@@ -61,8 +58,8 @@ namespace Core::Object {
 	ActorsEnums::CollisionType Actor::GetCollisionType() const {
 		return _actor_settings.collision;
 	}
-	bool Actor::Collide(std::shared_ptr<Actor> other) const {
-		return GetCollider()->Collide(*other->GetCollider());
+	bool Actor::Collide(std::shared_ptr<Actor> other, sf::FloatRect& out_rect) const {
+		return GetCollider()->Collide(*other->GetCollider(), out_rect);
 	}
 	std::shared_ptr<Components::Collider> Actor::GetCollider()const {
 		if (auto collider = GetTComponent<Components::Collider>(); collider)
@@ -88,11 +85,19 @@ namespace Core::Object {
 			component->InitComponent();
 	}
 	std::string Actor::ToString() const { return "Default Actor ToString"; }
-	void Actor::OnOverlap(std::shared_ptr<Object> other) {
+	void Actor::OnOverlap(const Actor* other, std::optional<sf::Vector2f> diference) {
 		//std::cout << ToString() << " overlap with " << other->ToString() << std::endl;
 	}
-	void Actor::OnCollide(std::shared_ptr<Object> other) {
-		//std::cout << ToString() << " collide with " << other->ToString() << std::endl;
+	void Actor::OnCollide(const Actor* other, std::optional<sf::Vector2f> diference) {
+		std::cout << ToString() << " collide with " << other->ToString() << std::endl;
+		if (diference and !_pushed and _actor_settings.type == ActorsEnums::ActorType::Dynamic)
+			ChangePosition(*diference);
+	}
+	void Actor::ChangePosition(const sf::Vector2f& vector) {
+		if (_sprite)
+			_sprite->move(vector);
+		if (auto collider = GetCollider(); collider)
+			collider->Move(vector);
 	}
 	void Actor::Move(const sf::Vector2f& velocity) {
 		_velocity = velocity;

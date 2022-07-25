@@ -11,7 +11,7 @@ namespace Core::Object::Components {
 		void Move(const sf::Vector2f& velocity);
 		const sf::RectangleShape& GetCollider()const;
 		sf::RectangleShape& GetCollider();
-		bool Collide(const Collider& other)const;
+		bool Collide(const Collider& other,sf::FloatRect& out_rect)const;		
 	protected:
 		sf::RectangleShape _collider;
 	};

@@ -3,6 +3,7 @@
 #include <algorithm>
 #include <iostream>
 #include <future>
+#include <math.h>
 #include "Object/Actor.h"
 namespace Core {
 	struct ActorsManager::Impl {
@@ -64,17 +65,37 @@ namespace Core {
 			all_actors.insert(all_actors.end(), const_actors_res.begin(), const_actors_res.end());
 			return all_actors;
 		}
+		static sf::Vector2f GetCollisionPush(const sf::FloatRect& input, const sf::RectangleShape& moved_actor, const sf::RectangleShape& touched_actor) {
+			sf::Vector2f result(input.width, input.height);
+			if (abs(result.x) > abs(result.y)) {
+				result.x = .0f;
+				if (moved_actor.getPosition().y < touched_actor.getPosition().y)
+					result.y *= -1.0f;
+			}
+			else {
+				result.y = .0f;
+				if (moved_actor.getPosition().x < touched_actor.getPosition().x)
+					result.x *= -1.0f;
+			}
+			return result;
+		}
 		void CheckCollisionAfterMove(Core::Object::Actor* moved_actor)const {
 			std::lock_guard lock(_actors.mtx);
 			std::lock_guard lockc(_const_actors.mtx);
 			auto actors = GetCollidableActors();
 			for (const auto& actor : actors) {
-				if (moved_actor == actor.get() or !moved_actor->Collide(actor))
+				sf::FloatRect intersection_area;
+				if (moved_actor == actor.get() or !moved_actor->Collide(actor, intersection_area))
 					continue;
-				if (moved_actor->GetCollisionType() == actor->GetCollisionType() and moved_actor->GetCollisionType() == ActorsEnums::CollisionType::Collision)
-					moved_actor->OnCollide(actor);
-				else
-					moved_actor->OnOverlap(actor);
+				auto diference = GetCollisionPush(intersection_area, moved_actor->GetCollider()->GetCollider(), actor->GetCollider()->GetCollider());
+				if (moved_actor->GetCollisionType() == actor->GetCollisionType() and moved_actor->GetCollisionType() == ActorsEnums::CollisionType::Collision) {
+					moved_actor->OnCollide(actor.get(), diference);
+					actor->OnCollide(moved_actor, diference * -1.0f);
+				}
+				else {
+					moved_actor->OnOverlap(actor.get(), diference);
+					actor->OnOverlap(moved_actor, diference * -1.0f);
+				}
 			}
 		}
 		//pair: k -number of cycles 
@@ -131,6 +152,4 @@ namespace Core {
 		if (_impl->_management_thr->joinable())
 			_impl->_management_thr->join();
 	}
-
-
 }

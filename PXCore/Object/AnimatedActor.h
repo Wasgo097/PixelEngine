@@ -15,7 +15,6 @@ namespace Core::Object{
 
 		virtual void Tick(float delta_time)override;
 		virtual void Move(const sf::Vector2f& velocity)override;
-
 		virtual std::string ToString()const override;
 	protected:
 		Settings::AnimationSettings _animation_settings;

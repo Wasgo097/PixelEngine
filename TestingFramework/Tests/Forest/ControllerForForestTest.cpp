@@ -10,16 +10,18 @@ namespace Test {
 		key.input_type = Core::Controller::InputType::MouseInput;
 		key.event_type = sf::Event::MouseButtonPressed;
 		key.mouse_button = sf::Mouse::Left;
-		//key.repeatable = false;
+		key.repeatable = false;
 		_actions[key] = [](std::shared_ptr<Core::Object::ControlledActor> actor) {
+			/*if (auto ptr = std::dynamic_pointer_cast<ForestMainCharacter>(actor); ptr)
+				ptr->CreateNewTree();*/
 			if (auto ptr = std::dynamic_pointer_cast<ForestMainCharacter>(actor); ptr)
-				ptr->CreateNewTree();
+				ptr->CastFireball();
 		};
-		//key.repeatable = true;
+		key.repeatable = true;
 		key.mouse_button = sf::Mouse::Right;
 		_actions[key] = [](std::shared_ptr<Core::Object::ControlledActor> actor) {
-			if (auto ptr = std::dynamic_pointer_cast<ForestMainCharacter>(actor); ptr)
-				ptr->EraseTree();
+			/*if (auto ptr = std::dynamic_pointer_cast<ForestMainCharacter>(actor); ptr)
+				ptr->EraseTree();*/
 		};
 		key.input_type = Core::Controller::InputType::KeyboardInput;
 		key.event_type = sf::Event::KeyPressed;

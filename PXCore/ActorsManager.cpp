@@ -87,7 +87,7 @@ namespace Core {
 				sf::FloatRect intersection_area;
 				if (moved_actor == actor.get() or !moved_actor->Collide(actor, intersection_area))
 					continue;
-				auto diference = GetCollisionPush(intersection_area, moved_actor->GetCollider()->GetCollider(), actor->GetCollider()->GetCollider());
+				auto diference = GetCollisionPush(intersection_area, moved_actor->GetColliderComponent()->GetCollider(), actor->GetColliderComponent()->GetCollider());
 				if (moved_actor->GetCollisionType() == actor->GetCollisionType() and moved_actor->GetCollisionType() == ActorsEnums::CollisionType::Collision) {
 					moved_actor->OnCollide(actor.get(), diference);
 					actor->OnCollide(moved_actor, diference * -1.0f);

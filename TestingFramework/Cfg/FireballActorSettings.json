@@ -10,7 +10,7 @@
     "y": 150.0
   },
   "tick": true,
-  "type": "Static",
+  "type": "Dynamic",
   "velocity": {
     "x": 0.0,
     "y": 0.0

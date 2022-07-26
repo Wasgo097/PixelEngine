@@ -12,5 +12,6 @@ namespace Settings {
 		std::string texture_path;
 		bool smooth = false;
 		bool repeatable = false;
+		float scale = 1.0f;
 	};
 }

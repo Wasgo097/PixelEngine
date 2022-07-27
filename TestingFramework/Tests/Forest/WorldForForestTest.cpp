@@ -16,11 +16,9 @@ namespace Test {
 		WorldBase::InitWorld();
 		auto tree_settings = CREATE_SETTINGS(Settings::ActorSettings, "Cfg\\TreeActorSettings.json");
 		auto tree_texture = CREATE_SETTINGS(Settings::TextureSettings, "Cfg\\TreeTextureSettings.json");
-		//SpawnActor<Tree>(tree_settings, tree_texture);
-		tree_settings.position.x += (96 * 2);
-		tree_settings.position.y += 96;
 		SpawnActor<Tree>(tree_settings, tree_texture);
-
+		tree_settings.position.x += 100.0f;
+		SpawnActor<Tree>(tree_settings, tree_texture);
 		_tree_timer = SpawnConstActor<Core::Time::TimeManager>(Settings::ActorSettings(), Settings::TextureSettings(), .5f);
 	}
 	void WorldForForestTest::EndWorld() {

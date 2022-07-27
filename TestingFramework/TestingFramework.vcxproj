@@ -146,6 +146,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Tests\Forest\Actors\Fireball.cpp" />
     <ClCompile Include="Tests\GUISettup\LoginExample.cpp" />
     <ClCompile Include="Tests\MainMenu\MainMenuEngine.cpp" />
     <ClCompile Include="Tests\MainMenu\MainMenuWorld.cpp" />
@@ -183,6 +184,7 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Tests\Forest\Actors\Fireball.h" />
     <ClInclude Include="Tests\GUISettup\LoginExample.h" />
     <ClInclude Include="Tests\MainMenu\MainMenuEngine.h" />
     <ClInclude Include="Tests\MainMenu\MainMenuWorld.h" />

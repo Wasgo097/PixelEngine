@@ -2,6 +2,7 @@
 #include "PXFactory/SettingsFactory.h"
 #include "../WorldForForestTest.h"
 #include "Tree.h"
+#include "Fireball.h"
 #include "PXCore/Object/Components/Collider.h"
 namespace Test {
 	ForestMainCharacter::ForestMainCharacter(Core::World::WorldBase* world, const Settings::ActorSettings& actor_settings, const Settings::TextureSettings& texture_settings, const Settings::AnimationSettings& animation_settings, Core::Controller::ControllerBase* controller) :
@@ -11,7 +12,7 @@ namespace Test {
 	void ForestMainCharacter::CreateNewTree()
 	{
 		auto tree_settings = CREATE_SETTINGS(Settings::ActorSettings, "Cfg\\TreeActorSettings.json");
-		if (auto collider = GetTComponent<Core::Object::Components::Collider>(); collider)
+		if (auto collider = GetColliderComponent(); collider)
 			tree_settings.position = collider->GetCollider().getPosition();
 		else if (_sprite)
 			tree_settings.position = _sprite->getPosition();
@@ -30,5 +31,30 @@ namespace Test {
 			if (auto forest_world = dynamic_cast<WorldForForestTest*>(_world); forest_world != nullptr)
 				forest_world->RemoveTree(tree);
 		}
+	}
+	void ForestMainCharacter::CastFireball()const {
+		auto fireball_settings = CREATE_SETTINGS(Settings::ActorSettings, "Cfg\\FireballActorSettings.json");
+		if (auto collider = GetColliderComponent(); collider)
+			fireball_settings.position = collider->GetCollider().getPosition();
+		else if (_sprite)
+			fireball_settings.position = _sprite->getPosition();
+		auto& velocity = fireball_settings.velocity;
+		velocity.x = _velocity.x;
+		velocity.y = _velocity.y;
+		velocity *= 3.0f;
+		if (velocity == sf::Vector2f())
+			velocity.y = 6.0f;
+		if (velocity.x > .0f)
+			fireball_settings.position.x += (GetColliderComponent()->GetCollider().getSize().x / 2.0f + fireball_settings.collider_size.x / 2.0f);
+		else if (velocity.x < .0f)
+			fireball_settings.position.x -= (GetColliderComponent()->GetCollider().getSize().x / 2.0f + fireball_settings.collider_size.x / 2.0f);
+		else if (velocity.y > .0f)
+			fireball_settings.position.y += (GetColliderComponent()->GetCollider().getSize().y / 2.0f + fireball_settings.collider_size.y / 2.0f);
+		else
+			fireball_settings.position.y -= (GetColliderComponent()->GetCollider().getSize().y / 2.0f + fireball_settings.collider_size.y / 2.0f);
+		fireball_settings.position += velocity;
+		auto fireball_texture = CREATE_SETTINGS(Settings::TextureSettings, "Cfg\\FireballTextureSettings.json");
+		auto fireball_animation = CREATE_SETTINGS(Settings::AnimationSettings, "Cfg\\FireballAnimationSettings.json");
+		_world->SpawnAnimatedActor<Fireball>(fireball_settings, fireball_texture, fireball_animation);
 	}
 }

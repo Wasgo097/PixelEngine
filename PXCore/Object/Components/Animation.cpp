@@ -28,4 +28,12 @@ namespace Core::Object::Components {
 			_elapsed_time = .0f;
 		}
 	}
+	void Animation::SetRowAndSetTexture(int row) {
+		SetRow(row);
+		_movable_view_on_texture.y = _row;
+		_movable_view_on_texture.x = 0;
+		_frame_on_texture.left = _movable_view_on_texture.x * _animation_settings.rect_size.x;
+		_frame_on_texture.top = _movable_view_on_texture.y * _animation_settings.rect_size.y;
+		_animated_sprite.setTextureRect(_frame_on_texture);
+	}
 }

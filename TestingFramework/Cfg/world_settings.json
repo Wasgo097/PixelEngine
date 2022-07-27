@@ -1,5 +1,4 @@
 {
-    "buffer_size": 200,
-    "cycle_to_move": 100,
-    "gc_frequent_level": 5
+  "buffer_size": 200,
+  "gc_delay": 5
 }

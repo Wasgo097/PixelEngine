@@ -9,30 +9,20 @@ namespace Core {
 	}
 	class ActorsManager :public ILoopingThread {
 	public:
-		ActorsManager(size_t buffer_size, int gc_frequent_level, int cycle_to_move);
-		virtual ~ActorsManager() = default;
+		ActorsManager(size_t init_buffer_size,unsigned gc_delay);
+		virtual ~ActorsManager();
 		void RegistrNewActor(std::shared_ptr<Object::Actor> actor);
 		void RegisterConstActor(std::shared_ptr<Object::Actor> actor);
 		void RegisterMainActor(std::shared_ptr<Object::Actor> main_actor);
-		void UnregisterActor(Object::Actor* actor);
-		void UpdateActors(float delta_time);
 		void Update(float delta_time);
 		void Draw(sf::RenderWindow& window);
+		void CheckCollisionAfterMove(Core::Object::Actor* moved_actor)const;
 		// Inherited via IThread
 		virtual void Run() override;
 		virtual void Terminate()override;
 		virtual void Wait()override;
 	private:
-		void DeleteActors();
-		void MoveToSecondStage();
-		//pair: k -number of cycles 
-		Utility::ThreadingResourceLight<std::vector<std::pair<int, std::shared_ptr<Object::Actor>>>> _first_stage;
-		Utility::ThreadingResourceLight<std::vector<std::shared_ptr<Object::Actor>>> _second_stage;
-		Utility::ThreadingResourceLight<std::vector<std::shared_ptr<Object::Actor>>> _const_actors;
-		const size_t _BUFFER_SIZE;
-		const int _FREQUENCY_LEVEL;
-		const int _CYCLE_TO_MOVE;
-		std::unique_ptr<std::thread> _management_thr;
-		bool _terminated = false;
+		struct Impl;
+		std::unique_ptr<Impl> _impl;
 	};
 }

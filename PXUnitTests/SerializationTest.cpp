@@ -26,8 +26,7 @@ public:
 		texture_settings.smooth = false;
 		window_settings.fps = 30;
 		window_settings.window_name = "window";
-		world_settings.gc_frequent_level = 4;
-		world_settings.cycle_to_move = 100;
+		world_settings.gc_delay = 4;
 	}
 };
 

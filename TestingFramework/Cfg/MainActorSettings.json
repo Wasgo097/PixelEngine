@@ -1,13 +1,13 @@
 {
     "collider_size": {
         "x": 32.0,
-        "y": 64.0
+        "y": 32.0
     },
     "collision": "Collision",
-    "drawable_collision_box": true,
+    "drawable_collision_box": false,
     "position": {
-        "x": 60.0,
-        "y": 60.0
+        "x": 500.0,
+        "y": 500.0
     },
     "tick": true,
     "type": "Dynamic",

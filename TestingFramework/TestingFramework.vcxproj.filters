@@ -69,6 +69,9 @@
     <ClCompile Include="Tests\GUISettup\LoginExample.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="Tests\Forest\Actors\Fireball.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="BaseTest.h">
@@ -123,6 +126,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Tests\GUISettup\LoginExample.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Tests\Forest\Actors\Fireball.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

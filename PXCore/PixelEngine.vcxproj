@@ -19,6 +19,7 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="World\Components\FpsCounter.cpp" />
     <ClCompile Include="Object\Components\Collider.cpp" />
     <ClCompile Include="Object\Components\ActorComponentBase.cpp" />
     <ClCompile Include="Controller\BaseImplementations\EmptyController.cpp" />
@@ -39,6 +40,7 @@
     <ClCompile Include="World\WorldBaseGUI.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="World\Components\FpsCounter.h" />
     <ClInclude Include="Object\Components\Collider.h" />
     <ClInclude Include="Object\Components\ActorComponentBase.h" />
     <ClInclude Include="Controller\BaseImplementations\EmptyController.h" />

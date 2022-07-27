@@ -70,6 +70,9 @@
     <ClInclude Include="World\Components\WorldBaseGUIComponent.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="World\Components\FpsCounter.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Engine.cpp" />
@@ -122,6 +125,9 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="World\Components\WorldBaseGUIComponent.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="World\Components\FpsCounter.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

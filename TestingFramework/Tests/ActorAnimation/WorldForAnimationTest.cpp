@@ -11,14 +11,4 @@ namespace Test {
 			_quit = true;
 		}
 	}
-	void WorldForAnimationTest::InitWorld(){
-		WorldBase::InitWorld();
-	}
-	void WorldForAnimationTest::EndWorld(){
-		WorldBase::EndWorld();
-	}
-	void WorldForAnimationTest::Draw(sf::RenderWindow& window)	{
-		window.clear(sf::Color::Green);
-		WorldBase::Draw(window);
-	}
 }

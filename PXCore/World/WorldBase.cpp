@@ -10,6 +10,7 @@ namespace Core::World {
 	void WorldBase::Draw(sf::RenderWindow& window) {
 		if (!_initialized)
 			throw std::runtime_error("Draw uninitialized world");
+		window.clear(sf::Color::Green);
 		if (_actor_manager)
 			_actor_manager->Draw(window);
 	}
@@ -38,7 +39,7 @@ namespace Core::World {
 	void WorldBase::InitWorld() {
 		if (_initialized)
 			throw std::runtime_error("Double initialization of world\n");
-		if (_actor_manager && _main_controller) {
+		if (_actor_manager and _main_controller) {
 			_main_controller->InitMainCharacter();
 			_main_controller->InitMainCharacterInputBindings();
 			_actor_manager->RegisterMainActor(_main_controller->GetMainCharacter());

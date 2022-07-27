@@ -21,13 +21,6 @@ namespace Test {
 		SpawnActor<Tree>(tree_settings, tree_texture);
 		_tree_timer = SpawnConstActor<Core::Time::TimeManager>(Settings::ActorSettings(), Settings::TextureSettings(), .5f);
 	}
-	void WorldForForestTest::EndWorld() {
-		WorldBase::EndWorld();
-	}
-	void WorldForForestTest::Draw(sf::RenderWindow& window) {
-		window.clear(sf::Color::Green);
-		WorldBase::Draw(window);
-	}
 	void WorldForForestTest::AddTree(std::shared_ptr<Tree> tree) {
 		_created_trees.push_back(tree);
 		_tree_timer->AttachToSeconds(tree.get());

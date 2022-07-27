@@ -46,7 +46,6 @@ namespace Core::World {
 		virtual void Draw(sf::RenderWindow& window);
 		virtual void Update(float delta);
 		virtual void ServiceInput(const Core::Controller::Key& key);
-		virtual void ServiceGUIInput(const sf::Event& action) {};
 		virtual void InitWorld();
 		virtual void EndWorld();
 		virtual void CheckQuit() = 0;

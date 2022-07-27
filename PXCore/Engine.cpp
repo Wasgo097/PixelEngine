@@ -3,6 +3,7 @@
 #include "PXFactory/SettingsFactory.h"
 #include "Controller/ControllerBase.h"
 #include "World/BaseImplementations/EmptyWorld.h"
+#include "World/WorldBaseGUI.h"
 #include <SFML/System.hpp>
 #include <chrono>
 #include <iostream>
@@ -43,7 +44,8 @@ namespace Core {
 					Close();
 				}
 				_input_manager.ServiceEvent(action);
-				_current_world->ServiceGUIInput(action);
+				if (auto gui_world = dynamic_cast<World::WorldBaseGUI*>(_current_world.get()); gui_world)
+					gui_world->ServiceGUIInput(action);
 			}
 			for (auto& key : _input_manager.GetClickedBtn())
 				_current_world->ServiceInput(key);

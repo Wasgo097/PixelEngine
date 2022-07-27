@@ -11,13 +11,13 @@ int main(){
 	std::cout << "Engine setup test result: \n" << test1.RunTest() << std::endl;*/
 	/*ActorAnimationTest test2;
 	std::cout << "Animation test result: \n" << test2.RunTest() << std::endl;*/
-	ForestTest test3;
-	std::cout << "Forest test result: \n" << test3.RunTest() << std::endl;
+	/*ForestTest test3;
+	std::cout << "Forest test result: \n" << test3.RunTest() << std::endl;*/
 	/*LoginExample test4;
 	std::cout << "LoginExample result: \n" << test4.RunTest() << std::endl;*/
 	/*MultipleWidgetsTest test5;
 	std::cout << "MultipleWidgetsTest result: \n" << test5.RunTest() << std::endl;*/
-	/*MainMenuTest test6;
-	std::cout << "MainMenuTest result: \n" << test6.RunTest() << std::endl;*/
+	MainMenuTest test6;
+	std::cout << "MainMenuTest result: \n" << test6.RunTest() << std::endl;
 	return 0;
 }

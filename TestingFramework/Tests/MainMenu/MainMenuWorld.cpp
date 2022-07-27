@@ -4,33 +4,14 @@
 #include "PXFactory/SettingsFactory.h"
 namespace Test {
 	MainMenuWorld::MainMenuWorld(Settings::WindowSettingsDTO& window_settings, const Settings::WorldSettings& world_settings, Core::Engine* parent) :
-		WorldBase(world_settings, parent), _gui(*parent->GetWindow()), _window_settings(window_settings) {
-	}
-	void MainMenuWorld::Draw(sf::RenderWindow& window) {
-		WorldBase::Draw(window);
-		window.clear(sf::Color::Green);
-		_gui.draw();
-	}
-	void MainMenuWorld::ServiceGUIInput(const sf::Event& action) {
-		_gui.handleEvent(action);
-	}
-	void MainMenuWorld::InitWorld() {
-		DefaultGuiSettup();
-		_initialized = true;
+		WorldBaseGUI(world_settings, parent), _window_settings(window_settings) {
 	}
 	void updateTextSize(tgui::GuiBase& gui) {
 		const float windowHeight = gui.getView().getRect().height;
 		gui.setTextSize(static_cast<unsigned int>(0.03f * windowHeight));
 	}
-	void MainMenuWorld::CommonGuiSettup() {
-		_gui.removeAllWidgets();
-		updateTextSize(_gui);
-		auto picture = tgui::Picture::create("Resource\\GUI\\fantasy_background.png");
-		picture->setSize({ "100%", "100%" });
-		_gui.add(picture);
-	}
-	void MainMenuWorld::DefaultGuiSettup() {
-		CommonGuiSettup();
+	void MainMenuWorld::MainMenuPage() {
+		InitGuiSettup();
 		tgui::Theme theme{ "Resource\\GUI\\themes\\TransparentGrey.txt" };
 		auto new_game_btn = tgui::Button::create("New Game");
 		new_game_btn->setRenderer(theme.getRenderer("Button"));
@@ -43,7 +24,7 @@ namespace Test {
 		settings_btn->setSize({ "20%", "15%" });
 		settings_btn->setPosition({ "40%", "60%" });
 		_gui.add(settings_btn);
-		settings_btn->onPress(&MainMenuWorld::SettingsClick, this);
+		settings_btn->onPress(&MainMenuWorld::SettingsPage, this);
 		auto exit_btn = tgui::Button::create("Exit Game");
 		exit_btn->setRenderer(theme.getRenderer("Button"));
 		exit_btn->setSize({ "20%", "15%" });
@@ -55,8 +36,8 @@ namespace Test {
 		_parent->PushWorldToQueue(std::make_unique<WorldForForestTest>(_world_settings, _parent));
 		_quit = true;
 	}
-	void MainMenuWorld::SettingsClick() {
-		CommonGuiSettup();
+	void MainMenuWorld::SettingsPage() {
+		InitGuiSettup();
 		tgui::Theme theme{ "Resource\\GUI\\themes\\TransparentGrey.txt" };
 		_working_window_settings = std::make_unique<Settings::WindowSettingsDTO>(_window_settings);
 		auto return_btn = tgui::Button::create("<-");
@@ -64,7 +45,7 @@ namespace Test {
 		return_btn->setSize({ "5%", "5%" });
 		return_btn->setPosition({ "2%", "5%" });
 		_gui.add(return_btn);
-		return_btn->onPress(&MainMenuWorld::DefaultGuiSettup, this); 
+		return_btn->onPress(&MainMenuWorld::MainMenuPage, this);
 		auto apply_btn = tgui::Button::create("Apply");
 		apply_btn->setRenderer(theme.getRenderer("Button"));
 		apply_btn->setSize({ "5%", "5%" });
@@ -140,7 +121,7 @@ namespace Test {
 		_quit = true;
 	}
 	void MainMenuWorld::ReturnClick() {
-		DefaultGuiSettup();
+		MainMenuPage();
 	}
 	void MainMenuWorld::RewriteSettings() {
 		_working_window_settings->fps = static_cast<int>(_fps_slider->getValue());
@@ -161,12 +142,24 @@ namespace Test {
 			_working_window_settings->video_mode.height = 1080;
 		}
 	}
-	void MainMenuWorld::ApplySettings(){
+	void MainMenuWorld::ApplySettings() {
 		if (auto engine = dynamic_cast<MainMenuEngine*>(_parent); engine != nullptr) {
 			engine->ApplyWindowSettings(*_working_window_settings);
 			//fix for wrong coord convert
-			_gui.setTarget(*_parent->GetWindow());
-			SettingsClick();
+			RefreshGuiTarget();
+			SettingsPage();
 		}
+	}
+	bool MainMenuWorld::InitGuiSettup() {
+		_gui.removeAllWidgets();
+		updateTextSize(_gui);
+		auto picture = tgui::Picture::create("Resource\\GUI\\fantasy_background.png");
+		picture->setSize({ "100%", "100%" });
+		_gui.add(picture);
+		return true;
+	}
+	void MainMenuWorld::InitWorld()	{
+		WorldBaseGUI::InitWorld();
+		MainMenuPage();
 	}
 }

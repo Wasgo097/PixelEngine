@@ -1,5 +1,4 @@
 #include "WorldForForestTest.h"
-#include <iostream>
 #include "ControllerForForestTest.h"
 #include "Actors/Tree.h"
 #include "PXFactory/SettingsFactory.h"

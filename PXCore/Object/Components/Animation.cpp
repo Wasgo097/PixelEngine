@@ -1,5 +1,4 @@
 #include "Animation.h"
-#include <iostream>
 namespace Core::Object::Components {
 	Animation::Animation(Core::Object::Actor* parent, sf::Sprite& animated_sprite, const Settings::AnimationSettings& animation_settings) :
 		ActorComponentBase(parent),

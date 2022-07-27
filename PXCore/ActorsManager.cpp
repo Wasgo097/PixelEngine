@@ -1,7 +1,6 @@
 #include "ActorsManager.h"
 #include <functional>
 #include <algorithm>
-#include <iostream>
 #include <future>
 #include <math.h>
 #include "Object/Actor.h"
@@ -98,7 +97,6 @@ namespace Core {
 				}
 			}
 		}
-		//pair: k -number of cycles 
 		Utility::ThreadingResourceLight<std::vector<std::shared_ptr<Object::Actor>>> _actors;
 		Utility::ThreadingResourceLight<std::vector<std::shared_ptr<Object::Actor>>> _const_actors;
 		std::unique_ptr<std::thread> _management_thr;

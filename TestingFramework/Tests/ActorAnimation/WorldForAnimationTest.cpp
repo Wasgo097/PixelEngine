@@ -1,5 +1,4 @@
 #include "WorldForAnimationTest.h"
-#include <iostream>
 #include "ControllerForAnimationTest.h"
 using namespace Core;
 namespace Test {

@@ -1,5 +1,4 @@
 #include "Actor.h"
-#include <iostream>
 #include "Components/ActorComponentBase.h"
 #include "World/WorldBase.h"
 namespace Core::Object {

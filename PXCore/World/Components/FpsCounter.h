@@ -3,7 +3,7 @@
 namespace Core::World::Component {
 	class FpsCounter :public WorldBaseGUIComponent {
 	public:
-		FpsCounter(BaseWorldGUI* parent, tgui::Gui* gui);
+		FpsCounter(WorldBaseGUI* parent, tgui::Gui* gui);
 		// Inherited via WorldBaseGUIComponent
 		virtual void InitComponent()override;
 		virtual void Tick(float delta_time) override;

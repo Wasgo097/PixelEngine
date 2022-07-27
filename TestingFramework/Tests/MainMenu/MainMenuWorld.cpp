@@ -2,6 +2,7 @@
 #include "MainMenuEngine.h"
 #include "Tests/Forest/WorldForForestTest.h"
 #include "PXFactory/SettingsFactory.h"
+#include "PXCore/World/Components/FpsCounter.h"
 namespace Test {
 	MainMenuWorld::MainMenuWorld(Settings::WindowSettingsDTO& window_settings, const Settings::WorldSettings& world_settings, Core::Engine* parent) :
 		WorldBaseGUI(world_settings, parent), _window_settings(window_settings) {
@@ -161,5 +162,6 @@ namespace Test {
 	void MainMenuWorld::InitWorld()	{
 		WorldBaseGUI::InitWorld();
 		MainMenuPage();
+		_gui_world_components.emplace_back(std::make_unique<Core::World::Component::FpsCounter>(this,&_gui));
 	}
 }

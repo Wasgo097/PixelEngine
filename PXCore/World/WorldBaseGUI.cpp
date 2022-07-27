@@ -11,6 +11,7 @@ namespace Core::World {
 	void WorldBaseGUI::Update(float delta) {
 		WorldBase::Update(delta);
 		for (const auto& component : _gui_world_components)
+			if (component->TickFlag())
 			component->Tick(delta);
 	}
 	void WorldBaseGUI::InitWorld() {
@@ -18,7 +19,6 @@ namespace Core::World {
 		if ((_actor_manager and !_main_controller) and InitGuiSettup())
 			_initialized = true;
 		for (const auto& component : _gui_world_components)
-			if (component->TickFlag())
 				component->InitComponent();
 	}
 	void WorldBaseGUI::EndWorld() {

@@ -1,12 +1,12 @@
 #pragma once
 #include <TGUI/TGUI.hpp>
 namespace Core::World {
-	class BaseWorldGUI;
+	class WorldBaseGUI;
 }
 namespace Core::World::Component {
 	class WorldBaseGUIComponent {
 	public:
-		WorldBaseGUIComponent(BaseWorldGUI* parent, tgui::Gui* gui);
+		WorldBaseGUIComponent(WorldBaseGUI* parent, tgui::Gui* gui);
 		virtual void Tick(float delta_time) = 0;
 		virtual void InitComponent() {};
 		virtual void EndComponent() {};
@@ -15,7 +15,7 @@ namespace Core::World::Component {
 	private:
 		bool _tick = false;
 	protected:
-		BaseWorldGUI* _parent;
+		WorldBaseGUI* _parent;
 		tgui::Gui* _gui;
 	};
 }

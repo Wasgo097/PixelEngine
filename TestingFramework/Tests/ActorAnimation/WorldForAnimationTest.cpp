@@ -9,16 +9,13 @@ namespace Test {
 	void WorldForAnimationTest::CheckQuit(){
 		if (sf::Keyboard::isKeyPressed(sf::Keyboard::Escape)) {
 			_quit = true;
-			std::cout << "Escape pressed, WorldForAnimationTest is quit\n";
 		}
 	}
 	void WorldForAnimationTest::InitWorld(){
 		WorldBase::InitWorld();
-		std::cout << "Init WorldForAnimationTest world\n";
 	}
 	void WorldForAnimationTest::EndWorld(){
 		WorldBase::EndWorld();
-		std::cout << "End WorldForAnimationTest world\n";
 	}
 	void WorldForAnimationTest::Draw(sf::RenderWindow& window)	{
 		window.clear(sf::Color::Green);

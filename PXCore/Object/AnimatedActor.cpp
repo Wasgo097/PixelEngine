@@ -6,13 +6,17 @@ namespace Core::Object {
 		_animation_settings(animation_settings),
 		_direction_row(_animation_settings.direction_to_row)
 	{
-		auto animation = std::make_shared<Components::Animation>(this,*_sprite, _animation_settings);
+		auto animation = std::make_shared<Components::Animation>(this, *_sprite, _animation_settings);
 		animation->SetTickFlag(true);
 		_components.emplace_back(animation);
 		if (!_direction_row.empty()) {
-			_animated_row = _direction_row.at(AnimationEnums::Direction::DownIdle);
+			if (!_pushed)
+				_animated_row = _direction_row.at(AnimationEnums::Direction::DownIdle);
+			else 
+				CheckAnimatedRow();
+			animation->SetRowAndSetTexture(_animated_row);
 			if (_sprite) {
-				sf::Vector2f temp_origin(_animation_settings.rect_size.x, _animation_settings.rect_size.y);
+				sf::Vector2f temp_origin(static_cast<float>(_animation_settings.rect_size.x), static_cast<float>(_animation_settings.rect_size.y));
 				temp_origin.x /= 2.0f;
 				_sprite->setOrigin(temp_origin);
 				_sprite->setPosition(_actor_settings.position);
@@ -23,7 +27,8 @@ namespace Core::Object {
 		}
 	}
 	void AnimatedActor::Tick(float delta_time) {
-		if (_direction_row.empty()) return;
+		if (_direction_row.empty())
+			return;
 		if (_velocity == sf::Vector2f())
 			_animated_row = _direction_row.at(AnimationEnums::Direction::DownIdle);
 		if (auto animation = GetTComponent<Core::Object::Components::Animation>(); animation)
@@ -32,7 +37,11 @@ namespace Core::Object {
 	}
 	void AnimatedActor::Move(const sf::Vector2f& velocity) {
 		Actor::Move(velocity);
-		if (_direction_row.empty()) return;
+		CheckAnimatedRow();
+	}
+	void AnimatedActor::CheckAnimatedRow() {
+		if (_direction_row.empty())
+			return;
 		if (_velocity.x != 0) {
 			if (_velocity.x > 0) {
 				if (_direction_row.contains(AnimationEnums::Direction::Right))
@@ -69,8 +78,6 @@ namespace Core::Object {
 				}
 			}
 		}
-		//std::cout << "Animated row in move " << _animated_row << "\n";
 	}
-
 	std::string AnimatedActor::ToString() const { return "Default AnimatedActor ToString"; }
 }

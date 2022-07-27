@@ -54,7 +54,22 @@
     <ClCompile Include="Tests\EngineSettup\BaseEngine.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Tests\GUISettup\GUISettupTest.cpp">
+    <ClCompile Include="Tests\GUISettup\MultipleWidgetsTest.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Tests\MainMenu\MainMenuTest.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Tests\MainMenu\MainMenuEngine.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Tests\MainMenu\MainMenuWorld.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Tests\GUISettup\LoginExample.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Tests\Forest\Actors\Fireball.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -98,7 +113,22 @@
     <ClInclude Include="Tests\EngineSettup\BaseEngine.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Tests\GUISettup\GUISettupTest.h">
+    <ClInclude Include="Tests\GUISettup\MultipleWidgetsTest.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Tests\MainMenu\MainMenuTest.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Tests\MainMenu\MainMenuEngine.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Tests\MainMenu\MainMenuWorld.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Tests\GUISettup\LoginExample.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Tests\Forest\Actors\Fireball.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

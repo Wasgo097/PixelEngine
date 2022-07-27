@@ -1,9 +1,8 @@
 #pragma once
-#include <string>
-#include <SFML/Window/VideoMode.hpp>
+#include "WindowSettingsDTO.h"
 namespace Settings {
-	struct WindowSettings{
-		WindowSettings(sf::VideoMode mode, int fps, unsigned int style, std::string win_name, bool vsync) :video_mode{ mode }, fps{ fps }, display_style{ style }, window_name{ win_name }, vsync{ vsync } {}
+	struct WindowSettings :public WindowSettingsDTO {
+		WindowSettings(sf::VideoMode mode, int fps, unsigned int style, bool vsync, const std::string& win_name) : WindowSettingsDTO(mode, fps, style, vsync), window_name{ win_name }{}
 		WindowSettings() = default;
 
 		bool operator ==(const WindowSettings& obj)const {
@@ -14,10 +13,6 @@ namespace Settings {
 				(vsync == obj.vsync);
 		}
 
-		sf::VideoMode video_mode;
-		int fps = 30;
-		unsigned int display_style = sf::Style::Fullscreen;
 		std::string window_name = "Window";
-		bool vsync = false;
 	};
 }

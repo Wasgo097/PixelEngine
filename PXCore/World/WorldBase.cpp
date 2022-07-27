@@ -21,6 +21,9 @@ namespace Core::World {
 			std::cerr << "WARNING! Tick time above save value! Current delta: " << delta << "\n";
 		if (_actor_manager)
 			_actor_manager->Update(delta);
+		for (const auto& component : _world_components)
+			if (component->TickFlag())
+				component->Tick(delta);
 	}
 	void WorldBase::CheckCollisionAfterMove(Core::Object::Actor* moved_actor)const {
 		_actor_manager->CheckCollisionAfterMove(moved_actor);
@@ -28,7 +31,6 @@ namespace Core::World {
 	bool WorldBase::Quit() const {
 		return _quit;
 	}
-
 	bool WorldBase::Initialized() const {
 		return _initialized;
 	}
@@ -39,11 +41,19 @@ namespace Core::World {
 	void WorldBase::InitWorld() {
 		if (_initialized)
 			throw std::runtime_error("Double initialization of world\n");
-		if (_actor_manager and _main_controller) {
-			_main_controller->InitMainCharacter();
-			_main_controller->InitMainCharacterInputBindings();
-			_actor_manager->RegisterMainActor(_main_controller->GetMainCharacter());
+		try {
+			if (_actor_manager and _main_controller) {
+				_main_controller->InitMainCharacter();
+				_main_controller->InitMainCharacterInputBindings();
+				_actor_manager->RegisterMainActor(_main_controller->GetMainCharacter());
+			}
+			for (const auto& component : _world_components)
+				component->InitComponent();
 			_initialized = true;
+		}
+		catch (std::exception& ex) {
+			std::cerr << "WorldBase::InitWorld exception " << ex.what() << std::endl;
+			_initialized = false;
 		}
 	}
 	void WorldBase::EndWorld() {
@@ -53,5 +63,7 @@ namespace Core::World {
 			_actor_manager->Terminate();
 			_actor_manager->Wait();
 		}
+		for (const auto& component : _world_components)
+			component->EndComponent();
 	}
 }

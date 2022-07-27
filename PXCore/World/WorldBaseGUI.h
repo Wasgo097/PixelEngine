@@ -7,12 +7,14 @@ namespace Core::World {
 	public:
 		WorldBaseGUI(const Settings::WorldSettings& world_settings = Settings::WorldSettings(), Engine* parent = nullptr);
 		virtual void Draw(sf::RenderWindow& window)override;
+		virtual void Update(float delta)override;
 		virtual void InitWorld()override;
+		virtual void EndWorld()override;
 		virtual void ServiceGUIInput(const sf::Event& action);
 	protected:
 		virtual bool InitGuiSettup() = 0;
 		void RefreshGuiTarget();
 		tgui::Gui _gui;
-		std::vector<Component::WorldBaseGUIComponent> _gui_world_components;
+		std::vector<std::unique_ptr<Component::WorldBaseGUIComponent>> _gui_world_components;
 	};
 }

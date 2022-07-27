@@ -20,6 +20,9 @@ namespace Core::Object::Components {
 		_frame_on_texture.top = _movable_view_on_texture.y * _animation_settings.rect_size.y;
 		_animated_sprite.setTextureRect(_frame_on_texture);
 	}
+	void Animation::InitComponent() {
+		SetTickFlag(true);
+	}
 	void Animation::SetRow(int row) {
 		if (_row != row) {
 			_row = row;

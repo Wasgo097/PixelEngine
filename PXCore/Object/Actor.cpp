@@ -28,10 +28,6 @@ namespace Core::Object {
 		if (_velocity != sf::Vector2f())
 			_pushed = true;
 	}
-	Actor::~Actor() {
-		for (const auto& component : _components)
-			component->EndComponent();
-	}
 	bool Actor::TickFlag()const {
 		return _tick;
 	}
@@ -69,7 +65,7 @@ namespace Core::Object {
 		if (_sprite)
 			window.draw(*_sprite);
 		if (_actor_settings.drawable_collision_box) {
-			if (auto collider = GetTComponent<Components::Collider>(); collider) {
+			if (auto collider = GetColliderComponent(); collider) {
 				window.draw(collider->GetCollider());
 				sf::CircleShape circle(1.0);
 				circle.setPosition(collider->GetCollider().getPosition());
@@ -82,6 +78,10 @@ namespace Core::Object {
 		SetTickFlag(_actor_settings.tick);
 		for (const auto& component : _components)
 			component->InitComponent();
+	}
+	void Actor::OnDelete() {
+		for (const auto& component : _components)
+			component->EndComponent();
 	}
 	std::string Actor::ToString() const { return "Default Actor ToString"; }
 	void Actor::OnOverlap(const Actor* other, std::optional<sf::Vector2f> diference) {

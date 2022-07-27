@@ -9,6 +9,7 @@ namespace Core::Object::Components {
 	public:
 		Animation(Core::Object::Actor* parent,sf::Sprite& animated_sprite, const Settings::AnimationSettings& animation_settings);
 		void SetRow(int row);
+		void SetRowAndSetTexture(int row);
 		virtual void Tick(float delta_time)override;
 	protected:
 		std::map<int, int>& _count_of_columns_in_row;

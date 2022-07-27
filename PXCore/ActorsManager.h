@@ -10,7 +10,7 @@ namespace Core {
 	class ActorsManager :public ILoopingThread {
 	public:
 		ActorsManager(size_t init_buffer_size,unsigned gc_delay);
-		virtual ~ActorsManager() = default;
+		virtual ~ActorsManager();
 		void RegistrNewActor(std::shared_ptr<Object::Actor> actor);
 		void RegisterConstActor(std::shared_ptr<Object::Actor> actor);
 		void RegisterMainActor(std::shared_ptr<Object::Actor> main_actor);

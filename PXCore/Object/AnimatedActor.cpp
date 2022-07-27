@@ -10,7 +10,11 @@ namespace Core::Object {
 		animation->SetTickFlag(true);
 		_components.emplace_back(animation);
 		if (!_direction_row.empty()) {
-			_animated_row = _direction_row.at(AnimationEnums::Direction::DownIdle);
+			if (!_pushed)
+				_animated_row = _direction_row.at(AnimationEnums::Direction::DownIdle);
+			else 
+				CheckAnimatedRow();
+			animation->SetRowAndSetTexture(_animated_row);
 			if (_sprite) {
 				sf::Vector2f temp_origin(static_cast<float>(_animation_settings.rect_size.x), static_cast<float>(_animation_settings.rect_size.y));
 				temp_origin.x /= 2.0f;
@@ -33,6 +37,9 @@ namespace Core::Object {
 	}
 	void AnimatedActor::Move(const sf::Vector2f& velocity) {
 		Actor::Move(velocity);
+		CheckAnimatedRow();
+	}
+	void AnimatedActor::CheckAnimatedRow() {
 		if (_direction_row.empty())
 			return;
 		if (_velocity.x != 0) {

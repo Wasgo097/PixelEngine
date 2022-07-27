@@ -2,5 +2,5 @@
   "repeatable": false,
   "smooth": true,
   "texture_path": "Resource\\Actors\\Fireball.png",
-  "scale": 1.0
+  "scale": 0.5
 }

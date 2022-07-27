@@ -108,6 +108,10 @@ namespace Core {
 	ActorsManager::ActorsManager(size_t init_buffer_size, unsigned gc_delay) :_impl{ std::make_unique<Impl>(init_buffer_size,gc_delay) } {
 		_impl->_management_thr = std::make_unique<std::thread>(std::bind(&ActorsManager::Run, this));
 	}
+	ActorsManager::~ActorsManager() {
+		Terminate();
+		Wait();
+	}
 	void ActorsManager::RegistrNewActor(std::shared_ptr<Object::Actor> actor) {
 		std::lock_guard lock(_impl->_actors.mtx);
 		_impl->_actors.rsc->push_back(actor);

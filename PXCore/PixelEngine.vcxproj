@@ -30,6 +30,8 @@
     <ClCompile Include="Object\ControlledActor.cpp" />
     <ClCompile Include="Object\Components\Animation.cpp" />
     <ClCompile Include="Time\TimeManager.cpp" />
+    <ClCompile Include="World\Components\WorldBaseGUIComponent.cpp" />
+    <ClCompile Include="World\Components\WorldBaseComponent.cpp" />
     <ClCompile Include="World\BaseImplementations\EmptyWorld.cpp" />
     <ClCompile Include="ActorsManager.cpp" />
     <ClCompile Include="Engine.cpp" />
@@ -49,6 +51,8 @@
     <ClInclude Include="Object\Components\Animation.h" />
     <ClInclude Include="Object\Object.h" />
     <ClInclude Include="Time\TimeManager.h" />
+    <ClInclude Include="World\Components\WorldBaseGUIComponent.h" />
+    <ClInclude Include="World\Components\WorldBaseComponent.h" />
     <ClInclude Include="World\BaseImplementations\EmptyWorld.h" />
     <ClInclude Include="ActorsManager.h" />
     <ClInclude Include="Engine.h" />

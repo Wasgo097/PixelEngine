@@ -1,6 +1,7 @@
 #pragma once
 #include "WorldBase.h"
 #include <TGUI/TGUI.hpp>
+#include "Components/WorldBaseGUIComponent.h"
 namespace Core::World {
 	class WorldBaseGUI :public WorldBase {
 	public:
@@ -12,5 +13,6 @@ namespace Core::World {
 		virtual bool InitGuiSettup() = 0;
 		void RefreshGuiTarget();
 		tgui::Gui _gui;
+		std::vector<Component::WorldBaseGUIComponent> _gui_world_components;
 	};
 }

@@ -7,6 +7,7 @@
 #include "PXCore/Object/ControlledActor.h"
 #include "PXCore/ActorsManager.h"
 #include "PXSettings/WorldSettings.h"
+#include "Components/WorldBaseComponent.h"
 namespace Core {
 	class Engine;
 }
@@ -57,6 +58,7 @@ namespace Core::World {
 		Settings::WorldSettings _world_settings;
 		std::unique_ptr<ActorsManager> _actor_manager;
 		std::unique_ptr<Controller::ControllerBase> _main_controller;
+		std::vector<Component::WorldBaseComponent> _world_components;
 		bool _quit = false;
 		bool _initialized = false;
 	};

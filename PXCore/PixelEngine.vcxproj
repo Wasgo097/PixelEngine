@@ -30,11 +30,11 @@
     <ClCompile Include="Object\ControlledActor.cpp" />
     <ClCompile Include="Object\Components\Animation.cpp" />
     <ClCompile Include="Time\TimeManager.cpp" />
-    <ClCompile Include="World\WorldBaseGUI.cpp" />
     <ClCompile Include="World\BaseImplementations\EmptyWorld.cpp" />
     <ClCompile Include="ActorsManager.cpp" />
     <ClCompile Include="Engine.cpp" />
     <ClCompile Include="World\WorldBase.cpp" />
+    <ClCompile Include="World\WorldBaseGUI.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Object\Components\Collider.h" />
@@ -49,11 +49,11 @@
     <ClInclude Include="Object\Components\Animation.h" />
     <ClInclude Include="Object\Object.h" />
     <ClInclude Include="Time\TimeManager.h" />
-    <ClInclude Include="World\WorldBaseGUI.h" />
     <ClInclude Include="World\BaseImplementations\EmptyWorld.h" />
     <ClInclude Include="ActorsManager.h" />
     <ClInclude Include="Engine.h" />
     <ClInclude Include="World\WorldBase.h" />
+    <ClInclude Include="World\WorldBaseGUI.h" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\PXFactory\PXFactory.vcxproj">

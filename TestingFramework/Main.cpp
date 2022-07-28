@@ -6,7 +6,7 @@
 #include "Tests/MainMenu/MainMenuTest.h"
 #include <iostream>
 using namespace Test;
-int main(){
+int main(int argc, char** argv){
 	/*EngineSetupTest test1;
 	std::cout << "Engine setup test result: \n" << test1.RunTest() << std::endl;*/
 	/*ActorAnimationTest test2;

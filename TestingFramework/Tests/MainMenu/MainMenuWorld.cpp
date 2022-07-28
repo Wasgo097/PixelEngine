@@ -146,10 +146,12 @@ namespace Test {
 	void MainMenuWorld::ApplySettings() {
 		if (auto engine = dynamic_cast<MainMenuEngine*>(_parent); engine != nullptr) {
 			engine->ApplyWindowSettings(*_working_window_settings);
-			//fix for wrong coord convert
 			RefreshGuiTarget();
 			SettingsPage();
 		}
+	}
+	void MainMenuWorld::CreateWorldBaseGUIComponents() {
+		_gui_world_components.emplace_back(std::make_unique<Core::World::Component::FpsCounter>(this, &_gui));
 	}
 	bool MainMenuWorld::InitGuiSettup() {
 		_gui.removeAllWidgets();
@@ -157,13 +159,11 @@ namespace Test {
 		auto picture = tgui::Picture::create("Resource\\GUI\\fantasy_background.png");
 		picture->setSize({ "100%", "100%" });
 		_gui.add(picture);
+		DrawWorldBaseGUIComponents();
 		return true;
 	}
-	void MainMenuWorld::InitWorld()	{
+	void MainMenuWorld::InitWorld() {
 		WorldBaseGUI::InitWorld();
 		MainMenuPage();
-		auto fps_counter = std::make_unique<Core::World::Component::FpsCounter>(this, &_gui);
-		fps_counter->InitComponent();
-		_gui_world_components.emplace_back(std::move(fps_counter));
 	}
 }

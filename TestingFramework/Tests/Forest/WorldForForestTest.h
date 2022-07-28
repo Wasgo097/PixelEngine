@@ -3,7 +3,7 @@
 #include "PXCore/Time/TimeManager.h"
 namespace Test {
 	class Tree;
-	class WorldForForestTest :public Core::World::WorldBase{
+	class WorldForForestTest :public Core::World::WorldBase {
 	public:
 		WorldForForestTest(const Settings::WorldSettings& worlsettings = Settings::WorldSettings(), Core::Engine* parrent = nullptr);
 	public:
@@ -12,7 +12,10 @@ namespace Test {
 		void AddTree(std::shared_ptr<Tree> tree);
 		void RemoveTree(std::shared_ptr<Tree> tree);
 	protected:
+		// Inherited via WorldBase
+		virtual void CreateWorldBaseComponents() override {}
 		std::shared_ptr<Core::Time::TimeManager> _tree_timer;
 		std::list<std::shared_ptr<Tree>> _created_trees;
+
 	};
 }

@@ -12,14 +12,27 @@ namespace Core::World {
 		WorldBase::Update(delta);
 		for (const auto& component : _gui_world_components)
 			if (component->TickFlag())
-			component->Tick(delta);
+				component->Tick(delta);
 	}
 	void WorldBaseGUI::InitWorld() {
 		WorldBase::InitWorld();
-		if ((_actor_manager and !_main_controller) and InitGuiSettup())
-			_initialized = true;
+		try {
+			_initialized = InitGuiSettup();
+			CreateWorldBaseGUIComponents();
+			InitWorldBaseGUIComponents();
+		}
+		catch (std::exception& ex) {
+			std::cerr << "WorldBaseGUI::InitWorld exception " << ex.what() << std::endl;
+			_initialized = false;
+		}
+	}
+	void WorldBaseGUI::DrawWorldBaseGUIComponents() {
 		for (const auto& component : _gui_world_components)
-				component->InitComponent();
+			component->Draw();
+	}
+	void WorldBaseGUI::InitWorldBaseGUIComponents() {
+		for (const auto& component : _gui_world_components)
+			component->InitComponent();
 	}
 	void WorldBaseGUI::EndWorld() {
 		WorldBase::EndWorld();

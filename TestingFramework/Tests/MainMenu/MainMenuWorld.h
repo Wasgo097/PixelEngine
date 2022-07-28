@@ -9,6 +9,7 @@ namespace Test {
 		virtual void CheckQuit() override {};
 		virtual bool InitGuiSettup() override;
 		virtual void InitWorld()override;
+		virtual void CreateWorldBaseGUIComponents() override;
 	private:
 		void MainMenuPage();
 		void NewGameClick();
@@ -23,6 +24,8 @@ namespace Test {
 		tgui::Slider::Ptr _fps_slider;
 		tgui::RadioButton::Ptr _fullscreen_radio;
 		tgui::RadioButton::Ptr _window_radio;
+
+
 
 	};
 }

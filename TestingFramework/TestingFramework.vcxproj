@@ -146,20 +146,20 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Tests\ActorAnimation\ActorAnimationTest.cpp" />
+    <ClCompile Include="Tests\ActorAnimation\ControllerForAnimationTest.cpp" />
+    <ClCompile Include="Tests\ActorAnimation\EngineForAnimationTest.cpp" />
+    <ClCompile Include="Tests\ActorAnimation\WorldForAnimationTest.cpp" />
+    <ClCompile Include="Tests\EngineSettup\BaseEngine.cpp" />
+    <ClCompile Include="Tests\EngineSettup\EngineSetupTest.cpp" />
     <ClCompile Include="Tests\Forest\Actors\Fireball.cpp" />
     <ClCompile Include="Tests\GUISettup\LoginExample.cpp" />
     <ClCompile Include="Tests\MainMenu\MainMenuEngine.cpp" />
     <ClCompile Include="Tests\MainMenu\MainMenuWorld.cpp" />
     <ClCompile Include="Tests\MainMenu\MainMenuTest.cpp" />
     <ClCompile Include="Tests\GUISettup\MultipleWidgetsTest.cpp" />
-    <ClCompile Include="Tests\EngineSettup\BaseEngine.cpp" />
     <ClCompile Include="Tests\Forest\Actors\ForestMainCharacter.cpp" />
     <ClCompile Include="Main.cpp" />
-    <ClCompile Include="Tests\ActorAnimation\ActorAnimationTest.cpp" />
-    <ClCompile Include="Tests\ActorAnimation\ControllerForAnimationTest.cpp" />
-    <ClCompile Include="Tests\ActorAnimation\EngineForAnimationTest.cpp" />
-    <ClCompile Include="Tests\ActorAnimation\WorldForAnimationTest.cpp" />
-    <ClCompile Include="Tests\EngineSettup\EngineSetupTest.cpp" />
     <ClCompile Include="Tests\Forest\ForestTest.cpp" />
     <ClCompile Include="Tests\Forest\ControllerForForestTest.cpp" />
     <ClCompile Include="Tests\Forest\EngineForForestTest.cpp" />
@@ -184,19 +184,19 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Tests\ActorAnimation\ActorAnimationTest.h" />
+    <ClInclude Include="Tests\ActorAnimation\ControllerForAnimationTest.h" />
+    <ClInclude Include="Tests\ActorAnimation\EngineForAnimationTest.h" />
+    <ClInclude Include="Tests\ActorAnimation\WorldForAnimationTest.h" />
+    <ClInclude Include="Tests\EngineSettup\BaseEngine.h" />
+    <ClInclude Include="Tests\EngineSettup\EngineSetupTest.h" />
     <ClInclude Include="Tests\Forest\Actors\Fireball.h" />
     <ClInclude Include="Tests\GUISettup\LoginExample.h" />
     <ClInclude Include="Tests\MainMenu\MainMenuEngine.h" />
     <ClInclude Include="Tests\MainMenu\MainMenuWorld.h" />
     <ClInclude Include="Tests\MainMenu\MainMenuTest.h" />
     <ClInclude Include="Tests\GUISettup\MultipleWidgetsTest.h" />
-    <ClInclude Include="Tests\EngineSettup\BaseEngine.h" />
     <ClInclude Include="Tests\Forest\Actors\ForestMainCharacter.h" />
-    <ClInclude Include="Tests\ActorAnimation\ActorAnimationTest.h" />
-    <ClInclude Include="Tests\ActorAnimation\ControllerForAnimationTest.h" />
-    <ClInclude Include="Tests\ActorAnimation\EngineForAnimationTest.h" />
-    <ClInclude Include="Tests\ActorAnimation\WorldForAnimationTest.h" />
-    <ClInclude Include="Tests\EngineSettup\EngineSetupTest.h" />
     <ClInclude Include="BaseTest.h" />
     <ClInclude Include="Tests\Forest\ForestTest.h" />
     <ClInclude Include="Tests\Forest\ControllerForForestTest.h" />

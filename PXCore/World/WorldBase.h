@@ -49,11 +49,12 @@ namespace Core::World {
 		virtual void ServiceInput(const Core::Controller::Key& key);
 		virtual void InitWorld();
 		virtual void EndWorld();
-		virtual void CheckQuit() = 0;
 		virtual void CheckCollisionAfterMove(Core::Object::Actor* moved_actor)const;
+		virtual void CheckQuit() = 0;
 		bool Quit()const;
-		bool Initialized()const;
 	protected:
+		virtual void CreateWorldBaseComponents() = 0;
+		void InitWorldBaseComponents();
 		Engine* _parent = nullptr;
 		Settings::WorldSettings _world_settings;
 		std::unique_ptr<ActorsManager> _actor_manager;

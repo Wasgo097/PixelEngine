@@ -12,7 +12,11 @@ namespace Core::World {
 		virtual void EndWorld()override;
 		virtual void ServiceGUIInput(const sf::Event& action);
 	protected:
+		virtual void CreateWorldBaseComponents() {};
+		virtual void CreateWorldBaseGUIComponents()=0;
 		virtual bool InitGuiSettup() = 0;
+		void DrawWorldBaseGUIComponents();
+		void InitWorldBaseGUIComponents();
 		void RefreshGuiTarget();
 		tgui::Gui _gui;
 		std::vector<std::unique_ptr<Component::WorldBaseGUIComponent>> _gui_world_components;

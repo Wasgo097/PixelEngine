@@ -31,9 +31,6 @@ namespace Core::World {
 	bool WorldBase::Quit() const {
 		return _quit;
 	}
-	bool WorldBase::Initialized() const {
-		return _initialized;
-	}
 	void WorldBase::ServiceInput(const Core::Controller::Key& key) {
 		if (_main_controller)
 			_main_controller->ServiceInput(key);
@@ -47,14 +44,21 @@ namespace Core::World {
 				_main_controller->InitMainCharacterInputBindings();
 				_actor_manager->RegisterMainActor(_main_controller->GetMainCharacter());
 			}
-			for (const auto& component : _world_components)
-				component->InitComponent();
+			else {
+				std::cerr << "WorldBase::InitWorld _actor_manager or _main_controller is empty\n";
+			}
+			CreateWorldBaseComponents();
+			InitWorldBaseComponents();
 			_initialized = true;
 		}
 		catch (std::exception& ex) {
 			std::cerr << "WorldBase::InitWorld exception " << ex.what() << std::endl;
 			_initialized = false;
 		}
+	}
+	void WorldBase::InitWorldBaseComponents() {
+		for (const auto& component : _world_components)
+			component->InitComponent();
 	}
 	void WorldBase::EndWorld() {
 		if (!_initialized)

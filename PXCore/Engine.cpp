@@ -3,10 +3,9 @@
 #include "PXFactory/SettingsFactory.h"
 #include "Controller/ControllerBase.h"
 #include "World/BaseImplementations/EmptyWorld.h"
+#include "World/WorldBaseGUI.h"
 #include <SFML/System.hpp>
 #include <chrono>
-#include <iostream>
-
 using namespace std::chrono_literals;
 namespace Core {
 	Engine::Engine() {
@@ -43,7 +42,8 @@ namespace Core {
 					Close();
 				}
 				_input_manager.ServiceEvent(action);
-				_current_world->ServiceGUIInput(action);
+				if (auto gui_world = dynamic_cast<World::WorldBaseGUI*>(_current_world.get()); gui_world)
+					gui_world->ServiceGUIInput(action);
 			}
 			for (auto& key : _input_manager.GetClickedBtn())
 				_current_world->ServiceInput(key);
@@ -79,8 +79,9 @@ namespace Core {
 			else
 				Close();
 		}
-		else
+		else {
 			_current_world->Update(time.asSeconds());
+		}
 	}
 	void Engine::Close() {
 		while (!_worlds.empty())
@@ -93,7 +94,4 @@ namespace Core {
 			_current_world->Draw(*_main_window);
 		_main_window->display();
 	}
-	/*void Engine::InitEngine() {
-		PushWorldToQueue(std::make_unique<World::EmptyWorld>(_world_settings, this));
-	}*/
 }

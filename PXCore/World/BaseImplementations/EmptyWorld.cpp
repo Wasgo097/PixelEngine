@@ -1,5 +1,4 @@
 #include "EmptyWorld.h"
-#include <iostream>
 #include "Controller/BaseImplementations/EmptyController.h"
 namespace Core::World {
 	EmptyWorld::EmptyWorld(const Settings::WorldSettings& worlsettings, Engine* parent) :WorldBase(worlsettings, parent) {

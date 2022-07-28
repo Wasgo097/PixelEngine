@@ -7,6 +7,9 @@ namespace Core::Object::Components {
 		_collider.setOrigin(temp_origin);
 		_collider.setPosition(actor_settings.position);
 	}
+	void Collider::InitComponent() {
+		SetTickFlag(false);
+	}
 	void Collider::Move(const sf::Vector2f& velocity) {
 		_collider.move(velocity);
 	}
@@ -17,6 +20,6 @@ namespace Core::Object::Components {
 		return _collider;
 	}
 	bool Collider::Collide(const Collider& other, sf::FloatRect& out_rect) const {
-		return _collider.getGlobalBounds().intersects(other._collider.getGlobalBounds(),out_rect);
+		return _collider.getGlobalBounds().intersects(other._collider.getGlobalBounds(), out_rect);
 	}
 }

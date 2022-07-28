@@ -1,5 +1,4 @@
 #include "Actor.h"
-#include <iostream>
 #include "Components/ActorComponentBase.h"
 #include "World/WorldBase.h"
 namespace Core::Object {
@@ -29,10 +28,6 @@ namespace Core::Object {
 		if (_velocity != sf::Vector2f())
 			_pushed = true;
 	}
-	Actor::~Actor() {
-		for (const auto& component : _components)
-			component->EndComponent();
-	}
 	bool Actor::TickFlag()const {
 		return _tick;
 	}
@@ -41,7 +36,7 @@ namespace Core::Object {
 	}
 	void Actor::Tick(float delta_time) {
 		if (_actor_settings.type == ActorsEnums::ActorType::Dynamic && _velocity != sf::Vector2f()) {
-			ChangePosition(_velocity);
+			ChangePosition(_velocity,delta_time);
 			if (!_pushed)
 				_velocity = sf::Vector2f(0, 0);
 		}
@@ -70,7 +65,7 @@ namespace Core::Object {
 		if (_sprite)
 			window.draw(*_sprite);
 		if (_actor_settings.drawable_collision_box) {
-			if (auto collider = GetTComponent<Components::Collider>(); collider) {
+			if (auto collider = GetColliderComponent(); collider) {
 				window.draw(collider->GetCollider());
 				sf::CircleShape circle(1.0);
 				circle.setPosition(collider->GetCollider().getPosition());
@@ -84,6 +79,10 @@ namespace Core::Object {
 		for (const auto& component : _components)
 			component->InitComponent();
 	}
+	void Actor::OnDelete() {
+		for (const auto& component : _components)
+			component->EndComponent();
+	}
 	std::string Actor::ToString() const { return "Default Actor ToString"; }
 	void Actor::OnOverlap(const Actor* other, std::optional<sf::Vector2f> diference) {
 		//std::cout << ToString() << " overlap with " << other->ToString() << std::endl;
@@ -92,11 +91,17 @@ namespace Core::Object {
 		if (diference and !_pushed and _actor_settings.type == ActorsEnums::ActorType::Dynamic)
 			ChangePosition(*diference);
 	}
-	void Actor::ChangePosition(const sf::Vector2f& vector) {
+	void Actor::ChangePosition(const sf::Vector2f& vector, std::optional<float> speed) {
 		if (_sprite)
-			_sprite->move(vector);
+			if (speed)
+				_sprite->move(vector * (*speed));
+			else
+				_sprite->move(vector);
 		if (auto collider = GetColliderComponent(); collider)
-			collider->Move(vector);
+			if (speed)
+				collider->Move(vector*(*speed));
+			else
+				collider->Move(vector);
 		_world->CheckCollisionAfterMove(this);
 	}
 	void Actor::Move(const sf::Vector2f& velocity) {

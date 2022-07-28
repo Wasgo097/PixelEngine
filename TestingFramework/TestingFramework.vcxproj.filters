@@ -15,21 +15,6 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="Tests\EngineSettup\EngineSetupTest.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Tests\ActorAnimation\ActorAnimationTest.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Tests\ActorAnimation\ControllerForAnimationTest.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Tests\ActorAnimation\EngineForAnimationTest.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Tests\ActorAnimation\WorldForAnimationTest.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="Main.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -51,9 +36,6 @@
     <ClCompile Include="Tests\Forest\Actors\ForestMainCharacter.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Tests\EngineSettup\BaseEngine.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="Tests\GUISettup\MultipleWidgetsTest.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -72,24 +54,27 @@
     <ClCompile Include="Tests\Forest\Actors\Fireball.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="Tests\ActorAnimation\ActorAnimationTest.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Tests\ActorAnimation\ControllerForAnimationTest.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Tests\ActorAnimation\EngineForAnimationTest.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Tests\ActorAnimation\WorldForAnimationTest.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Tests\EngineSettup\BaseEngine.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Tests\EngineSettup\EngineSetupTest.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="BaseTest.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Tests\EngineSettup\EngineSetupTest.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Tests\ActorAnimation\ActorAnimationTest.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Tests\ActorAnimation\ControllerForAnimationTest.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Tests\ActorAnimation\EngineForAnimationTest.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Tests\ActorAnimation\WorldForAnimationTest.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Tests\Forest\WorldForForestTest.h">
@@ -110,9 +95,6 @@
     <ClInclude Include="Tests\Forest\Actors\ForestMainCharacter.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Tests\EngineSettup\BaseEngine.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="Tests\GUISettup\MultipleWidgetsTest.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -129,6 +111,24 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Tests\Forest\Actors\Fireball.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Tests\ActorAnimation\ActorAnimationTest.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Tests\ActorAnimation\ControllerForAnimationTest.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Tests\ActorAnimation\EngineForAnimationTest.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Tests\ActorAnimation\WorldForAnimationTest.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Tests\EngineSettup\BaseEngine.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Tests\EngineSettup\EngineSetupTest.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

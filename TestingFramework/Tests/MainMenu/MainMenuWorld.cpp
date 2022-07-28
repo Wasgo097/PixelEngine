@@ -162,6 +162,8 @@ namespace Test {
 	void MainMenuWorld::InitWorld()	{
 		WorldBaseGUI::InitWorld();
 		MainMenuPage();
-		_gui_world_components.emplace_back(std::make_unique<Core::World::Component::FpsCounter>(this,&_gui));
+		auto fps_counter = std::make_unique<Core::World::Component::FpsCounter>(this, &_gui);
+		fps_counter->InitComponent();
+		_gui_world_components.emplace_back(std::move(fps_counter));
 	}
 }

@@ -57,6 +57,7 @@
     <ClInclude Include="pch.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="ArgumentParserTest.cpp" />
     <ClCompile Include="SerializationTest.cpp" />
     <ClCompile Include="InitTest.cpp" />
     <ClCompile Include="pch.cpp">

@@ -14,9 +14,7 @@ namespace Core::World {
 	protected:
 		virtual void CreateWorldBaseComponents() {};
 		virtual void CreateWorldBaseGUIComponents() = 0;
-		virtual void InitGuiSettup() {
-			_gui.removeAllWidgets();
-		}
+		virtual void InitGuiSettup();
 		void DrawWorldBaseGUIComponents();
 		void InitWorldBaseGUIComponents();
 		void RefreshGuiTarget();

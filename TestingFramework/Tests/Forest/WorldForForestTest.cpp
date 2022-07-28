@@ -13,7 +13,7 @@ namespace Test {
 			_quit = true;
 	}
 	void WorldForForestTest::InitWorld() {
-		WorldBase::InitWorld();
+		WorldBaseGUI::InitWorld();
 		auto tree_settings = CREATE_SETTINGS(Settings::ActorSettings, "Cfg\\TreeActorSettings.json");
 		auto tree_texture = CREATE_SETTINGS(Settings::TextureSettings, "Cfg\\TreeTextureSettings.json");
 		SpawnActor<Tree>(tree_settings, tree_texture);
@@ -32,5 +32,9 @@ namespace Test {
 	void WorldForForestTest::CreateWorldBaseGUIComponents() {
 		tgui::Theme theme{ "Resource\\GUI\\themes\\TransparentGrey.txt" };
 		_gui_world_components.emplace_back(std::make_unique<Core::World::Component::FpsCounter>(this, &_gui, theme));
+	}
+	void WorldForForestTest::InitGuiSettup() {
+		WorldBaseGUI::InitGuiSettup();
+		DrawWorldBaseGUIComponents();
 	}
 }

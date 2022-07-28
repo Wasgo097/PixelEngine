@@ -17,9 +17,9 @@ namespace Core::World {
 	void WorldBaseGUI::InitWorld() {
 		WorldBase::InitWorld();
 		try {
-			InitGuiSettup();
 			CreateWorldBaseGUIComponents();
 			InitWorldBaseGUIComponents();
+			InitGuiSettup();
 			_initialized = true;
 		}
 		catch (std::exception& ex) {
@@ -34,6 +34,9 @@ namespace Core::World {
 	void WorldBaseGUI::InitWorldBaseGUIComponents() {
 		for (const auto& component : _gui_world_components)
 			component->InitComponent();
+	}
+	void WorldBaseGUI::InitGuiSettup() {
+		_gui.removeAllWidgets();
 	}
 	void WorldBaseGUI::EndWorld() {
 		WorldBase::EndWorld();

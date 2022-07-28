@@ -16,6 +16,7 @@ namespace Test {
 		virtual void CreateWorldBaseComponents() override {}
 		// Inherited via WorldBaseGUI
 		virtual void CreateWorldBaseGUIComponents() override;
+		virtual void InitGuiSettup();
 		std::shared_ptr<Core::Time::TimeManager> _tree_timer;
 		std::list<std::shared_ptr<Tree>> _created_trees;
 

@@ -164,6 +164,8 @@ namespace Test {
 	}
 	void MainMenuWorld::InitWorld() {
 		WorldBaseGUI::InitWorld();
+		const float windowHeight = _gui.getView().getRect().height;
+		_gui.setTextSize(static_cast<unsigned int>(0.07f * windowHeight));
 		MainMenuPage();
 	}
 }

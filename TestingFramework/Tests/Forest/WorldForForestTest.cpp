@@ -14,6 +14,8 @@ namespace Test {
 	}
 	void WorldForForestTest::InitWorld() {
 		WorldBaseGUI::InitWorld();
+		const float windowHeight = _gui.getView().getRect().height;
+		_gui.setTextSize(static_cast<unsigned int>(0.03f * windowHeight));
 		auto tree_settings = CREATE_SETTINGS(Settings::ActorSettings, "Cfg\\TreeActorSettings.json");
 		auto tree_texture = CREATE_SETTINGS(Settings::TextureSettings, "Cfg\\TreeTextureSettings.json");
 		SpawnActor<Tree>(tree_settings, tree_texture);

@@ -34,6 +34,8 @@ namespace Test {
 	}
 	void ForestMainCharacter::CastFireball()const {
 		auto fireball_settings = CREATE_SETTINGS(Settings::ActorSettings, "Cfg\\FireballActorSettings.json");
+		auto fireball_texture = CREATE_SETTINGS(Settings::TextureSettings, "Cfg\\FireballTextureSettings.json");
+		auto fireball_animation = CREATE_SETTINGS(Settings::AnimationSettings, "Cfg\\FireballAnimationSettings.json");
 		if (auto collider = GetColliderComponent(); collider)
 			fireball_settings.position = collider->GetCollider().getPosition();
 		else if (_sprite)
@@ -43,18 +45,15 @@ namespace Test {
 		velocity.y = _velocity.y;
 		velocity *= 3.0f;
 		if (velocity == sf::Vector2f())
-			velocity.y = 6.0f;
+			velocity.y = 100.0f;
 		if (velocity.x > .0f)
-			fireball_settings.position.x += (GetColliderComponent()->GetCollider().getSize().x / 2.0f + fireball_settings.collider_size.x / 2.0f);
+			fireball_settings.position.x += (GetColliderComponent()->GetCollider().getSize().x / 1.7f + fireball_settings.collider_size.x / 1.7f);
 		else if (velocity.x < .0f)
-			fireball_settings.position.x -= (GetColliderComponent()->GetCollider().getSize().x / 2.0f + fireball_settings.collider_size.x / 2.0f);
+			fireball_settings.position.x -= (GetColliderComponent()->GetCollider().getSize().x / 1.7f + fireball_settings.collider_size.x / 1.7f);
 		else if (velocity.y > .0f)
-			fireball_settings.position.y += (GetColliderComponent()->GetCollider().getSize().y / 2.0f + fireball_settings.collider_size.y / 2.0f);
+			fireball_settings.position.y += (GetColliderComponent()->GetCollider().getSize().y / 1.7f + fireball_settings.collider_size.y / 1.7f);
 		else
-			fireball_settings.position.y -= (GetColliderComponent()->GetCollider().getSize().y / 2.0f + fireball_settings.collider_size.y / 2.0f);
-		fireball_settings.position += velocity;
-		auto fireball_texture = CREATE_SETTINGS(Settings::TextureSettings, "Cfg\\FireballTextureSettings.json");
-		auto fireball_animation = CREATE_SETTINGS(Settings::AnimationSettings, "Cfg\\FireballAnimationSettings.json");
+			fireball_settings.position.y -= (GetColliderComponent()->GetCollider().getSize().y / 1.7f + fireball_settings.collider_size.y / 1.7f);
 		_world->SpawnAnimatedActor<Fireball>(fireball_settings, fireball_texture, fireball_animation);
 	}
 }

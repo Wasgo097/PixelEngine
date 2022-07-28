@@ -1,10 +1,11 @@
 #include "WorldForForestTest.h"
+#include "PXFactory/SettingsFactory.h"
+#include "PXCore/World/Components/FpsCounter.h"
 #include "ControllerForForestTest.h"
 #include "Actors/Tree.h"
-#include "PXFactory/SettingsFactory.h"
 using namespace Core;
 namespace Test {
-	WorldForForestTest::WorldForForestTest(const Settings::WorldSettings& worlsettings, Core::Engine* parent) :WorldBase(worlsettings, parent) {
+	WorldForForestTest::WorldForForestTest(const Settings::WorldSettings& worlsettings, Core::Engine* parent) :WorldBaseGUI(worlsettings, parent) {
 		_main_controller = std::make_unique<Test::ControllerForForestTest>(this);
 	}
 	void WorldForForestTest::CheckQuit() {
@@ -27,5 +28,9 @@ namespace Test {
 	void WorldForForestTest::RemoveTree(std::shared_ptr<Tree> tree) {
 		_created_trees.remove(tree);
 		_tree_timer->DetachFromSeconds(tree.get());
+	}
+	void WorldForForestTest::CreateWorldBaseGUIComponents() {
+		tgui::Theme theme{ "Resource\\GUI\\themes\\TransparentGrey.txt" };
+		_gui_world_components.emplace_back(std::make_unique<Core::World::Component::FpsCounter>(this, &_gui, theme));
 	}
 }

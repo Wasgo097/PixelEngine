@@ -7,7 +7,7 @@ namespace Test {
 		MainMenuWorld(Settings::WindowSettingsDTO& window_settings, const Settings::WorldSettings& world_settings = Settings::WorldSettings(), Core::Engine* parent = nullptr);
 	protected:
 		virtual void CheckQuit() override {};
-		virtual bool InitGuiSettup() override;
+		virtual void InitGuiSettup() override;
 		virtual void InitWorld()override;
 		virtual void CreateWorldBaseGUIComponents() override;
 	private:

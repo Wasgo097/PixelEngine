@@ -151,16 +151,16 @@ namespace Test {
 		}
 	}
 	void MainMenuWorld::CreateWorldBaseGUIComponents() {
-		_gui_world_components.emplace_back(std::make_unique<Core::World::Component::FpsCounter>(this, &_gui));
+		tgui::Theme theme{ "Resource\\GUI\\themes\\TransparentGrey.txt" };
+		_gui_world_components.emplace_back(std::make_unique<Core::World::Component::FpsCounter>(this, &_gui, theme));
 	}
-	bool MainMenuWorld::InitGuiSettup() {
-		_gui.removeAllWidgets();
+	void MainMenuWorld::InitGuiSettup() {
+		WorldBaseGUI::InitGuiSettup();
 		updateTextSize(_gui);
 		auto picture = tgui::Picture::create("Resource\\GUI\\fantasy_background.png");
 		picture->setSize({ "100%", "100%" });
 		_gui.add(picture);
 		DrawWorldBaseGUIComponents();
-		return true;
 	}
 	void MainMenuWorld::InitWorld() {
 		WorldBaseGUI::InitWorld();

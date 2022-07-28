@@ -13,8 +13,10 @@ namespace Core::World {
 		virtual void ServiceGUIInput(const sf::Event& action);
 	protected:
 		virtual void CreateWorldBaseComponents() {};
-		virtual void CreateWorldBaseGUIComponents()=0;
-		virtual bool InitGuiSettup() = 0;
+		virtual void CreateWorldBaseGUIComponents() = 0;
+		virtual void InitGuiSettup() {
+			_gui.removeAllWidgets();
+		}
 		void DrawWorldBaseGUIComponents();
 		void InitWorldBaseGUIComponents();
 		void RefreshGuiTarget();

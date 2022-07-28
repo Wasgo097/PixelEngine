@@ -17,9 +17,10 @@ namespace Core::World {
 	void WorldBaseGUI::InitWorld() {
 		WorldBase::InitWorld();
 		try {
-			_initialized = InitGuiSettup();
+			InitGuiSettup();
 			CreateWorldBaseGUIComponents();
 			InitWorldBaseGUIComponents();
+			_initialized = true;
 		}
 		catch (std::exception& ex) {
 			std::cerr << "WorldBaseGUI::InitWorld exception " << ex.what() << std::endl;

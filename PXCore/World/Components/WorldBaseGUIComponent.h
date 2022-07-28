@@ -6,7 +6,7 @@ namespace Core::World {
 namespace Core::World::Component {
 	class WorldBaseGUIComponent {
 	public:
-		WorldBaseGUIComponent(WorldBaseGUI* parent, tgui::Gui* gui);
+		WorldBaseGUIComponent(WorldBaseGUI* parent, tgui::Gui* gui,std::optional<tgui::Theme> theme=std::nullopt);
 		virtual void Tick(float delta_time) = 0;
 		virtual void Draw() = 0;
 		virtual void InitComponent() {};
@@ -17,6 +17,7 @@ namespace Core::World::Component {
 		bool _tick = false;
 	protected:
 		WorldBaseGUI* _parent;
+		std::optional<tgui::Theme> _theme;
 		tgui::Gui* _gui;
 	};
 }

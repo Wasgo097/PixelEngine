@@ -36,7 +36,7 @@ namespace Core::Object {
 	}
 	void Actor::Tick(float delta_time) {
 		if (_actor_settings.type == ActorsEnums::ActorType::Dynamic && _velocity != sf::Vector2f()) {
-			ChangePosition(_velocity);
+			ChangePosition(_velocity,delta_time);
 			if (!_pushed)
 				_velocity = sf::Vector2f(0, 0);
 		}
@@ -91,11 +91,17 @@ namespace Core::Object {
 		if (diference and !_pushed and _actor_settings.type == ActorsEnums::ActorType::Dynamic)
 			ChangePosition(*diference);
 	}
-	void Actor::ChangePosition(const sf::Vector2f& vector) {
+	void Actor::ChangePosition(const sf::Vector2f& vector, std::optional<float> speed) {
 		if (_sprite)
-			_sprite->move(vector);
+			if (speed)
+				_sprite->move(vector * (*speed));
+			else
+				_sprite->move(vector);
 		if (auto collider = GetColliderComponent(); collider)
-			collider->Move(vector);
+			if (speed)
+				collider->Move(vector*(*speed));
+			else
+				collider->Move(vector);
 		_world->CheckCollisionAfterMove(this);
 	}
 	void Actor::Move(const sf::Vector2f& velocity) {

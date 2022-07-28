@@ -53,7 +53,7 @@ namespace Core::Object {
 			}
 			return {};
 		}
-		void ChangePosition(const sf::Vector2f& vector);
+		void ChangePosition(const sf::Vector2f& vector,std::optional<float> speed=std::nullopt);
 		World::WorldBase* _world;
 		std::unique_ptr<sf::Texture> _texture;
 		std::unique_ptr<sf::Sprite> _sprite;

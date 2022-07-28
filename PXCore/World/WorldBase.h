@@ -7,6 +7,7 @@
 #include "PXCore/Object/ControlledActor.h"
 #include "PXCore/ActorsManager.h"
 #include "PXSettings/WorldSettings.h"
+#include "Components/WorldBaseComponent.h"
 namespace Core {
 	class Engine;
 }
@@ -46,18 +47,19 @@ namespace Core::World {
 		virtual void Draw(sf::RenderWindow& window);
 		virtual void Update(float delta);
 		virtual void ServiceInput(const Core::Controller::Key& key);
-		virtual void ServiceGUIInput(const sf::Event& action) {};
 		virtual void InitWorld();
 		virtual void EndWorld();
-		virtual void CheckQuit() = 0;
 		virtual void CheckCollisionAfterMove(Core::Object::Actor* moved_actor)const;
+		virtual void CheckQuit() = 0;
 		bool Quit()const;
-		bool Initialized()const;
 	protected:
+		virtual void CreateWorldBaseComponents() = 0;
+		void InitWorldBaseComponents();
 		Engine* _parent = nullptr;
 		Settings::WorldSettings _world_settings;
 		std::unique_ptr<ActorsManager> _actor_manager;
 		std::unique_ptr<Controller::ControllerBase> _main_controller;
+		std::vector<std::unique_ptr<Component::WorldBaseComponent>> _world_components;
 		bool _quit = false;
 		bool _initialized = false;
 	};

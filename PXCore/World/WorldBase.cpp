@@ -10,6 +10,7 @@ namespace Core::World {
 	void WorldBase::Draw(sf::RenderWindow& window) {
 		if (!_initialized)
 			throw std::runtime_error("Draw uninitialized world");
+		window.clear(sf::Color::Green);
 		if (_actor_manager)
 			_actor_manager->Draw(window);
 	}
@@ -20,16 +21,15 @@ namespace Core::World {
 			std::cerr << "WARNING! Tick time above save value! Current delta: " << delta << "\n";
 		if (_actor_manager)
 			_actor_manager->Update(delta);
+		for (const auto& component : _world_components)
+			if (component->TickFlag())
+				component->Tick(delta);
 	}
 	void WorldBase::CheckCollisionAfterMove(Core::Object::Actor* moved_actor)const {
 		_actor_manager->CheckCollisionAfterMove(moved_actor);
 	}
 	bool WorldBase::Quit() const {
 		return _quit;
-	}
-
-	bool WorldBase::Initialized() const {
-		return _initialized;
 	}
 	void WorldBase::ServiceInput(const Core::Controller::Key& key) {
 		if (_main_controller)
@@ -38,12 +38,27 @@ namespace Core::World {
 	void WorldBase::InitWorld() {
 		if (_initialized)
 			throw std::runtime_error("Double initialization of world\n");
-		if (_actor_manager && _main_controller) {
-			_main_controller->InitMainCharacter();
-			_main_controller->InitMainCharacterInputBindings();
-			_actor_manager->RegisterMainActor(_main_controller->GetMainCharacter());
+		try {
+			if (_actor_manager and _main_controller) {
+				_main_controller->InitMainCharacter();
+				_main_controller->InitMainCharacterInputBindings();
+				_actor_manager->RegisterMainActor(_main_controller->GetMainCharacter());
+			}
+			else {
+				std::cerr << "WorldBase::InitWorld _actor_manager or _main_controller is empty\n";
+			}
+			CreateWorldBaseComponents();
+			InitWorldBaseComponents();
 			_initialized = true;
 		}
+		catch (std::exception& ex) {
+			std::cerr << "WorldBase::InitWorld exception " << ex.what() << std::endl;
+			_initialized = false;
+		}
+	}
+	void WorldBase::InitWorldBaseComponents() {
+		for (const auto& component : _world_components)
+			component->InitComponent();
 	}
 	void WorldBase::EndWorld() {
 		if (!_initialized)
@@ -52,5 +67,7 @@ namespace Core::World {
 			_actor_manager->Terminate();
 			_actor_manager->Wait();
 		}
+		for (const auto& component : _world_components)
+			component->EndComponent();
 	}
 }

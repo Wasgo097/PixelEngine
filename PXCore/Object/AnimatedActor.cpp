@@ -1,5 +1,4 @@
 #include "AnimatedActor.h"
-#include <iostream>
 namespace Core::Object {
 	AnimatedActor::AnimatedActor(World::WorldBase* world, const Settings::ActorSettings& actor_settings, const Settings::TextureSettings& texture_settings, const Settings::AnimationSettings& animation_settings) :
 		Actor(world, actor_settings, texture_settings),
@@ -7,7 +6,6 @@ namespace Core::Object {
 		_direction_row(_animation_settings.direction_to_row)
 	{
 		auto animation = std::make_shared<Components::Animation>(this, *_sprite, _animation_settings);
-		animation->SetTickFlag(true);
 		_components.emplace_back(animation);
 		if (!_direction_row.empty()) {
 			if (!_pushed)
@@ -21,7 +19,7 @@ namespace Core::Object {
 				_sprite->setOrigin(temp_origin);
 				_sprite->setPosition(_actor_settings.position);
 				if (_direction_row.size() < 1) {
-					throw std::invalid_argument("animationrows has too less size");
+					throw std::invalid_argument("_direction_row has too less size");
 				}
 			}
 		}

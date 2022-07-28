@@ -11,6 +11,7 @@ namespace Core::Object::Components {
 		void SetRow(int row);
 		void SetRowAndSetTexture(int row);
 		virtual void Tick(float delta_time)override;
+		virtual void InitComponent()override;
 	protected:
 		std::map<int, int>& _count_of_columns_in_row;
 		sf::Sprite& _animated_sprite;

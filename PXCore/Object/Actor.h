@@ -21,7 +21,7 @@ namespace Core::Object {
 		Actor& operator=(const Actor&) = delete;
 		Actor(Actor&&) = delete;;
 		Actor& operator=(Actor&&) = delete;;
-		virtual ~Actor();
+		virtual ~Actor()=default;
 
 		bool TickFlag()const;
 		void SetTickFlag(bool flag);
@@ -37,6 +37,7 @@ namespace Core::Object {
 		virtual void Draw(sf::RenderWindow& window);
 
 		virtual void Init()override;
+		virtual void OnDelete()override;
 		virtual std::string ToString()const override;
 		virtual void OnOverlap(const Actor* other, std::optional<sf::Vector2f> diference)override;
 		virtual void OnCollide(const Actor* other, std::optional<sf::Vector2f> diference)override;
@@ -52,7 +53,7 @@ namespace Core::Object {
 			}
 			return {};
 		}
-		void ChangePosition(const sf::Vector2f& vector);
+		void ChangePosition(const sf::Vector2f& vector,std::optional<float> speed=std::nullopt);
 		World::WorldBase* _world;
 		std::unique_ptr<sf::Texture> _texture;
 		std::unique_ptr<sf::Sprite> _sprite;

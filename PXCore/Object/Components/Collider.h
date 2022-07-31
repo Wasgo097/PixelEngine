@@ -8,6 +8,7 @@ namespace Core::Object::Components {
 		Collider(Core::Object::Actor* parent, const Settings::ActorSettings& actor_settings);
 		// Inherited via ActorComponentBase
 		virtual void Tick(float delta_time) override {};
+		virtual void InitComponent()override;
 		void Move(const sf::Vector2f& velocity);
 		const sf::RectangleShape& GetCollider()const;
 		sf::RectangleShape& GetCollider();

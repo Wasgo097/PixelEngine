@@ -45,9 +45,15 @@
     <ClInclude Include="Interfaces\ITimeObserver.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="ArgumentParser.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="pch.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="ArgumentParser.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

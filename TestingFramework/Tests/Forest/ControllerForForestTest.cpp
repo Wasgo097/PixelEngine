@@ -27,19 +27,19 @@ namespace Test {
 		key.event_type = sf::Event::KeyPressed;
 		key.keyboard_button = sf::Keyboard::W;
 		_actions[key] = [](std::shared_ptr<Core::Object::ControlledActor> actor) {
-			actor->Move(sf::Vector2f(0, -1.0));
+			actor->Move(sf::Vector2f(0, -100.0));
 		};
 		key.keyboard_button = sf::Keyboard::S;
 		_actions[key] = [](std::shared_ptr<Core::Object::ControlledActor> actor) {
-			actor->Move(sf::Vector2f(0, 1.0));
+			actor->Move(sf::Vector2f(0, 100.0));
 		};
 		key.keyboard_button = sf::Keyboard::A;
 		_actions[key] = [](std::shared_ptr<Core::Object::ControlledActor> actor) {
-			actor->Move(sf::Vector2f(-1.0, 0));
+			actor->Move(sf::Vector2f(-100.0, 0));
 		};
 		key.keyboard_button = sf::Keyboard::D;
 		_actions[key] = [](std::shared_ptr<Core::Object::ControlledActor> actor) {
-			actor->Move(sf::Vector2f(1.0, 0));
+			actor->Move(sf::Vector2f(100.0, 0));
 		};
 	}
 

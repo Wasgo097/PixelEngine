@@ -1,5 +1,4 @@
 #include "ControllerBase.h"
-#include <iostream>
 namespace Core::Controller {
 	void ControllerBase::ServiceInput(const Core::Controller::Key& key) {
 		if (auto key_from_map = ActionsContainsKey(key); key_from_map) {

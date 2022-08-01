@@ -9,8 +9,8 @@ namespace Test {
 	public:
 		Tree(Core::World::WorldBase* world, const Settings::ActorSettings& actor_settings, const Settings::TextureSettings& texture_settings);
 		// Inherited via ITimeObserver
-		virtual void SecondPassed() override;
-		virtual void MinutePassed() override {};
+		virtual void SecondPassed(unsigned int second) override;
+		virtual void MinutePassed(unsigned int minute) override {};
 	protected:
 		int _growing_counter = 0;
 	};

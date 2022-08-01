@@ -25,11 +25,11 @@ public:
 	~BaseObserver() {
 		_next_id--;
 	}
-	virtual void SecondPassed()override {
+	virtual void SecondPassed(unsigned int second)override {
 		std::cout << "Second passed " << _id << std::endl;
 		_value = true;
 	}
-	virtual void MinutePassed()override {
+	virtual void MinutePassed(unsigned int minute)override {
 		std::cout << "Minute passed " << _id << std::endl;
 		_value = true;
 	}
@@ -46,14 +46,14 @@ public:
 	~BaseObserverForMultipler() {
 		_next_id--;
 	}
-	virtual void SecondPassed()override {
+	virtual void SecondPassed(unsigned int second)override {
 
 		std::cout << "Second passed on MultiplerObserver" << _id << std::endl;
 		if (_counter>0)
 			_value = !_value;
 		_counter++;
 	}
-	virtual void MinutePassed()override {
+	virtual void MinutePassed(unsigned int minute)override {
 		std::cout << "Minute passed on MultiplerObserver" << _id << std::endl;
 		if (_counter > 0)
 			_value = !_value;

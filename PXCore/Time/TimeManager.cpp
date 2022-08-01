@@ -21,11 +21,13 @@ namespace Core::Time {
 			bool second_pass = std::chrono::duration_cast<std::chrono::milliseconds>(now - second_point).count() > static_cast<long long>(1000.f / _multipler);
 			bool minute_pass = std::chrono::duration_cast<std::chrono::milliseconds>(now - minutes_point).count() > static_cast<long long>(60000.f / _multipler);
 			if (second_pass) {
-				NotifyForSecondPassed();
+				_elapsed_seconds++;
+				NotifyForSecondPassed(_elapsed_seconds);
 				second_point = now;
 			}
 			if (minute_pass) {
-				NotifyForMinutePassed();
+				_elapsed_minutes++;
+				NotifyForMinutePassed(_elapsed_minutes);
 				minutes_point = now;
 			}
 		}
@@ -66,16 +68,16 @@ namespace Core::Time {
 			_minutes.rsc->erase(item);
 		}
 	}
-	void TimeManager::NotifyForSecondPassed() {
+	void TimeManager::NotifyForSecondPassed(unsigned int current_second) {
 		std::lock_guard lock(_seconds.mtx);
 		for (auto& observator : *_seconds.rsc) {
-			observator->SecondPassed();
+			observator->SecondPassed(current_second);
 		}
 	}
-	void TimeManager::NotifyForMinutePassed() {
+	void TimeManager::NotifyForMinutePassed(unsigned int current_minute) {
 		std::lock_guard lock(_minutes.mtx);
 		for (auto& observator : *_minutes.rsc) {
-			observator->MinutePassed();
+			observator->MinutePassed(current_minute);
 		}
 	}
 }

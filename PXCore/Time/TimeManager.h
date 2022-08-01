@@ -32,13 +32,15 @@ namespace Core::Time {
 		void Multiplier(float value);
 		float Multiplier()const;
 	protected:
-		virtual void NotifyForSecondPassed()  override;
-		virtual void NotifyForMinutePassed()  override;
+		virtual void NotifyForSecondPassed(unsigned int current_second) override;
+		virtual void NotifyForMinutePassed(unsigned int current_minute) override;
 
 		std::unique_ptr<std::thread> _thread;
 		Utility::ThreadingResourceLight<std::set<ITimeObserver*>> _seconds;
 		Utility::ThreadingResourceLight<std::set<ITimeObserver*>> _minutes;
 		std::atomic<float> _multipler;
+		std::atomic<unsigned int> _elapsed_seconds=0;
+		std::atomic<unsigned int> _elapsed_minutes=0;
 		bool _terminated = false;
 	};
 }

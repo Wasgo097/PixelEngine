@@ -28,6 +28,7 @@ namespace Core::Object {
 		bool CanCollide()const;
 		std::shared_ptr<Components::Collider> GetColliderComponent()const;
 		sf::Vector2f GetVelocity()const;
+		std::optional<sf::Vector2f> GetPosition()const;
 		ActorsEnums::CollisionType GetCollisionType()const;
 		bool Collide(std::shared_ptr<Actor> other, sf::FloatRect& out_rect)const;
 

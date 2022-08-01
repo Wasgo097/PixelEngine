@@ -10,6 +10,9 @@ namespace Core {
 			_actors.rsc->reserve(init_buffer_size);
 			_const_actors.rsc->reserve(init_buffer_size);
 		}
+		static bool PositionOutOfWorld(const sf::Vector2f& position) {
+			return position.x < -2000.f or position.x>2000.f or position.y < -2000.f or position.y >2000.f;
+		}
 		void DeleteTagedActors() {
 			{
 				std::lock_guard lock(_actors.mtx);
@@ -17,6 +20,10 @@ namespace Core {
 					bool result = actor->ToDestroy();
 					if (result)
 						actor->OnDelete();
+					else if(auto position = actor->GetPosition(); position and PositionOutOfWorld(*position)) {
+						actor->OnDelete();
+						result = true;
+					}
 					return result; });
 				_actors.rsc->erase(_actors.rsc->begin(), it);
 			}

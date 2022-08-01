@@ -1,11 +1,11 @@
 #pragma once
 namespace Core::World {
-	class BaseWorld;
+	class WorldBase;
 }
 namespace Core::World::Component {
 	class WorldBaseComponent {
 	public:
-		WorldBaseComponent(BaseWorld* parent);
+		WorldBaseComponent(WorldBase* parent);
 		virtual void Tick(float delta_time) = 0;
 		virtual void InitComponent() {};
 		virtual void EndComponent() {};
@@ -14,6 +14,6 @@ namespace Core::World::Component {
 	private:
 		bool _tick = false;
 	protected:
-		BaseWorld* _parent;
+		WorldBase* _parent;
 	};
 }

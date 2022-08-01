@@ -4,28 +4,54 @@
 #include <future>
 #include <math.h>
 #include "Object/Actor.h"
+#include "PXCore/World/WorldBase.h"
 namespace Core {
 	struct ActorsManager::Impl {
-		Impl(size_t init_buffer_size, unsigned gc_delay) :_DELAY{ gc_delay } {
+		Impl(Core::World::WorldBase* parent, size_t init_buffer_size, unsigned gc_delay) :_DELAY{ gc_delay }, _parent{parent} {
 			_actors.rsc->reserve(init_buffer_size);
 			_const_actors.rsc->reserve(init_buffer_size);
 		}
 		static bool PositionOutOfWorld(const sf::Vector2f& position) {
 			return position.x < -2000.f or position.x>2000.f or position.y < -2000.f or position.y >2000.f;
 		}
-		void DeleteTagedActors() {
+		static sf::Vector2f GetCollisionPush(const sf::FloatRect& input, const sf::RectangleShape& moved_actor, const sf::RectangleShape& touched_actor) {
+			sf::Vector2f result(input.width, input.height);
+			if (abs(result.x) > abs(result.y)) {
+				result.x = .0f;
+				if (moved_actor.getPosition().y < touched_actor.getPosition().y)
+					result.y *= -1.0f;
+			}
+			else {
+				result.y = .0f;
+				if (moved_actor.getPosition().x < touched_actor.getPosition().x)
+					result.x *= -1.0f;
+			}
+			return result;
+		}
+		static std::vector<std::shared_ptr<Object::Actor>> GetCollidableActors(std::vector<std::shared_ptr<Object::Actor>>& input) {
+			std::vector<std::shared_ptr<Core::Object::Actor>> result;
+			result.reserve(input.size());
+			auto last_it = std::partition(input.begin(), input.end(), [](const auto& actor) {
+				return actor->CanCollide(); });
+			result.insert(result.end(), input.begin(), last_it);
+			return result;
+		}
+		void DeleteActors() {
 			{
 				std::lock_guard lock(_actors.mtx);
 				auto it = std::partition(_actors.rsc->begin(), _actors.rsc->end(), [](const std::shared_ptr<Object::Actor>& actor) {
 					bool result = actor->ToDestroy();
 					if (result)
 						actor->OnDelete();
-					else if(auto position = actor->GetPosition(); position and PositionOutOfWorld(*position)) {
+					else if (auto position = actor->GetPosition(); position and PositionOutOfWorld(*position)) {
 						actor->OnDelete();
 						result = true;
 					}
 					return result; });
-				_actors.rsc->erase(_actors.rsc->begin(), it);
+				if (_actors.rsc->begin() != it) {
+					_actors.rsc->erase(_actors.rsc->begin(), it);
+					_parent->CallOnActorsRemoved();
+				}
 			}
 			std::this_thread::sleep_for(std::chrono::milliseconds(_DELAY));
 			{
@@ -55,14 +81,6 @@ namespace Core {
 				}
 			}
 		}
-		static std::vector<std::shared_ptr<Object::Actor>> GetCollidableActors(std::vector<std::shared_ptr<Object::Actor>>& input) {
-			std::vector<std::shared_ptr<Core::Object::Actor>> result;
-			result.reserve(input.size());
-			auto last_it = std::partition(input.begin(), input.end(), [](const auto& actor) {
-				return actor->CanCollide(); });
-			result.insert(result.end(), input.begin(), last_it);
-			return result;
-		}
 		std::vector<std::shared_ptr<Core::Object::Actor>> GetCollidableActors()const {
 			auto actors = std::async(std::launch::async, [this]() {return GetCollidableActors(*_actors.rsc); });
 			auto const_actors = std::async(std::launch::async, [this]() {return GetCollidableActors(*_const_actors.rsc); });
@@ -70,20 +88,6 @@ namespace Core {
 			auto const_actors_res = const_actors.get();
 			all_actors.insert(all_actors.end(), const_actors_res.begin(), const_actors_res.end());
 			return all_actors;
-		}
-		static sf::Vector2f GetCollisionPush(const sf::FloatRect& input, const sf::RectangleShape& moved_actor, const sf::RectangleShape& touched_actor) {
-			sf::Vector2f result(input.width, input.height);
-			if (abs(result.x) > abs(result.y)) {
-				result.x = .0f;
-				if (moved_actor.getPosition().y < touched_actor.getPosition().y)
-					result.y *= -1.0f;
-			}
-			else {
-				result.y = .0f;
-				if (moved_actor.getPosition().x < touched_actor.getPosition().x)
-					result.x *= -1.0f;
-			}
-			return result;
 		}
 		void CheckCollisionAfterMove(Core::Object::Actor* moved_actor)const {
 			std::lock_guard lock(_actors.mtx);
@@ -104,13 +108,18 @@ namespace Core {
 				}
 			}
 		}
+		size_t GetCountOfActors()const {
+			std::lock_guard lock(_actors.mtx);
+			return _actors.rsc->size();
+		}
 		Utility::ThreadingResourceLight<std::vector<std::shared_ptr<Object::Actor>>> _actors;
 		Utility::ThreadingResourceLight<std::vector<std::shared_ptr<Object::Actor>>> _const_actors;
+		Core::World::WorldBase* _parent;
 		std::unique_ptr<std::thread> _management_thr;
 		bool _terminated = false;
 		const unsigned _DELAY = 0;
 	};
-	ActorsManager::ActorsManager(size_t init_buffer_size, unsigned gc_delay) :_impl{ std::make_unique<Impl>(init_buffer_size,gc_delay) } {
+	ActorsManager::ActorsManager(Core::World::WorldBase* parent, size_t init_buffer_size, unsigned gc_delay) :_impl{ std::make_unique<Impl>(parent,init_buffer_size,gc_delay) } {
 		_impl->_management_thr = std::make_unique<std::thread>(std::bind(&ActorsManager::Run, this));
 	}
 	ActorsManager::~ActorsManager() {
@@ -150,9 +159,12 @@ namespace Core {
 	void ActorsManager::CheckCollisionAfterMove(Core::Object::Actor* moved_actor)const {
 		_impl->CheckCollisionAfterMove(moved_actor);
 	}
+	size_t ActorsManager::GetCountOfActors() const {
+		return _impl->GetCountOfActors();
+	}
 	void ActorsManager::Run() {
 		while (!_impl->_terminated)
-			_impl->DeleteTagedActors();
+			_impl->DeleteActors();
 	}
 	void ActorsManager::Terminate() {
 		_impl->_terminated = true;

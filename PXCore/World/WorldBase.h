@@ -1,6 +1,7 @@
 #pragma once
 #include <stack>
 #include <concepts>
+#include <functional>
 #include <SFML/Graphics/RenderWindow.hpp>
 #include "PXCore/Object/Actor.h"
 #include "PXCore/Object/AnimatedActor.h"
@@ -24,6 +25,8 @@ namespace Core::World {
 			result.reset(new type_to_create(this, actor_settings, texture_settings, std::forward<Argv>(argv)...));
 			_actor_manager->RegistrNewActor(result);
 			result->OnSpawn();
+			if (OnSpawnActor)
+				OnSpawnActor(result);
 			return result;
 		}
 		template<typename type_to_create, typename ...Argv>
@@ -33,6 +36,8 @@ namespace Core::World {
 			result.reset(new type_to_create(this, actor_settings, texture_settings, std::forward<Argv>(argv)...));
 			_actor_manager->RegisterConstActor(result);
 			result->OnSpawn();
+			if (OnSpawnConstActor)
+				OnSpawnConstActor(result);
 			return result;
 		}
 		template<typename type_to_create, typename ...Argv>
@@ -42,6 +47,8 @@ namespace Core::World {
 			result.reset(new type_to_create(this, actor_settings, texture_settings, animation_settings, std::forward<Argv>(argv)...));
 			_actor_manager->RegistrNewActor(result);
 			result->OnSpawn();
+			if (OnSpawnActor)
+				OnSpawnActor(result);
 			return result;
 		}
 		virtual void Draw(sf::RenderWindow& window);
@@ -51,16 +58,29 @@ namespace Core::World {
 		virtual void EndWorld();
 		virtual void CheckCollisionAfterMove(Core::Object::Actor* moved_actor)const;
 		virtual void CheckQuit() = 0;
+		void CallOnActorsRemoved();
 		bool Quit()const;
 	protected:
+		template<typename T>
+			requires std::derived_from<T, Component::WorldBaseComponent>
+		std::shared_ptr<T> GetTComponent()const {
+			for (const auto& component : _world_components) {
+				if (auto casted_component = std::dynamic_pointer_cast<T>(component); casted_component)
+					return casted_component;
+			}
+			return {};
+		}
 		virtual void CreateWorldBaseComponents() = 0;
 		void InitWorldBaseComponents();
 		Engine* _parent = nullptr;
 		Settings::WorldSettings _world_settings;
 		std::unique_ptr<ActorsManager> _actor_manager;
 		std::unique_ptr<Controller::ControllerBase> _main_controller;
-		std::vector<std::unique_ptr<Component::WorldBaseComponent>> _world_components;
+		std::list<std::shared_ptr<Component::WorldBaseComponent>> _world_components;
 		bool _quit = false;
 		bool _initialized = false;
+		std::function<void(std::shared_ptr<Core::Object::Actor>)> OnSpawnActor;
+		std::function<void(std::shared_ptr<Core::Object::Actor>)> OnSpawnConstActor;
+		std::function<void()> OnActorsRemoved;
 	};
 }

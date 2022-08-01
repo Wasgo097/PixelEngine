@@ -45,15 +45,17 @@ namespace Test {
 		velocity.y = _velocity.y;
 		velocity *= 3.0f;
 		if (velocity == sf::Vector2f())
-			velocity.y = 100.0f;
+			velocity.y = 300.0f;
+		constexpr float PROPORTION_PARAMETER_X = 1.6f;
+		constexpr float PROPORTION_PARAMETER_Y = 1.8f;
 		if (velocity.x > .0f)
-			fireball_settings.position.x += (GetColliderComponent()->GetCollider().getSize().x / 1.7f + fireball_settings.collider_size.x / 1.7f);
+			fireball_settings.position.x += (GetColliderComponent()->GetCollider().getSize().x / PROPORTION_PARAMETER_X + fireball_settings.collider_size.x / PROPORTION_PARAMETER_Y);
 		else if (velocity.x < .0f)
-			fireball_settings.position.x -= (GetColliderComponent()->GetCollider().getSize().x / 1.7f + fireball_settings.collider_size.x / 1.7f);
+			fireball_settings.position.x -= (GetColliderComponent()->GetCollider().getSize().x / PROPORTION_PARAMETER_X + fireball_settings.collider_size.x / PROPORTION_PARAMETER_Y);
 		else if (velocity.y > .0f)
-			fireball_settings.position.y += (GetColliderComponent()->GetCollider().getSize().y / 1.7f + fireball_settings.collider_size.y / 1.7f);
+			fireball_settings.position.y += (GetColliderComponent()->GetCollider().getSize().y / PROPORTION_PARAMETER_X + fireball_settings.collider_size.y / PROPORTION_PARAMETER_Y);
 		else
-			fireball_settings.position.y -= (GetColliderComponent()->GetCollider().getSize().y / 1.7f + fireball_settings.collider_size.y / 1.7f);
+			fireball_settings.position.y -= (GetColliderComponent()->GetCollider().getSize().y / PROPORTION_PARAMETER_X + fireball_settings.collider_size.y / PROPORTION_PARAMETER_Y);
 		_world->SpawnAnimatedActor<Fireball>(fireball_settings, fireball_texture, fireball_animation);
 	}
 }

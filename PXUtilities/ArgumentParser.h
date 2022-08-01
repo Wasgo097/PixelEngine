@@ -3,8 +3,11 @@
 #include <string>
 #include <concepts>
 #include <optional>
+#include <iostream>
 class ArgumentParser {
 public:
+	ArgumentParser(int argc, const char* argv[]);
+	ArgumentParser() = default;
 	bool AddNewArgument(const std::string& key, const std::string& value);
 	std::optional<std::string> GetRowValue(const std::string& key)const;
 	template<typename T>
@@ -12,9 +15,9 @@ public:
 	std::optional<T> GetValue(const std::string& key)const {
 		if (_arguments.contains(key)) {
 			std::istringstream ss(_arguments.at(key));
-			T num;
-			ss >> num;
-			return num;
+			T val;
+			ss >> std::boolalpha >> val;
+			return val;
 		}
 		return {};
 	}

@@ -58,7 +58,6 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="ArgumentParserTest.cpp" />
-    <ClCompile Include="SerializationTest.cpp" />
     <ClCompile Include="InitTest.cpp" />
     <ClCompile Include="pch.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>

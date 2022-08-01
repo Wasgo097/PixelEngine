@@ -1,6 +1,8 @@
 #include "ForestTest.h"
 #include "PXFactory/SettingsFactory.h"
 namespace Test {
+	ForestTest::ForestTest(const ArgumentParser& parser) :BaseTest(parser) {
+	}
 	bool ForestTest::PrepareTest() {
 		return _engine.Run() == 1;
 	}

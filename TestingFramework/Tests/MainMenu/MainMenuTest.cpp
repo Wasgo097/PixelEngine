@@ -1,5 +1,8 @@
 #include "MainMenuTest.h"
 
+Test::MainMenuTest::MainMenuTest(const ArgumentParser& parser) :BaseTest(parser), _engine{_parser} {
+}
+
 bool Test::MainMenuTest::PrepareTest() {
 	return _engine.Run() == 1;
 }

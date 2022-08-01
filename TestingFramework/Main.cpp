@@ -4,9 +4,11 @@
 #include "Tests/GUISettup/MultipleWidgetsTest.h"
 #include "Tests/GUISettup/LoginExample.h"
 #include "Tests/MainMenu/MainMenuTest.h"
+#include "PXUtilities/ArgumentParser.h"
 #include <iostream>
 using namespace Test;
-int main(int argc, char* argv[]){
+int main(int argc, const char* argv[]) {
+	ArgumentParser parser(argc, argv);
 	/*EngineSetupTest test1;
 	std::cout << "Engine setup test result: \n" << test1.RunTest() << std::endl;*/
 	/*ActorAnimationTest test2;
@@ -17,7 +19,7 @@ int main(int argc, char* argv[]){
 	std::cout << "LoginExample result: \n" << test4.RunTest() << std::endl;*/
 	/*MultipleWidgetsTest test5;
 	std::cout << "MultipleWidgetsTest result: \n" << test5.RunTest() << std::endl;*/
-	MainMenuTest test6;
+	MainMenuTest test6(parser);
 	std::cout << "MainMenuTest result: \n" << test6.RunTest() << std::endl;
 	return 0;
 }

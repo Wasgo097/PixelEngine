@@ -3,6 +3,7 @@
 #include "PXCore/World/Components/FpsCounter.h"
 #include "ControllerForForestTest.h"
 #include "Actors/Tree.h"
+#include "PXCore/Engine.h"
 using namespace Core;
 namespace Test {
 	WorldForForestTest::WorldForForestTest(const Settings::WorldSettings& worlsettings, Core::Engine* parent) :WorldBaseGUI(worlsettings, parent) {
@@ -33,7 +34,8 @@ namespace Test {
 	}
 	void WorldForForestTest::CreateWorldBaseGUIComponents() {
 		tgui::Theme theme{ "Resource\\GUI\\themes\\TransparentGrey.txt" };
-		_gui_world_components.emplace_back(std::make_unique<Core::World::Component::FpsCounter>(this, &_gui, theme));
+		if (auto parser = _parent->GetParser(); parser and parser->get().GetValue<bool>("-fpscounter"))
+			_gui_world_components.emplace_back(std::make_unique<Core::World::Component::FpsCounter>(this, &_gui, theme));
 	}
 	void WorldForForestTest::InitGuiSettup() {
 		WorldBaseGUI::InitGuiSettup();

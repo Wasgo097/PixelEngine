@@ -2,6 +2,8 @@
 #include "MainMenuWorld.h"
 #include "PXFactory/SettingsFactory.h"
 namespace Test {
+	MainMenuEngine::MainMenuEngine(std::optional<std::reference_wrapper<const ArgumentParser>> parser) :Engine(parser) {
+	}
 	void MainMenuEngine::ApplyWindowSettings(const Settings::WindowSettingsDTO& new_settings) {
 		_window_settings.display_style = new_settings.display_style;
 		_window_settings.fps = new_settings.fps;

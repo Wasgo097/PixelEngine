@@ -8,7 +8,7 @@
 #include <chrono>
 using namespace std::chrono_literals;
 namespace Core {
-	Engine::Engine() {
+	Engine::Engine(std::optional<std::reference_wrapper<const ArgumentParser>> parser) :_parser{ parser } {
 		_engine_settings = CREATE_SETTINGS(Settings::EngineSettings, "Cfg\\engine_settings.json");
 		std::string settings_path = "Cfg\\" + _engine_settings.window_settings_path;
 		_window_settings = CREATE_SETTINGS(Settings::WindowSettings, settings_path);
@@ -54,6 +54,9 @@ namespace Core {
 	}
 	sf::RenderWindow* Engine::GetWindow() {
 		return _main_window.get();
+	}
+	std::optional<std::reference_wrapper<const ArgumentParser>> Engine::GetParser() const {
+		return _parser;
 	}
 	void Engine::PushWorldToQueue(std::unique_ptr<World::WorldBase>&& new_world) {
 		if (_current_world)

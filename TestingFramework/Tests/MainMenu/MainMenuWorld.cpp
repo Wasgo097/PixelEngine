@@ -14,18 +14,21 @@ namespace Test {
 	void MainMenuWorld::MainMenuPage() {
 		InitGuiSettup();
 		tgui::Theme theme{ "Resource\\GUI\\themes\\TransparentGrey.txt" };
+		//new game
 		auto new_game_btn = tgui::Button::create("New Game");
 		new_game_btn->setRenderer(theme.getRenderer("Button"));
 		new_game_btn->setSize({ "20%", "15%" });
 		new_game_btn->setPosition({ "40%", "40%" });
 		_gui.add(new_game_btn);
 		new_game_btn->onPress(&MainMenuWorld::NewGameClick, this);
+		//settings
 		auto settings_btn = tgui::Button::create("Settings");
 		settings_btn->setRenderer(theme.getRenderer("Button"));
 		settings_btn->setSize({ "20%", "15%" });
 		settings_btn->setPosition({ "40%", "60%" });
 		_gui.add(settings_btn);
 		settings_btn->onPress(&MainMenuWorld::SettingsPage, this);
+		//exit
 		auto exit_btn = tgui::Button::create("Exit Game");
 		exit_btn->setRenderer(theme.getRenderer("Button"));
 		exit_btn->setSize({ "20%", "15%" });
@@ -152,7 +155,8 @@ namespace Test {
 	}
 	void MainMenuWorld::CreateWorldBaseGUIComponents() {
 		tgui::Theme theme{ "Resource\\GUI\\themes\\TransparentGrey.txt" };
-		_gui_world_components.emplace_back(std::make_unique<Core::World::Component::FpsCounter>(this, &_gui, theme));
+		if (auto parser = _parent->GetParser(); parser and parser->get().GetValue<bool>("-fpscounter"))
+			_gui_world_components.emplace_back(std::make_unique<Core::World::Component::FpsCounter>(this, &_gui, theme));
 	}
 	void MainMenuWorld::InitGuiSettup() {
 		WorldBaseGUI::InitGuiSettup();

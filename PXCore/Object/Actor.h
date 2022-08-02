@@ -42,13 +42,11 @@ namespace Core::Object {
 		virtual std::string ToString()const override;
 		virtual void OnOverlap(const Actor* other, std::optional<sf::Vector2f> diference)override;
 		virtual void OnCollide(const Actor* other, std::optional<sf::Vector2f> diference)override;
-	private:
-		bool _tick = false;
 	protected:
 		template<typename T>
 			requires std::derived_from<T, Core::Object::Components::ActorComponentBase>
 		std::shared_ptr<T> GetTComponent()const {
-			for (auto& component : _components) {
+			for (const auto& component : _components) {
 				if (auto casted_component = std::dynamic_pointer_cast<T>(component); casted_component)
 					return casted_component;
 			}
@@ -63,5 +61,7 @@ namespace Core::Object {
 		Settings::TextureSettings _texture_settings;
 		sf::Vector2f _velocity;
 		bool _pushed = false;
+	private:
+		bool _tick = false;
 	};
 }

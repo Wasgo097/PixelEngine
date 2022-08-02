@@ -17,6 +17,12 @@ namespace Test {
 		WorldBaseGUI::InitWorld();
 		const float windowHeight = _gui.getView().getRect().height;
 		_gui.setTextSize(static_cast<unsigned int>(0.03f * windowHeight));
+		OnSpawnActor = [this](std::shared_ptr<Core::Object::Actor>) {
+			GetActorsCounter()->SetCountOfActors(_actor_manager->GetCountOfActors());
+		};
+		OnActorsRemoved = [this]() {
+			GetActorsCounter()->SetCountOfActors(_actor_manager->GetCountOfActors());
+		};
 		auto tree_settings = CREATE_SETTINGS(Settings::ActorSettings, "Cfg\\TreeActorSettings.json");
 		auto tree_texture = CREATE_SETTINGS(Settings::TextureSettings, "Cfg\\TreeTextureSettings.json");
 		SpawnActor<Tree>(tree_settings, tree_texture);
@@ -35,10 +41,14 @@ namespace Test {
 	void WorldForForestTest::CreateWorldBaseGUIComponents() {
 		tgui::Theme theme{ "Resource\\GUI\\themes\\TransparentGrey.txt" };
 		if (auto parser = _parent->GetParser(); parser and parser->get().GetValue<bool>("-fpscounter"))
-			_gui_world_components.emplace_back(std::make_unique<Core::World::Component::FpsCounter>(this, &_gui, theme));
+			_gui_world_components.emplace_back(std::make_shared<Core::World::Component::FpsCounter>(this, &_gui, theme));
+		_gui_world_components.emplace_back(std::make_shared<Core::World::Component::ActorsCounter>(this,&_gui,theme));
 	}
 	void WorldForForestTest::InitGuiSettup() {
 		WorldBaseGUI::InitGuiSettup();
 		DrawWorldBaseGUIComponents();
+	}
+	std::shared_ptr<Core::World::Component::ActorsCounter> WorldForForestTest::GetActorsCounter() const {
+		return GetTGuiComponent<Core::World::Component::ActorsCounter>();
 	}
 }

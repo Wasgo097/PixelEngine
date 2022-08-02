@@ -1,6 +1,7 @@
 #pragma once
 #include "PXCore/World/WorldBaseGUI.h"
 #include "PXCore/Time/TimeManager.h"
+#include "PXCore/World/Components/ActorsCounter.h"
 namespace Test {
 	class Tree;
 	class WorldForForestTest :public Core::World::WorldBaseGUI {
@@ -17,10 +18,8 @@ namespace Test {
 		// Inherited via WorldBaseGUI
 		virtual void CreateWorldBaseGUIComponents() override;
 		virtual void InitGuiSettup();
+		std::shared_ptr<Core::World::Component::ActorsCounter> GetActorsCounter()const;
 		std::shared_ptr<Core::Time::TimeManager> _tree_timer;
 		std::list<std::shared_ptr<Tree>> _created_trees;
-
-
-
 	};
 }

@@ -5,7 +5,7 @@
 #include "Engine.h"
 namespace Core::World {
 	WorldBase::WorldBase(const Settings::WorldSettings& world_settings, Engine* parent) :_parent(parent),
-		_world_settings(world_settings), _actor_manager(std::make_unique<ActorsManager>(world_settings.buffer_size, world_settings.gc_delay)) {
+		_world_settings(world_settings), _actor_manager(std::make_unique<ActorsManager>(this, world_settings.buffer_size, world_settings.gc_delay)) {
 	}
 	void WorldBase::Draw(sf::RenderWindow& window) {
 		if (!_initialized)
@@ -27,6 +27,10 @@ namespace Core::World {
 	}
 	void WorldBase::CheckCollisionAfterMove(Core::Object::Actor* moved_actor)const {
 		_actor_manager->CheckCollisionAfterMove(moved_actor);
+	}
+	void WorldBase::CallOnActorsRemoved() {
+		if (OnActorsRemoved)
+			OnActorsRemoved();
 	}
 	bool WorldBase::Quit() const {
 		return _quit;

@@ -7,7 +7,7 @@
 #include "PXCore/World/WorldBase.h"
 namespace Core {
 	struct ActorsManager::Impl {
-		Impl(Core::World::WorldBase* parent, size_t init_buffer_size, unsigned gc_delay) :_DELAY{ gc_delay }, _parent{parent} {
+		Impl(Core::World::WorldBase* parent, size_t init_buffer_size, unsigned gc_delay) :_DELAY{ gc_delay }, _parent{ parent } {
 			_actors.rsc->reserve(init_buffer_size);
 			_const_actors.rsc->reserve(init_buffer_size);
 		}
@@ -146,15 +146,25 @@ namespace Core {
 	}
 	void ActorsManager::Draw(sf::RenderWindow& window) {
 		{
+			static std::function<bool(const std::shared_ptr<const Core::Object::Actor>&,
+				const std::shared_ptr<const Core::Object::Actor>&)> actors_comparator =
+				[](const std::shared_ptr<const Core::Object::Actor>& first, const std::shared_ptr<const Core::Object::Actor>& second) {
+				if (auto first_pos = first->GetPosition(); first_pos)
+					if (auto second_pos = second->GetPosition(); second_pos)
+						return first_pos->y < second_pos->y;
+				return true;
+			};
 			std::lock_guard lock(_impl->_actors.mtx);
+			if (!std::is_sorted(_impl->_actors.rsc->begin(), _impl->_actors.rsc->end(), actors_comparator))
+				std::sort(_impl->_actors.rsc->begin(), _impl->_actors.rsc->end(), actors_comparator);
 			for (const auto& actor : *_impl->_actors.rsc)
 				actor->Draw(window);
 		}
-		{
-			std::lock_guard lock(_impl->_const_actors.mtx);
-			for (const auto& actor : *_impl->_const_actors.rsc)
-				actor->Draw(window);
-		}
+		//{
+		//	std::lock_guard lock(_impl->_const_actors.mtx);
+		//	for (const auto& actor : *_impl->_const_actors.rsc)
+		//		actor->Draw(window);
+		//}
 	}
 	void ActorsManager::CheckCollisionAfterMove(Core::Object::Actor* moved_actor)const {
 		_impl->CheckCollisionAfterMove(moved_actor);

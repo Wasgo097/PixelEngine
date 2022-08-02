@@ -23,6 +23,5 @@ namespace Settings {
 		std::map<int, int> frames_count;
 		//k - direction v-row number
 		std::map<AnimationEnums::Direction, int> direction_to_row;
-
 	};
 }

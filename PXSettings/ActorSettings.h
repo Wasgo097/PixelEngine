@@ -24,6 +24,5 @@ namespace Settings {
 		sf::Vector2f velocity;
 		bool tick = false;
 		bool drawable_collision_box = false;
-
 	};
 }

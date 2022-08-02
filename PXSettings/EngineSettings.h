@@ -13,6 +13,5 @@ namespace Settings {
 		std::string window_settings_path = "windowsettings.json";
 		std::string music_settings_path = "musicsettings.json";
 		std::string world_settings_path = "worldsettings.json";
-
 	};
 }

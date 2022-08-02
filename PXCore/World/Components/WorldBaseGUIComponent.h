@@ -19,5 +19,6 @@ namespace Core::World::Component {
 		WorldBaseGUI* _parent;
 		std::optional<tgui::Theme> _theme;
 		tgui::Gui* _gui;
+		bool _initialized = true;
 	};
 }

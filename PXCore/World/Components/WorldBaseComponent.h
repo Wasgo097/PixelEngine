@@ -15,5 +15,6 @@ namespace Core::World::Component {
 		bool _tick = false;
 	protected:
 		WorldBase* _parent;
+		bool _initialized = true;
 	};
 }

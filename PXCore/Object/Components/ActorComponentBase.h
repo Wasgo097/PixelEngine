@@ -16,5 +16,6 @@ namespace Core::Object::Components {
 		bool _tick = false;
 	protected:
 		Core::Object::Actor* _parent;
+		bool _initialized = false;
 	};
 }

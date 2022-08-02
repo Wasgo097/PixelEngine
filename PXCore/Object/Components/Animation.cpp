@@ -1,4 +1,5 @@
 #include "Animation.h"
+#include <stdexcept>
 namespace Core::Object::Components {
 	Animation::Animation(Core::Object::Actor* parent, sf::Sprite& animated_sprite, const Settings::AnimationSettings& animation_settings) :
 		ActorComponentBase(parent),
@@ -8,6 +9,8 @@ namespace Core::Object::Components {
 		_frame_on_texture.height = _animation_settings.rect_size.y;
 	}
 	void Animation::Tick(float delta_time) {
+		if (!_initialized)
+			throw std::runtime_error("Tick uninitialized ActorComponent");
 		_movable_view_on_texture.y = _row;
 		_elapsed_time += delta_time;
 		if (_elapsed_time >= _animation_settings.switch_time) {
@@ -22,6 +25,7 @@ namespace Core::Object::Components {
 	}
 	void Animation::InitComponent() {
 		SetTickFlag(true);
+		_initialized = true;
 	}
 	void Animation::SetRow(int row) {
 		if (_row != row) {

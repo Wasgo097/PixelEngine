@@ -14,9 +14,11 @@ namespace Core::Object{
 		virtual ~AnimatedActor() = default;
 
 		virtual void Tick(float delta_time)override;
+		virtual void Init()override;
 		virtual void Move(const sf::Vector2f& velocity)override;
 		virtual std::string ToString()const override;
 	protected:
+		virtual void CreateActorsComponents()override;
 		void CheckAnimatedRow();
 		Settings::AnimationSettings _animation_settings;
 		std::map<AnimationEnums::Direction, int> _direction_row;

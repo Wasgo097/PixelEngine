@@ -64,6 +64,9 @@
     <ClInclude Include="World\WorldBaseGUI.h" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\PXArgumentParser\PXArgumentParser.vcxproj">
+      <Project>{0dd47954-4303-4705-9b37-94b1211c8d85}</Project>
+    </ProjectReference>
     <ProjectReference Include="..\PXFactory\PXFactory.vcxproj">
       <Project>{863cee10-1256-4edd-8211-72317cdc7cda}</Project>
     </ProjectReference>

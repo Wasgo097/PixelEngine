@@ -71,6 +71,9 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\PXArgumentParser\PXArgumentParser.vcxproj">
+      <Project>{0dd47954-4303-4705-9b37-94b1211c8d85}</Project>
+    </ProjectReference>
     <ProjectReference Include="..\PXCore\PixelEngine.vcxproj">
       <Project>{7d35154a-9b4e-4c71-8fe8-37a7d467a355}</Project>
     </ProjectReference>

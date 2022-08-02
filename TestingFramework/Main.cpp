@@ -4,7 +4,7 @@
 #include "Tests/GUISettup/MultipleWidgetsTest.h"
 #include "Tests/GUISettup/LoginExample.h"
 #include "Tests/MainMenu/MainMenuTest.h"
-#include "PXUtilities/ArgumentParser.h"
+#include "PXArgumentParser/ArgumentParser.h"
 #include <iostream>
 using namespace Test;
 int main(int argc, const char* argv[]) {

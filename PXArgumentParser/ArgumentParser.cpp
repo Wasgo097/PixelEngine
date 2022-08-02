@@ -8,7 +8,6 @@ ArgumentParser::ArgumentParser(int argc, const char* argv[]) {
 		AddNewArgument(argv[i], argv[i+1]);
 	}
 }
-
 bool ArgumentParser::AddNewArgument(const std::string& key, const std::string& value) {
 	if (!_arguments.contains(key)) {
 		_arguments.insert(std::make_pair(key, value));
@@ -17,7 +16,6 @@ bool ArgumentParser::AddNewArgument(const std::string& key, const std::string& v
 	else
 		return false;
 }
-
 std::optional<std::string> ArgumentParser::GetRowValue(const std::string& key) const {
 	if (_arguments.contains(key))
 		return _arguments.at(key);

@@ -1,4 +1,5 @@
 #include "Collider.h"
+#include <stdexcept>
 namespace Core::Object::Components {
 	Collider::Collider(Core::Object::Actor* parent, const Settings::ActorSettings& actor_settings) :ActorComponentBase(parent), _collider(actor_settings.collider_size) {
 		sf::Vector2f temp_origin = _collider.getSize();
@@ -9,8 +10,11 @@ namespace Core::Object::Components {
 	}
 	void Collider::InitComponent() {
 		SetTickFlag(false);
+		_initialized = true;
 	}
 	void Collider::Move(const sf::Vector2f& velocity) {
+		if (!_initialized)
+			throw std::runtime_error("Move uninitialized ColliderComponent");
 		_collider.move(velocity);
 	}
 	const sf::RectangleShape& Collider::GetCollider() const {

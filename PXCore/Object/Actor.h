@@ -52,6 +52,8 @@ namespace Core::Object {
 			}
 			return {};
 		}
+		virtual void CreateActorsComponents();
+		void InitActorsComponents();
 		void ChangePosition(const sf::Vector2f& vector,std::optional<float> speed=std::nullopt);
 		World::WorldBase* _world;
 		std::unique_ptr<sf::Texture> _texture;

@@ -4,9 +4,6 @@
 namespace Core::Object {
 	Actor::Actor(World::WorldBase* world, const Settings::ActorSettings& actor_settings, const Settings::TextureSettings& texture_settings) :
 		_world(world), _actor_settings(actor_settings), _texture_settings(texture_settings), _velocity(_actor_settings.velocity), _tick(_actor_settings.tick) {
-		//collision
-		if (static_cast<int>(_actor_settings.collision) > 0)
-			_components.emplace_back(std::make_shared<Components::Collider>(this, actor_settings));
 		//texture and sprite
 		if (!_texture_settings.texture_path.empty()) {
 			_texture = std::make_unique<sf::Texture>();
@@ -35,6 +32,8 @@ namespace Core::Object {
 		_tick = flag;
 	}
 	void Actor::Tick(float delta_time) {
+		if (!_initialized)
+			throw std::runtime_error("Tick uninitialized actor");
 		if (_actor_settings.type == ActorsEnums::ActorType::Dynamic && _velocity != sf::Vector2f()) {
 			ChangePosition(_velocity, delta_time);
 			if (!_pushed)
@@ -69,6 +68,8 @@ namespace Core::Object {
 		return {};
 	}
 	void Actor::Draw(sf::RenderWindow& window) {
+		if (!_initialized)
+			throw std::runtime_error("Draw uninitialized actor");
 		if (_sprite)
 			window.draw(*_sprite);
 		if (_actor_settings.drawable_collision_box) {
@@ -83,10 +84,13 @@ namespace Core::Object {
 	}
 	void Actor::Init() {
 		SetTickFlag(_actor_settings.tick);
-		for (const auto& component : _components)
-			component->InitComponent();
+		CreateActorsComponents();
+		InitActorsComponents();
+		_initialized = true;
 	}
 	void Actor::OnDelete() {
+		if (!_initialized)
+			throw std::runtime_error("Delete uninitialized actor");
 		for (const auto& component : _components)
 			component->EndComponent();
 	}
@@ -97,6 +101,15 @@ namespace Core::Object {
 	void Actor::OnCollide(const Actor* other, std::optional<sf::Vector2f> diference) {
 		if (diference and !_pushed and _actor_settings.type == ActorsEnums::ActorType::Dynamic)
 			ChangePosition(*diference);
+	}
+	void Actor::CreateActorsComponents() {
+		//collision
+		if (static_cast<int>(_actor_settings.collision) > 0)
+			_components.emplace_back(std::make_shared<Components::Collider>(this, _actor_settings));
+	}
+	void Actor::InitActorsComponents() {
+		for (const auto& component : _components)
+			component->InitComponent();
 	}
 	void Actor::ChangePosition(const sf::Vector2f& vector, std::optional<float> speed) {
 		if (_sprite)

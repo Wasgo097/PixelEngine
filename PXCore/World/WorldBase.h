@@ -73,7 +73,9 @@ namespace Core::World {
 			return {};
 		}
 		virtual void CreateWorldBaseComponents() = 0;
+		virtual void DrawMap(sf::RenderWindow& window) = 0;
 		void InitWorldBaseComponents();
+		void DrawActors(sf::RenderWindow& window);
 		std::function<void(std::shared_ptr<Core::Object::Actor>)> OnSpawnActor;
 		std::function<void(std::shared_ptr<Core::Object::Actor>)> OnSpawnConstActor;
 		std::function<void()> OnActorsRemoved;

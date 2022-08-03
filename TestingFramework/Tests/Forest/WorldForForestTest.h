@@ -16,6 +16,7 @@ namespace Test {
 	protected:
 		// Inherited via WorldBase
 		virtual void CreateWorldBaseComponents() override {}
+		virtual void DrawMap(sf::RenderWindow& window)override;
 		// Inherited via WorldBaseGUI
 		virtual void CreateWorldBaseGUIComponents() override;
 		virtual void InitGuiSettup();
@@ -23,5 +24,7 @@ namespace Test {
 		std::shared_ptr<Core::World::Component::ActorsCounter> GetActorsCounter()const;
 		std::shared_ptr<Core::Time::TimeManager> _tree_timer;
 		std::list<std::shared_ptr<Tree>> _created_trees;
+		sf::RectangleShape _map;
+		sf::Texture _map_texture;
 	};
 }

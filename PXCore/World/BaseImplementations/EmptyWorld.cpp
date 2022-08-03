@@ -14,4 +14,7 @@ namespace Core::World {
 		window.clear(sf::Color::Blue);
 		WorldBase::Draw(window);
 	}
+	void EmptyWorld::DrawMap(sf::RenderWindow& window)
+	{
+	}
 }

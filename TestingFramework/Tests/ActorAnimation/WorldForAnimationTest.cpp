@@ -10,4 +10,7 @@ namespace Test {
 			_quit = true;
 		}
 	}
+	void WorldForAnimationTest::DrawMap(sf::RenderWindow& window)
+	{
+	}
 }

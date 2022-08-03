@@ -11,8 +11,8 @@ namespace Core::World {
 		if (!_initialized)
 			throw std::runtime_error("Draw uninitialized world");
 		window.clear(sf::Color::Green);
-		if (_actor_manager)
-			_actor_manager->Draw(window);
+		DrawMap(window);
+		DrawActors(window);
 	}
 	void WorldBase::Update(float delta) {
 		if (!_initialized)
@@ -71,6 +71,10 @@ namespace Core::World {
 	void WorldBase::InitWorldBaseComponents() {
 		for (const auto& component : _world_components)
 			component->InitComponent();
+	}
+	void WorldBase::DrawActors(sf::RenderWindow& window) {
+		if (_actor_manager)
+			_actor_manager->Draw(window);
 	}
 	void WorldBase::EndWorld() {
 		if (!_initialized)

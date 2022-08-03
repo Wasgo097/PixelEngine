@@ -10,6 +10,9 @@ namespace Test {
 		virtual void InitGuiSettup() override;
 		virtual void InitWorld()override;
 		virtual void CreateWorldBaseGUIComponents() override;
+	protected:
+		// Inherited via WorldBaseGUI
+		virtual void DrawMap(sf::RenderWindow& window) override;
 	private:
 		void MainMenuPage();
 		void NewGameClick();
@@ -24,8 +27,5 @@ namespace Test {
 		tgui::Slider::Ptr _fps_slider;
 		tgui::RadioButton::Ptr _fullscreen_radio;
 		tgui::RadioButton::Ptr _window_radio;
-
-
-
 	};
 }

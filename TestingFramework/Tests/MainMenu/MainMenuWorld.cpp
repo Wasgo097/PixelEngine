@@ -153,6 +153,9 @@ namespace Test {
 			SettingsPage();
 		}
 	}
+	void MainMenuWorld::DrawMap(sf::RenderWindow& window)
+	{
+	}
 	void MainMenuWorld::CreateWorldBaseGUIComponents() {
 		tgui::Theme theme{ "Resource\\GUI\\themes\\TransparentGrey.txt" };
 		if (auto parser = _parent->GetParser(); parser and parser->get().GetValue<bool>("-fpscounter"))

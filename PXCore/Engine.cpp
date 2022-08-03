@@ -18,7 +18,7 @@ namespace Core {
 		_main_window->setVerticalSyncEnabled(_window_settings.vsync);
 		if (_window_settings.fps > 1)
 			_main_window->setFramerateLimit(_window_settings.fps);
-		_view.setSize(_window_settings.video_mode.width, _window_settings.video_mode.height);
+		_view.setSize(static_cast<float>(_window_settings.video_mode.width), static_cast<float>(_window_settings.video_mode.height));
 	}
 	Engine::~Engine() {
 		Close();
@@ -91,7 +91,7 @@ namespace Core {
 		}
 	}
 	void Engine::InitEngine() {
-		_view = sf::View({ .0f,.0f }, { static_cast<float>(_window_settings.video_mode.height),static_cast<float>(_window_settings.video_mode.height)});
+		_view = sf::View({ .0f,.0f }, { static_cast<float>(_window_settings.video_mode.height),static_cast<float>(_window_settings.video_mode.height) });
 		if (auto center = _current_world->GetMainCharacterPosition(); center)
 			_view.setCenter(*center);
 	}

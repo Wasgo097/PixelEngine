@@ -8,6 +8,7 @@ namespace Test {
 	class Tree :public Core::Object::Actor, public ITimeObserver {
 	public:
 		Tree(Core::World::WorldBase* world, const Settings::ActorSettings& actor_settings, const Settings::TextureSettings& texture_settings);
+		virtual void Init()override;
 		// Inherited via ITimeObserver
 		virtual void SecondPassed(unsigned int second) override;
 		virtual void MinutePassed(unsigned int minute) override {};

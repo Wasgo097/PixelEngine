@@ -60,6 +60,8 @@ namespace Core::World {
 		virtual void CheckQuit() = 0;
 		void CallOnActorsRemoved();
 		bool Quit()const;
+		void RefreshView(const sf::Vector2f& center)const;
+		std::optional<sf::Vector2f> GetMainCharacterPosition()const;
 	protected:
 		template<typename T>
 			requires std::derived_from<T, Component::WorldBaseComponent>
@@ -72,6 +74,9 @@ namespace Core::World {
 		}
 		virtual void CreateWorldBaseComponents() = 0;
 		void InitWorldBaseComponents();
+		std::function<void(std::shared_ptr<Core::Object::Actor>)> OnSpawnActor;
+		std::function<void(std::shared_ptr<Core::Object::Actor>)> OnSpawnConstActor;
+		std::function<void()> OnActorsRemoved;
 		Engine* _parent = nullptr;
 		Settings::WorldSettings _world_settings;
 		std::unique_ptr<ActorsManager> _actor_manager;
@@ -79,8 +84,5 @@ namespace Core::World {
 		std::list<std::shared_ptr<Component::WorldBaseComponent>> _world_components;
 		bool _quit = false;
 		bool _initialized = false;
-		std::function<void(std::shared_ptr<Core::Object::Actor>)> OnSpawnActor;
-		std::function<void(std::shared_ptr<Core::Object::Actor>)> OnSpawnConstActor;
-		std::function<void()> OnActorsRemoved;
 	};
 }

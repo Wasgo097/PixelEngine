@@ -26,20 +26,28 @@ namespace Test {
 		key.input_type = Core::Controller::InputType::KeyboardInput;
 		key.event_type = sf::Event::KeyPressed;
 		key.keyboard_button = sf::Keyboard::W;
-		_actions[key] = [](std::shared_ptr<Core::Object::ControlledActor> actor) {
+		_actions[key] = [this](std::shared_ptr<Core::Object::ControlledActor> actor) {
 			actor->Move(sf::Vector2f(0, -100.0));
+			if (auto position = actor->GetPosition(); position)
+				_world_parent->RefreshView(*position);
 		};
 		key.keyboard_button = sf::Keyboard::S;
-		_actions[key] = [](std::shared_ptr<Core::Object::ControlledActor> actor) {
+		_actions[key] = [this](std::shared_ptr<Core::Object::ControlledActor> actor) {
 			actor->Move(sf::Vector2f(0, 100.0));
+			if (auto position = actor->GetPosition(); position)
+				_world_parent->RefreshView(*position);
 		};
 		key.keyboard_button = sf::Keyboard::A;
-		_actions[key] = [](std::shared_ptr<Core::Object::ControlledActor> actor) {
+		_actions[key] = [this](std::shared_ptr<Core::Object::ControlledActor> actor) {
 			actor->Move(sf::Vector2f(-100.0, 0));
+			if (auto position = actor->GetPosition(); position)
+				_world_parent->RefreshView(*position);
 		};
 		key.keyboard_button = sf::Keyboard::D;
-		_actions[key] = [](std::shared_ptr<Core::Object::ControlledActor> actor) {
+		_actions[key] = [this](std::shared_ptr<Core::Object::ControlledActor> actor) {
 			actor->Move(sf::Vector2f(100.0, 0));
+			if (auto position = actor->GetPosition(); position)
+				_world_parent->RefreshView(*position);
 		};
 	}
 

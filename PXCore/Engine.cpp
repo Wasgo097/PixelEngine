@@ -18,6 +18,7 @@ namespace Core {
 		_main_window->setVerticalSyncEnabled(_window_settings.vsync);
 		if (_window_settings.fps > 1)
 			_main_window->setFramerateLimit(_window_settings.fps);
+		_view.setSize(_window_settings.video_mode.width, _window_settings.video_mode.height);
 	}
 	Engine::~Engine() {
 		Close();
@@ -58,6 +59,9 @@ namespace Core {
 	std::optional<std::reference_wrapper<const ArgumentParser>> Engine::GetParser() const {
 		return _parser;
 	}
+	void Engine::RefreshView(const sf::Vector2f& center) {
+		_view.setCenter(center);
+	}
 	void Engine::PushWorldToQueue(std::unique_ptr<World::WorldBase>&& new_world) {
 		if (_current_world)
 			_worlds.push(std::move(new_world));
@@ -86,12 +90,18 @@ namespace Core {
 			_current_world->Update(time.asSeconds());
 		}
 	}
+	void Engine::InitEngine() {
+		_view = sf::View({ .0f,.0f }, { static_cast<float>(_window_settings.video_mode.height),static_cast<float>(_window_settings.video_mode.height)});
+		if (auto center = _current_world->GetMainCharacterPosition(); center)
+			_view.setCenter(*center);
+	}
 	void Engine::Close() {
 		while (!_worlds.empty())
 			_worlds.pop();
 		_main_window->close();
 	}
 	void Engine::Render() {
+		_main_window->setView(_view);
 		_main_window->clear();
 		if (_current_world)
 			_current_world->Draw(*_main_window);

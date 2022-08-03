@@ -20,18 +20,17 @@ namespace Core::Controller {
 	std::shared_ptr<Object::ControlledActor> ControllerBase::GetMainCharacter() {
 		return _main_character;
 	}
-	std::optional<std::reference_wrapper<const Key>> Controller::ControllerBase::ActionsContainsKey(const Key& key) const
-	{
+	std::optional<std::reference_wrapper<const Key>> Controller::ControllerBase::ActionsContainsKey(const Key& key) const {
 		for (const auto& [current_key, _] : _actions) {
 			if (current_key.input_type == key.input_type
 				and key.input_type == InputType::KeyboardInput
 				and current_key.keyboard_button == key.keyboard_button) {
-					return std::optional(std::cref(current_key));
+				return std::optional(std::cref(current_key));
 			}
 			else if (current_key.input_type == key.input_type
 				and key.input_type == InputType::MouseInput
 				and current_key.mouse_button == key.mouse_button) {
-					return std::optional(std::cref(current_key));
+				return std::optional(std::cref(current_key));
 			}
 		}
 		return {};

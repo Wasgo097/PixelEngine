@@ -35,6 +35,14 @@ namespace Core::World {
 	bool WorldBase::Quit() const {
 		return _quit;
 	}
+	void WorldBase::RefreshView(const sf::Vector2f& center) const {
+		_parent->RefreshView(center);
+	}
+	std::optional<sf::Vector2f> WorldBase::GetMainCharacterPosition() const {
+		if (auto character = _main_controller->GetMainCharacter(); character)
+			return character->GetPosition();
+		return {};
+	}
 	void WorldBase::ServiceInput(const Core::Controller::Key& key) {
 		if (_main_controller)
 			_main_controller->ServiceInput(key);

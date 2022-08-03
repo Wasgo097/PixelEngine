@@ -5,6 +5,9 @@ namespace Log {
 		if (!_f_stream.is_open())
 			throw std::invalid_argument("Wrong FileLogger path");
 	}
+	FileLogger::~FileLogger() {
+		_f_stream.close();
+	}
 	void FileLogger::Log(const std::string& to_log) {
 		_s_stream << to_log << std::endl;
 	}

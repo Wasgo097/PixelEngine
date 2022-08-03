@@ -6,6 +6,7 @@ namespace Log {
 	class FileLogger :public ILogger {
 	public:
 		FileLogger(const std::string& file_path);
+		virtual ~FileLogger();
 		// Inherited via ILogger
 		virtual void Log(const std::string& to_log) override;
 		virtual void FLush() override;

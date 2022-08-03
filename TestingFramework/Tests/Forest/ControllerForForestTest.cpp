@@ -2,7 +2,7 @@
 #include "Actors/ForestMainCharacter.h"
 #include "PXFactory/SettingsFactory.h"
 namespace Test {
-	ControllerForForestTest::ControllerForForestTest(Core::World::WorldBase* world) :ControllerBase(world) {
+	ControllerForForestTest::ControllerForForestTest(Core::World::WorldBase* world, const Settings::WorldSettings& world_settings) :ControllerBase(world, world_settings) {
 	}
 
 	void ControllerForForestTest::InitMainCharacterInputBindings() {
@@ -27,27 +27,43 @@ namespace Test {
 		key.event_type = sf::Event::KeyPressed;
 		key.keyboard_button = sf::Keyboard::W;
 		_actions[key] = [this](std::shared_ptr<Core::Object::ControlledActor> actor) {
-			actor->Move(sf::Vector2f(0, -100.0));
-			if (auto position = actor->GetPosition(); position)
-				_world_parent->RefreshView(*position);
+			if (CheckMoveIsPossible(sf::Vector2f(0, -100.0))) {
+				actor->Move(sf::Vector2f(0, -100.0));
+				if (auto position = actor->GetPosition(); position)
+					_world_parent->RefreshView(*position);
+			}
+			else
+				std::cout << "Move isn't possible\n";
 		};
 		key.keyboard_button = sf::Keyboard::S;
 		_actions[key] = [this](std::shared_ptr<Core::Object::ControlledActor> actor) {
-			actor->Move(sf::Vector2f(0, 100.0));
-			if (auto position = actor->GetPosition(); position)
-				_world_parent->RefreshView(*position);
+			if (CheckMoveIsPossible(sf::Vector2f(0, 100.0))) {
+				actor->Move(sf::Vector2f(0, 100.0));
+				if (auto position = actor->GetPosition(); position)
+					_world_parent->RefreshView(*position);
+			}
+			else
+				std::cout << "Move isn't possible\n";
 		};
 		key.keyboard_button = sf::Keyboard::A;
 		_actions[key] = [this](std::shared_ptr<Core::Object::ControlledActor> actor) {
-			actor->Move(sf::Vector2f(-100.0, 0));
-			if (auto position = actor->GetPosition(); position)
-				_world_parent->RefreshView(*position);
+			if (CheckMoveIsPossible(sf::Vector2f(-100.0, 0))) {
+				actor->Move(sf::Vector2f(-100.0, 0));
+				if (auto position = actor->GetPosition(); position)
+					_world_parent->RefreshView(*position);
+			}
+			else
+				std::cout << "Move isn't possible\n";
 		};
 		key.keyboard_button = sf::Keyboard::D;
 		_actions[key] = [this](std::shared_ptr<Core::Object::ControlledActor> actor) {
-			actor->Move(sf::Vector2f(100.0, 0));
-			if (auto position = actor->GetPosition(); position)
-				_world_parent->RefreshView(*position);
+			if (CheckMoveIsPossible(sf::Vector2f(100.0, 0))) {
+				actor->Move(sf::Vector2f(100.0, 0));
+				if (auto position = actor->GetPosition(); position)
+					_world_parent->RefreshView(*position);
+			}
+			else
+				std::cout << "Move isn't possible\n";
 		};
 	}
 

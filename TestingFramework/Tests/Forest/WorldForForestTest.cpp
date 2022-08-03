@@ -7,8 +7,8 @@
 #include "PXCore/Engine.h"
 using namespace Core;
 namespace Test {
-	WorldForForestTest::WorldForForestTest(const Settings::WorldSettings& worlsettings, Core::Engine* parent) :WorldBaseGUI(worlsettings, parent) {
-		_main_controller = std::make_unique<Test::ControllerForForestTest>(this);
+	WorldForForestTest::WorldForForestTest(const Settings::WorldSettings& world_settings, Core::Engine* parent) :WorldBaseGUI(world_settings, parent) {
+		_main_controller = std::make_unique<Test::ControllerForForestTest>(this, world_settings);
 	}
 	void WorldForForestTest::CheckQuit() {
 		if (sf::Keyboard::isKeyPressed(sf::Keyboard::Escape))

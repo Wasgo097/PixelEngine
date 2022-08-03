@@ -4,7 +4,7 @@
 namespace Core::Controller {
 	class EmptyController:public ControllerBase{
 	public:
-		EmptyController(Core::World::WorldBase* world_parent);
+		EmptyController(Core::World::WorldBase* world_parent, const Settings::WorldSettings& world_settings);
 		virtual ~EmptyController() = default;
 
 		// Inherited via ControllerBase

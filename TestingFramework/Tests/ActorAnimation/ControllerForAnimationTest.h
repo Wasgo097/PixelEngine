@@ -4,7 +4,7 @@
 namespace Test {
 	class ControllerForAnimationTest:public Core::Controller::ControllerBase{
 	public:
-		ControllerForAnimationTest(Core::World::WorldBase* world);
+		ControllerForAnimationTest(Core::World::WorldBase* world_parent, const Settings::WorldSettings& world_settings);
 	public:
 		// Inherited via ControllerBase
 		virtual void InitMainCharacterInputBindings() override;

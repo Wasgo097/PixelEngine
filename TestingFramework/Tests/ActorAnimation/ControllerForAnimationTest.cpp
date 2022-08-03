@@ -2,7 +2,7 @@
 #include "PXCore/Object/BaseImplementations/EmptyControlledActor.h"
 #include "PXFactory/SettingsFactory.h"
 namespace Test {
-	ControllerForAnimationTest::ControllerForAnimationTest(Core::World::WorldBase* world) :ControllerBase(world) {
+	ControllerForAnimationTest::ControllerForAnimationTest(Core::World::WorldBase* world, const Settings::WorldSettings& world_settings) :ControllerBase(world, world_settings) {
 	}
 
 	void ControllerForAnimationTest::InitMainCharacterInputBindings() {

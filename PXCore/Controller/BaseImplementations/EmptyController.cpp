@@ -5,7 +5,7 @@
 #include "PXSettings/TextureSettings.h"
 #include "PXSettings/AnimationSettings.h"
 namespace Core::Controller {
-	Controller::EmptyController::EmptyController(Core::World::WorldBase* world_parent) :Core::Controller::ControllerBase(world_parent) {}
+	Controller::EmptyController::EmptyController(Core::World::WorldBase* world_parent, const Settings::WorldSettings& world_settings) :Core::Controller::ControllerBase(world_parent, world_settings) {}
 	void EmptyController::InitMainCharacterInputBindings() {
 		Controller::Key key;
 		key.input_type = Controller::InputType::MouseInput;

@@ -6,7 +6,7 @@ namespace Test {
 	class Tree;
 	class WorldForForestTest :public Core::World::WorldBaseGUI {
 	public:
-		WorldForForestTest(const Settings::WorldSettings& worlsettings = Settings::WorldSettings(), Core::Engine* parrent = nullptr);
+		WorldForForestTest(const Settings::WorldSettings& world_settings = Settings::WorldSettings(), Core::Engine* parrent = nullptr);
 	public:
 		virtual void CheckQuit()override;
 		virtual void Draw(sf::RenderWindow& window)override;

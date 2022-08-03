@@ -13,6 +13,33 @@ namespace Test {
 		if (sf::Keyboard::isKeyPressed(sf::Keyboard::Escape))
 			_quit = true;
 	}
+	void WorldForForestTest::Draw(sf::RenderWindow& window) {
+		WorldBaseGUI::Draw(window);
+		sf::Vertex line1[] =
+		{
+			sf::Vertex(sf::Vector2f(_world_settings.deadzone_x, _world_settings.deadzone_y)),
+			sf::Vertex(sf::Vector2f(_world_settings.deadzone_x, -_world_settings.deadzone_y)),
+		};
+		sf::Vertex line2[] =
+		{
+			sf::Vertex(sf::Vector2f(_world_settings.deadzone_x, _world_settings.deadzone_y)),
+			sf::Vertex(sf::Vector2f(-_world_settings.deadzone_x, _world_settings.deadzone_y)),
+		};
+		sf::Vertex line3[] =
+		{
+			sf::Vertex(sf::Vector2f(-_world_settings.deadzone_x, -_world_settings.deadzone_y)),
+			sf::Vertex(sf::Vector2f(-_world_settings.deadzone_x, _world_settings.deadzone_y)),
+		};
+		sf::Vertex line4[] =
+		{
+			sf::Vertex(sf::Vector2f(-_world_settings.deadzone_x, -_world_settings.deadzone_y)),
+			sf::Vertex(sf::Vector2f(_world_settings.deadzone_x, -_world_settings.deadzone_y)),
+		};
+		window.draw(line1, 2, sf::Lines);
+		window.draw(line2, 2, sf::Lines);
+		window.draw(line3, 2, sf::Lines);
+		window.draw(line4, 2, sf::Lines);
+	}
 	void WorldForForestTest::InitWorld() {
 		WorldBaseGUI::InitWorld();
 		const float windowHeight = _gui.getView().getRect().height;
@@ -42,7 +69,7 @@ namespace Test {
 		tgui::Theme theme{ "Resource\\GUI\\themes\\TransparentGrey.txt" };
 		if (auto parser = _parent->GetParser(); parser and parser->get().GetValue<bool>("-fpscounter"))
 			_gui_world_components.emplace_back(std::make_shared<Core::World::Component::FpsCounter>(this, &_gui, theme));
-		_gui_world_components.emplace_back(std::make_shared<Core::World::Component::ActorsCounter>(this,&_gui,theme));
+		_gui_world_components.emplace_back(std::make_shared<Core::World::Component::ActorsCounter>(this, &_gui, theme));
 	}
 	void WorldForForestTest::InitGuiSettup() {
 		WorldBaseGUI::InitGuiSettup();

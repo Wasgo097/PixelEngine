@@ -7,12 +7,10 @@
 #include "PXCore/World/WorldBase.h"
 namespace Core {
 	struct ActorsManager::Impl {
-		Impl(Core::World::WorldBase* parent, size_t init_buffer_size, unsigned gc_delay) :_DELAY{ gc_delay }, _parent{ parent } {
-			_actors.rsc->reserve(init_buffer_size);
-			_const_actors.rsc->reserve(init_buffer_size);
-		}
-		static bool PositionOutOfWorld(const sf::Vector2f& position) {
-			return position.x < -2000.f or position.x>2000.f or position.y < -2000.f or position.y >2000.f;
+		Impl(Core::World::WorldBase* parent, const Settings::WorldSettings& world_settings) :
+			DELAY{ world_settings.gc_delay }, parent{ parent }, deadzone{ world_settings.deadzone_x,world_settings.deadzone_y }{
+			actors.rsc->reserve(world_settings.buffer_size);
+			const_actors.rsc->reserve(world_settings.buffer_size);
 		}
 		static sf::Vector2f GetCollisionPush(const sf::FloatRect& input, const sf::RectangleShape& moved_actor, const sf::RectangleShape& touched_actor) {
 			sf::Vector2f result(input.width, input.height);
@@ -36,62 +34,65 @@ namespace Core {
 			result.insert(result.end(), input.begin(), last_it);
 			return result;
 		}
+		bool PositionOnDeadzone(const sf::Vector2f& position)const {
+			return position.x < -std::abs(deadzone.x) or position.x > std::abs(deadzone.x) or position.y < -std::abs(deadzone.y) or position.y > std::abs(deadzone.y);
+		}
 		void DeleteActors() {
 			{
-				std::lock_guard lock(_actors.mtx);
-				auto it = std::partition(_actors.rsc->begin(), _actors.rsc->end(), [](const std::shared_ptr<Object::Actor>& actor) {
+				std::lock_guard lock(actors.mtx);
+				auto it = std::partition(actors.rsc->begin(), actors.rsc->end(), [this](const std::shared_ptr<Object::Actor>& actor) {
 					bool result = actor->ToDestroy();
 					if (result)
 						actor->OnDelete();
-					else if (auto position = actor->GetPosition(); position and PositionOutOfWorld(*position)) {
+					else if (auto position = actor->GetPosition(); position and PositionOnDeadzone(*position)) {
 						actor->OnDelete();
 						result = true;
 					}
 					return result; });
-				if (_actors.rsc->begin() != it) {
-					_actors.rsc->erase(_actors.rsc->begin(), it);
-					_parent->CallOnActorsRemoved();
+				if (actors.rsc->begin() != it) {
+					actors.rsc->erase(actors.rsc->begin(), it);
+					parent->CallOnActorsRemoved();
 				}
 			}
-			std::this_thread::sleep_for(std::chrono::milliseconds(_DELAY));
+			std::this_thread::sleep_for(std::chrono::milliseconds(DELAY));
 			{
-				std::lock_guard lock(_const_actors.mtx);
-				auto it = std::partition(_const_actors.rsc->begin(), _const_actors.rsc->end(), [](const std::shared_ptr<Object::Actor>& actor) {
+				std::lock_guard lock(const_actors.mtx);
+				auto it = std::partition(const_actors.rsc->begin(), const_actors.rsc->end(), [](const std::shared_ptr<Object::Actor>& actor) {
 					bool result = actor->ToDestroy();
 					if (result)
 						actor->OnDelete();
 					return result; });
-				_const_actors.rsc->erase(_const_actors.rsc->begin(), it);
+				const_actors.rsc->erase(const_actors.rsc->begin(), it);
 			}
-			std::this_thread::sleep_for(std::chrono::milliseconds(_DELAY));
+			std::this_thread::sleep_for(std::chrono::milliseconds(DELAY));
 		}
 		void UpdateActors(float delta_time) {
 			{
-				std::lock_guard lock(_actors.mtx);
-				for (auto& actor : *_actors.rsc) {
+				std::lock_guard lock(actors.mtx);
+				for (auto& actor : *actors.rsc) {
 					if (actor->TickFlag())
 						actor->Tick(delta_time);
 				}
 			}
 			{
-				std::lock_guard lock(_const_actors.mtx);
-				for (auto& actor : *_const_actors.rsc) {
+				std::lock_guard lock(const_actors.mtx);
+				for (auto& actor : *const_actors.rsc) {
 					if (actor->TickFlag())
 						actor->Tick(delta_time);
 				}
 			}
 		}
 		std::vector<std::shared_ptr<Core::Object::Actor>> GetCollidableActors()const {
-			auto actors = std::async(std::launch::async, [this]() {return GetCollidableActors(*_actors.rsc); });
-			auto const_actors = std::async(std::launch::async, [this]() {return GetCollidableActors(*_const_actors.rsc); });
+			auto actors = std::async(std::launch::async, [this]() {return GetCollidableActors(*actors.rsc); });
+			auto const_actors = std::async(std::launch::async, [this]() {return GetCollidableActors(*const_actors.rsc); });
 			std::vector<std::shared_ptr<Object::Actor>> all_actors = actors.get();
 			auto const_actors_res = const_actors.get();
 			all_actors.insert(all_actors.end(), const_actors_res.begin(), const_actors_res.end());
 			return all_actors;
 		}
 		void CheckCollisionAfterMove(Core::Object::Actor* moved_actor)const {
-			std::lock_guard lock(_actors.mtx);
-			std::lock_guard lockc(_const_actors.mtx);
+			std::lock_guard lock(actors.mtx);
+			std::lock_guard lockc(const_actors.mtx);
 			auto actors = GetCollidableActors();
 			for (const auto& actor : actors) {
 				sf::FloatRect intersection_area;
@@ -109,36 +110,37 @@ namespace Core {
 			}
 		}
 		size_t GetCountOfActors()const {
-			std::lock_guard lock(_actors.mtx);
-			return _actors.rsc->size();
+			std::lock_guard lock(actors.mtx);
+			return actors.rsc->size();
 		}
-		Utility::ThreadingResourceLight<std::vector<std::shared_ptr<Object::Actor>>> _actors;
-		Utility::ThreadingResourceLight<std::vector<std::shared_ptr<Object::Actor>>> _const_actors;
-		Core::World::WorldBase* _parent;
-		std::unique_ptr<std::thread> _management_thr;
-		bool _terminated = false;
-		const unsigned _DELAY = 0;
+		std::unique_ptr<std::thread> management_thr;
+		Utility::ThreadingResourceLight<std::vector<std::shared_ptr<Object::Actor>>> actors;
+		Utility::ThreadingResourceLight<std::vector<std::shared_ptr<Object::Actor>>> const_actors;
+		Core::World::WorldBase* parent;
+		bool terminated = false;
+		const unsigned DELAY = 0;
+		sf::Vector2f deadzone;
 	};
-	ActorsManager::ActorsManager(Core::World::WorldBase* parent, size_t init_buffer_size, unsigned gc_delay) :_impl{ std::make_unique<Impl>(parent,init_buffer_size,gc_delay) } {
-		_impl->_management_thr = std::make_unique<std::thread>(std::bind(&ActorsManager::Run, this));
+	ActorsManager::ActorsManager(Core::World::WorldBase* parent, const Settings::WorldSettings& world_settings) :_impl{ std::make_unique<Impl>(parent, world_settings) } {
+		_impl->management_thr = std::make_unique<std::thread>(std::bind(&ActorsManager::Run, this));
 	}
 	ActorsManager::~ActorsManager() {
 		Terminate();
 		Wait();
 	}
 	void ActorsManager::RegistrNewActor(std::shared_ptr<Object::Actor> actor) {
-		std::lock_guard lock(_impl->_actors.mtx);
-		_impl->_actors.rsc->push_back(actor);
+		std::lock_guard lock(_impl->actors.mtx);
+		_impl->actors.rsc->push_back(actor);
 		actor->Init();
 	}
 	void ActorsManager::RegisterConstActor(std::shared_ptr<Object::Actor> actor) {
-		std::lock_guard lock(_impl->_const_actors.mtx);
-		_impl->_const_actors.rsc->push_back(actor);
+		std::lock_guard lock(_impl->const_actors.mtx);
+		_impl->const_actors.rsc->push_back(actor);
 		actor->Init();
 	}
 	void ActorsManager::RegisterMainActor(std::shared_ptr<Object::Actor> main_actor) {
-		std::lock_guard lock(_impl->_actors.mtx);
-		_impl->_actors.rsc->push_back(main_actor);
+		std::lock_guard lock(_impl->actors.mtx);
+		_impl->actors.rsc->push_back(main_actor);
 		main_actor->Init();
 	}
 	void ActorsManager::Update(float delta_time) {
@@ -154,10 +156,10 @@ namespace Core {
 						return first_pos->y < second_pos->y;
 				return true;
 			};
-			std::lock_guard lock(_impl->_actors.mtx);
-			if (!std::is_sorted(_impl->_actors.rsc->begin(), _impl->_actors.rsc->end(), actors_comparator))
-				std::sort(_impl->_actors.rsc->begin(), _impl->_actors.rsc->end(), actors_comparator);
-			for (const auto& actor : *_impl->_actors.rsc)
+			std::lock_guard lock(_impl->actors.mtx);
+			if (!std::is_sorted(_impl->actors.rsc->begin(), _impl->actors.rsc->end(), actors_comparator))
+				std::sort(_impl->actors.rsc->begin(), _impl->actors.rsc->end(), actors_comparator);
+			for (const auto& actor : *_impl->actors.rsc)
 				actor->Draw(window);
 		}
 		//{
@@ -173,14 +175,14 @@ namespace Core {
 		return _impl->GetCountOfActors();
 	}
 	void ActorsManager::Run() {
-		while (!_impl->_terminated)
+		while (!_impl->terminated)
 			_impl->DeleteActors();
 	}
 	void ActorsManager::Terminate() {
-		_impl->_terminated = true;
+		_impl->terminated = true;
 	}
 	void ActorsManager::Wait() {
-		if (_impl->_management_thr->joinable())
-			_impl->_management_thr->join();
+		if (_impl->management_thr->joinable())
+			_impl->management_thr->join();
 	}
 }

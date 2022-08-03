@@ -16,17 +16,24 @@ public:
 	virtual void SetUp()override {
 		actor_settings.drawable_collision_box = false;
 		actor_settings.collision = ActorsEnums::CollisionType::Collision;
+
 		animation_settings.switch_time = 1.0f;
+
 		engine_settings.music_settings_path = "music";
 		engine_settings.window_settings_path = "window";
 		engine_settings.world_settings_path = "world";
+
 		music_settings.effect_vol = 1.0f;
 		music_settings.master_vol = 1.0f;
+
 		texture_settings.texture_path = "texture.texture";
 		texture_settings.smooth = false;
+
 		window_settings.fps = 30;
 		window_settings.window_name = "window";
+
 		world_settings.gc_delay = 4;
+		world_settings.deadzone_x = 1500;
 	}
 };
 

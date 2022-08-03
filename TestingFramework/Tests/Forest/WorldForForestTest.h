@@ -9,6 +9,7 @@ namespace Test {
 		WorldForForestTest(const Settings::WorldSettings& worlsettings = Settings::WorldSettings(), Core::Engine* parrent = nullptr);
 	public:
 		virtual void CheckQuit()override;
+		virtual void Draw(sf::RenderWindow& window)override;
 		virtual void InitWorld()override;
 		void AddTree(std::shared_ptr<Tree> tree);
 		void RemoveTree(std::shared_ptr<Tree> tree);

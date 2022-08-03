@@ -83,10 +83,10 @@ namespace Core {
 			}
 		}
 		std::vector<std::shared_ptr<Core::Object::Actor>> GetCollidableActors()const {
-			auto actors = std::async(std::launch::async, [this]() {return GetCollidableActors(*actors.rsc); });
-			auto const_actors = std::async(std::launch::async, [this]() {return GetCollidableActors(*const_actors.rsc); });
-			std::vector<std::shared_ptr<Object::Actor>> all_actors = actors.get();
-			auto const_actors_res = const_actors.get();
+			auto collidable_actors = std::async(std::launch::async, [this]() {return GetCollidableActors(*actors.rsc); });
+			auto collidable_const_actors = std::async(std::launch::async, [this]() {return GetCollidableActors(*const_actors.rsc); });
+			std::vector<std::shared_ptr<Object::Actor>> all_actors = collidable_actors.get();
+			auto const_actors_res = collidable_const_actors.get();
 			all_actors.insert(all_actors.end(), const_actors_res.begin(), const_actors_res.end());
 			return all_actors;
 		}

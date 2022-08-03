@@ -1,6 +1,7 @@
 #include "WorldForForestTest.h"
 #include "PXFactory/SettingsFactory.h"
 #include "PXCore/World/Components/FpsCounter.h"
+#include "PXCore/World/Components/MainActorPositionIndicator.h"
 #include "ControllerForForestTest.h"
 #include "Actors/Tree.h"
 #include "PXCore/Engine.h"
@@ -15,23 +16,22 @@ namespace Test {
 	}
 	void WorldForForestTest::Draw(sf::RenderWindow& window) {
 		WorldBaseGUI::Draw(window);
-		sf::Vertex line1[] =
-		{
+		DEBUGDrawDeadZone(window);
+	}
+	void WorldForForestTest::DEBUGDrawDeadZone(sf::RenderWindow& window)const {
+		sf::Vertex line1[] = {
 			sf::Vertex(sf::Vector2f(_world_settings.deadzone_x, _world_settings.deadzone_y)),
 			sf::Vertex(sf::Vector2f(_world_settings.deadzone_x, -_world_settings.deadzone_y)),
 		};
-		sf::Vertex line2[] =
-		{
+		sf::Vertex line2[] = {
 			sf::Vertex(sf::Vector2f(_world_settings.deadzone_x, _world_settings.deadzone_y)),
 			sf::Vertex(sf::Vector2f(-_world_settings.deadzone_x, _world_settings.deadzone_y)),
 		};
-		sf::Vertex line3[] =
-		{
+		sf::Vertex line3[] = {
 			sf::Vertex(sf::Vector2f(-_world_settings.deadzone_x, -_world_settings.deadzone_y)),
 			sf::Vertex(sf::Vector2f(-_world_settings.deadzone_x, _world_settings.deadzone_y)),
 		};
-		sf::Vertex line4[] =
-		{
+		sf::Vertex line4[] = {
 			sf::Vertex(sf::Vector2f(-_world_settings.deadzone_x, -_world_settings.deadzone_y)),
 			sf::Vertex(sf::Vector2f(_world_settings.deadzone_x, -_world_settings.deadzone_y)),
 		};
@@ -70,6 +70,7 @@ namespace Test {
 		if (auto parser = _parent->GetParser(); parser and parser->get().GetValue<bool>("-fpscounter"))
 			_gui_world_components.emplace_back(std::make_shared<Core::World::Component::FpsCounter>(this, &_gui, theme));
 		_gui_world_components.emplace_back(std::make_shared<Core::World::Component::ActorsCounter>(this, &_gui, theme));
+		_gui_world_components.emplace_back(std::make_shared<Core::World::Component::MainActorPositionIndicator>(this, &_gui, theme, _main_controller->GetMainCharacter()));
 	}
 	void WorldForForestTest::InitGuiSettup() {
 		WorldBaseGUI::InitGuiSettup();

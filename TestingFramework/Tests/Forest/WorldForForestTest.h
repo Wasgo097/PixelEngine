@@ -19,6 +19,7 @@ namespace Test {
 		// Inherited via WorldBaseGUI
 		virtual void CreateWorldBaseGUIComponents() override;
 		virtual void InitGuiSettup();
+		void DEBUGDrawDeadZone(sf::RenderWindow& window)const;
 		std::shared_ptr<Core::World::Component::ActorsCounter> GetActorsCounter()const;
 		std::shared_ptr<Core::Time::TimeManager> _tree_timer;
 		std::list<std::shared_ptr<Tree>> _created_trees;

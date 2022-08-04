@@ -12,10 +12,11 @@ namespace Test {
 
         sf::RenderWindow window(sf::VideoMode(width, height, 32), "Inside the Particle Storm");
         window.setVerticalSyncEnabled(true);
+        window.setFramerateLimit(0);
         //const sf::Input& input = window.getInput();
         sf::Event events;
         sf::Font font;
-        if (!font.loadFromFile("/usr/share/fonts/truetype/yudit.ttf")) return false;
+        if (!font.loadFromFile("Resource\\test_font.ttf")) return false;
         sf::Text text("", font, 10);
         text.setPosition(10.0f, 10.0f);
 
@@ -25,7 +26,7 @@ namespace Test {
         //particleSystem.setParticleSpeed( 80.0f );
         particleSystem.setDissolve(true);
         particleSystem.setDissolutionRate(1);
-        particleSystem.setShape(Shape::CIRCLE);
+        particleSystem.setShape(Shape::circle);
 
         particleSystem.fuel(1000);
 
@@ -33,7 +34,7 @@ namespace Test {
         float ypos = 240.0f;
         float xgrv = 0.0f;
         float ygrv = 0.0f;
-
+        sf::Clock clock;
         while (window.isOpen())
         {
             while (window.pollEvent(events))
@@ -44,7 +45,7 @@ namespace Test {
                     if (events.key.code == sf::Keyboard::Escape)
                         window.close();
                     if (sf::Keyboard::isKeyPressed(sf::Keyboard::Space))
-                        particleSystem.fuel(200/* * window.getFrameTime() */);
+                        particleSystem.fuel(1000/* * window.getFrameTime() */);
                     if (sf::Keyboard::isKeyPressed(sf::Keyboard::A))
                         particleSystem.setPosition(--xpos, ypos);
                     if (sf::Keyboard::isKeyPressed(sf::Keyboard::D))
@@ -68,7 +69,7 @@ namespace Test {
                     break;
                 }
 
-            particleSystem.remove();
+            particleSystem.clear();
             particleSystem.update();
             particleSystem.render();
 

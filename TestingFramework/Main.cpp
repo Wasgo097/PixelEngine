@@ -4,6 +4,7 @@
 #include "Tests/GUISettup/MultipleWidgetsTest.h"
 #include "Tests/GUISettup/LoginExample.h"
 #include "Tests/MainMenu/MainMenuTest.h"
+#include "Tests/Particle/ParticleTest.h"
 #include "PXArgumentParser/ArgumentParser.h"
 #include <iostream>
 using namespace Test;
@@ -19,7 +20,9 @@ int main(int argc, const char* argv[]) {
 	std::cout << "LoginExample result: \n" << test4.RunTest() << std::endl;*/
 	/*MultipleWidgetsTest test5;
 	std::cout << "MultipleWidgetsTest result: \n" << test5.RunTest() << std::endl;*/
-	MainMenuTest test6(parser);
-	std::cout << "MainMenuTest result: \n" << test6.RunTest() << std::endl;
+	/*MainMenuTest test6(parser);
+	std::cout << "MainMenuTest result: \n" << test6.RunTest() << std::endl;*/
+	ParticleTest test7(parser);
+	std::cout << "ParticleTest result: \n" << test7.RunTest() << std::endl;
 	return 0;
 }

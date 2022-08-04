@@ -153,7 +153,7 @@ namespace Core {
 				[](const std::shared_ptr<const Core::Object::Actor>& first, const std::shared_ptr<const Core::Object::Actor>& second) {
 				if (auto first_pos = first->GetPosition(); first_pos)
 					if (auto second_pos = second->GetPosition(); second_pos)
-						return first_pos->y < second_pos->y;
+						return static_cast<int>(first_pos->y) < static_cast<int>(second_pos->y);
 				return true;
 			};
 			std::lock_guard lock(_impl->actors.mtx);

@@ -164,6 +164,7 @@
     <ClInclude Include="Interfaces\ITimeObservable.h" />
     <ClInclude Include="Interfaces\ITimeObserver.h" />
     <ClInclude Include="pch.h" />
+    <ClInclude Include="Randomizer.h" />
     <ClInclude Include="ThreadingResource.h" />
   </ItemGroup>
   <ItemGroup>

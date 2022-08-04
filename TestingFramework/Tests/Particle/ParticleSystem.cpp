@@ -6,7 +6,7 @@ ParticleSystem::ParticleSystem(int width, int height) {
 	_position.x = 0.5f * width;
 	_position.y = 0.5f * height;
 }
-void ParticleSystem::fuel(unsigned int particles) {
+void ParticleSystem::AddParticles(unsigned int particles) {
 	double angle;
 	if (_particles.capacity() < _particles.size() + particles)
 		_particles.reserve(_particles.capacity() + particles);
@@ -38,7 +38,7 @@ void ParticleSystem::fuel(unsigned int particles) {
 		_particles.emplace_back(std::move(particle));
 	}
 }
-void ParticleSystem::update() {
+void ParticleSystem::Tick() {
 	float time = _clock.restart().asSeconds();
 	for (const auto& particle : _particles) {
 		particle->vel.x += _gravity.x * time;
@@ -53,12 +53,12 @@ void ParticleSystem::update() {
 		});
 	_particles.erase(_particles.begin(), it);
 }
-void ParticleSystem::render() {
+void ParticleSystem::Render() {
 	for (const auto& particle : _particles)
 		_image.setPixel(static_cast<unsigned int>(particle->pos.x), static_cast<unsigned int>(particle->pos.y), particle->color);
 	_texture.update(_image);
 }
-void ParticleSystem::clear() {
+void ParticleSystem::Clear() {
 	const auto& current_size = _image.getSize();
 	_image.create(current_size.x, current_size.y, _transparent);
 }

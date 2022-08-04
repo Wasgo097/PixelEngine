@@ -23,10 +23,10 @@ class ParticleSystem {
 public:
 	ParticleSystem(int width, int height);
 
-	void fuel(unsigned int particles); // Adds new particles to m_particles
-	void update(); // Updates position, velocity and opacity of all particles
-	void render(); // Renders all particles onto m_image
-	void clear(); // Removes all particles from m_image
+	void AddParticles(unsigned int particles); // Adds new particles to m_particles
+	void Tick(); // Updates position, velocity and opacity of all particles
+	void Render(); // Renders all particles onto m_image
+	void Clear(); // Removes all particles from m_image
 
 	void setPosition(float x, float y) { _position.x = x; _position.y = y; }
 	void setGravity(float x, float y) { _gravity.x = x; _gravity.y = y; }

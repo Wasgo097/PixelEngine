@@ -45,6 +45,9 @@
     <ClInclude Include="WindowSettingsDTO.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="ParticleSystemSettings.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
     <ClInclude Include="ParticleSettings.h">
       <Filter>Header Files</Filter>
     </ClInclude>

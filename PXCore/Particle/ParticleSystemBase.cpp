@@ -1,8 +1,8 @@
 #include "ParticleSystemBase.h"
 namespace Core::Particle {
 	const sf::Color ParticleSystemBase::_TRANSPARENT = sf::Color(0, 0, 0, 0);
-	ParticleSystemBase::ParticleSystemBase(const sf::Vector2u& size, const sf::Vector2f& position, unsigned int particles) :_position{position} {
-		_image.create(size.x, size.y, _TRANSPARENT);
+	ParticleSystemBase::ParticleSystemBase(const Settings::ParticleSystemSettings& settings, unsigned int particles) :_settings{ settings } {
+		_image.create(_settings.size.x, _settings.size.y, _TRANSPARENT);
 		_texture.loadFromImage(_image);
 		_sprite = sf::Sprite(_texture);
 		AddParticles(particles);
@@ -14,16 +14,10 @@ namespace Core::Particle {
 			_particles.emplace_back(CreateParticle());
 	}
 	void ParticleSystemBase::Update(float delta) {
-		for (const auto& particle : _particles) {
-			particle->vel.x += _gravity.x * delta;
-			particle->vel.y += _gravity.y * delta;
-			particle->pos.x += particle->vel.x * delta * _particle_speed;
-			particle->pos.y += particle->vel.y * delta * _particle_speed;
-			if (_dissolve)
-				particle->color.a -= _dissolution_rate;
-		}
+		for (const auto& particle : _particles)
+			particle->Tick(delta, _settings.gravity, _settings.particle_speed, _settings.dissolve ? _settings.dissolution_rate : std::optional<unsigned char>());
 		auto it = std::partition(_particles.begin(), _particles.end(), [this](const std::unique_ptr<Particle>& particle) {
-			return particle->pos.x > _image.getSize().x or particle->pos.x < 0 or particle->pos.y > _image.getSize().y or particle->pos.y < 0 or particle->color.a < 10;
+			return particle->IsValid(_settings.size);
 			});
 		_particles.erase(_particles.begin(), it);
 	}
@@ -34,11 +28,10 @@ namespace Core::Particle {
 	}
 	void ParticleSystemBase::PrepareTexture() {
 		for (const auto& particle : _particles)
-			_image.setPixel(static_cast<unsigned int>(particle->pos.x), static_cast<unsigned int>(particle->pos.y), particle->color);
+			particle->Draw(_image);
 		_texture.update(_image);
 	}
 	void ParticleSystemBase::Clear() {
-		const auto& current_size = _image.getSize();
-		_image.create(current_size.x, current_size.y, _TRANSPARENT);
+		_image.create(_settings.size.x, _settings.size.y, _TRANSPARENT);
 	}
 }

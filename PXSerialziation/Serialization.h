@@ -11,13 +11,14 @@
 #include "PXSettings/TextureSettings.h"
 #include "PXSettings/WindowSettings.h"
 #include "PXSettings/WorldSettings.h"
+#include "PXSettings/ParticleSystemSettings.h"
 using nlohmann::json;
 namespace ActorsEnums {
 
-NLOHMANN_JSON_SERIALIZE_ENUM(CollisionType, {
-	{CollisionType::None, "None"},
-	{CollisionType::Overlap, "Overlap"},
-	{CollisionType::Collision, "Collision"}
+	NLOHMANN_JSON_SERIALIZE_ENUM(CollisionType, {
+		{CollisionType::None, "None"},
+		{CollisionType::Overlap, "Overlap"},
+		{CollisionType::Collision, "Collision"}
 		})
 		NLOHMANN_JSON_SERIALIZE_ENUM(ActorType, {
 		{ActorType::Static, "Static"},
@@ -53,4 +54,5 @@ namespace Settings {
 	NLOHMANN_DEFINE_TYPE_NON_INTRUSIVE(TextureSettings, texture_path, smooth, repeatable, scale);
 	NLOHMANN_DEFINE_TYPE_NON_INTRUSIVE(WindowSettings, video_mode, fps, display_style, window_name, vsync);
 	NLOHMANN_DEFINE_TYPE_NON_INTRUSIVE(WorldSettings, buffer_size, gc_delay, deadzone_x, deadzone_y);
+	NLOHMANN_DEFINE_TYPE_NON_INTRUSIVE(ParticleSystemSettings, position, gravity, particle_speed, dissolve, dissolution_rate);
 }

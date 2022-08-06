@@ -160,6 +160,7 @@
     <ClInclude Include="framework.h" />
     <ClInclude Include="MusicSettings.h" />
     <ClInclude Include="ParticleSettings.h" />
+    <ClInclude Include="ParticleSystemSettings.h" />
     <ClInclude Include="pch.h" />
     <ClInclude Include="TextureSettings.h" />
     <ClInclude Include="WindowSettings.h" />

@@ -12,6 +12,7 @@
 #include "PXSettings/WindowSettings.h"
 #include "PXSettings/WorldSettings.h"
 #include "PXSettings/ParticleSystemSettings.h"
+#include "PXSettings/ParticleSettings.h"
 using nlohmann::json;
 namespace ActorsEnums {
 
@@ -54,5 +55,6 @@ namespace Settings {
 	NLOHMANN_DEFINE_TYPE_NON_INTRUSIVE(TextureSettings, texture_path, smooth, repeatable, scale);
 	NLOHMANN_DEFINE_TYPE_NON_INTRUSIVE(WindowSettings, video_mode, fps, display_style, window_name, vsync);
 	NLOHMANN_DEFINE_TYPE_NON_INTRUSIVE(WorldSettings, buffer_size, gc_delay, deadzone_x, deadzone_y);
-	NLOHMANN_DEFINE_TYPE_NON_INTRUSIVE(ParticleSystemSettings, position, gravity, particle_speed, dissolve, dissolution_rate);
+	NLOHMANN_DEFINE_TYPE_NON_INTRUSIVE(ParticleSystemSettings, position, gravity, size, particle_speed, dissolve, dissolution_rate);
+	NLOHMANN_DEFINE_TYPE_NON_INTRUSIVE(ParticleSettings, position, velocity, color, timely, max_time);
 }

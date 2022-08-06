@@ -15,6 +15,6 @@ namespace Settings {
 		sf::Vector2f velocity;
 		sf::Color color;
 		bool timely = false;
-		const float max_time = .0f;
+		float max_time = .0f;
 	};
 }

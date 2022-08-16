@@ -45,7 +45,7 @@ TEST_F(ArgumentParserTest, ConstructParserFromInvalidMainArgumentsTest) {
 	try {
 		_parser.reset(new ArgumentParser(1, argv));
 	}
-	catch (std::invalid_argument& ex) {
+	catch (std::invalid_argument&) {
 		is_exception = true;
 	}
 	catch (std::exception& ex) {
@@ -63,7 +63,7 @@ TEST_F(ArgumentParserTest, ConstructParserFromIncompleteMainArgumentsTest) {
 	try {
 		_parser.reset(new ArgumentParser(4, argv));
 	}
-	catch (std::invalid_argument& ex) {
+	catch (std::invalid_argument&) {
 		is_exception = true;
 	}
 	catch (std::exception& ex) {

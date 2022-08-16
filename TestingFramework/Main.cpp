@@ -20,9 +20,9 @@ int main(int argc, const char* argv[]) {
 	std::cout << "LoginExample result: \n" << test4.RunTest() << std::endl;*/
 	/*MultipleWidgetsTest test5(parser);
 	std::cout << "MultipleWidgetsTest result: \n" << test5.RunTest() << std::endl;*/
-	/*MainMenuTest test6(parser);
-	std::cout << "MainMenuTest result: \n" << test6.RunTest() << std::endl;*/
-	ParticleTest test7(parser);
-	std::cout << "ParticleTest result: \n" << test7.RunTest() << std::endl;
+	MainMenuTest test6(parser);
+	std::cout << "MainMenuTest result: \n" << test6.RunTest() << std::endl;
+	/*ParticleTest test7(parser);
+	std::cout << "ParticleTest result: \n" << test7.RunTest() << std::endl;*/
 	return 0;
 }

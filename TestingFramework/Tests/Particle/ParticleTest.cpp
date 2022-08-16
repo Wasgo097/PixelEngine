@@ -26,9 +26,8 @@ namespace Test {
         //particleSystem.setParticleSpeed( 80.0f );
         particleSystem.setDissolve(true);
         particleSystem.setDissolutionRate(1);
-        particleSystem.setShape(Shape::circle);
-
-        particleSystem.AddParticles(1000);
+        particleSystem.setShape(Shape::CIRCLE);
+        particleSystem.fuel(1000);
 
         float xpos = 320.0f;
         float ypos = 240.0f;
@@ -45,7 +44,7 @@ namespace Test {
                     if (events.key.code == sf::Keyboard::Escape)
                         window.close();
                     if (sf::Keyboard::isKeyPressed(sf::Keyboard::Space))
-                        particleSystem.AddParticles(1000/* * window.getFrameTime() */);
+                        particleSystem.fuel(1000/* * window.getFrameTime() */);
                     if (sf::Keyboard::isKeyPressed(sf::Keyboard::A))
                         particleSystem.setPosition(--xpos, ypos);
                     if (sf::Keyboard::isKeyPressed(sf::Keyboard::D))

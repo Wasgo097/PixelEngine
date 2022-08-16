@@ -64,17 +64,9 @@
   </ImportGroup>
   <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
-    <Import Project="SFMLLibD.props" />
-    <Import Project="..\PXCore\SFMLInclude.props" />
-    <Import Project="..\PXCore\TGUIInclude.props" />
-    <Import Project="TGUILibD.props" />
   </ImportGroup>
   <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
-    <Import Project="SFMLLibR.props" />
-    <Import Project="..\PXCore\SFMLInclude.props" />
-    <Import Project="..\PXCore\TGUIInclude.props" />
-    <Import Project="TGUILibR.props" />
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
@@ -146,8 +138,6 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="Tests\Particle\ParticleSystem.cpp" />
-    <ClCompile Include="Tests\Particle\ParticleTest.cpp" />
     <ClCompile Include="Tests\ActorAnimation\ActorAnimationTest.cpp" />
     <ClCompile Include="Tests\ActorAnimation\ControllerForAnimationTest.cpp" />
     <ClCompile Include="Tests\ActorAnimation\EngineForAnimationTest.cpp" />
@@ -189,8 +179,6 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Tests\Particle\ParticleSystem.h" />
-    <ClInclude Include="Tests\Particle\ParticleTest.h" />
     <ClInclude Include="Tests\ActorAnimation\ActorAnimationTest.h" />
     <ClInclude Include="Tests\ActorAnimation\ControllerForAnimationTest.h" />
     <ClInclude Include="Tests\ActorAnimation\EngineForAnimationTest.h" />
@@ -211,7 +199,19 @@
     <ClInclude Include="Tests\Forest\WorldForForestTest.h" />
     <ClInclude Include="Tests\Forest\Actors\Tree.h" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
+  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
+    <Import Project="..\packages\PXIncludes.1.0.0\build\native\PXIncludes.targets" Condition="Exists('..\packages\PXIncludes.1.0.0\build\native\PXIncludes.targets')" />
+    <Import Project="..\packages\PXLibs.1.0.0\build\native\PXLibs.targets" Condition="Exists('..\packages\PXLibs.1.0.0\build\native\PXLibs.targets')" />
   </ImportGroup>
+  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
+    <PropertyGroup>
+      <ErrorText>This project references NuGet package(s) that are missing on this computer. Use NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
+    </PropertyGroup>
+    <Error Condition="!Exists('..\packages\PXIncludes.1.0.0\build\native\PXIncludes.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\PXIncludes.1.0.0\build\native\PXIncludes.targets'))" />
+    <Error Condition="!Exists('..\packages\PXLibs.1.0.0\build\native\PXLibs.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\PXLibs.1.0.0\build\native\PXLibs.targets'))" />
+  </Target>
 </Project>

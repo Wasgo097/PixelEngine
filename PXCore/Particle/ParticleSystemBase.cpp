@@ -1,7 +1,7 @@
 #include "ParticleSystemBase.h"
 namespace Core::Particle {
 	const sf::Color ParticleSystemBase::_TRANSPARENT = sf::Color(0, 0, 0, 0);
-	ParticleSystemBase::ParticleSystemBase(const Settings::ParticleSystemSettings& settings, unsigned int particles) :_settings{ settings } {
+	ParticleSystemBase::ParticleSystemBase(ParticleEmitter* parent, const Settings::ParticleSystemSettings& settings, unsigned int particles) :_settings{ settings }, _parent{parent} {
 		_image.create(_settings.size.x, _settings.size.y, _TRANSPARENT);
 		_texture.loadFromImage(_image);
 		_sprite = sf::Sprite(_texture);
@@ -13,7 +13,7 @@ namespace Core::Particle {
 		for (unsigned int i = 0; i < particles; i++)
 			_particles.emplace_back(CreateParticle());
 	}
-	void ParticleSystemBase::Update(float delta) {
+	void ParticleSystemBase::Tick(float delta) {
 		for (const auto& particle : _particles)
 			particle->Tick(delta, _settings.gravity, _settings.particle_speed, _settings.dissolve ? _settings.dissolution_rate : std::optional<unsigned char>());
 		auto it = std::partition(_particles.begin(), _particles.end(), [this](const std::unique_ptr<Particle>& particle) {

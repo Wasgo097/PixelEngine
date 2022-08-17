@@ -11,12 +11,12 @@
 #include "PXSettings/ParticleSystemSettings.h"
 #include "Particle.h"
 namespace Core::Particle {
+	class ParticleEmitter;
 	class ParticleSystemBase {
 	public:
-		//todo parent
-		ParticleSystemBase(const Settings::ParticleSystemSettings& settings, unsigned int particles);
+		ParticleSystemBase(ParticleEmitter* parent,const Settings::ParticleSystemSettings& settings, unsigned int particles);
 		void AddParticles(unsigned int particles);
-		void Update(float delta);
+		void Tick(float delta);
 		void Draw(sf::RenderWindow& window);
 		virtual void InitParticleSystem() {};
 		virtual void EndParticleSystem() {};
@@ -26,10 +26,11 @@ namespace Core::Particle {
 		void PrepareTexture();
 		static const sf::Color _TRANSPARENT;
 		static Randomizer  _randomizer;
+		ParticleEmitter* _parent;
 		Settings::ParticleSystemSettings _settings;
+		std::vector<std::unique_ptr<Particle>> _particles;
 		sf::Image _image; //image->texture->sprite
 		sf::Texture _texture;
-		sf::Sprite  _sprite;
-		std::vector<std::unique_ptr<Particle>> _particles;
+		sf::Sprite _sprite;
 	};
 }

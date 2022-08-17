@@ -7,6 +7,7 @@
 #include "PXCore/Object/AnimatedActor.h"
 #include "PXCore/Object/ControlledActor.h"
 #include "PXCore/ActorsManager.h"
+#include "PXCore/Particle/ParticleEmitter.h"
 #include "PXSettings/WorldSettings.h"
 #include "Components/WorldBaseComponent.h"
 namespace Core {
@@ -17,7 +18,6 @@ namespace Core::World {
 	public:
 		WorldBase(const Settings::WorldSettings& world_settings = Settings::WorldSettings(), Engine* parent = nullptr);
 		virtual ~WorldBase() = default;
-
 		template<typename type_to_create, typename ...Argv>
 			requires std::derived_from<type_to_create, Core::Object::Actor>
 		std::shared_ptr<type_to_create> SpawnActor(const Settings::ActorSettings& actor_settings, const Settings::TextureSettings& texture_settings, Argv && ...argv) {
@@ -82,6 +82,7 @@ namespace Core::World {
 		Engine* _parent = nullptr;
 		Settings::WorldSettings _world_settings;
 		std::unique_ptr<ActorsManager> _actor_manager;
+		std::unique_ptr <Core::Particle::ParticleEmitter> _particle_emitter;
 		std::unique_ptr<Controller::ControllerBase> _main_controller;
 		std::list<std::shared_ptr<Component::WorldBaseComponent>> _world_components;
 		bool _quit = false;

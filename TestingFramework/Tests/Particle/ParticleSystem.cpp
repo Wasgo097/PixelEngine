@@ -1,4 +1,5 @@
 #include "ParticleSystem.h"
+#include <iostream>
 ParticleSystem::ParticleSystem(int width, int height) {
 	_image.create(width, height, _transparent);
 	_texture.loadFromImage(_image);
@@ -49,13 +50,22 @@ void ParticleSystem::Tick() {
 			particle->color.a -= _dissolution_rate;
 	}
 	auto it = std::partition(_particles.begin(), _particles.end(), [this](const std::unique_ptr<Particle>& particle) {
-		return particle->pos.x > _image.getSize().x or particle->pos.x < 0 or particle->pos.y > _image.getSize().y or particle->pos.y < 0 or particle->color.a < 10;
+		return particle->pos.x >= _image.getSize().x or particle->pos.x <= 0 or particle->pos.y >= _image.getSize().y or particle->pos.y <= 0 or particle->color.a <= 10;
 		});
 	_particles.erase(_particles.begin(), it);
 }
 void ParticleSystem::Render() {
-	for (const auto& particle : _particles)
-		_image.setPixel(static_cast<unsigned int>(particle->pos.x), static_cast<unsigned int>(particle->pos.y), particle->color);
+	for (const auto& particle : _particles) {
+		try {
+			_image.setPixel(static_cast<unsigned int>(particle->pos.x), static_cast<unsigned int>(particle->pos.y), particle->color);
+		}
+		catch (std::exception& ex) {
+			std::cerr << "Exception " << ex.what() << "\n";
+		}
+		catch (...) {
+			std::cerr << "Unknown exception\n";
+		}
+	}
 	_texture.update(_image);
 }
 void ParticleSystem::Clear() {

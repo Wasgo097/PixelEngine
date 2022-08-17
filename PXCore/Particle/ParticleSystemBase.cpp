@@ -17,7 +17,7 @@ namespace Core::Particle {
 		for (const auto& particle : _particles)
 			particle->Tick(delta, _settings.gravity, _settings.particle_speed, _settings.dissolve ? _settings.dissolution_rate : std::optional<unsigned char>());
 		auto it = std::partition(_particles.begin(), _particles.end(), [this](const std::unique_ptr<Particle>& particle) {
-			return particle->IsValid(_settings.size);
+			return particle->ToDelete(_settings.size);
 			});
 		_particles.erase(_particles.begin(), it);
 	}

@@ -157,6 +157,8 @@
     <ClCompile Include="Tests\Forest\EngineForForestTest.cpp" />
     <ClCompile Include="Tests\Forest\WorldForForestTest.cpp" />
     <ClCompile Include="Tests\Forest\Actors\Tree.cpp" />
+    <ClCompile Include="Tests\Particle\ParticleSystem.cpp" />
+    <ClCompile Include="Tests\Particle\ParticleTest.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\PXArgumentParser\PXArgumentParser.vcxproj">
@@ -198,6 +200,8 @@
     <ClInclude Include="Tests\Forest\EngineForForestTest.h" />
     <ClInclude Include="Tests\Forest\WorldForForestTest.h" />
     <ClInclude Include="Tests\Forest\Actors\Tree.h" />
+    <ClInclude Include="Tests\Particle\ParticleSystem.h" />
+    <ClInclude Include="Tests\Particle\ParticleTest.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

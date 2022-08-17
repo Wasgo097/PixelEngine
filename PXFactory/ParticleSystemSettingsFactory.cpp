@@ -7,19 +7,17 @@ namespace Factory::ParticleSystemSettings {
 		Randomizer rnd;
 		result.position = position;
 		result.gravity = sf::Vector2f(static_cast<float>(rnd.Random(-5.0, 5.0)), -5.0f);
-		switch (size) {
-		case Size::small:
+		if (size == Size::small) {
 			unsigned val = static_cast<unsigned>(rnd.Random(50, 100));
 			result.size = sf::Vector2u(val, val);
-			break;
-		case Size::medium:
+		}
+		else if (size == Size::medium) {
 			unsigned val = static_cast<unsigned>(rnd.Random(100, 200));
 			result.size = sf::Vector2u(val, val);
-			break;
-		case Size::big:
+		}
+		else {
 			unsigned val = static_cast<unsigned>(rnd.Random(200, 350));
 			result.size = sf::Vector2u(val, val);
-			break;
 		}
 		result.particle_speed = 20.0f;
 		result.dissolve = true;

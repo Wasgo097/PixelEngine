@@ -7,7 +7,7 @@ namespace Core::Particle {
 	std::unique_ptr<Particle> Smoke::CreateParticle() const {
 		Settings::ParticleSettings smoke_settings;
 		smoke_settings.position.x = static_cast<float>(_settings.size.x / 2);
-		smoke_settings.position.x += _randomizer.Random(static_cast<double>(-_settings.size.x) / 10.0, static_cast<double>(_settings.size.x) / 10.0);
+		smoke_settings.position.x += _randomizer.Random(-static_cast<double>(_settings.size.x) / 10.0, static_cast<double>(_settings.size.x) / 10.0);
 		smoke_settings.position.y = static_cast<float>(_settings.size.y);
 		smoke_settings.position.y -= _randomizer.Random(.0, static_cast<double>(_settings.size.y) / 10.0);
 		double angle = _randomizer.Random(1.2, 1.9);

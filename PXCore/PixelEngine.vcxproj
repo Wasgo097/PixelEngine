@@ -19,6 +19,7 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="Particle\ParticleEmitter.cpp" />
     <ClCompile Include="Particle\Particle.cpp" />
     <ClCompile Include="Particle\ParticleSystemBase.cpp" />
     <ClCompile Include="World\Components\MainActorPositionIndicator.cpp" />
@@ -44,6 +45,7 @@
     <ClCompile Include="World\WorldBaseGUI.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Particle\ParticleEmitter.h" />
     <ClInclude Include="Particle\Particle.h" />
     <ClInclude Include="Particle\ParticleSystemBase.h" />
     <ClInclude Include="World\Components\MainActorPositionIndicator.h" />

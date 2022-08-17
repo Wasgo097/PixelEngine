@@ -6,6 +6,11 @@ namespace Core::Particle {
 			this->OnElapsed = *OnElapsed;
 	}
 	void Particle::Tick(float delta, const sf::Vector2f& gravity, float particle_speed, std::optional<unsigned char> dissolution_rate) {
+		if (this->time += delta < max_time) {
+			if (OnElapsed)
+				OnElapsed();
+			return;
+		}
 		velocity.x += gravity.x * delta;
 		velocity.y += gravity.y * delta;
 		position.x += velocity.x * delta * particle_speed;
@@ -17,6 +22,9 @@ namespace Core::Particle {
 		image.setPixel(static_cast<unsigned int>(position.x), static_cast<unsigned int>(position.y), color);
 	}
 	bool Particle::IsValid(const sf::Vector2u& image_size) const {
-		return position.x > image_size.x or position.x < 0 or position.y > image_size.y or position.y < 0 or color.a < 10;;
+		auto validation = position.x > image_size.x or position.x < 0 or position.y > image_size.y or position.y < 0 or color.a < 10;
+		if (timely)
+			validation = validation or this->time < max_time;
+		return validation;
 	}
 }

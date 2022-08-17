@@ -62,6 +62,7 @@ namespace Core::World {
 		bool Quit()const;
 		void RefreshView(const sf::Vector2f& center)const;
 		std::optional<sf::Vector2f> GetMainCharacterPosition()const;
+		void PushNewParticles(std::unique_ptr<Particle::ParticleSystemBase>&& particle_system);
 	protected:
 		template<typename T>
 			requires std::derived_from<T, Component::WorldBaseComponent>
@@ -82,7 +83,7 @@ namespace Core::World {
 		Engine* _parent = nullptr;
 		Settings::WorldSettings _world_settings;
 		std::unique_ptr<ActorsManager> _actor_manager;
-		std::unique_ptr <Core::Particle::ParticleEmitter> _particle_emitter;
+		std::unique_ptr<Core::Particle::ParticleEmitter> _particle_emitter;
 		std::unique_ptr<Controller::ControllerBase> _main_controller;
 		std::list<std::shared_ptr<Component::WorldBaseComponent>> _world_components;
 		bool _quit = false;

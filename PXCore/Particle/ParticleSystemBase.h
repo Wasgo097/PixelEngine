@@ -14,12 +14,13 @@ namespace Core::Particle {
 	class ParticleEmitter;
 	class ParticleSystemBase {
 	public:
-		ParticleSystemBase(ParticleEmitter* parent,const Settings::ParticleSystemSettings& settings, unsigned int particles);
+		ParticleSystemBase(ParticleEmitter* parent, const Settings::ParticleSystemSettings& settings, unsigned int particles);
 		void AddParticles(unsigned int particles);
 		void Tick(float delta);
 		void Draw(sf::RenderWindow& window);
 		virtual void InitParticleSystem() {};
 		virtual void EndParticleSystem() {};
+		virtual bool IsValid()const;
 	protected:
 		virtual std::unique_ptr<Particle> CreateParticle()const = 0;
 		void Clear();

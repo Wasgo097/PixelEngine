@@ -5,7 +5,7 @@
 #include "Engine.h"
 namespace Core::World {
 	WorldBase::WorldBase(const Settings::WorldSettings& world_settings, Engine* parent) :_parent(parent),
-		_world_settings(world_settings), _actor_manager(std::make_unique<ActorsManager>(this, world_settings)) {
+		_world_settings(world_settings), _actor_manager(std::make_unique<ActorsManager>(this, world_settings)),_particle_emitter(std::make_unique<Particle::ParticleEmitter>(this)) {
 	}
 	void WorldBase::Draw(sf::RenderWindow& window) {
 		if (!_initialized)
@@ -42,6 +42,9 @@ namespace Core::World {
 		if (auto character = _main_controller->GetMainCharacter(); character)
 			return character->GetPosition();
 		return {};
+	}
+	void WorldBase::PushNewParticles(std::unique_ptr<Particle::ParticleSystemBase>&& particle_system) {
+		_particle_emitter->PushNewParticles(std::move(particle_system));
 	}
 	void WorldBase::ServiceInput(const Core::Controller::Key& key) {
 		if (_main_controller)

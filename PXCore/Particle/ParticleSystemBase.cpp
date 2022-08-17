@@ -1,7 +1,7 @@
 #include "ParticleSystemBase.h"
 namespace Core::Particle {
 	const sf::Color ParticleSystemBase::_TRANSPARENT = sf::Color(0, 0, 0, 0);
-	ParticleSystemBase::ParticleSystemBase(ParticleEmitter* parent, const Settings::ParticleSystemSettings& settings, unsigned int particles) :_settings{ settings }, _parent{parent} {
+	ParticleSystemBase::ParticleSystemBase(ParticleEmitter* parent, const Settings::ParticleSystemSettings& settings, unsigned int particles) :_settings{ settings }, _parent{ parent } {
 		_image.create(_settings.size.x, _settings.size.y, _TRANSPARENT);
 		_texture.loadFromImage(_image);
 		_sprite = sf::Sprite(_texture);
@@ -25,6 +25,9 @@ namespace Core::Particle {
 		Clear();
 		PrepareTexture();
 		window.draw(_sprite);
+	}
+	bool ParticleSystemBase::IsValid() const {
+		return _particles.size() > 1;
 	}
 	void ParticleSystemBase::PrepareTexture() {
 		for (const auto& particle : _particles)

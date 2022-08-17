@@ -2,7 +2,7 @@
 #include "Controller/BaseImplementations/EmptyController.h"
 namespace Core::World {
 	EmptyWorld::EmptyWorld(const Settings::WorldSettings& world_settings, Engine* parent) :WorldBase(world_settings, parent) {
-		_main_controller = std::make_unique<Controller::EmptyController>(this,world_settings);
+		_main_controller = std::make_unique<Controller::EmptyController>(this, world_settings);
 	}
 	void EmptyWorld::CheckQuit() {
 		if (sf::Keyboard::isKeyPressed(sf::Keyboard::Escape)) {
@@ -14,7 +14,6 @@ namespace Core::World {
 		window.clear(sf::Color::Blue);
 		WorldBase::Draw(window);
 	}
-	void EmptyWorld::DrawMap(sf::RenderWindow& window)
-	{
+	void EmptyWorld::DrawMap(sf::RenderWindow& window) {
 	}
 }

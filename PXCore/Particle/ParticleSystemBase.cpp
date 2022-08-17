@@ -1,6 +1,7 @@
 #include "ParticleSystemBase.h"
 namespace Core::Particle {
 	const sf::Color ParticleSystemBase::_TRANSPARENT = sf::Color(0, 0, 0, 0);
+	Randomizer ParticleSystemBase::_randomizer=Randomizer();
 	ParticleSystemBase::ParticleSystemBase(ParticleEmitter* parent, const Settings::ParticleSystemSettings& settings, unsigned int particles) :_settings{ settings }, _parent{ parent } {
 		_image.create(_settings.size.x, _settings.size.y, _TRANSPARENT);
 		_texture.loadFromImage(_image);

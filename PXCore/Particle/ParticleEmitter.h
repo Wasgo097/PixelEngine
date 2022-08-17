@@ -13,6 +13,7 @@ namespace Core::Particle {
 	class ParticleEmitter :public ILoopingThread {
 	public:
 		ParticleEmitter(World::WorldBase* parent);
+		virtual ~ParticleEmitter();
 		void Tick(float time);
 		void Draw(sf::RenderWindow& window);
 		void PushNewParticles(std::unique_ptr<ParticleSystemBase>&& particle_system);

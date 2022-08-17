@@ -1,6 +1,7 @@
 #include "ControllerForForestTest.h"
 #include "Actors/ForestMainCharacter.h"
 #include "PXFactory/SettingsFactory.h"
+#include "PXCore/Particle/BaseImplementations/Smoke.h"
 namespace Test {
 	ControllerForForestTest::ControllerForForestTest(Core::World::WorldBase* world, const Settings::WorldSettings& world_settings) :ControllerBase(world, world_settings) {
 	}
@@ -11,17 +12,20 @@ namespace Test {
 		key.event_type = sf::Event::MouseButtonPressed;
 		key.mouse_button = sf::Mouse::Left;
 		key.repeatable = false;
-		_actions[key] = [](std::shared_ptr<Core::Object::ControlledActor> actor) {
-			if (auto ptr = std::dynamic_pointer_cast<ForestMainCharacter>(actor); ptr)
+		_actions[key] = [this](std::shared_ptr<Core::Object::ControlledActor> actor) {
+			if (auto ptr = std::dynamic_pointer_cast<ForestMainCharacter>(actor); ptr) {
 				//ptr->CastFireball();
-				ptr->CreateNewTree();
+				//ptr->CreateNewTree();
+			}
+			_world_parent->PushNewParticles(std::make_unique<Core::Particle::Smoke>(_world_parent->GetParticleEmitter(), 1000, *actor->GetPosition()));
 		};
 		key.repeatable = true;
-		key.mouse_button = sf::Mouse::Right;
-		_actions[key] = [](std::shared_ptr<Core::Object::ControlledActor> actor) {
-			if (auto ptr = std::dynamic_pointer_cast<ForestMainCharacter>(actor); ptr)
-				ptr->EraseTree();
-		};
+		//key.mouse_button = sf::Mouse::Right;
+		//_actions[key] = [](std::shared_ptr<Core::Object::ControlledActor> actor) {
+		//	if (auto ptr = std::dynamic_pointer_cast<ForestMainCharacter>(actor); ptr) {
+		//		ptr->EraseTree();
+		//	}
+		//};
 		key.input_type = Core::Controller::InputType::KeyboardInput;
 		key.event_type = sf::Event::KeyPressed;
 		key.keyboard_button = sf::Keyboard::W;

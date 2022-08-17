@@ -52,6 +52,7 @@ namespace Core::World {
 			return result;
 		}
 		virtual void Draw(sf::RenderWindow& window);
+		void DrawParticles(sf::RenderWindow& window);
 		virtual void Update(float delta);
 		virtual void ServiceInput(const Core::Controller::Key& key);
 		virtual void InitWorld();
@@ -63,6 +64,7 @@ namespace Core::World {
 		void RefreshView(const sf::Vector2f& center)const;
 		std::optional<sf::Vector2f> GetMainCharacterPosition()const;
 		void PushNewParticles(std::unique_ptr<Particle::ParticleSystemBase>&& particle_system);
+		Core::Particle::ParticleEmitter* GetParticleEmitter()const;
 	protected:
 		template<typename T>
 			requires std::derived_from<T, Component::WorldBaseComponent>

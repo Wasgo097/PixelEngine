@@ -1,8 +1,8 @@
 #include "Smoke.h"
 #include "PXUtilities/Randomizer.h"
 namespace Core::Particle {
-	Smoke::Smoke(ParticleEmitter* parent, unsigned int particles, const sf::Vector2f& position, Factory::ParticleSystemSettings::Size size) :
-		ParticleSystemBase(parent, Factory::ParticleSystemSettings::GetSmokeSettings(position, size), particles) {
+	Smoke::Smoke(ParticleEmitter* parent, const sf::Vector2f& position, Factory::ParticleSystemSettings::Size size) :
+		ParticleSystemBase(parent, Factory::ParticleSystemSettings::GetSmokeSettings(position, size)) {
 	}
 	std::unique_ptr<Particle> Smoke::CreateParticle() const {
 		Settings::ParticleSettings smoke_settings;

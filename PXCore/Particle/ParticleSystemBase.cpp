@@ -2,17 +2,16 @@
 namespace Core::Particle {
 	const sf::Color ParticleSystemBase::_TRANSPARENT = sf::Color(0, 0, 0, 0);
 	Randomizer ParticleSystemBase::_randomizer=Randomizer();
-	ParticleSystemBase::ParticleSystemBase(ParticleEmitter* parent, const Settings::ParticleSystemSettings& settings, unsigned int particles) :_settings{ settings }, _parent{ parent } {
+	ParticleSystemBase::ParticleSystemBase(ParticleEmitter* parent, const Settings::ParticleSystemSettings& settings) :_settings{ settings }, _parent{ parent } {
 		_image.create(_settings.size.x, _settings.size.y, _TRANSPARENT);
 		_texture.loadFromImage(_image);
 		_sprite = sf::Sprite(_texture);
-		AddParticles(particles);
 	}
 	void ParticleSystemBase::AddParticles(unsigned int particles) {
-		if (_particles.capacity() < _particles.size() + particles)
-			_particles.reserve(_particles.capacity() + particles);
+		/*if (_particles.capacity() < _particles.size() + particles)
+			_particles.reserve(_particles.capacity() + particles);*/
 		for (unsigned int i = 0; i < particles; i++)
-			_particles.emplace_back(CreateParticle());
+			_particles.push_back(std::move(CreateParticle()));
 	}
 	void ParticleSystemBase::Tick(float delta) {
 		for (const auto& particle : _particles)
@@ -26,6 +25,9 @@ namespace Core::Particle {
 		Clear();
 		PrepareTexture();
 		window.draw(_sprite);
+	}
+	void ParticleSystemBase::InitParticleSystem(unsigned int particles) {
+		AddParticles(particles);
 	}
 	bool ParticleSystemBase::IsValid() const {
 		return _particles.size() > 1;

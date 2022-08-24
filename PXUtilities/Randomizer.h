@@ -3,16 +3,16 @@
 class Randomizer {
 public:
 	Randomizer() : device_(), engine_(device_()) {};
-	int Random(int a, int b) {
-		if (b < a)
-			std::swap(a, b);
-		std::uniform_int_distribution<int> uni_dist(a, b);
+	int Random(int min, int max) {
+		if (max < min)
+			std::swap(min, max);
+		std::uniform_int_distribution<int> uni_dist(min, max);
 		return uni_dist(engine_);
 	}
-	double Random(double a, double b) {
-		if (b < a)
-			std::swap(a, b);
-		std::uniform_real_distribution<double> uni_dist(a, b);
+	double Random(double min, double max) {
+		if (max < min)
+			std::swap(min, max);
+		std::uniform_real_distribution<double> uni_dist(min, max);
 		return uni_dist(engine_);
 	}
 private:

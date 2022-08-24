@@ -2,11 +2,13 @@
 #include "ParticleSystemSettingsFactory.h"
 #include "PXUtilities/Randomizer.h"
 namespace Factory::ParticleSystemSettings {
-	Settings::ParticleSystemSettings GetSmokeSettings(const sf::Vector2f& position, Size size) {
+	Settings::ParticleSystemSettings GetSmokeSystemSettings(const sf::Vector2f& position, Size size) {
 		Settings::ParticleSystemSettings result;
 		Randomizer rnd;
 		result.position = position;
-		result.gravity = sf::Vector2f(static_cast<float>(rnd.Random(-5.0, 5.0)), -5.0f);
+		double angle = rnd.Random(1.3, 1.9);
+		//-sin because y axis is inverted
+		result.gravity = sf::Vector2f(cos(angle), -sin(angle));
 		if (size == Size::small) {
 			unsigned val = static_cast<unsigned>(rnd.Random(50, 100));
 			result.size = sf::Vector2u(val, val);
@@ -19,7 +21,7 @@ namespace Factory::ParticleSystemSettings {
 			unsigned val = static_cast<unsigned>(rnd.Random(200, 350));
 			result.size = sf::Vector2u(val, val);
 		}
-		result.particle_speed = 20.0f;
+		result.particle_speed = 100.0f;
 		result.dissolve = true;
 		result.dissolution_rate = 1;
 		return result;

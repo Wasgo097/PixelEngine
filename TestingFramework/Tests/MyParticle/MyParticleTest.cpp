@@ -1,5 +1,6 @@
 #include "MyParticleTest.h"
 #include "PXCore/Particle/ParticleEmitter.h"
+#include "PXCore/Particle/BaseImplementations/Smoke.h"
 #include "ExampleParticleSystem.h"
 #include <SFML/Graphics.hpp>
 using namespace Core::Particle;
@@ -7,14 +8,15 @@ namespace Test {
 	bool MyParticleTest::PrepareTest() {
 		sf::RenderWindow window(sf::VideoMode(600, 600), "SFML works!");
 		ParticleEmitter emiter(nullptr);
-		Settings::ParticleSystemSettings settings;
+		/*Settings::ParticleSystemSettings settings;
 		settings.dissolution_rate = 0;
 		settings.dissolve = false;
 		settings.gravity = sf::Vector2f{ .0f,.0f };
 		settings.particle_speed = .0f;
 		settings.position = sf::Vector2f{ 300.0f,300.0f };
-		settings.size = sf::Vector2u{ 100,100 };
-		emiter.PushNewParticles(std::make_unique<ExampleParticleSystem>(&emiter, settings));
+		settings.size = sf::Vector2u{ 100,100 };*/
+		emiter.PushNewParticles(std::make_unique<Smoke>(&emiter, sf::Vector2f(300.0f,300.0f),Factory::ParticleSystemSettings::Size::small));
+		//emiter.PushNewParticles(std::make_unique<ExampleParticleSystem>(&emiter, settings));
 		while (window.isOpen()) {
 			sf::Event action;
 			while (window.pollEvent(action)) {
@@ -22,7 +24,7 @@ namespace Test {
 					window.close();
 			}
 			emiter.Tick(0.001);
-			window.clear();
+			window.clear(sf::Color::Green);
 			emiter.Draw(window);
 			window.display();
 		}

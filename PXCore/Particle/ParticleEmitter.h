@@ -24,7 +24,7 @@ namespace Core::Particle {
 	protected:
 		World::WorldBase* _parent;
 		Utility::ThreadingResourceLight<std::vector<std::unique_ptr<ParticleSystemBase>>> _particles_systems;
-		std::thread _thr;
-		bool _refresh_particles_systems = true;
+		std::unique_ptr<std::thread> _thr;
+		bool _refresh_particles_systems{ true };
 	};
 }

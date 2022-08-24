@@ -6,5 +6,5 @@ namespace Factory::ParticleSystemSettings {
 		medium,
 		big
 	};
-	Settings::ParticleSystemSettings GetSmokeSettings(const sf::Vector2f& position,Size size);
+	Settings::ParticleSystemSettings GetSmokeSystemSettings(const sf::Vector2f& position,Size size);
 }

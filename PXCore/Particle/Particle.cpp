@@ -21,10 +21,16 @@ namespace Core::Particle {
 		_time += delta;
 	}
 	void Particle::Draw(sf::Image& image) {
-		image.setPixel(static_cast<unsigned int>(_position.x), static_cast<unsigned int>(_position.y), _color);
+		sf::Vector2u coord{ static_cast<unsigned>(_position.x),static_cast<unsigned>(_position.y) };
+		image.setPixel(coord.x, coord.y, _color);
 	}
 	bool Particle::ToDelete(const sf::Vector2u& image_size) const {
-		auto condition = _position.x >= image_size.x or _position.x <= 0 or _position.y >= image_size.y or _position.y <= 0 or _color.a <= 10;
+		auto condition =
+			_position.x >= image_size.x - 1
+			or _position.x <= 0
+			or _position.y >= image_size.y - 1
+			or _position.y <= 0
+			or _color.a <= 10;
 		if (_TIMELY)
 			condition = condition or _time >= _MAX_TIME;
 		return condition;

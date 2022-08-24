@@ -1,10 +1,10 @@
 {
     "display_style": 7,
-    "fps": 60,
+    "fps": 0,
     "video_mode": {
         "bitsPerPixel": 32,
-        "height": 720,
-        "width": 1280
+        "height": 1080,
+        "width": 1920
     },
     "vsync": false,
     "window_name": "Window"

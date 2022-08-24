@@ -72,7 +72,7 @@ namespace Test {
 		_tree_timer->DetachFromSeconds(tree.get());
 	}
 	void WorldForForestTest::DrawMap(sf::RenderWindow& window) {
-		window.draw(_map);
+		//window.draw(_map);
 	}
 	void WorldForForestTest::CreateWorldBaseGUIComponents() {
 		tgui::Theme theme{ "Resource\\GUI\\themes\\TransparentGrey.txt" };

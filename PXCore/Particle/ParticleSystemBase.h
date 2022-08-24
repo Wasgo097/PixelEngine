@@ -21,7 +21,7 @@ namespace Core::Particle {
 		void Draw(sf::RenderWindow& window);
 		virtual void InitParticleSystem() {};
 		virtual void EndParticleSystem() {};
-		virtual bool IsValid()const;
+		virtual bool ToDelete()const;
 	protected:
 		virtual std::unique_ptr<Particle> CreateParticle()const = 0;
 		void Clear();

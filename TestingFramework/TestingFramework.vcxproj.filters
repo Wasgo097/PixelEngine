@@ -72,10 +72,16 @@
     <ClCompile Include="Tests\EngineSettup\EngineSetupTest.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Tests\Particle\ParticleSystem.cpp">
+    <ClCompile Include="Tests\ExampleParticle\ParticleSystem.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Tests\Particle\ParticleTest.cpp">
+    <ClCompile Include="Tests\ExampleParticle\ParticleTest.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Tests\MyParticle\MyParticleTest.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Tests\MyParticle\ExampleParticleSystem.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -137,10 +143,16 @@
     <ClInclude Include="Tests\EngineSettup\EngineSetupTest.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Tests\Particle\ParticleTest.h">
+    <ClInclude Include="Tests\ExampleParticle\ParticleTest.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Tests\Particle\ParticleSystem.h">
+    <ClInclude Include="Tests\ExampleParticle\ParticleSystem.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Tests\MyParticle\MyParticleTest.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Tests\MyParticle\ExampleParticleSystem.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

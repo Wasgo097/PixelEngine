@@ -13,10 +13,10 @@ namespace Test {
 		key.mouse_button = sf::Mouse::Left;
 		key.repeatable = false;
 		_actions[key] = [this](std::shared_ptr<Core::Object::ControlledActor> actor) {
-			if (auto ptr = std::dynamic_pointer_cast<ForestMainCharacter>(actor); ptr) {
-				//ptr->CastFireball();
-				//ptr->CreateNewTree();
-			}
+			//if (auto ptr = std::dynamic_pointer_cast<ForestMainCharacter>(actor); ptr) {
+			//	//ptr->CastFireball();
+			//	//ptr->CreateNewTree();
+			//}
 			_world_parent->PushNewParticles(std::make_unique<Core::Particle::Smoke>(_world_parent->GetParticleEmitter(), *actor->GetPosition()));
 		};
 		key.repeatable = true;

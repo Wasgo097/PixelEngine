@@ -4,6 +4,9 @@ namespace Core::Particle {
 	Smoke::Smoke(ParticleEmitter* parent, const sf::Vector2f& position, Factory::ParticleSystemSettings::Size size) :
 		ParticleSystemBase(parent, Factory::ParticleSystemSettings::GetSmokeSettings(position, size)) {
 	}
+	void Smoke::InitParticleSystem() {
+		AddParticles(1000);
+	}
 	std::unique_ptr<Particle> Smoke::CreateParticle() const {
 		Settings::ParticleSettings smoke_settings;
 		smoke_settings.position.x = static_cast<float>(_settings.size.x / 2);

@@ -19,7 +19,7 @@ void Core::Particle::ParticleEmitter::Draw(sf::RenderWindow& window) {
 void Core::Particle::ParticleEmitter::PushNewParticles(std::unique_ptr<ParticleSystemBase>&& particle_system) {
 	std::lock_guard lock(_particles_systems.mtx);
 	_particles_systems.rsc->emplace_back(std::move(particle_system));
-	_particles_systems.rsc->back()->InitParticleSystem(1000);
+	_particles_systems.rsc->back()->InitParticleSystem();
 }
 void Core::Particle::ParticleEmitter::Run() {
 	using namespace std::chrono_literals;

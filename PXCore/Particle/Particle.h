@@ -11,12 +11,12 @@ namespace Core::Particle {
 		void Draw(sf::Image& image);
 		bool ToDelete(const sf::Vector2u& image_size)const;
 	protected:
-		sf::Vector2f _position;
+		sf::Vector2i _position;
 		sf::Vector2f _velocity;
 		sf::Color _color;
-		float _time = .0f;
+		float _time{ .0f };
 		std::function<void()> OnElapsed;
 		const bool _TIMELY = false;
-		const float _MAX_TIME = .0f;
+		const float _MAX_TIME = { .0f };
 	};
 }

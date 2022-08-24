@@ -19,7 +19,7 @@ namespace Core::Particle {
 		void AddParticles(unsigned int particles);
 		void Tick(float delta);
 		void Draw(sf::RenderWindow& window);
-		virtual void InitParticleSystem(unsigned int particles);;
+		virtual void InitParticleSystem() {};
 		virtual void EndParticleSystem() {};
 		virtual bool IsValid()const;
 	protected:

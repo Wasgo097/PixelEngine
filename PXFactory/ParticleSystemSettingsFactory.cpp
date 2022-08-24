@@ -6,9 +6,9 @@ namespace Factory::ParticleSystemSettings {
 		Settings::ParticleSystemSettings result;
 		Randomizer rnd;
 		result.position = position;
-		double angle = rnd.Random(1.04, 2.09);
+		double gravity_angle = rnd.Random(1.04, 2.09);
 		//-sin because y axis is inverted
-		result.gravity = sf::Vector2f(cos(angle), -sin(angle));
+		result.gravity = sf::Vector2f(cos(gravity_angle), -sin(gravity_angle));
 		if (size == Size::small) {
 			unsigned val = static_cast<unsigned>(rnd.Random(50, 100));
 			result.size = sf::Vector2u(val, val);

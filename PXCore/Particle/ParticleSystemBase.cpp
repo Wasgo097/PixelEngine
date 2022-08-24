@@ -4,7 +4,7 @@
 namespace Core::Particle {
 	const sf::Color ParticleSystemBase::_TRANSPARENT = sf::Color(0, 0, 0, 0);
 	Randomizer ParticleSystemBase::_randomizer = Randomizer();
-	ParticleSystemBase::ParticleSystemBase(ParticleEmitter* parent, const Settings::ParticleSystemSettings& settings) :_settings{ settings }, _parent{ parent } {
+	ParticleSystemBase::ParticleSystemBase(const Settings::ParticleSystemSettings& settings) :_settings{ settings } {
 		_image.create(_settings.size.x, _settings.size.y, _TRANSPARENT);
 		_texture.loadFromImage(_image);
 		_sprite = sf::Sprite(_texture);
@@ -27,12 +27,12 @@ namespace Core::Particle {
 		Clear();
 		PrepareTexture();
 		window.draw(_sprite);
-#ifdef DEBUG
-		sf::CircleShape circle(1.0);
-		circle.setPosition(_settings.position);
-		circle.setFillColor(sf::Color::Black);
-		window.draw(circle);
-#endif
+//#ifdef DEBUG
+//		sf::CircleShape circle(1.0);
+//		circle.setPosition(_settings.position);
+//		circle.setFillColor(sf::Color::Black);
+//		window.draw(circle);
+//#endif
 	}
 	bool ParticleSystemBase::ToDelete() const {
 		return _particles.size() == 0;
@@ -40,16 +40,16 @@ namespace Core::Particle {
 	void ParticleSystemBase::PrepareTexture() {
 		for (const auto& particle : _particles)
 			particle->Draw(_image);
-#ifdef DEBUG
-		for (int x = 0; x < _settings.size.x; x++) {
-			_image.setPixel(x, 0, sf::Color::Black);
-			_image.setPixel(x, _settings.size.y-1, sf::Color::Black);
-		}
-		for (int y = 0; y < _settings.size.y; y++) {
-			_image.setPixel(0, y, sf::Color::Black);
-			_image.setPixel(_settings.size.x-2, y, sf::Color::Black);
-		}
-#endif
+//#ifdef DEBUG
+//		for (int x = 0; x < _settings.size.x; x++) {
+//			_image.setPixel(x, 0, sf::Color::Black);
+//			_image.setPixel(x, _settings.size.y - 1, sf::Color::Black);
+//		}
+//		for (int y = 0; y < _settings.size.y; y++) {
+//			_image.setPixel(0, y, sf::Color::Black);
+//			_image.setPixel(_settings.size.x - 2, y, sf::Color::Black);
+//		}
+//#endif
 		_texture.update(_image);
 	}
 	void ParticleSystemBase::Clear() {

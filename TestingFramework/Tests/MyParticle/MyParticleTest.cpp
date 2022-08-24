@@ -15,7 +15,7 @@ namespace Test {
 		settings.particle_speed = .0f;
 		settings.position = sf::Vector2f{ 300.0f,300.0f };
 		settings.size = sf::Vector2u{ 100,100 };*/
-		emiter.PushNewParticles(std::make_unique<Smoke>(&emiter, sf::Vector2f(300.0f,300.0f),Factory::ParticleSystemSettings::Size::small));
+		emiter.PushNewParticles(std::make_unique<Smoke>(sf::Vector2f(300.0f,300.0f),Factory::ParticleSystemSettings::Size::small));
 		//emiter.PushNewParticles(std::make_unique<ExampleParticleSystem>(&emiter, settings));
 		while (window.isOpen()) {
 			sf::Event action;

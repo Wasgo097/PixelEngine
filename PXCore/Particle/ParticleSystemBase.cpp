@@ -1,6 +1,6 @@
 #include "ParticleSystemBase.h"
 #include <SFML/Graphics/CircleShape.hpp>
-#define DEBUG
+//#define DEBUG
 namespace Core::Particle {
 	const sf::Color ParticleSystemBase::_TRANSPARENT = sf::Color(0, 0, 0, 0);
 	Randomizer ParticleSystemBase::_randomizer = Randomizer();

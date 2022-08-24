@@ -1,7 +1,7 @@
 #include "Particle.h"
 namespace Core::Particle {
 	Particle::Particle(const Settings::ParticleSettings& settings, std::optional<std::function<void()>> OnElapsed)
-		:_position{ settings.position }, _velocity{ settings.velocity }, _color{ settings.color }, _TIMELY{ settings.timely }, _MAX_TIME{ settings.max_time }, _time{ .0f }{
+		:_position{ settings.position }, _velocity{ settings.velocity }, _color{ settings.color }, _TIMELY{ settings.timely }, _MAX_TIME{ settings.max_time }, _time{ .0f }, _current_dissolution{static_cast<float>(_color.a)}{
 		if (OnElapsed)
 			this->OnElapsed = *OnElapsed;
 	}
@@ -16,8 +16,10 @@ namespace Core::Particle {
 		_velocity.y += gravity.y * delta;
 		_position.x += _velocity.x * delta * particle_speed;
 		_position.y += _velocity.y * delta * particle_speed;
-		if (dissolution_rate)
-			_color.a -= *dissolution_rate;
+		if (dissolution_rate) {
+			_current_dissolution -= static_cast<float>(*dissolution_rate) * delta;
+			_color.a = static_cast<unsigned char>(_current_dissolution);
+		}
 		_time += delta;
 	}
 	void Particle::Draw(sf::Image& image) {

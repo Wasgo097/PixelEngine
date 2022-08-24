@@ -15,6 +15,7 @@ namespace Core::Particle {
 		sf::Vector2f _velocity;
 		sf::Color _color;
 		float _time{ .0f };
+		float _current_dissolution{ .0f };
 		std::function<void()> OnElapsed;
 		const bool _TIMELY = false;
 		const float _MAX_TIME = { .0f };

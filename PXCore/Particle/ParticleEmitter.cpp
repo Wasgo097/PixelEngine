@@ -37,7 +37,7 @@ namespace Core::Particle {
 		}
 	}
 	void  ParticleEmitter::Wait() {
-		if (_thr and _thr->joinable())
+		if (_thr->joinable())
 			_thr->join();
 	}
 	void  ParticleEmitter::Terminate() {

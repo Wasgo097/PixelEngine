@@ -6,6 +6,7 @@
 #include <memory>
 #include <thread>
 #include "ParticleSystemBase.h"
+#include "PXCore/Time/TimeManager.h"
 namespace Core::World {
 	class WorldBase;
 }
@@ -24,6 +25,7 @@ namespace Core::Particle {
 	protected:
 		World::WorldBase* _parent;
 		Utility::ThreadingResourceLight<std::vector<std::unique_ptr<ParticleSystemBase>>> _particles_systems;
+		Core::Time::TimeManager _time_manager;
 		std::unique_ptr<std::thread> _thr;
 		bool _refresh_particles_systems{ true };
 	};

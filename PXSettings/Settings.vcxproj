@@ -160,6 +160,7 @@
     <ClInclude Include="ParticleSettings.h" />
     <ClInclude Include="ParticleSystemSettings.h" />
     <ClInclude Include="pch.h" />
+    <ClInclude Include="RepeatableParticleSystemSettings.h" />
     <ClInclude Include="TextureSettings.h" />
     <ClInclude Include="WindowSettings.h" />
     <ClInclude Include="WindowSettingsDTO.h" />

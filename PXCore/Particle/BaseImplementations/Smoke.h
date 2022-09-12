@@ -1,8 +1,8 @@
 #pragma once
-#include "../ParticleSystemBase.h"
+#include "../RepeatableParticleSystemBase.h"
 #include "PXFactory/ParticleSystemSettingsFactory.h"
 namespace Core::Particle {
-	class Smoke :public ParticleSystemBase {
+	class Smoke :public RepeatableParticleSystemBase {
 	public:
 		Smoke(const sf::Vector2f& position, Factory::ParticleSystemSettings::Size size = Factory::ParticleSystemSettings::Size::small);
 		virtual void InitParticleSystem() override;

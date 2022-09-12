@@ -12,7 +12,6 @@
 #include "PXSettings/ParticleSystemSettings.h"
 #include "Particle.h"
 namespace Core::Particle {
-	class ParticleEmitter;
 	class ParticleSystemBase {
 	public:
 		ParticleSystemBase(const Settings::ParticleSystemSettings& settings);

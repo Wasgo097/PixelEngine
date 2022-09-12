@@ -51,6 +51,9 @@
     <ClInclude Include="ParticleSettings.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="RepeatableParticleSystemSettings.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="pch.cpp">

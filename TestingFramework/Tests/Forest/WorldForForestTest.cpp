@@ -7,7 +7,7 @@
 #include "PXCore/Engine.h"
 using namespace Core;
 namespace Test {
-	WorldForForestTest::WorldForForestTest(const Settings::WorldSettings& world_settings, Core::Engine* parent) :WorldBaseGUI(world_settings, parent) {
+	WorldForForestTest::WorldForForestTest(const Settings::WorldSettings& world_settings, Core::Engine* parent) :WorldBaseGUI(world_settings, parent), _tree_timer{0.5f} {
 		_main_controller = std::make_unique<Test::ControllerForForestTest>(this, world_settings);
 		if (!_map_texture.loadFromFile("Resource\\TestMap.jpg"))
 			throw std::invalid_argument("Wrong main map path");
@@ -61,15 +61,14 @@ namespace Test {
 		SpawnActor<Tree>(tree_settings, tree_texture);
 		tree_settings.position.x += 100.0f;
 		SpawnActor<Tree>(tree_settings, tree_texture);
-		_tree_timer = SpawnConstActor<Core::Time::TimeManager>(Settings::ActorSettings(), Settings::TextureSettings(), .5f);
 	}
 	void WorldForForestTest::AddTree(std::shared_ptr<Tree> tree) {
 		_created_trees.push_back(tree);
-		_tree_timer->AttachToSeconds(tree.get());
+		_tree_timer.AttachToSeconds(tree.get());
 	}
 	void WorldForForestTest::RemoveTree(std::shared_ptr<Tree> tree) {
 		_created_trees.remove(tree);
-		_tree_timer->DetachFromSeconds(tree.get());
+		_tree_timer.DetachFromSeconds(tree.get());
 	}
 	void WorldForForestTest::DrawMap(sf::RenderWindow& window) {
 		//window.draw(_map);

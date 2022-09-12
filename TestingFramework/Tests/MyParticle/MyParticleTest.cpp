@@ -23,7 +23,7 @@ namespace Test {
 				if (action.type == sf::Event::Closed)
 					window.close();
 			}
-			emiter.Tick(0.001);
+			emiter.Tick(0.001f);
 			window.clear(sf::Color::Green);
 			emiter.Draw(window);
 			window.display();

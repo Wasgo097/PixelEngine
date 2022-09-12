@@ -9,13 +9,9 @@ namespace Core {
 	class WorldBase;
 }
 namespace Core::Time {
-	class TimeManager : public Core::Object::Actor, public ITimeObservable, public ILoopingThread {
+	class TimeManager : public ITimeObservable, public ILoopingThread {
 	public:
-		TimeManager(Core::World::WorldBase* world = nullptr, const Settings::ActorSettings& actor_settings = Settings::ActorSettings(), const Settings::TextureSettings& texture_settings = Settings::TextureSettings(), float multiplier = 1.0);
-		TimeManager(const TimeManager&) = delete;
-		TimeManager& operator=(const TimeManager&) = delete;
-		TimeManager(TimeManager&& src) = delete;
-		TimeManager& operator=(TimeManager&& src) = delete;
+		TimeManager(float multiplier = 1.0);
 		virtual ~TimeManager();
 
 		// Inherited via ITimeObservable
@@ -39,8 +35,8 @@ namespace Core::Time {
 		Utility::ThreadingResourceLight<std::set<ITimeObserver*>> _seconds;
 		Utility::ThreadingResourceLight<std::set<ITimeObserver*>> _minutes;
 		std::atomic<float> _multipler;
-		std::atomic<unsigned int> _elapsed_seconds=0;
-		std::atomic<unsigned int> _elapsed_minutes=0;
+		std::atomic<unsigned int> _elapsed_seconds = 0;
+		std::atomic<unsigned int> _elapsed_minutes = 0;
 		bool _terminated = false;
 	};
 }

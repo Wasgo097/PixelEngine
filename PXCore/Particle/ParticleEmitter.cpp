@@ -1,4 +1,5 @@
 #include "ParticleEmitter.h"
+#include "RepeatableParticleSystemBase.h"
 namespace Core::Particle {
 	ParticleEmitter::ParticleEmitter(World::WorldBase* parent) :_parent{ parent }, _thr{std::make_unique<std::thread>(std::bind(&ParticleEmitter::Run, this))} 
 	{
@@ -21,6 +22,8 @@ namespace Core::Particle {
 		std::lock_guard lock(_particles_systems.mtx);
 		_particles_systems.rsc->emplace_back(std::move(particle_system));
 		_particles_systems.rsc->back()->InitParticleSystem();
+		if (auto repeatable_particle_system = dynamic_cast<RepeatableParticleSystemBase*>(_particles_systems.rsc->back().get()); repeatable_particle_system != nullptr)
+			_time_manager.AttachToSeconds(repeatable_particle_system);
 	}
 	void  ParticleEmitter::Run() {
 		using namespace std::chrono_literals;

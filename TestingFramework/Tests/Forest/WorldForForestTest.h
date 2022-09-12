@@ -22,7 +22,7 @@ namespace Test {
 		virtual void InitGuiSettup();
 		void DEBUGDrawDeadZone(sf::RenderWindow& window)const;
 		std::shared_ptr<Core::World::Component::ActorsCounter> GetActorsCounter()const;
-		std::shared_ptr<Core::Time::TimeManager> _tree_timer;
+		Core::Time::TimeManager _tree_timer;
 		std::list<std::shared_ptr<Tree>> _created_trees;
 		sf::RectangleShape _map;
 		sf::Texture _map_texture;

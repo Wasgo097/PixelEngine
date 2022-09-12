@@ -23,6 +23,7 @@
     <ClCompile Include="Particle\Particle.cpp" />
     <ClCompile Include="Particle\ParticleSystemBase.cpp" />
     <ClCompile Include="Particle\BaseImplementations\Smoke.cpp" />
+    <ClCompile Include="Particle\RepeatableParticleSystemBase.cpp" />
     <ClCompile Include="World\Components\MainActorPositionIndicator.cpp" />
     <ClCompile Include="World\Components\ActorsCounter.cpp" />
     <ClCompile Include="World\Components\FpsCounter.cpp" />
@@ -50,6 +51,7 @@
     <ClInclude Include="Particle\Particle.h" />
     <ClInclude Include="Particle\ParticleSystemBase.h" />
     <ClInclude Include="Particle\BaseImplementations\Smoke.h" />
+    <ClInclude Include="Particle\RepeatableParticleSystemBase.h" />
     <ClInclude Include="World\Components\MainActorPositionIndicator.h" />
     <ClInclude Include="World\Components\ActorsCounter.h" />
     <ClInclude Include="World\Components\FpsCounter.h" />

@@ -88,6 +88,9 @@
     <ProjectReference Include="..\PXSettings\Settings.vcxproj">
       <Project>{98ceb288-7710-4d3f-8e83-2a4ab5694af6}</Project>
     </ProjectReference>
+    <ProjectReference Include="..\PXStopwatch\PXStopwatch.vcxproj">
+      <Project>{67006966-8545-4fa6-becb-197ceca222af}</Project>
+    </ProjectReference>
     <ProjectReference Include="..\PXUtilities\Utilities.vcxproj">
       <Project>{65b956ad-0588-4b53-837a-bf4db85f2e61}</Project>
     </ProjectReference>

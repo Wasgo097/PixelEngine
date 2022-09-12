@@ -30,10 +30,13 @@ namespace Core::Particle {
 		while (_refresh_particles_systems) {
 			std::this_thread::sleep_for(1s);
 			std::lock_guard lock(_particles_systems.mtx);
-			auto it = std::partition(_particles_systems.rsc->begin(), _particles_systems.rsc->end(), [](const std::unique_ptr<ParticleSystemBase>& particle_system) {
+			auto it = std::partition(_particles_systems.rsc->begin(), _particles_systems.rsc->end(), [this](const std::unique_ptr<ParticleSystemBase>& particle_system) {
 				auto result = particle_system->ToDelete();
-				if (result)
+				if (result) {
 					particle_system->EndParticleSystem();
+					if (auto repeatable_particle_system = dynamic_cast<RepeatableParticleSystemBase*>(particle_system.get()); repeatable_particle_system != nullptr)
+						_time_manager.DetachFromSeconds(repeatable_particle_system);
+				}
 				return result;
 				});
 			_particles_systems.rsc->erase(_particles_systems.rsc->begin(), it);

@@ -7,6 +7,6 @@ namespace Test {
 		virtual void InitParticleSystem()override;
 		//virtual void EndParticleSystem()override {};
 	protected:
-		virtual std::unique_ptr<Core::Particle::Particle> CreateParticle() const override;
+		virtual std::unique_ptr<Core::Particle::Particle> CreateParticle(Randomizer& randomizer) const override;
 	};
 }

@@ -7,6 +7,6 @@ namespace Core::Particle {
 		Smoke(const sf::Vector2f& position, Factory::ParticleSystemSettings::Size size = Factory::ParticleSystemSettings::Size::small);
 		virtual void InitParticleSystem() override;
 	protected:
-		virtual std::unique_ptr<Particle> CreateParticle()const;
+		virtual std::unique_ptr<Particle> CreateParticle(Randomizer& randomizer)const override;
 	};
 }

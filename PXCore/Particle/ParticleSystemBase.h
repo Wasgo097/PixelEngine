@@ -22,11 +22,11 @@ namespace Core::Particle {
 		virtual void EndParticleSystem() {};
 		virtual bool ToDelete()const;
 	protected:
-		virtual std::unique_ptr<Particle> CreateParticle()const = 0;
+		virtual std::unique_ptr<Particle> CreateParticle(Randomizer& randomizer)const = 0;
 		void Clear();
 		void PrepareTexture();
+		std::list<std::unique_ptr<Particle>> CreateParticles(unsigned int particles)const;
 		static const sf::Color _TRANSPARENT;
-		static Randomizer  _randomizer;
 		Settings::ParticleSystemSettings _settings;
 		std::list<std::unique_ptr<Particle>> _particles;
 		sf::Image _image; //image->texture->sprite

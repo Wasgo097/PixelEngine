@@ -8,13 +8,15 @@ namespace Core::Particle {
 	{
 		if (!_repeatable_settings.tick_counter) {
 			AddParticles(_repeatable_settings.particle_per_tick);
-			return;
 		}
-		if (!_init_tick)
-			_init_tick = 1;
-		else
-			(*_init_tick)++;
-		if (*_init_tick <= _repeatable_settings.tick_counter)
-			AddParticles(_repeatable_settings.particle_per_tick);
+		else {
+			if (!_init_tick)
+				_init_tick = 1;
+			else
+				(*_init_tick)++;
+			if (*_init_tick <= _repeatable_settings.tick_counter) {
+				AddParticles(_repeatable_settings.particle_per_tick);
+			}
+		}
 	}
 }

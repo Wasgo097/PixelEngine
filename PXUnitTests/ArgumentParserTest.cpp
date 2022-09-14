@@ -45,11 +45,11 @@ TEST_F(ArgumentParserTest, ConstructParserFromInvalidMainArgumentsTest) {
 	try {
 		_parser.reset(new ArgumentParser(1, argv));
 	}
-	catch (std::invalid_argument&) {
+	catch (const std::invalid_argument&) {
 		is_exception = true;
 	}
-	catch (std::exception& ex) {
-		std::cout << "Exception massage " << ex.what() << std::endl;
+	catch (const std::exception& ex) {
+		std::cerr << "Exception massage " << ex.what() << std::endl;
 	}
 	EXPECT_TRUE(is_exception);
 }
@@ -63,11 +63,11 @@ TEST_F(ArgumentParserTest, ConstructParserFromIncompleteMainArgumentsTest) {
 	try {
 		_parser.reset(new ArgumentParser(4, argv));
 	}
-	catch (std::invalid_argument&) {
+	catch (const std::invalid_argument&) {
 		is_exception = true;
 	}
-	catch (std::exception& ex) {
-		std::cout << "Exception massage " << ex.what() << std::endl;
+	catch (const std::exception& ex) {
+		std::cerr << "Exception massage " << ex.what() << std::endl;
 	}
 	EXPECT_TRUE(is_exception);
 }

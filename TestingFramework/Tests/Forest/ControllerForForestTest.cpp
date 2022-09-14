@@ -17,8 +17,7 @@ namespace Test {
 			//	//ptr->CastFireball();
 			//	//ptr->CreateNewTree();
 			//}
-			for (int i = 0; i < 4; i++)
-				_world_parent->PushNewParticles(std::make_unique<Core::Particle::Smoke>(*actor->GetPosition(), Factory::ParticleSystemSettings::Size::big));
+			_world_parent->PushNewParticles(std::make_unique<Core::Particle::Smoke>(*actor->GetPosition(), Factory::ParticleSystemSettings::Size::big));
 		};
 		key.repeatable = true;
 		//key.mouse_button = sf::Mouse::Right;

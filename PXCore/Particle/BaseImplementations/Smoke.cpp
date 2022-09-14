@@ -2,10 +2,10 @@
 #include "PXUtilities/Randomizer.h"
 namespace Core::Particle {
 	Smoke::Smoke(const sf::Vector2f& position, Factory::ParticleSystemSettings::Size size) :
-		RepeatableParticleSystemBase(Factory::ParticleSystemSettings::GetSmokeSystemSettings(position, size), Settings::RepeatableParticleSystemSettings(200, 10)) {
+		RepeatableParticleSystemBase(Factory::ParticleSystemSettings::GetSmokeSystemSettings(position, size), Settings::RepeatableParticleSystemSettings(400, 10)) {
 	}
 	void Smoke::InitParticleSystem() {
-		AddParticles(200);
+		AddParticles(400);
 	}
 	std::unique_ptr<Particle> Smoke::CreateParticle(Randomizer& randomizer) const {
 		Settings::ParticleSettings smoke_settings;

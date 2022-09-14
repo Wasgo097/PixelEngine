@@ -7,7 +7,6 @@
 #include "Tests/ExampleParticle/ParticleTest.h"
 #include "Tests/MyParticle/MyParticleTest.h"
 #include "PXArgumentParser/ArgumentParser.h"
-#include <iostream>
 using namespace Test;
 int main(int argc, const char* argv[]) {
 	ArgumentParser parser(argc, argv);

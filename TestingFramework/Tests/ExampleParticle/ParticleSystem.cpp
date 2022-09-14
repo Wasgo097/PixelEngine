@@ -1,5 +1,4 @@
 #include "ParticleSystem.h"
-#include <iostream>
 ParticleSystem::ParticleSystem(int width, int height) {
 	_image.create(width, height, _transparent);
 	_texture.loadFromImage(_image);
@@ -55,17 +54,8 @@ void ParticleSystem::Tick() {
 	_particles.erase(_particles.begin(), it);
 }
 void ParticleSystem::Render() {
-	for (const auto& particle : _particles) {
-		try {
-			_image.setPixel(static_cast<unsigned int>(particle->pos.x), static_cast<unsigned int>(particle->pos.y), particle->color);
-		}
-		catch (std::exception& ex) {
-			std::cerr << "Exception " << ex.what() << "\n";
-		}
-		catch (...) {
-			std::cerr << "Unknown exception\n";
-		}
-	}
+	for (const auto& particle : _particles)
+		_image.setPixel(static_cast<unsigned int>(particle->pos.x), static_cast<unsigned int>(particle->pos.y), particle->color);
 	_texture.update(_image);
 }
 void ParticleSystem::Clear() {

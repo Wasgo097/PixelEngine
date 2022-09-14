@@ -1,7 +1,5 @@
 #include "ParticleSystemBase.h"
 #include <future>
-#include <iostream>
-#include "PXStopwatch/Stopwatch.h"
 namespace Core::Particle {
 	const sf::Color ParticleSystemBase::_TRANSPARENT = sf::Color(0, 0, 0, 0);
 	//Randomizer ParticleSystemBase::_randomizer = Randomizer();
@@ -13,6 +11,7 @@ namespace Core::Particle {
 		_sprite.setPosition(_settings.position);
 	}
 	void ParticleSystemBase::AddParticles(unsigned int particles) {
+		//mt particle creation
 		/*const unsigned int THREAD = std::thread::hardware_concurrency() / 2;
 		int particles_per_thread = particles / THREAD;
 		std::list<std::future<std::list<std::unique_ptr<Particle>>>> async_particles_list;
@@ -21,6 +20,7 @@ namespace Core::Particle {
 		async_particles_list.push_back(std::async(std::launch::async, &ParticleSystemBase::CreateParticles, this, particles - ((THREAD - 1) * particles_per_thread)));
 		for (auto& async_particles : async_particles_list)
 			_particles.splice(_particles.end(), async_particles.get());*/
+		////
 		_particles.splice(_particles.end(), CreateParticles(particles));
 	}
 	std::list<std::unique_ptr<Particle>> ParticleSystemBase::CreateParticles(unsigned int particles)const {

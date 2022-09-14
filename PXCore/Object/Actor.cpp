@@ -96,7 +96,6 @@ namespace Core::Object {
 	}
 	std::string Actor::ToString() const { return "Default Actor ToString"; }
 	void Actor::OnOverlap(const Actor* other, std::optional<sf::Vector2f> diference) {
-		//std::cout << ToString() << " overlap with " << other->ToString() << std::endl;
 	}
 	void Actor::OnCollide(const Actor* other, std::optional<sf::Vector2f> diference) {
 		if (diference and !_pushed and _actor_settings.type == ActorsEnums::ActorType::Dynamic)

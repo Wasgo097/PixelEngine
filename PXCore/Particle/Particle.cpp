@@ -1,7 +1,7 @@
 #include "Particle.h"
 namespace Core::Particle {
 	Particle::Particle(const Settings::ParticleSettings& settings, std::optional<std::function<void()>> OnElapsed)
-		:_position{ settings.position }, _velocity{ settings.velocity }, _color{ settings.color }, _TIMELY{ settings.timely }, _MAX_TIME{ settings.max_time }, _time{ .0f }, _current_dissolution{ static_cast<float>(_color.a) }{
+		:_position{ settings.position }, _velocity{ settings.velocity }, _color{ settings.color }, _TIMELY{ settings.timely }, _MAX_TIME{ settings.max_time }, _time{ .0f }, _current_dissolution{ static_cast<float>(_color.a) } {
 		if (OnElapsed)
 			this->OnElapsed = *OnElapsed;
 	}

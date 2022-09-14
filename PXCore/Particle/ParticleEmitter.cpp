@@ -1,7 +1,7 @@
 #include "ParticleEmitter.h"
 #include "RepeatableParticleSystemBase.h"
 namespace Core::Particle {
-	ParticleEmitter::ParticleEmitter(World::WorldBase* parent) :_parent{ parent }, _thr{std::make_unique<std::thread>(std::bind(&ParticleEmitter::Run, this))} 
+	ParticleEmitter::ParticleEmitter(World::WorldBase* parent) :_parent{ parent }, _thr{ std::make_unique<std::thread>(std::bind(&ParticleEmitter::Run, this)) }
 	{
 	}
 	ParticleEmitter::~ParticleEmitter() {

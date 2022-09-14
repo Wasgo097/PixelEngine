@@ -3,8 +3,8 @@
     "fps": 0,
     "video_mode": {
         "bitsPerPixel": 32,
-        "height": 1080,
-        "width": 1920
+        "height": 1050,
+        "width": 1680
     },
     "vsync": false,
     "window_name": "Window"

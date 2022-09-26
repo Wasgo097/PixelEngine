@@ -20,7 +20,6 @@ namespace Core::Particle {
 		virtual std::unique_ptr<Particle> CreateParticle(Randomizer& randomizer)const = 0; 
 		virtual void draw(sf::RenderTarget& target, sf::RenderStates states) const;
 		std::list<std::unique_ptr<Particle>> CreateParticles(unsigned int particles)const;
-
 		Settings::ParticleSystemSettings _settings;
 		std::list<std::unique_ptr<Particle>> _particles;
 	};

@@ -14,14 +14,14 @@ int main(int argc, const char* argv[]) {
 	std::cout << "Engine setup test result: \n" << test1.RunTest() << std::endl;*/
 	/*ActorAnimationTest test2(parser);
 	std::cout << "Animation test result: \n" << test2.RunTest() << std::endl;*/
-	ForestTest test3(parser);
-	std::cout << "Forest test result: \n" << test3.RunTest() << std::endl;
+	/*ForestTest test3(parser);
+	std::cout << "Forest test result: \n" << test3.RunTest() << std::endl;*/
 	/*LoginExample test4(parser);
 	std::cout << "LoginExample result: \n" << test4.RunTest() << std::endl;*/
 	/*MultipleWidgetsTest test5(parser);
 	std::cout << "MultipleWidgetsTest result: \n" << test5.RunTest() << std::endl;*/
-	/*MainMenuTest test6(parser);
-	std::cout << "MainMenuTest result: \n" << test6.RunTest() << std::endl;*/
+	MainMenuTest test6(parser);
+	std::cout << "MainMenuTest result: \n" << test6.RunTest() << std::endl;
 	/*ParticleTest test7(parser);
 	std::cout << "ParticleTest result: \n" << test7.RunTest() << std::endl;*/
 	/*Particle2Test test8(parser);

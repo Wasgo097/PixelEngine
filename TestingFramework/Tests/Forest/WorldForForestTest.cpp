@@ -7,13 +7,13 @@
 #include "PXCore/Engine.h"
 using namespace Core;
 namespace Test {
-	WorldForForestTest::WorldForForestTest(const Settings::WorldSettings& world_settings, Core::Engine* parent) :WorldBaseGUI(world_settings, parent), _tree_timer{0.5f} {
+	WorldForForestTest::WorldForForestTest(const Settings::WorldSettings& world_settings, Core::Engine* parent) :WorldBaseGUI(world_settings, parent), _tree_timer{ 0.5f } {
 		_main_controller = std::make_unique<Test::ControllerForForestTest>(this, world_settings);
 		if (!_map_texture.loadFromFile("Resource\\TestMap.jpg"))
 			throw std::invalid_argument("Wrong main map path");
 		_map.setTexture(&_map_texture);
 		_map.setSize(sf::Vector2f(_map_texture.getSize()));
-		_map.setOrigin(_map.getSize()/2.0f);
+		_map.setOrigin(_map.getSize() / 2.0f);
 		_map.setPosition(.0f, .0f);
 	}
 	void WorldForForestTest::CheckQuit() {
@@ -51,10 +51,12 @@ namespace Test {
 		const float windowHeight = _gui.getView().getRect().height;
 		_gui.setTextSize(static_cast<unsigned int>(0.03f * windowHeight));
 		OnSpawnActor = [this](std::shared_ptr<Core::Object::Actor>) {
-			GetActorsCounter()->SetCountOfActors(_actor_manager->GetCountOfActors());
+			if (auto actors_counter = GetActorsCounter(); actors_counter)
+				actors_counter->SetCountOfActors(_actor_manager->GetCountOfActors());
 		};
 		OnActorsRemoved = [this]() {
-			GetActorsCounter()->SetCountOfActors(_actor_manager->GetCountOfActors());
+			if (auto actors_counter = GetActorsCounter(); actors_counter)
+				actors_counter->SetCountOfActors(_actor_manager->GetCountOfActors());
 		};
 		auto tree_settings = CREATE_SETTINGS(Settings::ActorSettings, "Cfg\\TreeActorSettings.json");
 		auto tree_texture = CREATE_SETTINGS(Settings::TextureSettings, "Cfg\\TreeTextureSettings.json");
@@ -77,7 +79,7 @@ namespace Test {
 		tgui::Theme theme{ "Resource\\GUI\\themes\\TransparentGrey.txt" };
 		if (auto parser = _parent->GetParser(); parser and parser->get().GetValue<bool>("-fpscounter"))
 			_gui_world_components.emplace_back(std::make_shared<Core::World::Component::FpsCounter>(this, &_gui, theme));
-		_gui_world_components.emplace_back(std::make_shared<Core::World::Component::ActorsCounter>(this, &_gui, theme));
+		//_gui_world_components.emplace_back(std::make_shared<Core::World::Component::ActorsCounter>(this, &_gui, theme));
 		_gui_world_components.emplace_back(std::make_shared<Core::World::Component::MainActorPositionIndicator>(this, &_gui, theme, _main_controller->GetMainCharacter()));
 	}
 	void WorldForForestTest::InitGuiSettup() {

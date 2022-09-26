@@ -17,7 +17,7 @@ namespace Test {
 		/* Load a font and setup some texty-type stuff */
 		sf::Font font;
 		if (!font.loadFromFile("Resource//test_font.ttf"))
-			return -1;
+			return false;
 		sf::Text text("", font, 12);
 		text.setPosition(
 			static_cast<float>(window.getSize().x) * 0.01f,
@@ -113,7 +113,7 @@ namespace Test {
 				}
 				if (sf::Mouse::isButtonPressed(sf::Mouse::Middle))
 					particleSystem.setGravity(0.0f, 0.0f);
-
+					
 				/* Update Last Mouse Position */
 				lastMousePos = mousePos;
 
@@ -130,19 +130,16 @@ namespace Test {
 
 				/* Update particle system */
 				particleSystem.update(static_cast<float>(UPDATE_STEP) / 1000);
-
 				frameSkips++;
 				nextUpdate += UPDATE_STEP;
 			}
-
 			/* Draw particle system and text */
 			window.clear(sf::Color::Black);
 			window.draw(text);
 			window.draw(particleSystem);
 			window.display();
 		}
-
-		return 0;
+		return true;
 	}
 
 	bool Particle2Test::RunTest() {

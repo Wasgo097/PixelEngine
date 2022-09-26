@@ -7,7 +7,7 @@ namespace Core::Particle {
 		_time{ .0f },
 		_current_dissolution{ static_cast<float>(settings.color.a) } {
 		_vertex.color = settings.color;
-		_vertex.position = settings.position;
+		_vertex.position = settings.origin;
 		if (OnElapsed)
 			this->OnElapsed = *OnElapsed;
 	}

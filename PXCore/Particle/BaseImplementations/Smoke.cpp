@@ -9,7 +9,7 @@ namespace Core::Particle {
 	}
 	std::unique_ptr<Particle> Smoke::CreateParticle(Randomizer& randomizer) const {
 		Settings::ParticleSettings smoke_settings;
-		smoke_settings.origin = _settings.position;
+		smoke_settings.origin = _settings.origin;
 		//smoke_settings.origin.x = static_cast<float>(_settings.size.x / 2.0);
 		smoke_settings.origin.x += randomizer.Random(-(static_cast<double>(_settings.size.x) / 15.0), (static_cast<double>(_settings.size.x) / 15.0));
 		//smoke_settings.origin.y = static_cast<float>(_settings.size.y-1.0);

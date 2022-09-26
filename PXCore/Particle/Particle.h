@@ -8,7 +8,7 @@ namespace Core::Particle {
 	public:
 		Particle(const Settings::ParticleSettings& settings, std::optional<std::function<void()>> OnElapsed = {});
 		void Tick(float delta, const sf::Vector2f& gravity, float particle_speed, std::optional<unsigned char> dissolution_rate);
-		bool ToDelete(const sf::Vector2f& image_size)const;
+		bool ToDelete(const sf::FloatRect& range) const;
 	protected:
 		virtual void draw(sf::RenderTarget& target, sf::RenderStates states) const;
 		sf::Vertex _vertex;

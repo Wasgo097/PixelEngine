@@ -26,8 +26,13 @@ namespace Core::Particle {
 	void ParticleSystemBase::Tick(float delta) {
 		for (auto& particle : _particles)
 			particle->Tick(delta, _settings.gravity, _settings.particle_speed, _settings.dissolve ? _settings.dissolution_rate : std::optional<unsigned char>());
-		auto it = std::partition(_particles.begin(), _particles.end(), [this](const std::unique_ptr<Particle>& particle) {
-			return particle->ToDelete(_settings.size);
+		sf::FloatRect rect;
+		rect.height = _settings.size.y;
+		rect.width = _settings.size.x;
+		rect.left = _settings.origin.x - (_settings.size.x / 2.0);
+		rect.top = _settings.origin.y - (_settings.size.y);
+		auto it = std::partition(_particles.begin(), _particles.end(), [this, rect](const std::unique_ptr<Particle>& particle) {
+			return particle->ToDelete(rect);
 			});
 		_particles.erase(_particles.begin(), it);
 	}
@@ -36,6 +41,6 @@ namespace Core::Particle {
 	}
 	void ParticleSystemBase::draw(sf::RenderTarget& target, sf::RenderStates states) const {
 		for (const auto& particle : _particles)
-			target.draw(*particle,states);
+			target.draw(*particle, states);
 	}
 }

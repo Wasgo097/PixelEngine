@@ -29,12 +29,9 @@ namespace Core::Particle {
 	void Particle::draw(sf::RenderTarget& target, sf::RenderStates states) const {
 		target.draw(&_vertex, 1, sf::Points, states);
 	}
-	bool Particle::ToDelete(const sf::Vector2f& range) const {
+	bool Particle::ToDelete(const sf::FloatRect& range) const {
 		auto delete_condition =
-			_vertex.position.x >= range.x
-			or _vertex.position.x <= 0.0
-			or _vertex.position.y >= range.y - 1
-			or _vertex.position.y <= 0.0
+			!range.contains(_vertex.position)
 			or _vertex.color.a < 10;
 		if (_TIMELY)
 			delete_condition = delete_condition or _time >= _MAX_TIME;

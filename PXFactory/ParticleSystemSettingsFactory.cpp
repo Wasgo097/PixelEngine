@@ -5,7 +5,7 @@ namespace Factory::ParticleSystemSettings {
 	Settings::ParticleSystemSettings GetSmokeSystemSettings(const sf::Vector2f& position, Size size) {
 		Settings::ParticleSystemSettings result;
 		Randomizer rnd;
-		result.position = position;
+		result.origin = position;
 		double gravity_angle = rnd.Random(1.04, 2.09);
 		//-sin because y axis is inverted
 		result.gravity = sf::Vector2f(cos(gravity_angle), -sin(gravity_angle));

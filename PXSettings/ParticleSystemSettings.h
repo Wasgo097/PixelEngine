@@ -2,7 +2,7 @@
 #include <SFML/System/Vector2.hpp>
 namespace Settings {
 	struct ParticleSystemSettings {
-		ParticleSystemSettings(const sf::Vector2f& position, const sf::Vector2f& gravity, const sf::Vector2u& size, float particle_speed, bool dissolve, unsigned char dissolution_rate)
+		ParticleSystemSettings(const sf::Vector2f& position, const sf::Vector2f& gravity, const sf::Vector2f& size, float particle_speed, bool dissolve, unsigned char dissolution_rate)
 			:position{ position }, gravity{ gravity }, size{ size }, particle_speed{ particle_speed }, dissolve{ dissolve }, dissolution_rate{ dissolution_rate }{}
 		ParticleSystemSettings() = default;
 
@@ -12,7 +12,7 @@ namespace Settings {
 
 		sf::Vector2f position;
 		sf::Vector2f gravity;
-		sf::Vector2u size;
+		sf::Vector2f size;
 		float particle_speed = 1.0f;
 		bool dissolve = false;
 		unsigned char dissolution_rate = 1;

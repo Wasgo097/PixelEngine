@@ -14,14 +14,14 @@ namespace Test {
 	{
 		/* Data Members */
 
-		sf::Vertex drawVertex; /*< To replace pos */
+		sf::Vertex _vertex; /*< To replace pos */
 		sf::Vector2f vel; // Velocity
 
 		/* Member Functions */
 
 		virtual void draw(sf::RenderTarget& target, sf::RenderStates states) const
 		{
-			target.draw(&drawVertex, 1, sf::Points, states);
+			target.draw(&_vertex, 1, sf::Points, states);
 		}
 
 	};

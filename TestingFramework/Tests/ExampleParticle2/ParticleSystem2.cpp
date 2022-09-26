@@ -22,7 +22,7 @@ namespace Test {
 	void ParticleSystem::draw(
 		sf::RenderTarget& target, sf::RenderStates states) const {
 		for (const auto& item : m_particles)
-			target.draw(&item.get()->drawVertex, 1, sf::Points);
+			target.draw(&item.get()->_vertex, 1, sf::Points);
 		return;
 	}
 	/************************************************************/
@@ -31,8 +31,8 @@ namespace Test {
 			/* Generate a new particle and put it at the generation point */
 			Particle* particle;
 			particle = new Particle();
-			particle->drawVertex.position.x = m_startPos.x;
-			particle->drawVertex.position.y = m_startPos.y;
+			particle->_vertex.position.x = m_startPos.x;
+			particle->_vertex.position.y = m_startPos.y;
 			/* Randomizer initialization */
 			std::random_device rd;
 			std::mt19937 gen(rd());
@@ -69,17 +69,17 @@ namespace Test {
 			}
 
 			/* We don't want lame particles. Reject, start over. */
-			if (particle->vel.x == 0.0f && particle->vel.y == 0.0f)			{
+			if (particle->vel.x == 0.0f && particle->vel.y == 0.0f) {
 				delete particle;
 				continue;
 			}
 
 			/* Randomly change the colors of the particles */
 			UniIntDist randomColor(0, 255);
-			particle->drawVertex.color.r = randomColor(gen);
-			particle->drawVertex.color.g = randomColor(gen);
-			particle->drawVertex.color.b = randomColor(gen);
-			particle->drawVertex.color.a = 255;
+			particle->_vertex.color.r = randomColor(gen);
+			particle->_vertex.color.g = randomColor(gen);
+			particle->_vertex.color.b = randomColor(gen);
+			particle->_vertex.color.a = 255;
 
 			m_particles.push_back(ParticlePtr(particle));
 		}
@@ -103,18 +103,18 @@ namespace Test {
 			(*it)->vel.y += m_gravity.y * deltaTime;
 
 			/* Apply thrust */
-			(*it)->drawVertex.position.x += (*it)->vel.x * deltaTime * m_particleSpeed;
-			(*it)->drawVertex.position.y += (*it)->vel.y * deltaTime * m_particleSpeed;
+			(*it)->_vertex.position.x += (*it)->vel.x * deltaTime * m_particleSpeed;
+			(*it)->_vertex.position.y += (*it)->vel.y * deltaTime * m_particleSpeed;
 
 			/* If they are set to disolve, disolve */
 			if (m_dissolve)
-				(*it)->drawVertex.color.a -= m_dissolutionRate;
+				(*it)->_vertex.color.a -= m_dissolutionRate;
 
-			if ((*it)->drawVertex.position.x > m_canvasSize.x
-				|| (*it)->drawVertex.position.x < 0
-				|| (*it)->drawVertex.position.y > m_canvasSize.y
-				|| (*it)->drawVertex.position.y < 0
-				|| (*it)->drawVertex.color.a < 10) {
+			if ((*it)->_vertex.position.x > m_canvasSize.x
+				|| (*it)->_vertex.position.x < 0
+				|| (*it)->_vertex.position.y > m_canvasSize.y
+				|| (*it)->_vertex.position.y < 0
+				|| (*it)->_vertex.color.a < 10) {
 				it = m_particles.erase(it);
 				if (it == m_particles.end()) return;
 			}

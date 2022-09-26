@@ -15,8 +15,8 @@ namespace Core::Particle {
 	}
 	void Core::Particle::ParticleEmitter::Draw(sf::RenderWindow& window) {
 		std::lock_guard lock(_particles_systems.mtx);
-		for (const auto& particle_sys : *_particles_systems.rsc)
-			particle_sys->Draw(window);
+		for (const auto& particle_system : *_particles_systems.rsc)
+			window.draw(*particle_system);
 	}
 	void  ParticleEmitter::PushNewParticles(std::unique_ptr<ParticleSystemBase>&& particle_system) {
 		std::lock_guard lock(_particles_systems.mtx);

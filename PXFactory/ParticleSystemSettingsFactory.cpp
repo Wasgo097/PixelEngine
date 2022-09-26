@@ -10,16 +10,16 @@ namespace Factory::ParticleSystemSettings {
 		//-sin because y axis is inverted
 		result.gravity = sf::Vector2f(cos(gravity_angle), -sin(gravity_angle));
 		if (size == Size::small) {
-			unsigned val = static_cast<unsigned>(rnd.Random(50, 100));
-			result.size = sf::Vector2u(val, val);
+			float val = static_cast<float>(rnd.Random(50.0, 100.0));
+			result.size = sf::Vector2f(val, val);
 		}
 		else if (size == Size::medium) {
-			unsigned val = static_cast<unsigned>(rnd.Random(100, 200));
-			result.size = sf::Vector2u(val, val);
+			float val = static_cast<float>(rnd.Random(100.0, 200.0));
+			result.size = sf::Vector2f(val, val);
 		}
 		else {
-			unsigned val = static_cast<unsigned>(rnd.Random(200, 350));
-			result.size = sf::Vector2u(val, val);
+			float val = static_cast<float>(rnd.Random(200.0, 350.0));
+			result.size = sf::Vector2f(val, val);
 		}
 		result.particle_speed = 20.0f;
 		result.dissolve = true;

@@ -6,7 +6,6 @@
 #include "Tests/GUISettup/LoginExample.h"
 #include "Tests/MainMenu/MainMenuTest.h"
 #include "Tests/ExampleParticle/ParticleTest.h"
-#include "Tests/MyParticle/MyParticleTest.h"
 #include "Tests/ExampleParticle2/Particle2Test.h"
 using namespace Test;
 int main(int argc, const char* argv[]) {
@@ -15,8 +14,8 @@ int main(int argc, const char* argv[]) {
 	std::cout << "Engine setup test result: \n" << test1.RunTest() << std::endl;*/
 	/*ActorAnimationTest test2(parser);
 	std::cout << "Animation test result: \n" << test2.RunTest() << std::endl;*/
-	/*ForestTest test3(parser);
-	std::cout << "Forest test result: \n" << test3.RunTest() << std::endl;*/
+	ForestTest test3(parser);
+	std::cout << "Forest test result: \n" << test3.RunTest() << std::endl;
 	/*LoginExample test4(parser);
 	std::cout << "LoginExample result: \n" << test4.RunTest() << std::endl;*/
 	/*MultipleWidgetsTest test5(parser);
@@ -25,9 +24,7 @@ int main(int argc, const char* argv[]) {
 	std::cout << "MainMenuTest result: \n" << test6.RunTest() << std::endl;*/
 	/*ParticleTest test7(parser);
 	std::cout << "ParticleTest result: \n" << test7.RunTest() << std::endl;*/
-	/*MyParticleTest test8(parser);
-	std::cout << "MyParticleTest result: \n" << test8.RunTest() << std::endl;*/
-	Particle2Test test9(parser);
-	std::cout << "Particle2Test result: \n" << test9.RunTest() << std::endl;
+	/*Particle2Test test8(parser);
+	std::cout << "Particle2Test result: \n" << test8.RunTest() << std::endl;*/
 	return 0;
 }

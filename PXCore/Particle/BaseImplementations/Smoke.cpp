@@ -9,9 +9,9 @@ namespace Core::Particle {
 	}
 	std::unique_ptr<Particle> Smoke::CreateParticle(Randomizer& randomizer) const {
 		Settings::ParticleSettings smoke_settings;
-		smoke_settings.position.x = static_cast<float>(_settings.size.x / 2);
+		smoke_settings.position.x = static_cast<float>(_settings.size.x / 2.0);
 		smoke_settings.position.x += randomizer.Random(-(static_cast<double>(_settings.size.x) / 15.0), (static_cast<double>(_settings.size.x) / 15.0));
-		smoke_settings.position.y = static_cast<float>(_settings.size.y-1);
+		smoke_settings.position.y = static_cast<float>(_settings.size.y-1.0);
 		smoke_settings.position.y -= randomizer.Random(.0, (static_cast<double>(_settings.size.y) / 10.0));
 		double velocity_angle = randomizer.Random(1.04, 2.09);
 		//-sin because y axis is inverted

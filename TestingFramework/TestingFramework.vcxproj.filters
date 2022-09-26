@@ -84,6 +84,12 @@
     <ClCompile Include="Tests\MyParticle\ExampleParticleSystem.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="Tests\ExampleParticle2\Particle2Test.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Tests\ExampleParticle2\ParticleSystem2.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="BaseTest.h">
@@ -153,6 +159,12 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Tests\MyParticle\ExampleParticleSystem.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Tests\ExampleParticle2\Particle2Test.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Tests\ExampleParticle2\ParticleSystem2.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

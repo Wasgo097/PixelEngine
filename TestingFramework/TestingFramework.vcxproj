@@ -138,6 +138,8 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Tests\ExampleParticle2\ParticleSystem2.cpp" />
+    <ClCompile Include="Tests\ExampleParticle2\Particle2Test.cpp" />
     <ClCompile Include="Tests\MyParticle\ExampleParticleSystem.cpp" />
     <ClCompile Include="Tests\MyParticle\MyParticleTest.cpp" />
     <ClCompile Include="Tests\ActorAnimation\ActorAnimationTest.cpp" />
@@ -183,6 +185,8 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Tests\ExampleParticle2\ParticleSystem2.h" />
+    <ClInclude Include="Tests\ExampleParticle2\Particle2Test.h" />
     <ClInclude Include="Tests\MyParticle\ExampleParticleSystem.h" />
     <ClInclude Include="Tests\MyParticle\MyParticleTest.h" />
     <ClInclude Include="Tests\ActorAnimation\ActorAnimationTest.h" />

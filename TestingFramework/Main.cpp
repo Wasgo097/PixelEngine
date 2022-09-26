@@ -1,3 +1,4 @@
+#include "PXArgumentParser/ArgumentParser.h"
 #include "Tests/EngineSettup/EngineSetupTest.h"
 #include "Tests/ActorAnimation/ActorAnimationTest.h"
 #include "Tests/Forest/ForestTest.h"
@@ -6,7 +7,7 @@
 #include "Tests/MainMenu/MainMenuTest.h"
 #include "Tests/ExampleParticle/ParticleTest.h"
 #include "Tests/MyParticle/MyParticleTest.h"
-#include "PXArgumentParser/ArgumentParser.h"
+#include "Tests/ExampleParticle2/Particle2Test.h"
 using namespace Test;
 int main(int argc, const char* argv[]) {
 	ArgumentParser parser(argc, argv);
@@ -20,11 +21,13 @@ int main(int argc, const char* argv[]) {
 	std::cout << "LoginExample result: \n" << test4.RunTest() << std::endl;*/
 	/*MultipleWidgetsTest test5(parser);
 	std::cout << "MultipleWidgetsTest result: \n" << test5.RunTest() << std::endl;*/
-	MainMenuTest test6(parser);
-	std::cout << "MainMenuTest result: \n" << test6.RunTest() << std::endl;
+	/*MainMenuTest test6(parser);
+	std::cout << "MainMenuTest result: \n" << test6.RunTest() << std::endl;*/
 	/*ParticleTest test7(parser);
 	std::cout << "ParticleTest result: \n" << test7.RunTest() << std::endl;*/
 	/*MyParticleTest test8(parser);
 	std::cout << "MyParticleTest result: \n" << test8.RunTest() << std::endl;*/
+	Particle2Test test9(parser);
+	std::cout << "Particle2Test result: \n" << test9.RunTest() << std::endl;
 	return 0;
 }

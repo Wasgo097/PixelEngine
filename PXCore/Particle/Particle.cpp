@@ -26,9 +26,6 @@ namespace Core::Particle {
 		}
 		_time += delta;
 	}
-	void Particle::draw(sf::RenderTarget& target, sf::RenderStates states) const {
-		target.draw(&_vertex, 1, sf::Points, states);
-	}
 	bool Particle::ToDelete(const sf::FloatRect& range) const {
 		auto delete_condition =
 			!range.contains(_vertex.position)
@@ -36,5 +33,8 @@ namespace Core::Particle {
 		if (_TIMELY)
 			delete_condition = delete_condition or _time >= _MAX_TIME;
 		return delete_condition;
+	}
+	sf::Vertex Particle::GetVertex() {
+		return _vertex;
 	}
 }

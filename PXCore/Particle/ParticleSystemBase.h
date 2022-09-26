@@ -5,6 +5,7 @@
 #include <list>
 #include <memory>
 #include "PXUtilities/Randomizer.h"
+#include "PXUtilities/ThreadingResource.h"
 #include "PXSettings/ParticleSystemSettings.h"
 #include "Particle.h"
 namespace Core::Particle {
@@ -21,6 +22,6 @@ namespace Core::Particle {
 		virtual void draw(sf::RenderTarget& target, sf::RenderStates states) const;
 		std::list<std::unique_ptr<Particle>> CreateParticles(unsigned int particles)const;
 		Settings::ParticleSystemSettings _settings;
-		std::list<std::unique_ptr<Particle>> _particles;
+		Utility::ThreadingResourceLight<std::list<std::unique_ptr<Particle>>> _particles;
 	};
 }

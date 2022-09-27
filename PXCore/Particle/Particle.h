@@ -9,7 +9,7 @@ namespace Core::Particle {
 		Particle(const Settings::ParticleSettings& settings, std::optional<std::function<void()>> OnElapsed = {});
 		void Tick(float delta, const sf::Vector2f& gravity, float particle_speed, std::optional<unsigned char> dissolution_rate);
 		bool ToDelete(const sf::FloatRect& range) const;
-		sf::Vertex GetVertex();
+		sf::Vertex& GetVertexRef();
 	protected:
 		sf::Vertex _vertex;
 		sf::Vector2f _velocity;

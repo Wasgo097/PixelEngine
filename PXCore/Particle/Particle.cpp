@@ -34,7 +34,7 @@ namespace Core::Particle {
 			delete_condition = delete_condition or _time >= _MAX_TIME;
 		return delete_condition;
 	}
-	sf::Vertex Particle::GetVertex() {
+	sf::Vertex& Particle::GetVertexRef() {
 		return _vertex;
 	}
 }

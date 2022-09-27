@@ -5,7 +5,6 @@ namespace Core::Particle {
 	ParticleSystemBase::ParticleSystemBase(const Settings::ParticleSystemSettings& settings) :_settings{ settings } {
 	}
 	void ParticleSystemBase::AddParticles(unsigned int particles) {
-		//std::lock_guard lock(_particles.mtx);
 		//mt particle creation
 		/*const unsigned int THREAD = std::thread::hardware_concurrency() / 2;
 		int particles_per_thread = particles / THREAD;
@@ -15,7 +14,7 @@ namespace Core::Particle {
 		async_particles_list.push_back(std::async(std::launch::async, &ParticleSystemBase::CreateParticles, this, particles - ((THREAD - 1) * particles_per_thread)));
 		for (auto& async_particles : async_particles_list)
 			_particles.splice(_particles.end(), async_particles.get());*/
-			////
+
 		_particles.splice(_particles.end(), CreateParticles(particles));
 	}
 	std::list<std::unique_ptr<Particle>> ParticleSystemBase::CreateParticles(unsigned int particles)const {
@@ -31,6 +30,7 @@ namespace Core::Particle {
 		sf::FloatRect rect;
 		rect.height = _settings.size.y;
 		rect.width = _settings.size.x;
+		//tl corner
 		rect.left = _settings.origin.x - (_settings.size.x / 2.0);
 		rect.top = _settings.origin.y - (_settings.size.y);
 		auto it = std::partition(_particles.begin(), _particles.end(), [this, rect](const std::unique_ptr<Particle>& particle) {
@@ -45,7 +45,7 @@ namespace Core::Particle {
 		unsigned int i = 0;
 		sf::VertexArray vertices(sf::Points, _particles.size());
 		for (const auto& particle : _particles) {
-			vertices[i] = particle->GetVertex();
+			vertices[i] = particle->GetVertexRef();
 			i++;
 		}
 		target.draw(vertices, states);

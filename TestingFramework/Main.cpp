@@ -5,7 +5,6 @@
 #include "Tests/GUISettup/MultipleWidgetsTest.h"
 #include "Tests/GUISettup/LoginExample.h"
 #include "Tests/MainMenu/MainMenuTest.h"
-#include "Tests/ExampleParticle/ParticleTest.h"
 #include "Tests/ExampleParticle2/Particle2Test.h"
 using namespace Test;
 int main(int argc, const char* argv[]) {
@@ -22,9 +21,7 @@ int main(int argc, const char* argv[]) {
 	std::cout << "MultipleWidgetsTest result: \n" << test5.RunTest() << std::endl;*/
 	MainMenuTest test6(parser);
 	std::cout << "MainMenuTest result: \n" << test6.RunTest() << std::endl;
-	/*ParticleTest test7(parser);
-	std::cout << "ParticleTest result: \n" << test7.RunTest() << std::endl;*/
-	/*Particle2Test test8(parser);
-	std::cout << "Particle2Test result: \n" << test8.RunTest() << std::endl;*/
+	/*Particle2Test test7(parser);
+	std::cout << "Particle2Test result: \n" << test7.RunTest() << std::endl;*/
 	return 0;
 }

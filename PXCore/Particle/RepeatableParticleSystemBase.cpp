@@ -13,11 +13,11 @@ namespace Core::Particle {
 				AddParticles(_repeatable_settings.particle_per_tick);
 			}
 			else {
-				if (!_init_tick)
-					_init_tick = 1;
+				if (!_current_tick)
+					_current_tick = 1;
 				else
-					(*_init_tick)++;
-				if (*_init_tick <= _repeatable_settings.tick_counter) {
+					(*_current_tick)++;
+				if (*_current_tick <= _repeatable_settings.tick_counter) {
 					AddParticles(_repeatable_settings.particle_per_tick);
 				}
 			}

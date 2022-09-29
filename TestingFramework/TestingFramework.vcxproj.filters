@@ -72,12 +72,6 @@
     <ClCompile Include="Tests\EngineSettup\EngineSetupTest.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Tests\ExampleParticle\ParticleSystem.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Tests\ExampleParticle\ParticleTest.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="Tests\ExampleParticle2\Particle2Test.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -141,12 +135,6 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Tests\EngineSettup\EngineSetupTest.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Tests\ExampleParticle\ParticleTest.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Tests\ExampleParticle\ParticleSystem.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Tests\ExampleParticle2\Particle2Test.h">

@@ -1,5 +1,5 @@
 #include "ParticleEmitter.h"
-#include "RepeatableParticleSystemBase.h"
+#include "PXParticle/RepeatableParticleSystemBase.h"
 namespace Core::Particle {
 	ParticleEmitter::ParticleEmitter(World::WorldBase* parent) :_parent{ parent }, _thr{ std::make_unique<std::thread>(std::bind(&ParticleEmitter::Run, this)) }
 	{
@@ -18,11 +18,11 @@ namespace Core::Particle {
 		for (const auto& particle_system : *_particles_systems.rsc)
 			window.draw(*particle_system);
 	}
-	void  ParticleEmitter::PushNewParticles(std::unique_ptr<ParticleSystemBase>&& particle_system) {
+	void  ParticleEmitter::PushNewParticles(std::unique_ptr<::Particle::ParticleSystemBase>&& particle_system) {
 		std::lock_guard lock(_particles_systems.mtx);
 		_particles_systems.rsc->emplace_back(std::move(particle_system));
 		_particles_systems.rsc->back()->InitParticleSystem();
-		if (auto repeatable_particle_system = dynamic_cast<RepeatableParticleSystemBase*>(_particles_systems.rsc->back().get()); repeatable_particle_system != nullptr)
+		if (auto repeatable_particle_system = dynamic_cast<::Particle::RepeatableParticleSystemBase*>(_particles_systems.rsc->back().get()); repeatable_particle_system != nullptr)
 			_time_manager.AttachToSeconds(repeatable_particle_system);
 	}
 	void  ParticleEmitter::Run() {
@@ -30,11 +30,11 @@ namespace Core::Particle {
 		while (_refresh_particles_systems) {
 			std::this_thread::sleep_for(1s);
 			std::lock_guard lock(_particles_systems.mtx);
-			auto it = std::partition(_particles_systems.rsc->begin(), _particles_systems.rsc->end(), [this](const std::unique_ptr<ParticleSystemBase>& particle_system) {
+			auto it = std::partition(_particles_systems.rsc->begin(), _particles_systems.rsc->end(), [this](const std::unique_ptr<::Particle::ParticleSystemBase>& particle_system) {
 				auto result = particle_system->ToDelete();
 				if (result) {
 					particle_system->EndParticleSystem();
-					if (auto repeatable_particle_system = dynamic_cast<RepeatableParticleSystemBase*>(particle_system.get()); repeatable_particle_system != nullptr)
+					if (auto repeatable_particle_system = dynamic_cast<::Particle::RepeatableParticleSystemBase*>(particle_system.get()); repeatable_particle_system != nullptr)
 						_time_manager.DetachFromSeconds(repeatable_particle_system);
 				}
 				return result;

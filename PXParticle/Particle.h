@@ -2,8 +2,8 @@
 #include <functional>
 #include <optional>
 #include <SFML/Graphics.hpp>
-#include "PXSettings/ParticleSettings.h"
-namespace Core::Particle {
+#include <PXSettings/ParticleSettings.h>
+namespace Particle {
 	class Particle {
 	public:
 		Particle(const Settings::ParticleSettings& settings, std::optional<std::function<void()>> OnElapsed = {});

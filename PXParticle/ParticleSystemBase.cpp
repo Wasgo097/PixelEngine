@@ -1,7 +1,7 @@
 #include "ParticleSystemBase.h"
 #include <future>
 #include <iostream>
-namespace Core::Particle {
+namespace Particle {
 	ParticleSystemBase::ParticleSystemBase(const Settings::ParticleSystemSettings& settings) :_settings{ settings } {
 	}
 	void ParticleSystemBase::AddParticles(unsigned int particles) {

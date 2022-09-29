@@ -7,7 +7,7 @@
 #include "PXUtilities/Randomizer.h"
 #include "PXSettings/ParticleSystemSettings.h"
 #include "Particle.h"
-namespace Core::Particle {
+namespace Particle {
 	class ParticleSystemBase : public sf::Drawable {
 	public:
 		ParticleSystemBase(const Settings::ParticleSystemSettings& settings);

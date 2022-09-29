@@ -1,5 +1,5 @@
 #include "RepeatableParticleSystemBase.h"
-namespace Core::Particle {
+namespace Particle {
 	RepeatableParticleSystemBase::RepeatableParticleSystemBase(const Settings::ParticleSystemSettings& settings, const Settings::RepeatableParticleSystemSettings& repeatable_settings) :
 		ParticleSystemBase(settings), _repeatable_settings{ repeatable_settings } {
 	}

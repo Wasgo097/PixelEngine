@@ -1,5 +1,5 @@
 #include "Particle.h"
-namespace Core::Particle {
+namespace Particle {
 	Particle::Particle(const Settings::ParticleSettings& settings, std::optional<std::function<void()>> OnElapsed)
 		: _velocity{ settings.velocity },
 		_TIMELY{ settings.timely },

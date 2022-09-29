@@ -46,7 +46,7 @@ namespace Core::World {
 			return character->GetPosition();
 		return {};
 	}
-	void WorldBase::PushNewParticles(std::unique_ptr<Particle::ParticleSystemBase>&& particle_system) {
+	void WorldBase::PushNewParticles(std::unique_ptr<::Particle::ParticleSystemBase>&& particle_system) {
 		_particle_emitter->PushNewParticles(std::move(particle_system));
 	}
 	Core::Particle::ParticleEmitter* WorldBase::GetParticleEmitter()const {

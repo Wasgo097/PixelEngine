@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<Project DefaultTargets="Build" ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup Label="ProjectConfigurations">
     <ProjectConfiguration Include="Debug|Win32">
       <Configuration>Debug</Configuration>
@@ -18,116 +18,39 @@
       <Platform>x64</Platform>
     </ProjectConfiguration>
   </ItemGroup>
-  <ItemGroup>
-    <ClCompile Include="Particle\ParticleEmitter.cpp" />
-    <ClCompile Include="World\Components\MainActorPositionIndicator.cpp" />
-    <ClCompile Include="World\Components\ActorsCounter.cpp" />
-    <ClCompile Include="World\Components\FpsCounter.cpp" />
-    <ClCompile Include="Object\Components\Collider.cpp" />
-    <ClCompile Include="Object\Components\ActorComponentBase.cpp" />
-    <ClCompile Include="Controller\BaseImplementations\EmptyController.cpp" />
-    <ClCompile Include="Controller\ControllerBase.cpp" />
-    <ClCompile Include="Controller\InputManager.cpp" />
-    <ClCompile Include="Object\Actor.cpp" />
-    <ClCompile Include="Object\AnimatedActor.cpp" />
-    <ClCompile Include="Object\BaseImplementations\EmptyControlledActor.cpp" />
-    <ClCompile Include="Object\ControlledActor.cpp" />
-    <ClCompile Include="Object\Components\Animation.cpp" />
-    <ClCompile Include="Time\TimeManager.cpp" />
-    <ClCompile Include="World\Components\WorldBaseGUIComponent.cpp" />
-    <ClCompile Include="World\Components\WorldBaseComponent.cpp" />
-    <ClCompile Include="World\BaseImplementations\EmptyWorld.cpp" />
-    <ClCompile Include="ActorsManager.cpp" />
-    <ClCompile Include="Engine.cpp" />
-    <ClCompile Include="World\WorldBase.cpp" />
-    <ClCompile Include="World\WorldBaseGUI.cpp" />
-  </ItemGroup>
-  <ItemGroup>
-    <ClInclude Include="Particle\ParticleEmitter.h" />
-    <ClInclude Include="World\Components\MainActorPositionIndicator.h" />
-    <ClInclude Include="World\Components\ActorsCounter.h" />
-    <ClInclude Include="World\Components\FpsCounter.h" />
-    <ClInclude Include="Object\Components\Collider.h" />
-    <ClInclude Include="Object\Components\ActorComponentBase.h" />
-    <ClInclude Include="Controller\BaseImplementations\EmptyController.h" />
-    <ClInclude Include="Controller\ControllerBase.h" />
-    <ClInclude Include="Controller\InputManager.h" />
-    <ClInclude Include="Object\Actor.h" />
-    <ClInclude Include="Object\AnimatedActor.h" />
-    <ClInclude Include="Object\BaseImplementations\EmptyControlledActor.h" />
-    <ClInclude Include="Object\ControlledActor.h" />
-    <ClInclude Include="Object\Components\Animation.h" />
-    <ClInclude Include="Object\Object.h" />
-    <ClInclude Include="Time\TimeManager.h" />
-    <ClInclude Include="World\Components\WorldBaseGUIComponent.h" />
-    <ClInclude Include="World\Components\WorldBaseComponent.h" />
-    <ClInclude Include="World\BaseImplementations\EmptyWorld.h" />
-    <ClInclude Include="ActorsManager.h" />
-    <ClInclude Include="Engine.h" />
-    <ClInclude Include="World\WorldBase.h" />
-    <ClInclude Include="World\WorldBaseGUI.h" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\PXArgumentParser\PXArgumentParser.vcxproj">
-      <Project>{0dd47954-4303-4705-9b37-94b1211c8d85}</Project>
-    </ProjectReference>
-    <ProjectReference Include="..\PXFactory\PXFactory.vcxproj">
-      <Project>{863cee10-1256-4edd-8211-72317cdc7cda}</Project>
-    </ProjectReference>
-    <ProjectReference Include="..\PXParticle\PXParticle.vcxproj">
-      <Project>{f7282dae-881c-4dac-ba9a-6edea9250947}</Project>
-    </ProjectReference>
-    <ProjectReference Include="..\PXSerialziation\PXSerialziation.vcxproj">
-      <Project>{bc7c08a7-29f9-418a-ae41-e4cb75b08a42}</Project>
-    </ProjectReference>
-    <ProjectReference Include="..\PXSettings\Settings.vcxproj">
-      <Project>{98ceb288-7710-4d3f-8e83-2a4ab5694af6}</Project>
-    </ProjectReference>
-    <ProjectReference Include="..\PXStopwatch\PXStopwatch.vcxproj">
-      <Project>{67006966-8545-4fa6-becb-197ceca222af}</Project>
-    </ProjectReference>
-    <ProjectReference Include="..\PXUtilities\Utilities.vcxproj">
-      <Project>{65b956ad-0588-4b53-837a-bf4db85f2e61}</Project>
-    </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="packages.config" />
-  </ItemGroup>
   <PropertyGroup Label="Globals">
-    <VCProjectVersion>15.0</VCProjectVersion>
-    <ProjectGuid>{7D35154A-9B4E-4C71-8FE8-37A7D467A355}</ProjectGuid>
-    <RootNamespace>PixelEngine</RootNamespace>
+    <VCProjectVersion>16.0</VCProjectVersion>
+    <Keyword>Win32Proj</Keyword>
+    <ProjectGuid>{f7282dae-881c-4dac-ba9a-6edea9250947}</ProjectGuid>
+    <RootNamespace>PXParticle</RootNamespace>
     <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
-    <ProjectName>PXCore</ProjectName>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
-    <ConfigurationType>Application</ConfigurationType>
+    <ConfigurationType>StaticLibrary</ConfigurationType>
     <UseDebugLibraries>true</UseDebugLibraries>
     <PlatformToolset>v143</PlatformToolset>
-    <CharacterSet>MultiByte</CharacterSet>
+    <CharacterSet>Unicode</CharacterSet>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
-    <ConfigurationType>Application</ConfigurationType>
+    <ConfigurationType>StaticLibrary</ConfigurationType>
     <UseDebugLibraries>false</UseDebugLibraries>
     <PlatformToolset>v143</PlatformToolset>
     <WholeProgramOptimization>true</WholeProgramOptimization>
-    <CharacterSet>MultiByte</CharacterSet>
+    <CharacterSet>Unicode</CharacterSet>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
     <ConfigurationType>StaticLibrary</ConfigurationType>
     <UseDebugLibraries>true</UseDebugLibraries>
     <PlatformToolset>v143</PlatformToolset>
-    <CharacterSet>MultiByte</CharacterSet>
-    <UseOfMfc>false</UseOfMfc>
+    <CharacterSet>Unicode</CharacterSet>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
     <ConfigurationType>StaticLibrary</ConfigurationType>
     <UseDebugLibraries>false</UseDebugLibraries>
     <PlatformToolset>v143</PlatformToolset>
     <WholeProgramOptimization>true</WholeProgramOptimization>
-    <CharacterSet>MultiByte</CharacterSet>
-    <UseOfMfc>false</UseOfMfc>
+    <CharacterSet>Unicode</CharacterSet>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
   <ImportGroup Label="ExtensionSettings">
@@ -136,11 +59,9 @@
   </ImportGroup>
   <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
-    <Import Project="SFMLInclude.props" />
   </ImportGroup>
   <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
-    <Import Project="SFMLInclude.props" />
   </ImportGroup>
   <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
@@ -150,79 +71,111 @@
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
-    <IncludePath>$(IncludePath)</IncludePath>
-    <LibraryPath>$(LibraryPath)</LibraryPath>
     <OutDir>$(SolutionDir)Build\Exe\$(ProjectName)\$(Platform)\$(Configuration)\</OutDir>
     <IntDir>$(SolutionDir)Build\Intermediate\$(ProjectName)\$(Platform)\$(Configuration)\</IntDir>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
-    <IncludePath>$(IncludePath)</IncludePath>
-    <LibraryPath>$(LibraryPath)</LibraryPath>
     <OutDir>$(SolutionDir)Build\Exe\$(ProjectName)\$(Platform)\$(Configuration)\</OutDir>
     <IntDir>$(SolutionDir)Build\Intermediate\$(ProjectName)\$(Platform)\$(Configuration)\</IntDir>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
       <WarningLevel>Level3</WarningLevel>
-      <Optimization>Disabled</Optimization>
       <SDLCheck>true</SDLCheck>
+      <PreprocessorDefinitions>WIN32;_DEBUG;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
+      <PrecompiledHeader>Use</PrecompiledHeader>
+      <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
     </ClCompile>
     <Link>
-      <SubSystem>Console</SubSystem>
+      <SubSystem>
+      </SubSystem>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <SDLCheck>true</SDLCheck>
+      <PreprocessorDefinitions>WIN32;NDEBUG;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <ConformanceMode>true</ConformanceMode>
+      <PrecompiledHeader>Use</PrecompiledHeader>
+      <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
+    </ClCompile>
+    <Link>
+      <SubSystem>
+      </SubSystem>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <OptimizeReferences>true</OptimizeReferences>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <ClCompile>
       <WarningLevel>Level3</WarningLevel>
-      <Optimization>Disabled</Optimization>
       <SDLCheck>true</SDLCheck>
+      <PreprocessorDefinitions>_DEBUG;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+      <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
       <LanguageStandard>stdcpp20</LanguageStandard>
-      <AdditionalIncludeDirectories>$(ProjectDir);$(SolutionDir);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir);$(ProjectDir)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
-      <SubSystem>Console</SubSystem>
-      <AdditionalDependencies>
-      </AdditionalDependencies>
-    </Link>
-    <Lib />
-  </ItemDefinitionGroup>
-  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
-    <ClCompile>
-      <WarningLevel>Level3</WarningLevel>
-      <Optimization>MaxSpeed</Optimization>
-      <FunctionLevelLinking>true</FunctionLevelLinking>
-      <IntrinsicFunctions>true</IntrinsicFunctions>
-      <SDLCheck>true</SDLCheck>
-      <ConformanceMode>true</ConformanceMode>
-    </ClCompile>
-    <Link>
-      <SubSystem>Console</SubSystem>
-      <EnableCOMDATFolding>true</EnableCOMDATFolding>
-      <OptimizeReferences>true</OptimizeReferences>
+      <SubSystem>
+      </SubSystem>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <ClCompile>
       <WarningLevel>Level3</WarningLevel>
-      <Optimization>MaxSpeed</Optimization>
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <SDLCheck>true</SDLCheck>
+      <PreprocessorDefinitions>NDEBUG;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+      <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
       <LanguageStandard>stdcpp20</LanguageStandard>
-      <AdditionalIncludeDirectories>$(ProjectDir);$(SolutionDir);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir);$(ProjectDir)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
-      <SubSystem>Console</SubSystem>
+      <SubSystem>
+      </SubSystem>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
-      <AdditionalDependencies>
-      </AdditionalDependencies>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
     </Link>
-    <Lib />
   </ItemDefinitionGroup>
+  <ItemGroup>
+    <ClInclude Include="BaseImplementations\Smoke.h" />
+    <ClInclude Include="Particle.h" />
+    <ClInclude Include="ParticleSystemBase.h" />
+    <ClInclude Include="RepeatableParticleSystemBase.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="BaseImplementations\Smoke.cpp" />
+    <ClCompile Include="Particle.cpp" />
+    <ClCompile Include="ParticleSystemBase.cpp" />
+    <ClCompile Include="RepeatableParticleSystemBase.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\PXFactory\PXFactory.vcxproj">
+      <Project>{863cee10-1256-4edd-8211-72317cdc7cda}</Project>
+    </ProjectReference>
+    <ProjectReference Include="..\PXSettings\Settings.vcxproj">
+      <Project>{98ceb288-7710-4d3f-8e83-2a4ab5694af6}</Project>
+    </ProjectReference>
+    <ProjectReference Include="..\PXUtilities\Utilities.vcxproj">
+      <Project>{65b956ad-0588-4b53-837a-bf4db85f2e61}</Project>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
     <Import Project="..\packages\PXIncludes.1.0.0\build\native\PXIncludes.targets" Condition="Exists('..\packages\PXIncludes.1.0.0\build\native\PXIncludes.targets')" />

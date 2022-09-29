@@ -63,7 +63,7 @@ namespace Core::World {
 		bool Quit()const;
 		void RefreshView(const sf::Vector2f& center)const;
 		std::optional<sf::Vector2f> GetMainCharacterPosition()const;
-		void PushNewParticles(std::unique_ptr<Particle::ParticleSystemBase>&& particle_system);
+		void PushNewParticles(std::unique_ptr<::Particle::ParticleSystemBase>&& particle_system);
 		Core::Particle::ParticleEmitter* GetParticleEmitter()const;
 	protected:
 		template<typename T>

@@ -3,7 +3,7 @@
 #include <atomic>
 #include "PXUtilities/Interfaces/ITimeObserver.h"
 #include "PXSettings/RepeatableParticleSystemSettings.h"
-namespace Core::Particle {
+namespace Particle {
 	class RepeatableParticleSystemBase : public ParticleSystemBase, public ITimeObserver {
 	public:
 		RepeatableParticleSystemBase(const Settings::ParticleSystemSettings& settings, const Settings::RepeatableParticleSystemSettings& repeatable_settings);

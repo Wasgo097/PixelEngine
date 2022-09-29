@@ -1,6 +1,6 @@
 #include "Smoke.h"
 #include "PXUtilities/Randomizer.h"
-namespace Core::Particle {
+namespace Particle {
 	Smoke::Smoke(const sf::Vector2f& position, Factory::ParticleSystemSettings::Size size) :
 		RepeatableParticleSystemBase(Factory::ParticleSystemSettings::GetSmokeSystemSettings(position, size), Settings::RepeatableParticleSystemSettings(400, 10)) {
 	}

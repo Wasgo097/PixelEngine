@@ -1,7 +1,7 @@
 #include "ControllerForForestTest.h"
 #include "Actors/ForestMainCharacter.h"
 #include "PXFactory/SettingsFactory.h"
-#include "PXCore/Particle/BaseImplementations/Smoke.h"
+#include "PXParticle/BaseImplementations/Smoke.h"
 namespace Test {
 	ControllerForForestTest::ControllerForForestTest(Core::World::WorldBase* world, const Settings::WorldSettings& world_settings) :ControllerBase(world, world_settings) {
 	}
@@ -17,7 +17,7 @@ namespace Test {
 			//	//ptr->CastFireball();
 			//	//ptr->CreateNewTree();
 			//}
-			_world_parent->PushNewParticles(std::make_unique<Core::Particle::Smoke>(*actor->GetPosition(), Factory::ParticleSystemSettings::Size::big));
+			_world_parent->PushNewParticles(std::make_unique<::Particle::Smoke>(*actor->GetPosition(), Factory::ParticleSystemSettings::Size::big));
 		};
 		key.repeatable = true;
 		//key.mouse_button = sf::Mouse::Right;

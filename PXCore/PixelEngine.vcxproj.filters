@@ -79,19 +79,7 @@
     <ClInclude Include="World\Components\MainActorPositionIndicator.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Particle\ParticleSystemBase.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Particle\Particle.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="Particle\ParticleEmitter.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Particle\BaseImplementations\Smoke.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Particle\RepeatableParticleSystemBase.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
@@ -157,19 +145,7 @@
     <ClCompile Include="World\Components\MainActorPositionIndicator.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Particle\ParticleSystemBase.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Particle\Particle.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="Particle\ParticleEmitter.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Particle\BaseImplementations\Smoke.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Particle\RepeatableParticleSystemBase.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

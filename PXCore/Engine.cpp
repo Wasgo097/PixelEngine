@@ -19,6 +19,7 @@ namespace Core {
 		if (_window_settings.fps > 1)
 			_main_window->setFramerateLimit(_window_settings.fps);
 		_view.setSize(static_cast<float>(_window_settings.video_mode.width), static_cast<float>(_window_settings.video_mode.height));
+		_music_manager = std::make_unique<Sound::MusicManager>(_music_settings);
 	}
 	Engine::~Engine() {
 		Close();
@@ -69,6 +70,9 @@ namespace Core {
 			_current_world = std::move(new_world);
 			_current_world->InitWorld();
 		}
+	}
+	void Engine::PushNewMusicToPlay(std::unique_ptr<sf::Music>&& new_music) const {
+		_music_manager->PlayMusic(std::move(new_music));
 	}
 	void Engine::Update() {
 		sf::Time time = _clock.restart();

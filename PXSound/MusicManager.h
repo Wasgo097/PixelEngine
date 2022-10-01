@@ -1,7 +1,7 @@
 #pragma once
 #include <memory>
 #include <SFML/Audio.hpp>
-#include <PXSettings/MusicSettings.h>
+#include "PXSettings/MusicSettings.h"
 namespace Sound {
 	class MusicManager {
 	public:

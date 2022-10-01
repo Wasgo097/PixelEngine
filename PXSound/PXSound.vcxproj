@@ -20,10 +20,12 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="MusicManager.h" />
+    <ClInclude Include="SoundEffect.h" />
     <ClInclude Include="SoundsManager.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="MusicManager.cpp" />
+    <ClCompile Include="SoundEffect.cpp" />
     <ClCompile Include="SoundsManager.cpp" />
   </ItemGroup>
   <ItemGroup>

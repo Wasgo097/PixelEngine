@@ -1,18 +1,12 @@
 #pragma once
-#include "PXUtilities/Interfaces/ISongManager.h"
+#include <memory>
+#include <SFML/Audio.hpp>
 namespace Sound {
-	class MusicManager :public ISongManager {
+	class MusicManager {
 	public:
-		// Inherited via ISongManager
-		virtual void PlayAll() override;
-
-		virtual void StopAll() override;
-
-		virtual void SetVolume(double new_volume) override;
-
-		virtual void Clear() override;
-
-		virtual void PlayNearbySong(const sf::Vector2f& position) override;
-
+		void SetVolume(float new_volume)const;
+		void PlayMusic(std::unique_ptr<sf::Music>&& new_music);
+	protected:
+		std::unique_ptr<sf::Music> _current_playing_music;
 	};
 }

@@ -63,6 +63,9 @@ namespace Test {
 		SpawnActor<Tree>(tree_settings, tree_texture);
 		tree_settings.position.x += 100.0f;
 		SpawnActor<Tree>(tree_settings, tree_texture);
+		auto world_music = std::make_unique<sf::Music>();
+		world_music->openFromFile("Resource\\Music_and_sound_effect\\1forest.ogg");
+		_parent->PushNewMusicToPlay(std::move(world_music));
 	}
 	void WorldForForestTest::AddTree(std::shared_ptr<Tree> tree) {
 		_created_trees.push_back(tree);

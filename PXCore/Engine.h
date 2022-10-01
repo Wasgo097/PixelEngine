@@ -9,12 +9,14 @@
 #include "World/WorldBase.h"
 #include "Controller/InputManager.h"
 #include "PXArgumentParser/ArgumentParser.h"
+#include <PXSound/MusicManager.h>
 namespace Core {
 	class Engine {
 	public:
 		Engine(std::optional<std::reference_wrapper<const ArgumentParser>> parser = {});
 		virtual ~Engine();
 		void PushWorldToQueue(std::unique_ptr<World::WorldBase>&& new_world);
+		void PushNewMusicToPlay(std::unique_ptr<sf::Music>&& new_music)const;
 		int Run();
 		void ServiceInput();
 		sf::RenderWindow* GetWindow();
@@ -29,6 +31,7 @@ namespace Core {
 		std::unique_ptr<World::WorldBase> _current_world;
 		std::queue<std::unique_ptr<World::WorldBase>> _worlds;
 		std::unique_ptr<sf::RenderWindow> _main_window;
+		std::unique_ptr<Sound::MusicManager> _music_manager;
 		Controller::InputManager _input_manager;
 		sf::Clock _clock;
 		sf::View _view;

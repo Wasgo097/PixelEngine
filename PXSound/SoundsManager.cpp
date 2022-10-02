@@ -1,12 +1,17 @@
 #include "SoundsManager.h"
 #include <algorithm>
 #include <chrono>
+#include <functional>
 using namespace std::chrono_literals;
 namespace Sound {
 	SoundsManager::SoundsManager(const Settings::MusicSettings& settings, size_t max_buffer_size) :
 		_settings{ settings },
-		_gc_thread{std::make_unique<std::thread>(&SoundsManager::Run,this)} {
+		_gc_thread{ std::make_unique<std::thread>(std::bind(&SoundsManager::Run,this)) } {
 		_sounds_effects.rsc->reserve(max_buffer_size);
+	}
+	SoundsManager::~SoundsManager() {
+		Terminate();
+		Wait();
 	}
 	void SoundsManager::ClearSoundsEffects() {
 		std::lock_guard lock(_sounds_effects.mtx);
@@ -33,7 +38,7 @@ namespace Sound {
 	}
 	void SoundsManager::Run() {
 		while (!_terminate) {
-			std::this_thread::sleep_for(500ms);
+			std::this_thread::sleep_for(50ms);
 			ClearUselessEffects();
 		}
 	}

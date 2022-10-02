@@ -20,6 +20,7 @@ namespace Core {
 			_main_window->setFramerateLimit(_window_settings.fps);
 		_view.setSize(static_cast<float>(_window_settings.video_mode.width), static_cast<float>(_window_settings.video_mode.height));
 		_music_manager = std::make_unique<Sound::MusicManager>(_music_settings);
+		_sound_effect_manager = std::make_unique<Sound::SoundsManager>(_music_settings,250);
 	}
 	Engine::~Engine() {
 		Close();

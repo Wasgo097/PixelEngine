@@ -6,11 +6,18 @@
 #include "PXCore/Object/Components/Collider.h"
 namespace Test {
 	ForestMainCharacter::ForestMainCharacter(Core::World::WorldBase* world, const Settings::ActorSettings& actor_settings, const Settings::TextureSettings& texture_settings, const Settings::AnimationSettings& animation_settings, Core::Controller::ControllerBase* controller) :
-		Core::Object::ControlledActor{ world,actor_settings,texture_settings,animation_settings,controller }
-	{
+		Core::Object::ControlledActor{ world,actor_settings,texture_settings,animation_settings,controller }{
+		if (!_step_sound_effect_buffer.loadFromFile("Resource\\Music_and_sound_effect\\steps_cutted.wav"))
+			throw std::invalid_argument("Wrong path to step sound effect");
 	}
-	void ForestMainCharacter::CreateNewTree()
-	{
+	void ForestMainCharacter::Move(const sf::Vector2f& velocity) {
+		Core::Object::ControlledActor::Move(velocity);
+		if (!_step_sound_effect.expired())
+			return;
+		if (auto step_sound_effect = std::make_shared<Sound::SoundEffect>(_step_sound_effect_buffer); _world->PushNewSoundEffect(step_sound_effect))
+			_step_sound_effect = step_sound_effect;
+	}
+	void ForestMainCharacter::CreateNewTree() {
 		auto tree_settings = CREATE_SETTINGS(Settings::ActorSettings, "Cfg\\TreeActorSettings.json");
 		if (auto collider = GetColliderComponent(); collider)
 			tree_settings.position = collider->GetCollider().getPosition();
@@ -22,8 +29,7 @@ namespace Test {
 		if (auto forest_world = dynamic_cast<WorldForForestTest*>(_world); forest_world != nullptr)
 			forest_world->AddTree(tree);
 	}
-	void ForestMainCharacter::EraseTree()
-	{
+	void ForestMainCharacter::EraseTree() {
 		if (!_created_tree.empty()) {
 			auto tree = _created_tree.front();
 			tree->Destroy();

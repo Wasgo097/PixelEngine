@@ -11,6 +11,7 @@ namespace Sound {
 	class SoundsManager : ILoopingThread {
 	public:
 		SoundsManager(const Settings::MusicSettings& settings, size_t max_buffer_size);
+		~SoundsManager();
 		void ClearSoundsEffects();
 		bool PlaySoundEffect(const std::shared_ptr<SoundEffect>& new_sound_effect);
 		// Inherited via ILoopingThread

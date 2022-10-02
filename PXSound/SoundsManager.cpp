@@ -1,27 +1,47 @@
 #include "SoundsManager.h"
 #include <algorithm>
+#include <chrono>
+using namespace std::chrono_literals;
 namespace Sound {
-	SoundsManager::SoundsManager(const Settings::MusicSettings& settings, size_t max_buffer_size) :_settings{ settings } {
-		_sounds_effects.reserve(max_buffer_size);
+	SoundsManager::SoundsManager(const Settings::MusicSettings& settings, size_t max_buffer_size) :
+		_settings{ settings },
+		_gc_thread{std::make_unique<std::thread>(&SoundsManager::Run,this)} {
+		_sounds_effects.rsc->reserve(max_buffer_size);
 	}
 	void SoundsManager::ClearSoundsEffects() {
-		_sounds_effects.clear();
+		std::lock_guard lock(_sounds_effects.mtx);
+		_sounds_effects.rsc->clear();
 	}
 	bool SoundsManager::PlaySoundEffect(const std::shared_ptr<SoundEffect>& new_sound_effect) {
-		if (_sounds_effects.size() == _sounds_effects.capacity()) {
+		std::lock_guard lock(_sounds_effects.mtx);
+		if (_sounds_effects.rsc->size() == _sounds_effects.rsc->capacity()) {
 			ClearUselessEffects();
-			if (_sounds_effects.size() == _sounds_effects.capacity())
+			if (_sounds_effects.rsc->size() == _sounds_effects.rsc->capacity())
 				return false;
 		}
-		_sounds_effects.push_back(new_sound_effect);
-		new_sound_effect->SetVolume(_settings.master_vol*_settings.effect_vol);
+		_sounds_effects.rsc->push_back(new_sound_effect);
+		new_sound_effect->SetVolume(_settings.master_vol * _settings.effect_vol);
 		new_sound_effect->Play();
 		return true;
 	}
 	void SoundsManager::ClearUselessEffects() {
-		auto it = std::partition(_sounds_effects.begin(), _sounds_effects.end(), [](const std::shared_ptr<SoundEffect>& effect) {
+		std::lock_guard lock(_sounds_effects.mtx);
+		auto it = std::partition(_sounds_effects.rsc->begin(), _sounds_effects.rsc->end(), [](const std::shared_ptr<SoundEffect>& effect) {
 			return !effect->IsValid();
 			});
-		_sounds_effects.erase(_sounds_effects.begin(), it);
+		_sounds_effects.rsc->erase(_sounds_effects.rsc->begin(), it);
+	}
+	void SoundsManager::Run() {
+		while (!_terminate) {
+			std::this_thread::sleep_for(500ms);
+			ClearUselessEffects();
+		}
+	}
+	void SoundsManager::Wait() {
+		if (_gc_thread->joinable())
+			_gc_thread->join();
+	}
+	void SoundsManager::Terminate() {
+		_terminate = true;
 	}
 }

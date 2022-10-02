@@ -60,7 +60,7 @@ namespace Core {
 	std::optional<std::reference_wrapper<const ArgumentParser>> Engine::GetParser() const {
 		return _parser;
 	}
-	void Engine::RefreshView(const sf::Vector2f& center) {
+	void Engine::SetViewCenter(const sf::Vector2f& center) {
 		_view.setCenter(center);
 	}
 	void Engine::PushWorldToQueue(std::unique_ptr<World::WorldBase>&& new_world) {
@@ -73,6 +73,9 @@ namespace Core {
 	}
 	void Engine::PushNewMusicToPlay(std::unique_ptr<sf::Music>&& new_music) const {
 		_music_manager->PlayMusic(std::move(new_music));
+	}
+	bool Engine::PushNewSoundEffect(const std::shared_ptr<Sound::SoundEffect>& new_sound_effect) {
+		return _sound_effect_manager->PlaySoundEffect(new_sound_effect);
 	}
 	void Engine::Update() {
 		sf::Time time = _clock.restart();

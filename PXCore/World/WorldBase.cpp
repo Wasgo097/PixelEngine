@@ -38,8 +38,8 @@ namespace Core::World {
 	bool WorldBase::Quit() const {
 		return _quit;
 	}
-	void WorldBase::RefreshView(const sf::Vector2f& center) const {
-		_parent->RefreshView(center);
+	void WorldBase::SetViewCenter(const sf::Vector2f& center) const {
+		_parent->SetViewCenter(center);
 	}
 	std::optional<sf::Vector2f> WorldBase::GetMainCharacterPosition() const {
 		if (auto character = _main_controller->GetMainCharacter(); character)
@@ -51,6 +51,12 @@ namespace Core::World {
 	}
 	Core::Particle::ParticleEmitter* WorldBase::GetParticleEmitter()const {
 		return _particle_emitter.get();
+	}
+	bool WorldBase::PushNewSoundEffect(const std::shared_ptr<Sound::SoundEffect>& new_sound_effect) {
+		return _parent->PushNewSoundEffect(new_sound_effect);
+	}
+	void WorldBase::PushNewMusicToPlay(std::unique_ptr<sf::Music>&& new_music) const {
+		_parent->PushNewMusicToPlay(std::move(new_music));
 	}
 	void WorldBase::ServiceInput(const Core::Controller::Key& key) {
 		if (_main_controller)

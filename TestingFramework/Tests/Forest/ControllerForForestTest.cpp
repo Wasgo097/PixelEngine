@@ -33,7 +33,7 @@ namespace Test {
 			if (CheckMoveIsPossible(sf::Vector2f(0, -100.0))) {
 				actor->Move(sf::Vector2f(0, -100.0));
 				if (auto position = actor->GetPosition(); position)
-					_world_parent->RefreshView(*position);
+					_world_parent->SetViewCenter(*position);
 			}
 		};
 		key.keyboard_button = sf::Keyboard::S;
@@ -41,7 +41,7 @@ namespace Test {
 			if (CheckMoveIsPossible(sf::Vector2f(0, 100.0))) {
 				actor->Move(sf::Vector2f(0, 100.0));
 				if (auto position = actor->GetPosition(); position)
-					_world_parent->RefreshView(*position);
+					_world_parent->SetViewCenter(*position);
 			}
 		};
 		key.keyboard_button = sf::Keyboard::A;
@@ -49,7 +49,7 @@ namespace Test {
 			if (CheckMoveIsPossible(sf::Vector2f(-100.0, 0))) {
 				actor->Move(sf::Vector2f(-100.0, 0));
 				if (auto position = actor->GetPosition(); position)
-					_world_parent->RefreshView(*position);
+					_world_parent->SetViewCenter(*position);
 			}
 		};
 		key.keyboard_button = sf::Keyboard::D;
@@ -57,7 +57,7 @@ namespace Test {
 			if (CheckMoveIsPossible(sf::Vector2f(100.0, 0))) {
 				actor->Move(sf::Vector2f(100.0, 0));
 				if (auto position = actor->GetPosition(); position)
-					_world_parent->RefreshView(*position);
+					_world_parent->SetViewCenter(*position);
 			}
 		};
 	}

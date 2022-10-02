@@ -2,14 +2,15 @@
 #include <SFML/System/Clock.hpp>
 #include <SFML/Graphics/RenderWindow.hpp>
 #include <queue>
+#include "PXArgumentParser/ArgumentParser.h"
+#include "PXSound/MusicManager.h"
+#include "PXSound/SoundsManager.h"
 #include "PXSettings/EngineSettings.h"
 #include "PXSettings/WindowSettings.h"
 #include "PXSettings/WorldSettings.h"
 #include "PXSettings/MusicSettings.h"
 #include "World/WorldBase.h"
 #include "Controller/InputManager.h"
-#include "PXArgumentParser/ArgumentParser.h"
-#include <PXSound/MusicManager.h>
 namespace Core {
 	class Engine {
 	public:
@@ -17,11 +18,12 @@ namespace Core {
 		virtual ~Engine();
 		void PushWorldToQueue(std::unique_ptr<World::WorldBase>&& new_world);
 		void PushNewMusicToPlay(std::unique_ptr<sf::Music>&& new_music)const;
+		bool PushNewSoundEffect(const std::shared_ptr<Sound::SoundEffect>& new_sound_effect);
 		int Run();
 		void ServiceInput();
 		sf::RenderWindow* GetWindow();
 		std::optional<std::reference_wrapper<const ArgumentParser>> GetParser()const;
-		void RefreshView(const sf::Vector2f& position);
+		void SetViewCenter(const sf::Vector2f& position);
 	private:
 		void Close();
 		void Render();
@@ -32,6 +34,7 @@ namespace Core {
 		std::queue<std::unique_ptr<World::WorldBase>> _worlds;
 		std::unique_ptr<sf::RenderWindow> _main_window;
 		std::unique_ptr<Sound::MusicManager> _music_manager;
+		std::unique_ptr<Sound::SoundsManager> _sound_effect_manager;
 		Controller::InputManager _input_manager;
 		sf::Clock _clock;
 		sf::View _view;

@@ -9,6 +9,8 @@
 #include "PXCore/ActorsManager.h"
 #include "PXCore/Particle/ParticleEmitter.h"
 #include "PXSettings/WorldSettings.h"
+#include "PXSound/MusicManager.h"
+#include "PXSound/SoundsManager.h"
 #include "Components/WorldBaseComponent.h"
 namespace Core {
 	class Engine;
@@ -18,6 +20,7 @@ namespace Core::World {
 	public:
 		WorldBase(const Settings::WorldSettings& world_settings = Settings::WorldSettings(), Engine* parent = nullptr);
 		virtual ~WorldBase() = default;
+
 		template<typename type_to_create, typename ...Argv>
 			requires std::derived_from<type_to_create, Core::Object::Actor>
 		std::shared_ptr<type_to_create> SpawnActor(const Settings::ActorSettings& actor_settings, const Settings::TextureSettings& texture_settings, Argv && ...argv) {
@@ -51,8 +54,8 @@ namespace Core::World {
 				OnSpawnActor(result);
 			return result;
 		}
+		
 		virtual void Draw(sf::RenderWindow& window);
-		void DrawParticles(sf::RenderWindow& window);
 		virtual void Update(float delta);
 		virtual void ServiceInput(const Core::Controller::Key& key);
 		virtual void InitWorld();
@@ -61,10 +64,13 @@ namespace Core::World {
 		virtual void CheckQuit() = 0;
 		void CallOnActorsRemoved();
 		bool Quit()const;
-		void RefreshView(const sf::Vector2f& center)const;
+		void SetViewCenter(const sf::Vector2f& center)const;
 		std::optional<sf::Vector2f> GetMainCharacterPosition()const;
 		void PushNewParticles(std::unique_ptr<::Particle::ParticleSystemBase>&& particle_system);
 		Core::Particle::ParticleEmitter* GetParticleEmitter()const;
+
+		bool PushNewSoundEffect(const std::shared_ptr<Sound::SoundEffect>& new_sound_effect);
+		void PushNewMusicToPlay(std::unique_ptr<sf::Music>&& new_music)const;
 	protected:
 		template<typename T>
 			requires std::derived_from<T, Component::WorldBaseComponent>
@@ -75,13 +81,17 @@ namespace Core::World {
 			}
 			return {};
 		}
+		
 		virtual void CreateWorldBaseComponents() = 0;
 		virtual void DrawMap(sf::RenderWindow& window) = 0;
-		void InitWorldBaseComponents();
 		void DrawActors(sf::RenderWindow& window);
+		void DrawParticles(sf::RenderWindow& window);
+		void InitWorldBaseComponents();
+
 		std::function<void(std::shared_ptr<Core::Object::Actor>)> OnSpawnActor;
 		std::function<void(std::shared_ptr<Core::Object::Actor>)> OnSpawnConstActor;
 		std::function<void()> OnActorsRemoved;
+
 		Engine* _parent = nullptr;
 		Settings::WorldSettings _world_settings;
 		std::unique_ptr<ActorsManager> _actor_manager;

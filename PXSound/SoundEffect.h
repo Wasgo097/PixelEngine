@@ -8,6 +8,7 @@ namespace Sound {
 		bool IsValid()const;
 		void Play();
 		void Clear();
+		void SetVolume(float new_volume);
 	protected:
 		sf::Sound _sound;
 		sf::SoundBuffer _buffer;

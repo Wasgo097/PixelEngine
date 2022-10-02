@@ -14,6 +14,7 @@ namespace Sound {
 				return false;
 		}
 		_sounds_effects.push_back(new_sound_effect);
+		new_sound_effect->SetVolume(_settings.master_vol*_settings.effect_vol);
 		new_sound_effect->Play();
 		return true;
 	}

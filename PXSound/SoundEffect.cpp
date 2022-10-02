@@ -19,4 +19,7 @@ namespace Sound {
 	void SoundEffect::Clear() {
 		_sound.stop();
 	}
+	void SoundEffect::SetVolume(float new_volume) {
+		_sound.setVolume(100.0 * new_volume);
+	}
 }

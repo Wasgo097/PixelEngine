@@ -4,7 +4,7 @@
 namespace Test {
 	class MainMenuWorld :public Core::World::WorldBaseGUI {
 	public:
-		MainMenuWorld(Settings::WindowSettingsDTO& window_settings, const Settings::WorldSettings& world_settings = Settings::WorldSettings(), Core::Engine* parent = nullptr);
+		MainMenuWorld(Settings::WindowSettingsDTO& window_settings, Settings::MusicSettings& music_settings, const Settings::WorldSettings& world_settings = Settings::WorldSettings(), Core::Engine* parent = nullptr);
 	protected:
 		virtual void CheckQuit() override {};
 		virtual void InitGuiSettup() override;
@@ -22,6 +22,7 @@ namespace Test {
 		void RewriteSettings();
 		void ApplySettings();
 		const Settings::WindowSettingsDTO& _window_settings;
+		const Settings::MusicSettings& _music_settings;
 		std::unique_ptr<Settings::WindowSettingsDTO> _working_window_settings;
 		tgui::Tabs::Ptr _resolutions_tabs;
 		tgui::Slider::Ptr _fps_slider;

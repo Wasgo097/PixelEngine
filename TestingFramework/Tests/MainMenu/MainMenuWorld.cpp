@@ -4,8 +4,8 @@
 #include "PXFactory/SettingsFactory.h"
 #include "PXCore/World/Components/FpsCounter.h"
 namespace Test {
-	MainMenuWorld::MainMenuWorld(Settings::WindowSettingsDTO& window_settings, const Settings::WorldSettings& world_settings, Core::Engine* parent) :
-		WorldBaseGUI(world_settings, parent), _window_settings(window_settings) {
+	MainMenuWorld::MainMenuWorld(Settings::WindowSettingsDTO& window_settings, Settings::MusicSettings& music_settings, const Settings::WorldSettings& world_settings, Core::Engine* parent) :
+		WorldBaseGUI(world_settings, parent), _window_settings(window_settings), _music_settings{ music_settings } {
 	}
 	void updateTextSize(tgui::GuiBase& gui) {
 		const float windowHeight = gui.getView().getRect().height;

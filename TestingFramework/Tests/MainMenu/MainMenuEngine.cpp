@@ -12,6 +12,6 @@ namespace Test {
 		_main_window->setFramerateLimit(_window_settings.fps);
 	}
 	void MainMenuEngine::InitEngine() {
-		PushWorldToQueue(std::make_unique<MainMenuWorld>(_window_settings, CREATE_SETTINGS(Settings::WorldSettings, "Cfg\\" + _engine_settings.world_settings_path), this));
+		PushWorldToQueue(std::make_unique<MainMenuWorld>(_window_settings, _music_settings, CREATE_SETTINGS(Settings::WorldSettings, "Cfg\\" + _engine_settings.world_settings_path), this));
 	}
 }

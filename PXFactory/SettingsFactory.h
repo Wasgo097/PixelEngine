@@ -34,7 +34,6 @@ namespace Factory {
 			try {
 				if (std::ofstream stream(path); stream.is_open()) {
 					json jobj = settings;
-
 					stream << jobj.dump(4);
 					stream.close();
 				}

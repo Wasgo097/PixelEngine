@@ -147,11 +147,9 @@ namespace Test {
 		}
 	}
 	void MainMenuWorld::ApplySettings() {
-		if (auto engine = dynamic_cast<MainMenuEngine*>(_parent); engine != nullptr) {
-			engine->ApplyWindowSettings(*_working_window_settings);
-			RefreshGuiTarget();
-			SettingsPage();
-		}
+		_parent->OnNewWindowSettings(*_working_window_settings);
+		RefreshGuiTarget();
+		SettingsPage();
 	}
 	void MainMenuWorld::DrawMap(sf::RenderWindow& window)
 	{

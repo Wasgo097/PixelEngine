@@ -156,6 +156,7 @@
     <ClInclude Include="json.hpp" />
     <ClInclude Include="pch.h" />
     <ClInclude Include="Serialization.h" />
+    <ClInclude Include="SettingsExporter.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="pch.cpp">

@@ -24,6 +24,8 @@ namespace Core {
 		sf::RenderWindow* GetWindow();
 		std::optional<std::reference_wrapper<const ArgumentParser>> GetParser()const;
 		void SetViewCenter(const sf::Vector2f& position);
+		virtual void OnNewWindowSettings(const Settings::WindowSettingsDTO& new_window_settings) = 0;
+		virtual void OnNewMusicSettings(const Settings::MusicSettings& new_music_settings) = 0;
 	private:
 		void Close();
 		void Render();

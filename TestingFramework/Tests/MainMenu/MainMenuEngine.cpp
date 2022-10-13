@@ -17,6 +17,9 @@ namespace Test {
 		_main_window->create(_window_settings.video_mode, _window_settings.window_name, _window_settings.display_style);
 		_main_window->setFramerateLimit(_window_settings.fps);
 		_main_window->setVerticalSyncEnabled(_window_settings.vsync);
-		Serialization::ExportSettingsToFile("Cfg\\"+_engine_settings.window_settings_path, _window_settings);
+		Serialization::ExportSettingsToFile("Cfg\\" + _engine_settings.window_settings_path, _window_settings);
+	}
+	void MainMenuEngine::OnNewMusicSettings(const Settings::MusicSettings& new_music_settings) {
+
 	}
 }

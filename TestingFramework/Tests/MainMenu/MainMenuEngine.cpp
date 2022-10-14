@@ -20,6 +20,9 @@ namespace Test {
 		Serialization::ExportSettingsToFile("Cfg\\" + _engine_settings.window_settings_path, _window_settings);
 	}
 	void MainMenuEngine::OnNewMusicSettings(const Settings::MusicSettings& new_music_settings) {
-
+		_music_settings.effect_vol = new_music_settings.effect_vol;
+		_music_settings.master_vol = new_music_settings.master_vol;
+		_music_settings.music_vol = new_music_settings.music_vol;
+		Serialization::ExportSettingsToFile("Cfg\\" + _engine_settings.music_settings_path, _music_settings);
 	}
 }

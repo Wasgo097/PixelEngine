@@ -27,7 +27,7 @@ namespace Test {
 		settings_btn->setSize({ "20%", "15%" });
 		settings_btn->setPosition({ "40%", "60%" });
 		_gui.add(settings_btn);
-		settings_btn->onPress(&MainMenuWorld::SettingsPage, this);
+		settings_btn->onPress(&MainMenuWorld::SettingsWindowPage, this);
 		//exit
 		auto exit_btn = tgui::Button::create("Exit Game");
 		exit_btn->setRenderer(theme.getRenderer("Button"));
@@ -40,7 +40,7 @@ namespace Test {
 		_parent->PushWorldToQueue(std::make_unique<WorldForForestTest>(_world_settings, _parent));
 		_quit = true;
 	}
-	void MainMenuWorld::SettingsPage() {
+	void MainMenuWorld::SettingsWindowPage() {
 		InitGuiSettup();
 		tgui::Theme theme{ "Resource\\GUI\\themes\\TransparentGrey.txt" };
 		_working_window_settings = std::make_unique<Settings::WindowSettingsDTO>(_window_settings);
@@ -55,7 +55,7 @@ namespace Test {
 		apply_btn->setSize({ "5%", "5%" });
 		apply_btn->setPosition({ "2%", "10%" });
 		_gui.add(apply_btn);
-		apply_btn->onPress(&MainMenuWorld::ApplySettings, this);
+		apply_btn->onPress(&MainMenuWorld::ApplyWindowSettings, this);
 		//resolution
 		auto label = tgui::Label::create();
 		label->setRenderer(theme.getRenderer("Label"));
@@ -78,7 +78,7 @@ namespace Test {
 			_resolutions_tabs->select(2);
 		else
 			_resolutions_tabs->select(0);
-		_resolutions_tabs->onTabSelect(&MainMenuWorld::RewriteSettings, this);
+		_resolutions_tabs->onTabSelect(&MainMenuWorld::RewriteWindowSettings, this);
 		//fps
 		label = tgui::Label::create();
 		label->setRenderer(theme.getRenderer("Label"));
@@ -93,7 +93,7 @@ namespace Test {
 		_fps_slider->setValue(static_cast<float>(_window_settings.fps));
 		_fps_slider->setStep(10.0f);
 		_gui.add(_fps_slider);
-		_fps_slider->onValueChange(&MainMenuWorld::RewriteSettings, this);
+		_fps_slider->onValueChange(&MainMenuWorld::RewriteWindowSettings, this);
 		//window mode
 		label = tgui::Label::create();
 		label->setRenderer(theme.getRenderer("Label"));
@@ -118,8 +118,8 @@ namespace Test {
 			_window_radio->setChecked(true);
 			_fullscreen_radio->setChecked(false);
 		}
-		_window_radio->onCheck(&MainMenuWorld::RewriteSettings, this);
-		_fullscreen_radio->onCheck(&MainMenuWorld::RewriteSettings, this);
+		_window_radio->onCheck(&MainMenuWorld::RewriteWindowSettings, this);
+		_fullscreen_radio->onCheck(&MainMenuWorld::RewriteWindowSettings, this);
 	}
 	void MainMenuWorld::ExitClick() {
 		_quit = true;
@@ -127,7 +127,7 @@ namespace Test {
 	void MainMenuWorld::ReturnClick() {
 		MainMenuPage();
 	}
-	void MainMenuWorld::RewriteSettings() {
+	void MainMenuWorld::RewriteWindowSettings() {
 		_working_window_settings->fps = static_cast<int>(_fps_slider->getValue());
 		if (_fullscreen_radio->isChecked())
 			_working_window_settings->display_style = 8;
@@ -146,13 +146,12 @@ namespace Test {
 			_working_window_settings->video_mode.height = 1080;
 		}
 	}
-	void MainMenuWorld::ApplySettings() {
+	void MainMenuWorld::ApplyWindowSettings() {
 		_parent->OnNewWindowSettings(*_working_window_settings);
 		RefreshGuiTarget();
-		SettingsPage();
+		SettingsWindowPage();
 	}
-	void MainMenuWorld::DrawMap(sf::RenderWindow& window)
-	{
+	void MainMenuWorld::DrawMap(sf::RenderWindow& window) {
 	}
 	void MainMenuWorld::CreateWorldBaseGUIComponents() {
 		tgui::Theme theme{ "Resource\\GUI\\themes\\TransparentGrey.txt" };

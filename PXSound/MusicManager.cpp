@@ -5,7 +5,7 @@ namespace Sound {
 	}
 	void MusicManager::SetVolume(float new_volume) const {
 		if (_current_playing_music)
-			_current_playing_music->setVolume(100.0*new_volume);
+			_current_playing_music->setVolume(100.0f*new_volume);
 	}
 	void MusicManager::PlayMusic(std::unique_ptr<sf::Music>&& new_music) {
 		if (_current_playing_music)

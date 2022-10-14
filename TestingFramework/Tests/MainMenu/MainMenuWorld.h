@@ -1,6 +1,7 @@
 #pragma once
 #include "PXCore/World/WorldBaseGUI.h"
 #include "PXSettings/WindowSettingsDTO.h"
+#include "PXSettings/MusicSettings.h"
 namespace Test {
 	class MainMenuWorld :public Core::World::WorldBaseGUI {
 	public:
@@ -16,17 +17,21 @@ namespace Test {
 	private:
 		void MainMenuPage();
 		void NewGameClick();
-		void SettingsPage();
+		void SettingsWindowPage();
 		void ExitClick();
 		void ReturnClick();
-		void RewriteSettings();
-		void ApplySettings();
+		void RewriteWindowSettings();
+		void ApplyWindowSettings();
 		const Settings::WindowSettingsDTO& _window_settings;
 		const Settings::MusicSettings& _music_settings;
 		std::unique_ptr<Settings::WindowSettingsDTO> _working_window_settings;
+		std::unique_ptr<Settings::MusicSettings> _working_music_settings;
 		tgui::Tabs::Ptr _resolutions_tabs;
 		tgui::Slider::Ptr _fps_slider;
 		tgui::RadioButton::Ptr _fullscreen_radio;
 		tgui::RadioButton::Ptr _window_radio;
+		tgui::Slider::Ptr _music_slider;
+		tgui::Slider::Ptr _effect_slider;
+		tgui::Slider::Ptr _master_slider;
 	};
 }

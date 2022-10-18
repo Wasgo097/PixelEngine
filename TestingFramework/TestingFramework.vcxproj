@@ -138,6 +138,10 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Tests\GUISettup\BlockEvent.cpp" />
+    <ClCompile Include="Tests\GUISettup\PopUp.cpp" />
+    <ClCompile Include="Tests\GUISettup\ScrollablePanel.cpp" />
+    <ClCompile Include="Tests\GUISettup\Tabs.cpp" />
     <ClCompile Include="Tests\ExampleParticle2\ParticleSystem2.cpp" />
     <ClCompile Include="Tests\ExampleParticle2\Particle2Test.cpp" />
     <ClCompile Include="Tests\ActorAnimation\ActorAnimationTest.cpp" />
@@ -181,6 +185,10 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Tests\GUISettup\BlockEvent.h" />
+    <ClInclude Include="Tests\GUISettup\PopUp.h" />
+    <ClInclude Include="Tests\GUISettup\ScrollablePanel.h" />
+    <ClInclude Include="Tests\GUISettup\Tabs.h" />
     <ClInclude Include="Tests\ExampleParticle2\ParticleSystem2.h" />
     <ClInclude Include="Tests\ExampleParticle2\Particle2Test.h" />
     <ClInclude Include="Tests\ActorAnimation\ActorAnimationTest.h" />

@@ -2,12 +2,10 @@
 #include "BaseTest.h"
 #include <TGUI/TGUI.hpp>
 namespace Test {
-	class MultipleWidgetsTest :public BaseTest {
+	class PopUp :public BaseTest {
 	public:
-		MultipleWidgetsTest(const ArgumentParser& parser);
+		PopUp(const ArgumentParser& parser);
 		virtual bool PrepareTest() override;
 		virtual bool RunTest() override;
-	protected:
-		bool runExample(tgui::GuiBase& gui);
 	};
 }

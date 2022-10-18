@@ -3,6 +3,8 @@
 #include <SFML/Graphics/RenderWindow.hpp>
 
 namespace Test {
+	LoginExample::LoginExample(const ArgumentParser& parser) :BaseTest(parser) {
+	}
 	bool LoginExample::PrepareTest() {
 		sf::RenderWindow window(sf::VideoMode(800, 600), "TGUI window");
 

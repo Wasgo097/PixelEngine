@@ -4,6 +4,7 @@
 namespace Test {
 	class LoginExample :public BaseTest {
 	public:
+		LoginExample(const ArgumentParser& parser);
 		virtual bool PrepareTest() override;
 		virtual bool RunTest() override;
 	protected:

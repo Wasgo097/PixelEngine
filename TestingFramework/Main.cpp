@@ -15,13 +15,13 @@ int main(int argc, const char* argv[]) {
 	std::cout << "Animation test result: \n" << test2.RunTest() << std::endl;*/
 	/*ForestTest test3(parser);
 	std::cout << "Forest test result: \n" << test3.RunTest() << std::endl;*/
-	/*LoginExample test4(parser);
-	std::cout << "LoginExample result: \n" << test4.RunTest() << std::endl;*/
-	/*MultipleWidgetsTest test5(parser);
-	std::cout << "MultipleWidgetsTest result: \n" << test5.RunTest() << std::endl;*/
-	MainMenuTest test6(parser);
-	std::cout << "MainMenuTest result: \n" << test6.RunTest() << std::endl;
-	/*Particle2Test test7(parser);
-	std::cout << "Particle2Test result: \n" << test7.RunTest() << std::endl;*/
+	LoginExample test4(parser);
+	std::cout << "LoginExample result: \n" << test4.RunTest() << std::endl;
+	MultipleWidgetsTest test5(parser);
+	std::cout << "MultipleWidgetsTest result: \n" << test5.RunTest() << std::endl;
+	/*MainMenuTest testx(parser);
+	std::cout << "MainMenuTest result: \n" << testx.RunTest() << std::endl;*/
+	/*Particle2Test testy(parser);
+	std::cout << "Particle2Test result: \n" << testy.RunTest() << std::endl;*/
 	return 0;
 }

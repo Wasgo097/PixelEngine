@@ -1,6 +1,7 @@
 #include "MultipleWidgetsTest.h"
 namespace Test {
-
+	MultipleWidgetsTest::MultipleWidgetsTest(const ArgumentParser& parser) :BaseTest(parser) {
+	}
 	bool MultipleWidgetsTest::PrepareTest() {
 		sf::RenderWindow window(sf::VideoMode(800, 600), "TGUI window");
 		tgui::Gui gui(window);

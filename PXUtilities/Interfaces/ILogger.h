@@ -5,6 +5,5 @@ namespace Log {
 	public:
 		virtual ~ILogger() = default;
 		virtual void Log(const std::string& to_log)=0;
-		virtual void FLush()=0;
 	};
 }

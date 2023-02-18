@@ -22,5 +22,6 @@ namespace Particle {
 		std::list<std::unique_ptr<Particle>> CreateParticles(unsigned int particles)const;
 		Settings::ParticleSystemSettings _settings;
 		std::list<std::unique_ptr<Particle>> _particles;
+		sf::FloatRect _rect;
 	};
 }

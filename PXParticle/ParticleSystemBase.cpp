@@ -3,6 +3,11 @@
 #include <iostream>
 namespace Particle {
 	ParticleSystemBase::ParticleSystemBase(const Settings::ParticleSystemSettings& settings) :_settings{ settings } {
+		_rect.height = _settings.size.y;
+		_rect.width = _settings.size.x;
+		//tl corner
+		_rect.left = _settings.origin.x - (_settings.size.x / 2.0);
+		_rect.top = _settings.origin.y - (_settings.size.y);
 	}
 	void ParticleSystemBase::AddParticles(unsigned int particles) {
 		//mt particle creation
@@ -27,14 +32,8 @@ namespace Particle {
 	void ParticleSystemBase::Tick(float delta) {
 		for (auto& particle : _particles)
 			particle->Tick(delta, _settings.gravity, _settings.particle_speed, _settings.dissolve ? _settings.dissolution_rate : std::optional<unsigned char>());
-		sf::FloatRect rect;
-		rect.height = _settings.size.y;
-		rect.width = _settings.size.x;
-		//tl corner
-		rect.left = _settings.origin.x - (_settings.size.x / 2.0);
-		rect.top = _settings.origin.y - (_settings.size.y);
-		auto it = std::partition(_particles.begin(), _particles.end(), [this, rect](const std::unique_ptr<Particle>& particle) {
-			return particle->ToDelete(rect);
+		auto it = std::partition(_particles.begin(), _particles.end(), [this](const std::unique_ptr<Particle>& particle) {
+			return particle->ToDelete(_rect);
 			});
 		_particles.erase(_particles.begin(), it);
 	}

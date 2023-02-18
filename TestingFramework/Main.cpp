@@ -19,18 +19,18 @@ int main(int argc, const char* argv[]) {
 	//std::cout << "Animation test result: \n" << actorAnimation.RunTest() << std::endl;
 	//ForestTest forest(parser);
 	//std::cout << "Forest test result: \n" << forest.RunTest() << std::endl;
-	BlockEvent blockEvent(parser);
-	std::cout << "BlockEventTest result: \n" << blockEvent.RunTest() << std::endl;
-	LoginExample login(parser);
-	std::cout << "LoginExample result: \n" << login.RunTest() << std::endl;
-	MultipleWidgetsTest multipleWidget(parser);
-	std::cout << "MultipleWidgetsTest result: \n" << multipleWidget.RunTest() << std::endl;
-	PopUp popUp(parser);
-	std::cout << "PopUp result: \n" << popUp.RunTest() << std::endl;
-	ScrollablePanel scrollablePanel(parser);
-	std::cout << "ScrollablePanel result: \n" << scrollablePanel.RunTest() << std::endl;
-	/*MainMenuTest mainMenu(parser);
-	std::cout << "MainMenuTest result: \n" << mainMenu.RunTest() << std::endl;*/
+	//BlockEvent blockEvent(parser);
+	//std::cout << "BlockEventTest result: \n" << blockEvent.RunTest() << std::endl;
+	//LoginExample login(parser);
+	//std::cout << "LoginExample result: \n" << login.RunTest() << std::endl;
+	//MultipleWidgetsTest multipleWidget(parser);
+	//std::cout << "MultipleWidgetsTest result: \n" << multipleWidget.RunTest() << std::endl;
+	//PopUp popUp(parser);
+	//std::cout << "PopUp result: \n" << popUp.RunTest() << std::endl;
+	//ScrollablePanel scrollablePanel(parser);
+	//std::cout << "ScrollablePanel result: \n" << scrollablePanel.RunTest() << std::endl;
+	MainMenuTest mainMenu(parser);
+	std::cout << "MainMenuTest result: \n" << mainMenu.RunTest() << std::endl;
 	/*Particle2Test particle2(parser);
 	std::cout << "Particle2Test result: \n" << particle2.RunTest() << std::endl;*/
 	return 0;

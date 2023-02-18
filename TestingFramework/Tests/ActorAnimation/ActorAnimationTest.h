@@ -4,6 +4,7 @@
 namespace Test {
 	class ActorAnimationTest : public BaseTest{
 	public:
+		ActorAnimationTest(const ArgumentParser& parser);
 		// Inherited via BaseTest
 		virtual bool PrepareTest() override;
 		virtual bool RunTest() override;

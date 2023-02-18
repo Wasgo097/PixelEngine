@@ -34,7 +34,7 @@ namespace Core {
 			Update();
 			game_loop_condition = _main_window->isOpen() && _current_world;
 		}
-		return 1;
+		return 0;
 	}
 	void Engine::ServiceInput() {
 		if (_current_world) {

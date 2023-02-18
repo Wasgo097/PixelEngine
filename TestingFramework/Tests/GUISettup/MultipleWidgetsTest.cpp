@@ -5,7 +5,7 @@ namespace Test {
 	bool MultipleWidgetsTest::PrepareTest() {
 		sf::RenderWindow window(sf::VideoMode(800, 600), "TGUI window");
 		tgui::Gui gui(window);
-		if (!runExample(gui)) {
+		if (!RunExample(gui)) {
 			return false;
 		}
 		while (window.isOpen()) {
@@ -35,7 +35,7 @@ namespace Test {
 		}
 		return false;
 	}
-	bool MultipleWidgetsTest::runExample(tgui::GuiBase& gui) {
+	bool MultipleWidgetsTest::RunExample(tgui::GuiBase& gui) {
 		try
 		{
 			tgui::Theme theme{ "Resource\\GUI\\themes\\Black.txt" };

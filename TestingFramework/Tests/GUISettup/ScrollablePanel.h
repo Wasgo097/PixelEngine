@@ -7,5 +7,7 @@ namespace Test {
 		ScrollablePanel(const ArgumentParser& parser);
 		virtual bool PrepareTest() override;
 		virtual bool RunTest() override;
+	protected:
+		bool RunExample(tgui::GuiBase& gui);
 	};
 }

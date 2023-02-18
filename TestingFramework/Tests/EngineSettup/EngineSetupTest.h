@@ -4,6 +4,7 @@
 namespace Test {
 	class EngineSetupTest :public BaseTest{
 	public:
+		EngineSetupTest(const ArgumentParser& parser);
 		// Inherited via BaseTest
 		virtual bool PrepareTest() override;
 		virtual bool RunTest() override;

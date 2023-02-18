@@ -1,8 +1,11 @@
 
 #include "EngineSetupTest.h"
 namespace Test {
+	EngineSetupTest::EngineSetupTest(const ArgumentParser& parser) :BaseTest(parser)
+	{
+	}
 	bool EngineSetupTest::PrepareTest(){
-		return _engine.Run()==1;
+		return _engine.Run()==0;
 	}
 	bool EngineSetupTest::RunTest(){
 		try {

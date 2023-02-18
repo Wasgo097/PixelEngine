@@ -4,7 +4,7 @@ Test::MainMenuTest::MainMenuTest(const ArgumentParser& parser) :BaseTest(parser)
 }
 
 bool Test::MainMenuTest::PrepareTest() {
-	return _engine.Run() == 1;
+	return _engine.Run() == 0;
 }
 
 bool Test::MainMenuTest::RunTest() {

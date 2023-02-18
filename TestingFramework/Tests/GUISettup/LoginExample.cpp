@@ -9,7 +9,7 @@ namespace Test {
 		sf::RenderWindow window(sf::VideoMode(800, 600), "TGUI window");
 
 		tgui::Gui gui(window);
-		if (!runExample(gui))
+		if (!RunExample(gui))
 			return false;
 
 		gui.mainLoop();
@@ -26,21 +26,21 @@ namespace Test {
 		}
 		return false;
 	}
-	void LoginExample::login(tgui::EditBox::Ptr username, tgui::EditBox::Ptr password) {
+	void LoginExample::Login(tgui::EditBox::Ptr username, tgui::EditBox::Ptr password) {
 		std::cout << "Username: " << username->getText() << std::endl;
 		std::cout << "Password: " << password->getText() << std::endl;
 	}
-	void LoginExample::updateTextSize(tgui::GuiBase& gui) {
+	void LoginExample::UpdateTextSize(tgui::GuiBase& gui) {
 		// Update the text size of all widgets in the gui, based on the current window height
 		const float windowHeight = gui.getView().getRect().height;
 		gui.setTextSize(static_cast<unsigned int>(0.07f * windowHeight)); // 7% of height
 	}
-	bool LoginExample::loadWidgets(tgui::GuiBase& gui) {
+	bool LoginExample::LoadWidgets(tgui::GuiBase& gui) {
 		// Specify an initial text size instead of using the default value
-		updateTextSize(gui);
+		UpdateTextSize(gui);
 
 		// We want the text size to be updated when the window is resized
-		gui.onViewChange([&gui, this] { updateTextSize(gui); });
+		gui.onViewChange([&gui, this] { UpdateTextSize(gui); });
 
 		// Create the background image
 		// The picture is of type tgui::Picture::Ptr which is actually just a typedef for std::shared_widget<tgui::Picture>
@@ -74,13 +74,13 @@ namespace Test {
 
 		// Call the login function when the button is pressed and pass the edit boxes that we created as parameters
 		// The "&" in front of "login" can be removed on newer compilers, but is kept here for compatibility with GCC < 8.
-		button->onPress(&LoginExample::login, this, editBoxUsername, editBoxPassword);
+		button->onPress(&LoginExample::Login, this, editBoxUsername, editBoxPassword);
 		return true;
 	}
-	bool LoginExample::runExample(tgui::GuiBase& gui) {
+	bool LoginExample::RunExample(tgui::GuiBase& gui) {
 		try
 		{
-			if (!loadWidgets(gui))
+			if (!LoadWidgets(gui))
 				return false;
 			return true;
 		}

@@ -8,6 +8,6 @@ namespace Test {
 		virtual bool PrepareTest() override;
 		virtual bool RunTest() override;
 	protected:
-		bool runExample(tgui::GuiBase& gui);
+		bool RunExample(tgui::GuiBase& gui);
 	};
 }

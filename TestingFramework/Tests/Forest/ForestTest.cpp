@@ -4,7 +4,7 @@ namespace Test {
 	ForestTest::ForestTest(const ArgumentParser& parser) :BaseTest(parser) {
 	}
 	bool ForestTest::PrepareTest() {
-		return _engine.Run() == 1;
+		return _engine.Run() == 0;
 	}
 	bool ForestTest::RunTest() {
 		try {

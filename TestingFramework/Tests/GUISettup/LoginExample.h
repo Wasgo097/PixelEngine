@@ -8,9 +8,9 @@ namespace Test {
 		virtual bool PrepareTest() override;
 		virtual bool RunTest() override;
 	protected:
-		void login(tgui::EditBox::Ptr username, tgui::EditBox::Ptr password);
-		void updateTextSize(tgui::GuiBase& gui);
-		bool loadWidgets(tgui::GuiBase& gui);
-		bool runExample(tgui::GuiBase& gui);
+		void Login(tgui::EditBox::Ptr username, tgui::EditBox::Ptr password);
+		void UpdateTextSize(tgui::GuiBase& gui);
+		bool LoadWidgets(tgui::GuiBase& gui);
+		bool RunExample(tgui::GuiBase& gui);
 	};
 }

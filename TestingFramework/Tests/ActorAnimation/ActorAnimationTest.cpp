@@ -1,6 +1,9 @@
 #include "ActorAnimationTest.h"
 #include "PXFactory/SettingsFactory.h"
 namespace Test {
+	ActorAnimationTest::ActorAnimationTest(const ArgumentParser& parser) :BaseTest(parser)
+	{
+	}
 	bool ActorAnimationTest::PrepareTest() {
 		//#define PREPARE_SETTINGS
 #ifdef PREPARE_SETTINGS
@@ -33,7 +36,7 @@ namespace Test {
 		main_animation_settings.frames_count[11] = 9;
 		CREATE_SETTINGS_FILE(main_animation_settings, "Cfg\\MainAnimationSettings.json")
 #endif
-			return _engine.Run() == 1;
+			return _engine.Run() == 0;
 	}
 	bool ActorAnimationTest::RunTest() {
 		try {

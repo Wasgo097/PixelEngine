@@ -87,6 +87,10 @@ namespace Core::World {
 		for (const auto& component : _world_components)
 			component->InitComponent();
 	}
+	void WorldBase::DrawMap(sf::RenderWindow& window) {
+		if (_map)
+			window.draw(_map->map);
+	}
 	void WorldBase::DrawActors(sf::RenderWindow& window) {
 		if (_actor_manager)
 			_actor_manager->Draw(window);

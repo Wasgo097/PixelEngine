@@ -7,20 +7,17 @@ namespace Test {
 	public:
 		MainMenuWorld(Settings::WindowSettingsDTO& window_settings, Settings::MusicSettings& music_settings, const Settings::WorldSettings& world_settings = Settings::WorldSettings(), Core::Engine* parent = nullptr);
 	protected:
-		virtual void CheckQuit() override {};
+		virtual void CheckQuit() override {}
 		virtual void InitGuiSettup() override;
 		virtual void InitWorld()override;
 		virtual void CreateWorldBaseGUIComponents() override;
-	protected:
-		// Inherited via WorldBaseGUI
-		virtual void DrawMap(sf::RenderWindow& window) override;
 	private:
 		void MainMenuPage();
 		void NewGameClick();
 		void SettingsWindowPage();
 		void ExitClick();
 		void ReturnClick();
-		void RewriteWindowSettings();
+		void RewriteWorkingWindowSettings();
 		void ApplyWindowSettings();
 		const Settings::WindowSettingsDTO& _window_settings;
 		const Settings::MusicSettings& _music_settings;

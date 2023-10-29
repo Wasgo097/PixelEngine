@@ -8,6 +8,7 @@ namespace Core::World::Component {
 		virtual void InitComponent();
 		virtual void Tick(float delta_time) override;
 		virtual void Draw() override;
+		virtual void EndComponent() override {}
 	protected:
 		std::weak_ptr<Core::Object::ControlledActor> _actor;
 		tgui::Label::Ptr _position_label;

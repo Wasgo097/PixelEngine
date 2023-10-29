@@ -12,7 +12,7 @@ namespace Particle {
 		virtual void Tick(float delta)override;
 	protected:
 		Settings::RepeatableParticleSystemSettings _repeatable_settings;
-		std::optional<unsigned int> _current_tick{};
+		std::optional<unsigned int> _current_tick;
 		std::atomic_bool _add_new_particles{ false };
 	};
 }

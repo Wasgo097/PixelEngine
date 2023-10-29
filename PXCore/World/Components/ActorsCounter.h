@@ -7,6 +7,7 @@ namespace Core::World::Component {
 		virtual void Tick(float delta_time)override {};
 		virtual void Draw()override;
 		virtual void InitComponent()override;
+		virtual void EndComponent() override {}
 		void SetCountOfActors(size_t new_count);
 	protected:
 		tgui::Label::Ptr _counter;

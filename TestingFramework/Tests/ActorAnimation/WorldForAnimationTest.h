@@ -6,8 +6,5 @@ namespace Test {
 		WorldForAnimationTest(const Settings::WorldSettings& world_settings = Settings::WorldSettings(), Core::Engine* parrent = nullptr);
 		virtual void CheckQuit()override;
 		virtual void CreateWorldBaseComponents() override {}
-	protected:
-		// Inherited via WorldBase
-		virtual void DrawMap(sf::RenderWindow& window) override;
 	};
 }

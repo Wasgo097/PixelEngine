@@ -64,6 +64,7 @@
     <ClInclude Include="World\BaseImplementations\EmptyWorld.h" />
     <ClInclude Include="ActorsManager.h" />
     <ClInclude Include="Engine.h" />
+    <ClInclude Include="World\Map.h" />
     <ClInclude Include="World\WorldBase.h" />
     <ClInclude Include="World\WorldBaseGUI.h" />
   </ItemGroup>

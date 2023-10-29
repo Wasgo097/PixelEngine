@@ -8,8 +8,5 @@ namespace Core::World {
 		virtual void CheckQuit() override;
 		virtual void Draw(sf::RenderWindow& window)override;
 		virtual void CreateWorldBaseComponents() override {}
-	protected:
-		// Inherited via WorldBase
-		virtual void DrawMap(sf::RenderWindow& window) override;
 	};
 }

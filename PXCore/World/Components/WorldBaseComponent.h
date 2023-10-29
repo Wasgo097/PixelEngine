@@ -7,8 +7,8 @@ namespace Core::World::Component {
 	public:
 		WorldBaseComponent(WorldBase* parent);
 		virtual void Tick(float delta_time) = 0;
-		virtual void InitComponent() {};
-		virtual void EndComponent() {};
+		virtual void InitComponent() = 0;
+		virtual void EndComponent() = 0;
 		bool TickFlag()const;
 		void SetTickFlag(bool flag);
 	private:

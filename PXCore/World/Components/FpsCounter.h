@@ -7,6 +7,7 @@ namespace Core::World::Component {
 		virtual void Tick(float delta_time) override;
 		virtual void Draw()override;
 		virtual void InitComponent()override;
+		virtual void EndComponent() override {}
 	protected:
 		tgui::Label::Ptr _fps_label;
 	};

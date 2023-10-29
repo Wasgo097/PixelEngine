@@ -7,7 +7,7 @@ namespace Settings {
 			return particle_per_tick == obj.particle_per_tick and tick_counter == obj.tick_counter;
 		}
 		unsigned int particle_per_tick = 0;
-		//how many particle system should emit new particles 
+		//how many times particle system will emit new particles 
 		std::optional<int> tick_counter;
 	};
 }

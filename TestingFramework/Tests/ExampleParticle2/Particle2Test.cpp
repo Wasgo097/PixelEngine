@@ -16,7 +16,7 @@ namespace Test {
 
 		/* Load a font and setup some texty-type stuff */
 		sf::Font font;
-		if (!font.loadFromFile("Resource//test_font.ttf"))
+		if (!font.loadFromFile("Resource\\font.otf"))
 			return false;
 		sf::Text text("", font, 12);
 		text.setPosition(

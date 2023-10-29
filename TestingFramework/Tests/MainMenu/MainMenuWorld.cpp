@@ -78,7 +78,7 @@ namespace Test {
 			_resolutions_tabs->select(2);
 		else
 			_resolutions_tabs->select(0);
-		_resolutions_tabs->onTabSelect(&MainMenuWorld::RewriteWindowSettings, this);
+		_resolutions_tabs->onTabSelect(&MainMenuWorld::RewriteWorkingWindowSettings, this);
 		//fps
 		label = tgui::Label::create();
 		label->setRenderer(theme.getRenderer("Label"));
@@ -93,7 +93,7 @@ namespace Test {
 		_fps_slider->setValue(static_cast<float>(_window_settings.fps));
 		_fps_slider->setStep(10.0f);
 		_gui.add(_fps_slider);
-		_fps_slider->onValueChange(&MainMenuWorld::RewriteWindowSettings, this);
+		_fps_slider->onValueChange(&MainMenuWorld::RewriteWorkingWindowSettings, this);
 		//window mode
 		label = tgui::Label::create();
 		label->setRenderer(theme.getRenderer("Label"));
@@ -118,8 +118,8 @@ namespace Test {
 			_window_radio->setChecked(true);
 			_fullscreen_radio->setChecked(false);
 		}
-		_window_radio->onCheck(&MainMenuWorld::RewriteWindowSettings, this);
-		_fullscreen_radio->onCheck(&MainMenuWorld::RewriteWindowSettings, this);
+		_window_radio->onCheck(&MainMenuWorld::RewriteWorkingWindowSettings, this);
+		_fullscreen_radio->onCheck(&MainMenuWorld::RewriteWorkingWindowSettings, this);
 	}
 	void MainMenuWorld::ExitClick() {
 		_quit = true;
@@ -127,7 +127,7 @@ namespace Test {
 	void MainMenuWorld::ReturnClick() {
 		MainMenuPage();
 	}
-	void MainMenuWorld::RewriteWindowSettings() {
+	void MainMenuWorld::RewriteWorkingWindowSettings() {
 		_working_window_settings->fps = static_cast<int>(_fps_slider->getValue());
 		if (_fullscreen_radio->isChecked())
 			_working_window_settings->display_style = 8;
@@ -150,8 +150,6 @@ namespace Test {
 		_parent->OnNewWindowSettings(*_working_window_settings);
 		RefreshGuiTarget();
 		SettingsWindowPage();
-	}
-	void MainMenuWorld::DrawMap(sf::RenderWindow& window) {
 	}
 	void MainMenuWorld::CreateWorldBaseGUIComponents() {
 		tgui::Theme theme{ "Resource\\GUI\\themes\\TransparentGrey.txt" };

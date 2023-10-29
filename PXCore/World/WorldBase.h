@@ -12,6 +12,7 @@
 #include "PXSound/MusicManager.h"
 #include "PXSound/SoundsManager.h"
 #include "Components/WorldBaseComponent.h"
+#include "Map.h"
 namespace Core {
 	class Engine;
 }
@@ -83,7 +84,7 @@ namespace Core::World {
 		}
 		
 		virtual void CreateWorldBaseComponents() = 0;
-		virtual void DrawMap(sf::RenderWindow& window) = 0;
+		virtual void DrawMap(sf::RenderWindow& window);
 		void DrawActors(sf::RenderWindow& window);
 		void DrawParticles(sf::RenderWindow& window);
 		void InitWorldBaseComponents();
@@ -98,6 +99,7 @@ namespace Core::World {
 		std::unique_ptr<Core::Particle::ParticleEmitter> _particle_emitter;
 		std::unique_ptr<Controller::ControllerBase> _main_controller;
 		std::list<std::shared_ptr<Component::WorldBaseComponent>> _world_components;
+		std::optional<Map> _map;
 		bool _quit = false;
 		bool _initialized = false;
 	};

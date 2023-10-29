@@ -9,12 +9,13 @@ using namespace Core;
 namespace Test {
 	WorldForForestTest::WorldForForestTest(const Settings::WorldSettings& world_settings, Core::Engine* parent) :WorldBaseGUI(world_settings, parent), _tree_timer{ 0.5f } {
 		_main_controller = std::make_unique<Test::ControllerForForestTest>(this, world_settings);
-		if (!_map_texture.loadFromFile("Resource\\TestMap.jpg"))
+		_map = Core::World::Map();
+		if (!_map->texture.loadFromFile("Resource\\TestMap.jpg"))
 			throw std::invalid_argument("Wrong main map path");
-		_map.setTexture(&_map_texture);
-		_map.setSize(sf::Vector2f(_map_texture.getSize()));
-		_map.setOrigin(_map.getSize() / 2.0f);
-		_map.setPosition(.0f, .0f);
+		_map->map.setTexture(&_map->texture);
+		_map->map.setSize(sf::Vector2f(_map->texture.getSize()));
+		_map->map.setOrigin(_map->map.getSize() / 2.0f);
+		_map->map.setPosition(.0f, .0f);
 	}
 	void WorldForForestTest::CheckQuit() {
 		if (sf::Keyboard::isKeyPressed(sf::Keyboard::Escape))
@@ -74,9 +75,6 @@ namespace Test {
 	void WorldForForestTest::RemoveTree(std::shared_ptr<Tree> tree) {
 		_created_trees.remove(tree);
 		_tree_timer.DetachFromSeconds(tree.get());
-	}
-	void WorldForForestTest::DrawMap(sf::RenderWindow& window) {
-		//window.draw(_map);
 	}
 	void WorldForForestTest::CreateWorldBaseGUIComponents() {
 		tgui::Theme theme{ "Resource\\GUI\\themes\\TransparentGrey.txt" };
